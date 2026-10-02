@@ -35,8 +35,10 @@ class VariantSimulation(BaseSimulation):
         test_root = root / 'simulations' / test_id
         require(test_root.resolve().is_relative_to(root.resolve()), 'simulation path escape')
         self.store = Store(test_root)
+        fingerprint_data = copy.deepcopy(self.data)
+        fingerprint_data.pop('retrieved_at', None)
         self.fingerprint = digest({'variant': variant, 'init': self.init, 'prompt': full,
-                                   'dataset': self.data, 'fees': {k: str(v) for k, v in self.fees.items()}})
+                                   'dataset': fingerprint_data, 'fees': {k: str(v) for k, v in self.fees.items()}})
         self._private_fingerprint = self.fingerprint
 
     def initialize(self):
