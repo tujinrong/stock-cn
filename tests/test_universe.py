@@ -4,6 +4,7 @@ from urllib.parse import urlparse, parse_qs
 
 import pytest
 
+from test_simulation import repo
 from stock_cn.universe import (
     bounded_prefilter, build_deep_research_pack,
     fetch_candidate_history, fetch_live_universe,
