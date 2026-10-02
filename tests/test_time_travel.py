@@ -10,7 +10,7 @@ from stock_cn.variant_prompts import materialize
 
 def long_history():
     start = date(2025, 1, 2)
-    sessions = [(start + timedelta(days=i)).isoformat() for i in range(90)]
+    sessions = [(start + timedelta(days=i)).isoformat() for i in range(300)]
     bars = {}
     instruments = {
         "600036.SH": {"name": "招商银行", "board": "MAIN", "lot_size": 100},
@@ -39,8 +39,8 @@ def long_history():
 
 def test_time_travel_builds_multi_timeframe_prefix_only():
     data = long_history()
-    cutoff = data["sessions"][69]
-    target = data["sessions"][70]
+    cutoff = data["sessions"][269]
+    target = data["sessions"][270]
     ctx = build_time_travel_context(data, target, cutoff)
     assert ctx["target_date"] == target
     assert ctx["news_policy"] == "IGNORE_ARCHIVED_NEWS_BY_DEFAULT"
@@ -56,6 +56,8 @@ def test_time_travel_builds_multi_timeframe_prefix_only():
         assert stock["moving_average"]["ma20"] is not None
         assert stock["returns_pct"]["60_sessions"] is not None
         assert stock["range_position_0_to_1"]["60_sessions"] is not None
+        assert stock["range_position_0_to_1"]["250_sessions"] is not None
+        assert stock["history_coverage"]["has_250_sessions"] is True
         assert stock["industry"]
 
 
@@ -121,3 +123,12 @@ def test_time_travel_jump_can_start_mid_history_without_fake_prior_trades(repo):
     assert manifest["time_travel_target_date"] == "2025-08-05"
     assert manifest["planned_execution_date"] == "2025-08-06"
     assert "does not recreate trades before that date" in " ".join(manifest["limitations"])
+
+def test_short_history_does_not_pretend_to_have_one_year_position():
+    data = long_history()
+    cutoff = data["sessions"][100]
+    target = data["sessions"][101]
+    ctx = build_time_travel_context(data, target, cutoff)
+    for stock in ctx["symbols"]:
+        assert stock["history_coverage"]["has_250_sessions"] is False
+        assert stock["range_position_0_to_1"]["250_sessions"] is None
