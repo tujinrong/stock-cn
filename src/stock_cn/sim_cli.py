@@ -10,6 +10,7 @@ from .sim_agents import Budget, FileAgent, OpenAIResponsesAgent, ScriptedSmokeAg
 from .sim_data import SYMBOLS, fetch_daily, fixture, load_dataset
 from .simulation import Simulation, Store, ValidationError, digest, dumps, identifier, read_json, require
 from .sim_variants import VariantSimulation as Simulation
+from .evaluation import prepare_batch, save_locked_decision, score_locked_decision, summarize
 
 
 def formal_fingerprints(repo):
@@ -112,6 +113,24 @@ def main(argv=None):
     audit.add_argument("--test-id", required=True)
     audit.add_argument("--variant", required=True)
     audit.add_argument("--repair", action="store_true")
+    ep = sub.add_parser("eval-prepare", help="prepare historical AI tasks with future outcomes sealed")
+    ep.add_argument("--eval-id", required=True)
+    ep.add_argument("--variants", nargs="+", required=True)
+    ep.add_argument("--dates", nargs="+", required=True)
+    ep.add_argument("--data", required=True)
+    el = sub.add_parser("eval-lock", help="lock an AI decision before any outcome scoring")
+    el.add_argument("--eval-id", required=True)
+    el.add_argument("--variant", required=True)
+    el.add_argument("--date", required=True)
+    el.add_argument("--decision", required=True)
+    es = sub.add_parser("eval-score", help="score a locked decision against future prices and HOLD")
+    es.add_argument("--eval-id", required=True)
+    es.add_argument("--variant", required=True)
+    es.add_argument("--date", required=True)
+    es.add_argument("--data", required=True)
+    es.add_argument("--horizons", nargs="+", type=int, default=[5, 20, 40])
+    esm = sub.add_parser("eval-summary", help="summarize already-scored historical AI decisions")
+    esm.add_argument("--eval-id", required=True)
     args = parser.parse_args(argv)
     repo = Path(args.repo).resolve()
     try:
@@ -127,6 +146,18 @@ def main(argv=None):
             Store(repo / "runs/simulations" / args.test_id).write("source-probe.json", result)
             if data is not None:
                 Path(args.output).write_text(dumps(data), encoding="utf-8")
+        elif args.command == "eval-prepare":
+            data = load_dataset(args.data)
+            result = prepare_batch(repo, args.eval_id, args.variants, data, args.dates)
+        elif args.command == "eval-lock":
+            result = save_locked_decision(
+                repo, args.eval_id, args.variant, args.date, read_json(args.decision))
+        elif args.command == "eval-score":
+            data = load_dataset(args.data)
+            result = score_locked_decision(
+                repo, args.eval_id, args.variant, args.date, data, tuple(args.horizons))
+        elif args.command == "eval-summary":
+            result = summarize(repo, args.eval_id)
         elif args.command == "time-travel":
             data = load_dataset(args.data)
             require(args.date in data["sessions"], "time-travel date must be a supplied market session")
