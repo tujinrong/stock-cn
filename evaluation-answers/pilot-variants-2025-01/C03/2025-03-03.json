@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "C",
+  "variant_id": "C03",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-variants-2025-01-20250303-C03",
+  "decision_id": "eval-pilot-variants-2025-01-20250303-C03-2025-03-04",
+  "date": "2025-03-04",
+  "decision_time": "2025-03-03T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "e8b735a9e4efb811f5daa7efd42d673d94d6f237",
+  "status": "READY",
+  "action": "BUY",
+  "order_proposal": {
+    "symbol": "600900.SH",
+    "side": "BUY",
+    "quantity": 1200,
+    "reference_price_cny": "27.090",
+    "quote_time": "2025-03-03T15:00:00+08:00",
+    "quote_source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600900%2Cday%2C2024-09-01%2C2025-09-30%2C320%2C"
+  },
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "机会优先变体全现金。长江电力处20/60日区间底部，波动明显低于恒立液压和比亚迪，虽然仍在下行，但在候选池中具有较好的低位风险补偿。允许较早、较集中的试探，买入1200股长江电力，其余资金继续等待。",
+  "risks": [
+    "低位不是底部，若趋势继续向下会出现账面损失。",
+    "缺少历史基本面资料，仓位不应更大。"
+  ],
+  "evidence": [],
+  "data_gaps": [
+    "缺少历史时点财务、公告和新闻核验。",
+    "当前为日线时光穿越，不是历史11:00分钟级重演。"
+  ]
+}

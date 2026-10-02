@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "C",
+  "variant_id": "C01",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-variants-2025-01-20250515-C01",
+  "decision_id": "eval-pilot-variants-2025-01-20250515-C01-2025-05-16",
+  "date": "2025-05-16",
+  "decision_time": "2025-05-15T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "e8b735a9e4efb811f5daa7efd42d673d94d6f237",
+  "status": "READY",
+  "action": "HOLD",
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "稳健确认变体仍为全现金。招商银行、比亚迪和长江电力接近阶段高位；福耀玻璃虽位置较低但确认度不足，恒立液压波动较高且短期回撤。没有足够强的安全边际与确认组合，因此保持现金。",
+  "risks": [
+    "强势股票可能延续上涨，持续等待会产生机会成本。"
+  ],
+  "evidence": [],
+  "data_gaps": [
+    "缺少历史时点财务、公告和新闻核验。",
+    "当前为日线时光穿越，不是历史11:00分钟级重演。"
+  ]
+}

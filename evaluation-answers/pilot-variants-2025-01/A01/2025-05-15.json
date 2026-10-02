@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "A",
+  "variant_id": "A01",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-variants-2025-01-20250515-A01",
+  "decision_id": "eval-pilot-variants-2025-01-20250515-A01-2025-05-16",
+  "date": "2025-05-16",
+  "decision_time": "2025-05-15T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "e8b735a9e4efb811f5daa7efd42d673d94d6f237",
+  "status": "READY",
+  "action": "SELL",
+  "order_proposal": {
+    "symbol": "601100.SH",
+    "side": "SELL",
+    "quantity": 100,
+    "reference_price_cny": "73.360",
+    "quote_time": "2025-05-15T15:00:00+08:00",
+    "quote_source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601100%2Cday%2C2024-09-01%2C2025-09-30%2C320%2C"
+  },
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "稳健变体已经持有四只股票并保留约44%现金。恒立液压5日明显回撤、波动仍高，且60日位置并不便宜；招商银行和长江电力处阶段高位也不适合追买。为控制组合回撤，减持100股恒立液压，继续保留现金等待更明确机会。",
+  "risks": [
+    "恒立液压短期下跌可能只是正常回撤，减仓后可能错过反弹。",
+    "其他持仓若同步回撤，单次减仓的防护有限。"
+  ],
+  "evidence": [],
+  "data_gaps": [
+    "缺少历史时点财务、公告和新闻核验。",
+    "当前为日线时光穿越，不是历史11:00分钟级重演。"
+  ]
+}
