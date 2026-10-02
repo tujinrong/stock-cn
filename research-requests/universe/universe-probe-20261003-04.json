@@ -1,0 +1,8 @@
+{
+  "probe_id": "universe-probe-20261003-04",
+  "purpose": "Regenerate end-to-end D/F research packs after same-day recovery-classification fix.",
+  "candidate_limit": 30,
+  "history_sample": 10,
+  "formal_execution": false,
+  "not_a_recommendation": true
+}
