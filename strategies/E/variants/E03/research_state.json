@@ -1,0 +1,12 @@
+{
+  "variant_id": "E03",
+  "series_id": "E",
+  "status": "NOT_STARTED",
+  "date": null,
+  "revision": 0,
+  "candidate_watchlist": [],
+  "last_candidate_pack": null,
+  "last_broad_universe_source": null,
+  "formal_research_enabled": false,
+  "note": "正式AI_SELECT研究状态；模拟/历史测试必须使用各自隔离目录，不得写入本文件。"
+}
