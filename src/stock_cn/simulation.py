@@ -18,6 +18,7 @@ from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 
 from .sim_data import number, validate_dataset
+from .paper_core import execute_single_order, validate_decision_contract
 
 
 class ValidationError(ValueError):
@@ -350,42 +351,7 @@ class Simulation:
             return request
 
     def validate_decision(self, response, request):
-        require(isinstance(response, dict), "AI response must be an object")
-        c = request["context"]
-        require(integer(response.get("input_revision")), "input_revision must be integer")
-        require(response.get("schema_version") == "0.3-draft", "unsupported decision schema")
-        require(not ({"orders", "trades", "execute", "instructions"} & response.keys()), "unexpected execution payload")
-        for name in ("strategy_id", "variant_id", "mode", "run_id", "decision_id", "date", "decision_time", "input_revision", "input_commit"):
-            require(response.get(name) == c[name], f"AI identity/version/time mismatch: {name}")
-        require(response.get("status") == "READY", "AI did not complete decision: " + str(response.get("status")))
-        require(isinstance(response.get("summary"), str) and response["summary"].strip(), "missing summary")
-        for name in ("evidence", "risks", "data_gaps"):
-            require(isinstance(response.get(name), list), f"missing list: {name}")
-        for item in response["evidence"]:
-            require(item.get("source") and item.get("published_at"), "evidence provenance missing")
-            dt = datetime.fromisoformat(item["published_at"])
-            require(dt.tzinfo is not None and dt <= datetime.fromisoformat(c["information_cutoff"]), "future evidence")
-        action = response.get("action")
-        require(action in {"BUY", "SELL", "HOLD"}, "unknown action")
-        order = response.get("order_proposal")
-        if action == "HOLD":
-            require(order is None, "HOLD must not carry orders")
-        else:
-            require(isinstance(order, dict) and order.get("side") == action, "only one order with matching side")
-            require(integer(order.get("quantity")) and order["quantity"] > 0, "quantity must be a positive integer")
-            self.check_symbol(order.get("symbol"))
-            require(number(order.get("reference_price_cny")) > 0, "missing reference price")
-            t = datetime.fromisoformat(order["quote_time"])
-            require(t.tzinfo and t <= datetime.fromisoformat(c["information_cutoff"]), "future reference quote")
-            require(order.get("quote_source"), "quote provenance missing")
-        weights, cash = response.get("target_weights"), response.get("target_cash_weight")
-        require((weights is None) == (cash is None), "incomplete target weights")
-        if weights is not None:
-            require(isinstance(weights, dict), "target_weights must be symbol/weight object")
-            for symbol, weight in weights.items():
-                self.check_symbol(symbol)
-                require(0 <= number(weight) <= 1, "invalid target weight")
-            require(0 <= number(cash) <= 1 and abs(sum(number(v) for v in weights.values()) + number(cash) - 1) < Decimal("0.000001"), "weights do not sum to one")
+        return validate_decision_contract(response, request, self.check_symbol)
 
     def apply(self, day, response, actual_prompt=None):
         request = self.prepare(day)
@@ -396,61 +362,33 @@ class Simulation:
         with self.store.lock():
             before = self.store.load()
             require(before == request["source_holdings"], "stale account; no concurrent overwrite")
-            after = copy.deepcopy(request["holdings"])
-            execution = {"status": "NO_TRADE", "fill": None, "reason": "HOLD", "decision_id": response["decision_id"],
-                         "simulation_only": True, "execution_basis": "PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM"}
             order = response["order_proposal"]
+            quote = None
+            instrument = None
             if order:
-                symbol, side, quantity = order["symbol"], order["side"], order["quantity"]
+                symbol = order["symbol"]
                 bar = self.bar(day, symbol)
-                price = number(bar["open"])
-                gross = price * quantity
-                commission = max(self.fees["min_commission"], gross * self.fees["commission_rate"])
-                # Explicit simulation fee assumptions, not universal broker promises.
-                fee = number(money(commission + gross * self.fees["transfer_fee_rate"] + (gross * self.fees["stamp_duty_sell_rate"] if side == "SELL" else 0)))
-                p = next((x for x in after["positions"] if x["symbol"] == symbol), None)
-                reason = None
-                if bar.get("suspended"):
-                    reason = "SUSPENDED"
-                elif side == "BUY" and quantity % 100:
-                    reason = "BOARD_LOT"
-                elif side == "SELL" and (p is None or quantity > p["sellable_quantity"]):
-                    reason = "INSUFFICIENT_T1_SHARES"
-                elif side == "SELL" and quantity % 100 and quantity != p["sellable_quantity"]:
-                    reason = "ODD_LOT_MUST_CLEAR_REMAINDER"
-                elif side == "BUY" and gross + fee > number(after["cash_cny"]):
-                    reason = "INSUFFICIENT_CASH_AT_EXECUTION_PRICE"
-                elif side == "BUY" and bar.get("limit_up") is not None and price >= number(bar["limit_up"]):
-                    reason = "LIMIT_UP_CONSERVATIVE_NO_FILL"
-                elif side == "SELL" and bar.get("limit_down") is not None and price <= number(bar["limit_down"]):
-                    reason = "LIMIT_DOWN_CONSERVATIVE_NO_FILL"
-                elif (bar.get("limit_up") is None or bar.get("limit_down") is None) :
-                    reason = "MISSING_DAILY_LIMIT_METADATA"
-                if reason:
-                    execution.update(status="REJECTED", reason=reason)
-                else:
-                    if side == "BUY":
-                        if p is None:
-                            p = {"symbol": symbol, "name": self.data["instruments"][symbol]["name"], "quantity": 0,
-                                 "sellable_quantity": 0, "average_cost_cny": "0.00", "cost_basis_cny": "0.00", "valuation_price_cny": money(price)}
-                            after["positions"].append(p)
-                        total_cost = number(p["cost_basis_cny"]) + gross + fee
-                        p["quantity"] += quantity
-                        p["cost_basis_cny"] = money(total_cost)
-                        p["average_cost_cny"] = str((total_cost / p["quantity"]).quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP))
-                        after["cash_cny"] = money(number(after["cash_cny"]) - gross - fee)
-                    else:
-                        p["cost_basis_cny"] = money(number(p["cost_basis_cny"]) * (p["quantity"] - quantity) / p["quantity"])
-                        p["quantity"] -= quantity
-                        p["sellable_quantity"] -= quantity
-                        after["cash_cny"] = money(number(after["cash_cny"]) + gross - fee)
-                        if p["quantity"] == 0:
-                            after["positions"].remove(p)
-                    after["_meta"]["fees_cny"] = money(number(after["_meta"]["fees_cny"]) + fee)
-                    execution.update(status="FILLED", reason="SIMULATED_OPEN_PRINT; no order-book/queue claim", fill={
-                        "symbol": symbol, "side": side, "quantity": quantity, "price_cny": money(price),
-                        "fee_cny": money(fee), "time": request["context"]["execution_time"], "source": bar["source"],
-                        "time_basis": "SIMULATED_SESSION_OPEN_NOT_TICK_TIMESTAMP"})
+                quote = {
+                    "price": bar["open"],
+                    "source": bar["source"],
+                    "quote_time": request["context"]["execution_time"],
+                    "suspended": bar.get("suspended", False),
+                    "limit_up": bar.get("limit_up"),
+                    "limit_down": bar.get("limit_down"),
+                }
+                instrument = self.data["instruments"][symbol]
+            after, execution = execute_single_order(
+                request["holdings"], response,
+                quote or {"price": "1.00", "source": "NO_TRADE",
+                          "quote_time": request["context"]["execution_time"],
+                          "suspended": False, "limit_up": "999999.99", "limit_down": "0.01"},
+                instrument or {"name": "NO_TRADE", "lot_size": 100},
+                self.fees,
+                mode="SIMULATION",
+                execution_basis="PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM",
+                execution_time=request["context"]["execution_time"],
+            )
+            execution["simulation_only"] = True
             after["date"] = day
             after["_meta"].update(last_decision_date=day, valuation_time=f"{day}T15:00:00+08:00")
             value = number(after["cash_cny"])
