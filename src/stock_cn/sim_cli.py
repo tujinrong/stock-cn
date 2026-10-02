@@ -134,6 +134,7 @@ def main(argv=None):
             require(pos + 1 < len(data["sessions"]), "time-travel date needs a following session for daily execution")
             execution_day = data["sessions"][pos + 1]
             sim = Simulation(repo, args.variant[0], args.variant, args.test_id, data)
+            sim.jump_initialize(args.date)
             request = sim.prepare(execution_day)
             result = {
                 "completed": request.get("completed", False),
