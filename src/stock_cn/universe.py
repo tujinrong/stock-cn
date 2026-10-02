@@ -250,7 +250,9 @@ def bounded_prefilter(snapshot, purpose, *, max_candidates=60):
     """Reduce thousands of names to a bounded research set.
 
     The result is only a compute-budget gate. AI must not treat inclusion/rank as a
-    recommendation or as proof of quality.
+    recommendation or as proof of quality. Untagged ordinary shares consume the
+    research budget first; ST/new-listing/special-name rows are retained only as a
+    tail fallback rather than silently deleted from the authorized market.
     """
     if snapshot.get("kind") != "CURRENT_UNIVERSE_SNAPSHOT":
         raise ValueError("current universe snapshot required")
@@ -258,26 +260,31 @@ def bounded_prefilter(snapshot, purpose, *, max_candidates=60):
         raise ValueError("candidate budget must be 10..100")
     rows = [r for r in snapshot["rows"]
             if r.get("price_cny") is not None and r.get("amount_cny") is not None]
+    clean = [r for r in rows if not r.get("risk_tags")]
+    tagged = [r for r in rows if r.get("risk_tags")]
+
+    def unique_take(groups):
+        ordered, seen = [], set()
+        for group in groups:
+            for r in group:
+                if r["symbol"] in seen:
+                    continue
+                ordered.append(r)
+                seen.add(r["symbol"])
+                if len(ordered) >= max_candidates:
+                    return ordered
+        return ordered
+
     if purpose == "LOW_RECOVERY":
-        # A broad liquid/size seed; low-position/recovery is evaluated only after
-        # fetching each candidate's own historical prefix.
-        liquid = _rank_numeric(rows, "amount_cny")[:max_candidates * 2]
-        sized = _rank_numeric(rows, "market_cap_cny")[:max_candidates * 2]
-        ordered = []
-        for r in liquid + sized:
-            if r["symbol"] not in {x["symbol"] for x in ordered}:
-                ordered.append(r)
-            if len(ordered) >= max_candidates:
-                break
+        clean_liquid = _rank_numeric(clean, "amount_cny")[:max_candidates * 3]
+        clean_sized = _rank_numeric(clean, "market_cap_cny")[:max_candidates * 3]
+        tagged_liquid = _rank_numeric(tagged, "amount_cny")[:max_candidates]
+        ordered = unique_take([clean_liquid, clean_sized, tagged_liquid])
     elif purpose == "ABNORMAL_DROP":
-        losers = _rank_numeric(rows, "change_pct", reverse=False)[:max_candidates // 2]
-        liquid = _rank_numeric(rows, "amount_cny")[:max_candidates]
-        ordered = []
-        for r in losers + liquid:
-            if r["symbol"] not in {x["symbol"] for x in ordered}:
-                ordered.append(r)
-            if len(ordered) >= max_candidates:
-                break
+        clean_losers = _rank_numeric(clean, "change_pct", reverse=False)[:max_candidates * 2]
+        clean_liquid = _rank_numeric(clean, "amount_cny")[:max_candidates * 2]
+        tagged_losers = _rank_numeric(tagged, "change_pct", reverse=False)[:max_candidates]
+        ordered = unique_take([clean_losers, clean_liquid, tagged_losers])
     else:
         raise ValueError("unknown prefilter purpose")
     return {
@@ -287,7 +294,11 @@ def bounded_prefilter(snapshot, purpose, *, max_candidates=60):
         "count": len(ordered),
         "source_retrieved_at": snapshot["retrieved_at"],
         "source": snapshot["source"],
+        "source_provider": snapshot.get("source_provider"),
+        "fallback_used": snapshot.get("fallback_used", False),
+        "primary_failure": snapshot.get("primary_failure"),
         "not_a_recommendation": True,
+        "risk_tag_policy": "UNTAGGED_FIRST; tagged rows only fill unused budget and remain visible if selected",
         "survivorship_warning": "Survivorship bias: this current universe snapshot must not be presented as a historically complete universe for past dates.",
         "rows": ordered,
     }
