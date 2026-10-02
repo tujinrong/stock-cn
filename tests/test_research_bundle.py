@@ -36,6 +36,7 @@ def financial_review(status="REVIEWED"):
         "status": status,
         "as_of": "2026-10-08T10:50:00+08:00",
         "source_report": "https://static.cninfo.com.cn/report.pdf",
+        "source_official": True,
         "period": "2026H1",
         "facts": [
             {"name": "review_completed", "value": True, "source": "official report"}
