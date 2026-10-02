@@ -1,0 +1,504 @@
+{
+  "mode": "TIME_TRAVEL",
+  "target_date": "2025-08-04",
+  "knowledge_cutoff": "2025-08-04T15:00:00+08:00",
+  "planned_execution_date": "2025-08-05",
+  "instruction": "你现在回到2025-08-04收盘时。请把自己视为当时的投资研究者。你只能使用2025-08-04收盘及以前已经可见的市场资料，不知道之后任何价格、涨跌、财报结果或事件。不要用后验结果修正当时判断。 本日线近似将在下一交易日2025-08-05开盘模拟执行。",
+  "news_policy": "IGNORE_ARCHIVED_NEWS_BY_DEFAULT",
+  "market_proxy": {
+    "kind": "CONFIGURED_UNIVERSE_EQUAL_WEIGHT_PROXY_NOT_BROAD_MARKET_INDEX",
+    "returns_pct": {
+      "5_sessions": null,
+      "20_sessions": null,
+      "60_sessions": null
+    }
+  },
+  "symbols": [
+    {
+      "symbol": "002594.SZ",
+      "name": "比亚迪",
+      "industry": "新能源汽车/汽车制造",
+      "industry_characteristics": [
+        "销量与单车盈利需同时看",
+        "价格竞争与产品周期敏感",
+        "海外扩张和资本开支影响现金流"
+      ],
+      "as_of_close": "90.2000",
+      "observations": 2,
+      "continuous_analysis_sessions": 2,
+      "suspected_price_basis_break": null,
+      "history_coverage": {
+        "sessions": 2,
+        "continuous_sessions": 2,
+        "has_20_sessions": false,
+        "has_60_sessions": false,
+        "has_120_sessions": false,
+        "has_250_sessions": false
+      },
+      "returns_pct": {
+        "5_sessions": null,
+        "20_sessions": null,
+        "60_sessions": null
+      },
+      "moving_average": {
+        "ma5": null,
+        "ma20": null,
+        "ma60": null
+      },
+      "range_position_0_to_1": {
+        "20_sessions": null,
+        "60_sessions": null,
+        "120_sessions": null,
+        "250_sessions": null
+      },
+      "annualized_volatility_pct_approx": null,
+      "kline": {
+        "daily_last20": [
+          {
+            "date": "2025-08-01",
+            "open": "90.0000",
+            "high": "90.2000",
+            "low": "89.8000",
+            "close": "90.0000",
+            "volume": "100000.0000",
+            "source": "TEST_ONLY:synthetic-v1"
+          },
+          {
+            "date": "2025-08-04",
+            "open": "90.1000",
+            "high": "90.4000",
+            "low": "89.9000",
+            "close": "90.2000",
+            "volume": "101000.0000",
+            "source": "TEST_ONLY:synthetic-v1"
+          }
+        ],
+        "weekly_last12": [
+          {
+            "period": "2025-W31",
+            "start": "2025-08-01",
+            "end": "2025-08-01",
+            "open": "90.0000",
+            "high": "90.2000",
+            "low": "89.8000",
+            "close": "90.0000",
+            "volume": "100000.0000"
+          },
+          {
+            "period": "2025-W32",
+            "start": "2025-08-04",
+            "end": "2025-08-04",
+            "open": "90.1000",
+            "high": "90.4000",
+            "low": "89.9000",
+            "close": "90.2000",
+            "volume": "101000.0000"
+          }
+        ],
+        "monthly_last12": [
+          {
+            "period": "2025-08",
+            "start": "2025-08-01",
+            "end": "2025-08-04",
+            "open": "90.0000",
+            "high": "90.4000",
+            "low": "89.8000",
+            "close": "90.2000",
+            "volume": "201000.0000"
+          }
+        ]
+      }
+    },
+    {
+      "symbol": "600036.SH",
+      "name": "招商银行",
+      "industry": "银行",
+      "industry_characteristics": [
+        "利率与净息差敏感",
+        "资产质量与信用周期重要",
+        "分红和资本充足率影响估值"
+      ],
+      "as_of_close": "40.2000",
+      "observations": 2,
+      "continuous_analysis_sessions": 2,
+      "suspected_price_basis_break": null,
+      "history_coverage": {
+        "sessions": 2,
+        "continuous_sessions": 2,
+        "has_20_sessions": false,
+        "has_60_sessions": false,
+        "has_120_sessions": false,
+        "has_250_sessions": false
+      },
+      "returns_pct": {
+        "5_sessions": null,
+        "20_sessions": null,
+        "60_sessions": null
+      },
+      "moving_average": {
+        "ma5": null,
+        "ma20": null,
+        "ma60": null
+      },
+      "range_position_0_to_1": {
+        "20_sessions": null,
+        "60_sessions": null,
+        "120_sessions": null,
+        "250_sessions": null
+      },
+      "annualized_volatility_pct_approx": null,
+      "kline": {
+        "daily_last20": [
+          {
+            "date": "2025-08-01",
+            "open": "40.0000",
+            "high": "40.2000",
+            "low": "39.8000",
+            "close": "40.0000",
+            "volume": "100000.0000",
+            "source": "TEST_ONLY:synthetic-v1"
+          },
+          {
+            "date": "2025-08-04",
+            "open": "40.1000",
+            "high": "40.4000",
+            "low": "39.9000",
+            "close": "40.2000",
+            "volume": "101000.0000",
+            "source": "TEST_ONLY:synthetic-v1"
+          }
+        ],
+        "weekly_last12": [
+          {
+            "period": "2025-W31",
+            "start": "2025-08-01",
+            "end": "2025-08-01",
+            "open": "40.0000",
+            "high": "40.2000",
+            "low": "39.8000",
+            "close": "40.0000",
+            "volume": "100000.0000"
+          },
+          {
+            "period": "2025-W32",
+            "start": "2025-08-04",
+            "end": "2025-08-04",
+            "open": "40.1000",
+            "high": "40.4000",
+            "low": "39.9000",
+            "close": "40.2000",
+            "volume": "101000.0000"
+          }
+        ],
+        "monthly_last12": [
+          {
+            "period": "2025-08",
+            "start": "2025-08-01",
+            "end": "2025-08-04",
+            "open": "40.0000",
+            "high": "40.4000",
+            "low": "39.8000",
+            "close": "40.2000",
+            "volume": "201000.0000"
+          }
+        ]
+      }
+    },
+    {
+      "symbol": "600660.SH",
+      "name": "福耀玻璃",
+      "industry": "汽车零部件/汽车玻璃",
+      "industry_characteristics": [
+        "汽车产销周期相关",
+        "高附加值产品结构影响利润",
+        "海外业务、汇率和能源成本可能影响盈利"
+      ],
+      "as_of_close": "50.2000",
+      "observations": 2,
+      "continuous_analysis_sessions": 2,
+      "suspected_price_basis_break": null,
+      "history_coverage": {
+        "sessions": 2,
+        "continuous_sessions": 2,
+        "has_20_sessions": false,
+        "has_60_sessions": false,
+        "has_120_sessions": false,
+        "has_250_sessions": false
+      },
+      "returns_pct": {
+        "5_sessions": null,
+        "20_sessions": null,
+        "60_sessions": null
+      },
+      "moving_average": {
+        "ma5": null,
+        "ma20": null,
+        "ma60": null
+      },
+      "range_position_0_to_1": {
+        "20_sessions": null,
+        "60_sessions": null,
+        "120_sessions": null,
+        "250_sessions": null
+      },
+      "annualized_volatility_pct_approx": null,
+      "kline": {
+        "daily_last20": [
+          {
+            "date": "2025-08-01",
+            "open": "50.0000",
+            "high": "50.2000",
+            "low": "49.8000",
+            "close": "50.0000",
+            "volume": "100000.0000",
+            "source": "TEST_ONLY:synthetic-v1"
+          },
+          {
+            "date": "2025-08-04",
+            "open": "50.1000",
+            "high": "50.4000",
+            "low": "49.9000",
+            "close": "50.2000",
+            "volume": "101000.0000",
+            "source": "TEST_ONLY:synthetic-v1"
+          }
+        ],
+        "weekly_last12": [
+          {
+            "period": "2025-W31",
+            "start": "2025-08-01",
+            "end": "2025-08-01",
+            "open": "50.0000",
+            "high": "50.2000",
+            "low": "49.8000",
+            "close": "50.0000",
+            "volume": "100000.0000"
+          },
+          {
+            "period": "2025-W32",
+            "start": "2025-08-04",
+            "end": "2025-08-04",
+            "open": "50.1000",
+            "high": "50.4000",
+            "low": "49.9000",
+            "close": "50.2000",
+            "volume": "101000.0000"
+          }
+        ],
+        "monthly_last12": [
+          {
+            "period": "2025-08",
+            "start": "2025-08-01",
+            "end": "2025-08-04",
+            "open": "50.0000",
+            "high": "50.4000",
+            "low": "49.8000",
+            "close": "50.2000",
+            "volume": "201000.0000"
+          }
+        ]
+      }
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "长江电力",
+      "industry": "电力/水电",
+      "industry_characteristics": [
+        "现金流和分红属性较强",
+        "来水与发电量影响经营",
+        "利率环境影响高股息资产估值"
+      ],
+      "as_of_close": "28.2000",
+      "observations": 2,
+      "continuous_analysis_sessions": 2,
+      "suspected_price_basis_break": null,
+      "history_coverage": {
+        "sessions": 2,
+        "continuous_sessions": 2,
+        "has_20_sessions": false,
+        "has_60_sessions": false,
+        "has_120_sessions": false,
+        "has_250_sessions": false
+      },
+      "returns_pct": {
+        "5_sessions": null,
+        "20_sessions": null,
+        "60_sessions": null
+      },
+      "moving_average": {
+        "ma5": null,
+        "ma20": null,
+        "ma60": null
+      },
+      "range_position_0_to_1": {
+        "20_sessions": null,
+        "60_sessions": null,
+        "120_sessions": null,
+        "250_sessions": null
+      },
+      "annualized_volatility_pct_approx": null,
+      "kline": {
+        "daily_last20": [
+          {
+            "date": "2025-08-01",
+            "open": "28.0000",
+            "high": "28.2000",
+            "low": "27.8000",
+            "close": "28.0000",
+            "volume": "100000.0000",
+            "source": "TEST_ONLY:synthetic-v1"
+          },
+          {
+            "date": "2025-08-04",
+            "open": "28.1000",
+            "high": "28.4000",
+            "low": "27.9000",
+            "close": "28.2000",
+            "volume": "101000.0000",
+            "source": "TEST_ONLY:synthetic-v1"
+          }
+        ],
+        "weekly_last12": [
+          {
+            "period": "2025-W31",
+            "start": "2025-08-01",
+            "end": "2025-08-01",
+            "open": "28.0000",
+            "high": "28.2000",
+            "low": "27.8000",
+            "close": "28.0000",
+            "volume": "100000.0000"
+          },
+          {
+            "period": "2025-W32",
+            "start": "2025-08-04",
+            "end": "2025-08-04",
+            "open": "28.1000",
+            "high": "28.4000",
+            "low": "27.9000",
+            "close": "28.2000",
+            "volume": "101000.0000"
+          }
+        ],
+        "monthly_last12": [
+          {
+            "period": "2025-08",
+            "start": "2025-08-01",
+            "end": "2025-08-04",
+            "open": "28.0000",
+            "high": "28.4000",
+            "low": "27.8000",
+            "close": "28.2000",
+            "volume": "201000.0000"
+          }
+        ]
+      }
+    },
+    {
+      "symbol": "601100.SH",
+      "name": "恒立液压",
+      "industry": "工业机械/液压",
+      "industry_characteristics": [
+        "工程机械与制造业资本开支相关",
+        "周期性需求和出口重要",
+        "产能利用率与产品结构影响利润率"
+      ],
+      "as_of_close": "100.2000",
+      "observations": 2,
+      "continuous_analysis_sessions": 2,
+      "suspected_price_basis_break": null,
+      "history_coverage": {
+        "sessions": 2,
+        "continuous_sessions": 2,
+        "has_20_sessions": false,
+        "has_60_sessions": false,
+        "has_120_sessions": false,
+        "has_250_sessions": false
+      },
+      "returns_pct": {
+        "5_sessions": null,
+        "20_sessions": null,
+        "60_sessions": null
+      },
+      "moving_average": {
+        "ma5": null,
+        "ma20": null,
+        "ma60": null
+      },
+      "range_position_0_to_1": {
+        "20_sessions": null,
+        "60_sessions": null,
+        "120_sessions": null,
+        "250_sessions": null
+      },
+      "annualized_volatility_pct_approx": null,
+      "kline": {
+        "daily_last20": [
+          {
+            "date": "2025-08-01",
+            "open": "100.0000",
+            "high": "100.2000",
+            "low": "99.8000",
+            "close": "100.0000",
+            "volume": "100000.0000",
+            "source": "TEST_ONLY:synthetic-v1"
+          },
+          {
+            "date": "2025-08-04",
+            "open": "100.1000",
+            "high": "100.4000",
+            "low": "99.9000",
+            "close": "100.2000",
+            "volume": "101000.0000",
+            "source": "TEST_ONLY:synthetic-v1"
+          }
+        ],
+        "weekly_last12": [
+          {
+            "period": "2025-W31",
+            "start": "2025-08-01",
+            "end": "2025-08-01",
+            "open": "100.0000",
+            "high": "100.2000",
+            "low": "99.8000",
+            "close": "100.0000",
+            "volume": "100000.0000"
+          },
+          {
+            "period": "2025-W32",
+            "start": "2025-08-04",
+            "end": "2025-08-04",
+            "open": "100.1000",
+            "high": "100.4000",
+            "low": "99.9000",
+            "close": "100.2000",
+            "volume": "101000.0000"
+          }
+        ],
+        "monthly_last12": [
+          {
+            "period": "2025-08",
+            "start": "2025-08-01",
+            "end": "2025-08-04",
+            "open": "100.0000",
+            "high": "100.4000",
+            "low": "99.8000",
+            "close": "100.2000",
+            "volume": "201000.0000"
+          }
+        ]
+      }
+    }
+  ],
+  "intraday_kline": {
+    "status": "UNAVAILABLE_UNLESS_ARCHIVED_INTRADAY_DATA_IS_SUPPLIED",
+    "rule": "不得用当日收盘或未来分钟线冒充历史盘中信息"
+  },
+  "limitations": [
+    "行业特点为结构性研究背景，不代表当日行业消息。",
+    "未提供真实大盘指数时，market_proxy只是本次可见股票池等权代理。",
+    "日/周/月K线均由knowledge_cutoff以前的未复权历史日线聚合；若检测到疑似除权/送转或数据口径断点，跨断点收益、均线和区间位置不混算，只使用断点后的连续价格段；历史不足时对应统计为null。",
+    "新闻默认忽略；没有历史新闻不解释为当时没有新闻或风险。",
+    "AI模型本身可能含有后来知识，因此仍不能声称完全消除前视偏差。"
+  ]
+}
