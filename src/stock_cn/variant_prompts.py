@@ -152,6 +152,19 @@ def materialize(repo):
             if not (root / 'improvement_state.json').exists():
                 write(root / 'improvement_state.json', {'max_rounds': MAX_ROUNDS, 'rounds_used': 0,
                     'status': 'READY', 'active_prompt_version': 'v000', 'reset_requires_user_authorization': True})
+            if series.get('type') == 'AI_SELECT' and not (root / 'research_state.json').exists():
+                write(root / 'research_state.json', {
+                    'variant_id': variant,
+                    'series_id': series['strategy_id'],
+                    'status': 'NOT_STARTED',
+                    'date': None,
+                    'revision': 0,
+                    'candidate_watchlist': [],
+                    'last_candidate_pack': None,
+                    'last_broad_universe_source': None,
+                    'formal_research_enabled': False,
+                    'note': '正式AI_SELECT研究状态；模拟/历史测试必须使用各自隔离目录，不得写入本文件。'
+                })
             registry.append({'variant_id': variant, 'series_id': series['strategy_id'],
                 'status': 'DRAFT', 'enabled': False, 'initial_capital_cny': 200000,
                 'prompt': str((root / 'prompt.md').relative_to(repo)),
