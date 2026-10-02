@@ -22,6 +22,8 @@ ISSUES = {
     'NONREADY': '资料不足、未授权或未初始化是正常未执行状态，不是HOLD；action和order_proposal均为null，不为通过校验强行交易。',
     'CAUSALITY': '视自己处于本次信息截止时刻。不能使用随后价格、未来财报、后来新闻、后验赢家或测试期最终收益改写当天判断。',
     'PROVENANCE': '证据同时记录来源和当时可知的发布时间；无法核查就报告缺口，不编造检索或引用。',
+    'CANDIDATE_SCOPE': 'AI_SELECT候选池只分配研究预算，不是推荐排名；BUY只能从当次授权候选中选择，已有持仓即使掉出候选池仍可SELL。',
+    'RESEARCH_STATE': 'research_state/watchlist是本变体跨日研究状态，不是持仓或交易信号；不得把候选观察状态直接转换成BUY。',
 }
 
 
