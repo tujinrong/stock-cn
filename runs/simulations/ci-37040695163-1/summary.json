@@ -1,0 +1,327 @@
+{
+  "test_id": "ci-37040695163-1",
+  "mode": "SIMULATION",
+  "data_kind": "TEST_ONLY",
+  "agent": "SCRIPTED_SMOKE_NOT_AI",
+  "formal_files_unchanged": true,
+  "workers": 2,
+  "calls_used": 78,
+  "max_calls": 100,
+  "results": [
+    {
+      "variant": "A01",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "A01",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "202895.80",
+        "net_pnl_cny": "2895.80",
+        "return_pct": "1.447900",
+        "max_daily_drawdown_pct": "0",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    },
+    {
+      "variant": "A02",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "A02",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "202895.80",
+        "net_pnl_cny": "2895.80",
+        "return_pct": "1.447900",
+        "max_daily_drawdown_pct": "0",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    },
+    {
+      "variant": "A03",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "A03",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "202895.80",
+        "net_pnl_cny": "2895.80",
+        "return_pct": "1.447900",
+        "max_daily_drawdown_pct": "0",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    },
+    {
+      "variant": "C01",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "C01",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "199995.80",
+        "net_pnl_cny": "-4.20",
+        "return_pct": "-0.002100",
+        "max_daily_drawdown_pct": "0.0185319542733151806500601600",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    },
+    {
+      "variant": "C02",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "C02",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "199995.80",
+        "net_pnl_cny": "-4.20",
+        "return_pct": "-0.002100",
+        "max_daily_drawdown_pct": "0.0185319542733151806500601600",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    },
+    {
+      "variant": "C03",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "C03",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "199995.80",
+        "net_pnl_cny": "-4.20",
+        "return_pct": "-0.002100",
+        "max_daily_drawdown_pct": "0.0185319542733151806500601600",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    },
+    {
+      "variant": "D01",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "D01",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "199995.80",
+        "net_pnl_cny": "-4.20",
+        "return_pct": "-0.002100",
+        "max_daily_drawdown_pct": "0.0185319542733151806500601600",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    },
+    {
+      "variant": "D02",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "D02",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "199995.80",
+        "net_pnl_cny": "-4.20",
+        "return_pct": "-0.002100",
+        "max_daily_drawdown_pct": "0.0185319542733151806500601600",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    },
+    {
+      "variant": "D03",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "D03",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "199995.80",
+        "net_pnl_cny": "-4.20",
+        "return_pct": "-0.002100",
+        "max_daily_drawdown_pct": "0.0185319542733151806500601600",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    },
+    {
+      "variant": "E01",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "E01",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "199995.80",
+        "net_pnl_cny": "-4.20",
+        "return_pct": "-0.002100",
+        "max_daily_drawdown_pct": "0.0185319542733151806500601600",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    },
+    {
+      "variant": "E02",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "E02",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "199995.80",
+        "net_pnl_cny": "-4.20",
+        "return_pct": "-0.002100",
+        "max_daily_drawdown_pct": "0.0185319542733151806500601600",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    },
+    {
+      "variant": "E03",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "E03",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "199995.80",
+        "net_pnl_cny": "-4.20",
+        "return_pct": "-0.002100",
+        "max_daily_drawdown_pct": "0.0185319542733151806500601600",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    },
+    {
+      "variant": "F01",
+      "status": "COMPLETED",
+      "report": {
+        "variant": "F01",
+        "test_id": "ci-37040695163-1",
+        "data_kind": "TEST_ONLY",
+        "fidelity": "ENGINEERING_ONLY",
+        "completed_days": 5,
+        "requested_days": 5,
+        "complete": true,
+        "initial_equity_cny": "200000.00",
+        "final_equity_cny": "199995.80",
+        "net_pnl_cny": "-4.20",
+        "return_pct": "-0.002100",
+        "max_daily_drawdown_pct": "0.0185319542733151806500601600",
+        "fees_cny": "24.20",
+        "fills": 4,
+        "limitations": [
+          "Synthetic prices and scripted decisions; not an AI investment test."
+        ],
+        "not_investment_validation": true
+      }
+    }
+  ],
+  "ok": true,
+  "automatic_improvement": "Bounded AI-output validation retries; rebuild damaged derived views from checked events only.",
+  "not_investment_performance": true
+}
