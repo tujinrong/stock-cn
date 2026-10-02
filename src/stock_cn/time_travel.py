@@ -164,23 +164,29 @@ def _universe_proxy(snapshots):
     return result
 
 
-def build_time_travel_context(data, decision_date, cutoff_date, *, symbols=None, ignore_news=True):
+def build_time_travel_context(data, target_date, cutoff_date, *, symbols=None, ignore_news=True, execution_date=None):
     """Build a point-in-time market view. No row after cutoff_date can enter output."""
-    date.fromisoformat(decision_date)
+    date.fromisoformat(target_date)
     date.fromisoformat(cutoff_date)
-    if cutoff_date > decision_date:
+    if cutoff_date > target_date:
         raise ValueError("time-travel cutoff cannot be after target date")
+    if execution_date is not None:
+        date.fromisoformat(execution_date)
+        if execution_date <= target_date:
+            raise ValueError("daily time-travel execution must follow target date")
     symbols = list(symbols or data["instruments"].keys())
     snapshots = [symbol_snapshot(data, s, cutoff_date) for s in symbols if s in data["instruments"]]
     snapshots = [s for s in snapshots if s]
     return {
         "mode": "TIME_TRAVEL",
-        "target_date": decision_date,
+        "target_date": target_date,
         "knowledge_cutoff": cutoff_date + "T15:00:00+08:00",
+        "planned_execution_date": execution_date,
         "instruction": (
-            f"你现在回到{decision_date}。请把自己视为当时的投资研究者。"
+            f"你现在回到{target_date}收盘时。请把自己视为当时的投资研究者。"
             f"你只能使用{cutoff_date}收盘及以前已经可见的市场资料，"
             "不知道之后任何价格、涨跌、财报结果或事件。不要用后验结果修正当时判断。"
+            + (f" 本日线近似将在下一交易日{execution_date}开盘模拟执行。" if execution_date else "")
         ),
         "news_policy": "IGNORE_ARCHIVED_NEWS_BY_DEFAULT" if ignore_news else "USE_ONLY_POINT_IN_TIME_ARCHIVED_NEWS",
         "market_proxy": _universe_proxy(snapshots),
