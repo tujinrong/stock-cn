@@ -1,0 +1,32 @@
+{
+  "strategy_id": "A",
+  "variant_id": "A02",
+  "mode": "SIMULATION",
+  "run_id": "ci-37035633782-1-real-A02",
+  "decision_id": "ci-37035633782-1-real-A02-2025-08-07",
+  "date": "2025-08-07",
+  "decision_time": "2025-08-06T15:00:00+08:00",
+  "input_revision": 4,
+  "input_commit": "fa9a1804bb8f13011609783ca616e874ee79b004",
+  "schema_version": "0.3-draft",
+  "status": "READY",
+  "action": "BUY",
+  "order_proposal": {
+    "symbol": "600036.SH",
+    "side": "BUY",
+    "quantity": 100,
+    "reference_price_cny": "45.120",
+    "quote_time": "2025-08-06T15:00:00+08:00",
+    "quote_source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600036%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+  },
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "TEST_ONLY：脚本用于验证AI接口、交易校验和记账，不是投资判断。",
+  "risks": [
+    "不能用本次收益评价AI投资能力。"
+  ],
+  "evidence": [],
+  "data_gaps": [
+    "没有完整历史财务和新闻研究。"
+  ]
+}
