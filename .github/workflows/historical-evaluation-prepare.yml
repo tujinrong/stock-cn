@@ -23,12 +23,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          files=$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA" | grep '^evaluation-plans/.*\.json$' || true)
-          test -n "$files"
-          while IFS= read -r file; do
+          found=0
+          for file in evaluation-plans/*.json; do
+            [ -f "$file" ] || continue
             eval_id=$(python -c "import json; print(json.load(open('$file'))['eval_id'])")
-            python tools/run_evaluation_plan.py --eval-id "$eval_id" --phase prepare
-          done <<< "$files"
+            if [ ! -f "runs/evaluations/$eval_id/manifest.json" ]; then
+              python tools/run_evaluation_plan.py --eval-id "$eval_id" --phase prepare
+              found=1
+            fi
+          done
+          test "$found" -eq 1 || echo "No new evaluation plan required preparation."
       - name: Verify formal accounts unchanged
         run: git diff --exit-code -- 'strategies/*/variants/*/holdings.json' 'strategies/*/variants/*/holdings.md'
       - name: Publish causal task packages
