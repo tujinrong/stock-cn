@@ -27,5 +27,6 @@
   ],
   "archived_news_policy": "IGNORE_BY_DEFAULT",
   "raw_market_data_persisted": false,
-  "formal_execution": false
+  "formal_execution": false,
+  "prepare_revision": 2
 }
