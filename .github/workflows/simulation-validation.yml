@@ -79,6 +79,10 @@ jobs:
           assert all(x['history_coverage']['sessions'] >= 200 for x in obj['symbols'])
           assert any(x['history_coverage']['has_250_sessions'] for x in obj['symbols'])
           assert all((x['range_position_0_to_1']['250_sessions'] is not None) == x['history_coverage']['has_250_sessions'] for x in obj['symbols'])
+          byd = next(x for x in obj['symbols'] if x['symbol'] == '002594.SZ')
+          assert byd['suspected_price_basis_break'] is not None
+          assert byd['continuous_analysis_sessions'] < byd['observations']
+          assert byd['moving_average']['ma20'] is None
           PY
           fi
       - name: Preserve old formal holdings and save test metadata
