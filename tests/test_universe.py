@@ -7,6 +7,7 @@ import pytest
 from stock_cn.universe import (
     bounded_prefilter, build_deep_research_pack,
     fetch_candidate_history, fetch_live_universe,
+    update_abnormal_drop_watchlist,
 )
 
 
@@ -211,3 +212,41 @@ def test_ai_select_variant_prompt_receives_only_bounded_authorized_universe(repo
     answer["action"] = "BUY"
     with pytest.raises(ValidationError, match="metadata"):
         sim.validate_decision(answer, req)
+
+
+def test_abnormal_drop_watchlist_requires_later_sessions_before_recovery(repo):
+    from stock_cn.sim_data import fixture
+
+    data = fixture()
+    symbol = "600900.SH"
+    seed = {
+        "kind": "BOUNDED_CANDIDATE_SEED",
+        "purpose": "ABNORMAL_DROP",
+        "count": 1,
+        "source": "TEST_ONLY",
+        "rows": [{
+            "symbol": symbol, "name": "长江电力", "price_cny": "28.10",
+            "change_pct": "-8.00", "amount_cny": "100000000",
+            "risk_tags": [], "source_provider": "TEST",
+        }],
+    }
+    first = update_abnormal_drop_watchlist(
+        None, seed, data, "2025-08-04", max_entries=10
+    )
+    assert first["candidate_watchlist"][0]["research_state"] == "FRESH_DROP_MONITOR"
+    assert first["candidate_watchlist"][0]["not_a_trade_signal"] is True
+
+    # Candidate is no longer required to remain a same-day loser in the new seed;
+    # the persistent watchlist carries it forward and evaluates later K-lines.
+    empty_seed = dict(seed)
+    empty_seed["rows"] = []
+    empty_seed["count"] = 0
+    later = update_abnormal_drop_watchlist(
+        first, empty_seed, data, "2025-08-08", max_entries=10
+    )
+    item = later["candidate_watchlist"][0]
+    assert item["origin_drop_date"] == "2025-08-04"
+    assert item["research_state"] in {
+        "EARLY_STABILIZATION_RESEARCH", "RECOVERY_CONFIRMATION_RESEARCH"
+    }
+    assert item["not_a_trade_signal"] is True
