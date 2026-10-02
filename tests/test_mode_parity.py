@@ -170,3 +170,166 @@ def test_formal_prepare_and_preview_use_same_decision_contract(tmp_path, monkeyp
 
 def read_json(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
+
+def ai_account():
+    return {
+        "strategy_id": "D", "variant_id": "D02", "status": "ACTIVE",
+        "date": "2026-10-08", "initial_capital_cny": "200000.00",
+        "cash_cny": "150000.00", "total_equity_cny": "200000.00",
+        "positions": [{
+            "symbol": "600036.SH", "name": "招商银行", "quantity": 1000,
+            "sellable_quantity": 1000, "average_cost_cny": "50.000000",
+            "cost_basis_cny": "50000.00", "valuation_price_cny": "50.00",
+        }],
+        "_meta": {"mode": "FORMAL", "paper_only": True, "revision": 3,
+                  "execution_enabled": True, "fees_cny": "0.00",
+                  "valuation_time": "2026-10-08T10:55:00+08:00"},
+    }
+
+
+def ai_live_snapshot():
+    return {
+        "kind": "LIVE_SNAPSHOT", "market_date": "2026-10-08",
+        "as_of": "2026-10-08T11:00:00+08:00", "fidelity": "LIVE_PAPER",
+        "instruments": {
+            "600036.SH": {"name": "招商银行", "board": "MAIN", "lot_size": 100},
+            "600900.SH": {"name": "长江电力", "board": "MAIN", "lot_size": 100},
+        },
+        "quotes": {
+            "600036.SH": {
+                "price": "50.00", "source": "TEST_LIVE",
+                "quote_time": "2026-10-08T10:59:30+08:00",
+                "limit_up": "55.00", "limit_down": "45.00", "suspended": False,
+            },
+            "600900.SH": {
+                "price": "30.00", "source": "TEST_LIVE",
+                "quote_time": "2026-10-08T10:59:30+08:00",
+                "limit_up": "33.00", "limit_down": "27.00", "suspended": False,
+            },
+        },
+        "evidence": [],
+        "candidate_research_pack": {
+            "kind": "AI_SELECT_DEEP_RESEARCH_PACK",
+            "purpose": "LOW_RECOVERY",
+            "cutoff_date": "2026-10-08",
+            "selected_count": 1,
+            "not_a_recommendation": True,
+            "candidates": [{"symbol": "600900.SH", "name": "长江电力"}],
+        },
+        "universe_scope": {
+            "authorized_symbols": ["600900.SH"],
+            "coverage": "BOUNDED_RESEARCH_CANDIDATES_ONLY",
+            "not_full_a_share_claim": True,
+        },
+    }
+
+
+def make_ai_repo(tmp_path):
+    prompt = """# D02 full
+{{RUN_CONTEXT}}
+{{HOLDINGS_JSON}}
+{{HOLDINGS_TABLE_ROWS}}
+{{PREVIOUS_DECISION_SUMMARY}}
+{{AUTHORIZED_UNIVERSE}}
+{{EVIDENCE_AND_TOOL_CONTEXT}}
+BUY SELL HOLD INSUFFICIENT_DATA
+"""
+    root = tmp_path / "strategies/D/variants/D02"
+    write(root / "prompt.md", prompt)
+    write(root / "prompt_versions/v000.md", prompt)
+    write(root / "simulation_prompt.json",
+          {"version": "v000", "path": "prompt.md", "sha256": sha(prompt), "scope": "NEW_SIMULATION_ONLY"})
+    write(root / "formal_prompt.json",
+          {"version": "v000", "path": "prompt.md", "sha256": sha(prompt),
+           "scope": "FORMAL_PROMPT_APPROVED_NOT_EXECUTION_AUTHORIZATION"})
+    write(root / "holdings.json", ai_account())
+    write(root / "research_state.json", {
+        "variant_id": "D02", "series_id": "D", "mode": "FORMAL",
+        "status": "RESEARCH_READY", "date": "2026-10-08", "revision": 1,
+        "candidate_watchlist": [], "last_candidate_pack": None,
+        "last_broad_universe_source": {"provider": "TEST"},
+        "universe_scope": {"authorized_symbols": ["600900.SH"]},
+        "last_research_payload_sha256": "TEST",
+        "last_decision_summary": None, "formal_research_enabled": True,
+    })
+    write(tmp_path / "strategies/index.json", {
+        "formal_execution_enabled": True,
+        "evaluation_start": "2026-10-08", "evaluation_end": "2026-12-08",
+        "strategies": [{
+            "strategy_id": "D", "type": "AI_SELECT", "variants": ["D02"],
+        }],
+        "variants": [{
+            "variant_id": "D02", "series_id": "D", "status": "READY", "enabled": True,
+        }],
+    })
+    write(tmp_path / "config/default.json", fees())
+    return tmp_path
+
+
+def ai_response(req, side, symbol, quantity=100):
+    price = req["live_snapshot"]["quotes"][symbol]["price"]
+    quote_time = req["live_snapshot"]["quotes"][symbol]["quote_time"]
+    source = req["live_snapshot"]["quotes"][symbol]["source"]
+    c = req["context"]
+    return {
+        "schema_version": "0.3-draft",
+        "strategy_id": "D", "variant_id": "D02", "mode": "FORMAL",
+        "run_id": c["run_id"], "decision_id": c["decision_id"],
+        "date": c["date"], "decision_time": c["decision_time"],
+        "input_revision": c["input_revision"], "input_commit": c["input_commit"],
+        "status": "READY", "action": side,
+        "order_proposal": {
+            "symbol": symbol, "side": side, "quantity": quantity,
+            "reference_price_cny": price, "quote_time": quote_time,
+            "quote_source": source,
+        },
+        "target_weights": None, "target_cash_weight": None,
+        "summary": "AI_SELECT contract test", "risks": [], "evidence": [], "data_gaps": [],
+    }
+
+
+def test_ai_select_formal_requires_candidate_pack(tmp_path, monkeypatch):
+    repo = make_ai_repo(tmp_path)
+    monkeypatch.setattr("stock_cn.formal_paper._source_commit", lambda p: "TEST")
+    session = FormalPaperSession(repo, "D", "D02")
+    bad = ai_live_snapshot()
+    bad.pop("candidate_research_pack")
+    with pytest.raises(ValueError, match="candidate research pack"):
+        session.prepare(bad)
+
+
+def test_ai_select_buy_must_be_candidate_but_existing_holding_can_be_sold(tmp_path, monkeypatch):
+    repo = make_ai_repo(tmp_path)
+    monkeypatch.setattr("stock_cn.formal_paper._source_commit", lambda p: "TEST")
+    session = FormalPaperSession(repo, "D", "D02")
+    req = session.prepare(ai_live_snapshot())
+
+    # Existing 600036 position is intentionally not in today's buy candidate pool.
+    with pytest.raises(ValueError, match="outside today's bounded candidate pool"):
+        session.validate_decision(ai_response(req, "BUY", "600036.SH"), req)
+
+    after_sell, sold = session.execute_preview(ai_response(req, "SELL", "600036.SH"), req)
+    assert sold["status"] == "FILLED"
+    assert after_sell["positions"][0]["quantity"] == 900
+
+    after_buy, bought = session.execute_preview(ai_response(req, "BUY", "600900.SH"), req)
+    assert bought["status"] == "FILLED"
+    assert any(p["symbol"] == "600900.SH" and p["quantity"] == 100
+               for p in after_buy["positions"])
+
+
+def test_ai_select_cutover_requires_research_enablement(tmp_path):
+    repo = make_ai_repo(tmp_path)
+    ready = cutover_readiness(repo, "D02")
+    assert ready["checks"]["formal_research_enabled"] is True
+    assert ready["ready"] is True
+
+    state_path = repo / "strategies/D/variants/D02/research_state.json"
+    state = read_json(state_path)
+    state["formal_research_enabled"] = False
+    write(state_path, state)
+    blocked = cutover_readiness(repo, "D02")
+    assert blocked["checks"]["formal_research_enabled"] is False
+    assert blocked["ready"] is False
