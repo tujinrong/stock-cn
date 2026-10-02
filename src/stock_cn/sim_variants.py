@@ -156,6 +156,8 @@ class VariantSimulation(BaseSimulation):
         view.data = copy.deepcopy(self.data)
         view.data['instruments'] = known
         view.data['evidence'] = evidence
+        view.evaluation_start_override = self.data.get('evaluation_start_known')
+        view.evaluation_end_override = self.data.get('evaluation_end_known')
         view.fingerprint = digest(visible)
         # Aliases exist only in this rendering view. Stored hashes/snapshots name
         # the actual standalone variant file, not the old shared template.
