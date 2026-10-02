@@ -1,0 +1,32 @@
+# 官方披露源探测
+
+本结果仅验证公告元数据读取，不是投资判断，也未解析PDF全文。
+
+{
+  "probe_id": "cninfo-probe-20261003-02",
+  "provider": "CNINFO",
+  "provider_official": true,
+  "as_of": "2026-10-03T04:12:01.477777+08:00",
+  "requested_start": "2026-04-06",
+  "requested_end": "2026-10-03",
+  "symbols": [
+    "603986.SH",
+    "600487.SH",
+    "600156.SH",
+    "000850.SZ"
+  ],
+  "statuses": {
+    "603986.SH": "OK",
+    "600487.SH": "OK",
+    "600156.SH": "OK",
+    "000850.SZ": "OK"
+  },
+  "verified_for_all_symbols": true,
+  "announcement_count": 281,
+  "periodic_report_ref_count": 7,
+  "important_ref_count": 50,
+  "metadata_only": true,
+  "pdf_downloaded": false,
+  "financial_conclusions_extracted": false,
+  "formal_execution": false
+}
