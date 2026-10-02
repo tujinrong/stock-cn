@@ -83,12 +83,6 @@ class VariantSimulation(BaseSimulation):
             f'strategies/{self.series}/variants/{self.variant}.md': ''}
         request = BaseSimulation.prepare(view, day)
         if not request.get('completed'):
-            request['context']['time_travel'] = True
-            request['context']['time_travel_target_date'] = day
-            request['context']['time_travel_knowledge_cutoff'] = travel['knowledge_cutoff']
-            request['time_travel'] = travel
-            request['prompt_sha256'] = digest(request['prompt'])
-            view.store.write(f"requests/{day}/request.json", request)
             view.store.write(f"requests/{day}/time_travel.json", travel)
         return request
 
