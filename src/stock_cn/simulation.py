@@ -317,7 +317,8 @@ class Simulation:
                        "input_snapshot_sha256": self.fingerprint,
                        "account_path": str(self.store.root.relative_to(self.repo) / "holdings.json"),
                        "authorization": "Only this isolated simulation; not formal. DRAFT strategy may be tested.",
-                       "evaluation_start": days[1], "evaluation_end": days[-1],
+                       "evaluation_start": getattr(self, "evaluation_start_override", None),
+                       "evaluation_end": getattr(self, "evaluation_end_override", None),
                        "settlement_note": "sellable_quantity is next-session availability, not same-day T+0",
                        "data_kind": self.data["kind"], "fidelity": self.data["fidelity"]}
             market = {s: [{"date": d, "close": self.data["bars"][d][s]["close"],
