@@ -26,11 +26,16 @@ jobs:
           found=0
           for file in evaluation-score-requests/*.json; do
             [ -f "$file" ] || continue
+            status=$(python -c "import json; print(json.load(open('$file')).get('status','REQUESTED'))")
+            [ "$status" = "REQUESTED" ] || continue
             eval_id=$(python -c "import json; print(json.load(open('$file'))['eval_id'])")
+            if [ -f "runs/evaluations/$eval_id/summary.json" ]; then
+              continue
+            fi
             python tools/run_evaluation_plan.py --eval-id "$eval_id" --phase score
             found=1
           done
-          test "$found" -eq 1
+          test "$found" -eq 1 || echo "No pending requested evaluation scores."
       - name: Verify prompt-improvement state and formal accounts are not changed by scoring
         run: |
           git diff --exit-code -- 'strategies/*/variants/*/holdings.json' 'strategies/*/variants/*/holdings.md' 'strategies/*/variants/*/improvement_state.json' 'strategies/*/variants/*/simulation_prompt.json' 'strategies/*/variants/*/formal_prompt.json'
