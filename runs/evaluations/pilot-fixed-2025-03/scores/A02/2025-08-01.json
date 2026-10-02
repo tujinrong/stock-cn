@@ -1,0 +1,58 @@
+{
+  "eval_id": "pilot-fixed-2025-03",
+  "variant": "A02",
+  "target_date": "2025-08-01",
+  "execution_date": "2025-08-04",
+  "prompt_sha256": "575b4dd9429e2491e07c942747b9864c1e6cbac5ca41110f2f35df5f025c0226",
+  "decision_sha256": "b1d662670dba7396eac0747b7383b796514f10c44bb8f0c768aa54dd7741ea25",
+  "action": "HOLD",
+  "execution": {
+    "status": "NO_TRADE",
+    "fill": null,
+    "reason": "HOLD",
+    "decision_id": "eval-pilot-fixed-2025-03-20250801-A02-2025-08-04",
+    "paper_only": true,
+    "mode": "SIMULATION",
+    "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+  },
+  "scores": [
+    {
+      "horizon_sessions": 5,
+      "date": "2025-08-11",
+      "status": "SCORED",
+      "actual_equity_cny": "201375.00",
+      "hold_counterfactual_equity_cny": "201375.00",
+      "actual_return_pct": "0.687500",
+      "hold_return_pct": "0.687500",
+      "incremental_pnl_vs_hold_cny": "0.00",
+      "incremental_return_vs_hold_pct": "0"
+    },
+    {
+      "horizon_sessions": 20,
+      "date": "2025-09-01",
+      "status": "SCORED",
+      "actual_equity_cny": "211822.00",
+      "hold_counterfactual_equity_cny": "211822.00",
+      "actual_return_pct": "5.91100",
+      "hold_return_pct": "5.91100",
+      "incremental_pnl_vs_hold_cny": "0.00",
+      "incremental_return_vs_hold_pct": "0"
+    },
+    {
+      "horizon_sessions": 40,
+      "date": "2025-09-29",
+      "status": "SCORED",
+      "actual_equity_cny": "215301.00",
+      "hold_counterfactual_equity_cny": "215301.00",
+      "actual_return_pct": "7.650500",
+      "hold_return_pct": "7.650500",
+      "incremental_pnl_vs_hold_cny": "0.00",
+      "incremental_return_vs_hold_pct": "0"
+    }
+  ],
+  "future_outcomes_were_separate_from_decision_phase": true,
+  "historical_prefix_reverified_before_scoring": true,
+  "request_regenerated_during_scoring": false,
+  "eligible_for_prompt_auto_improvement": false,
+  "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+}

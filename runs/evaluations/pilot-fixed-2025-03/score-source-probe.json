@@ -1,0 +1,52 @@
+{
+  "phase": "SCORE_AFTER_LOCK",
+  "attempts": [
+    {
+      "symbol": "600036.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "first_date": "2024-09-02",
+      "last_date": "2025-09-30",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "002594.SZ",
+      "provider": "Tencent",
+      "status": "OK",
+      "first_date": "2024-09-02",
+      "last_date": "2025-09-30",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600660.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "first_date": "2024-09-02",
+      "last_date": "2025-09-30",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600900.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "first_date": "2024-09-02",
+      "last_date": "2025-09-30",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "601100.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "first_date": "2024-09-02",
+      "last_date": "2025-09-30",
+      "rows": 263,
+      "fallback_errors": []
+    }
+  ],
+  "raw_market_data_persisted": false,
+  "future_outcomes_not_used_for_prompt_improvement": true
+}

@@ -1,0 +1,8 @@
+{
+  "evidence": [],
+  "data_gaps": [
+    "缺少历史时点财务、公告和新闻。",
+    "可见历史不足250个交易日，年度位置判断不完整。"
+  ],
+  "scoring_phase_future_data_excluded": true
+}

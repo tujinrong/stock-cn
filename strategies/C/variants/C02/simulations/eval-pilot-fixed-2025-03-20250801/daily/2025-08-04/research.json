@@ -1,0 +1,9 @@
+{
+  "evidence": [],
+  "data_gaps": [
+    "比亚迪断点后历史样本不足。",
+    "缺少历史时点财务、公告和新闻。",
+    "无历史分钟线。"
+  ],
+  "scoring_phase_future_data_excluded": true
+}

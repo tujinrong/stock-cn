@@ -1,0 +1,8 @@
+{
+  "evidence": [],
+  "data_gaps": [
+    "缺少历史时点财务、公告和新闻。",
+    "250日价格位置不可用。"
+  ],
+  "scoring_phase_future_data_excluded": true
+}

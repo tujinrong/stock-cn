@@ -1,0 +1,9 @@
+{
+  "evidence": [],
+  "data_gaps": [
+    "比亚迪断点后仅有很短连续价格样本。",
+    "缺少历史时点财务、公告和新闻。",
+    "尚无历史分钟线，使用收盘时点近似。"
+  ],
+  "scoring_phase_future_data_excluded": true
+}

@@ -1,0 +1,68 @@
+{
+  "eval_id": "pilot-fixed-2025-03",
+  "variant": "C02",
+  "target_date": "2025-05-15",
+  "execution_date": "2025-05-16",
+  "prompt_sha256": "525e98d7b2020f2e30912f66e9bf5dd7ac4103df6e512bc71de6dabc990992a9",
+  "decision_sha256": "3b0943e7797c91853052caa693497cbe32d5501fe22e0930bacd0e99f0d95bc1",
+  "action": "BUY",
+  "execution": {
+    "status": "FILLED",
+    "fill": {
+      "symbol": "600660.SH",
+      "side": "BUY",
+      "quantity": 300,
+      "price_cny": "56.41",
+      "fee_cny": "5.17",
+      "time": "2025-05-16T09:30:00+08:00",
+      "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600660%2Cday%2C2024-09-01%2C2025-09-30%2C320%2C",
+      "quote_time": "2025-05-16T09:30:00+08:00",
+      "time_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+    },
+    "reason": "PAPER_FILL_USING_MODE_QUOTE",
+    "decision_id": "eval-pilot-fixed-2025-03-20250515-C02-2025-05-16",
+    "paper_only": true,
+    "mode": "SIMULATION",
+    "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+  },
+  "scores": [
+    {
+      "horizon_sessions": 5,
+      "date": "2025-05-23",
+      "status": "SCORED",
+      "actual_equity_cny": "201161.83",
+      "hold_counterfactual_equity_cny": "200000.00",
+      "actual_return_pct": "0.58091500",
+      "hold_return_pct": "0",
+      "incremental_pnl_vs_hold_cny": "1161.83",
+      "incremental_return_vs_hold_pct": "0.58091500"
+    },
+    {
+      "horizon_sessions": 20,
+      "date": "2025-06-16",
+      "status": "SCORED",
+      "actual_equity_cny": "200456.83",
+      "hold_counterfactual_equity_cny": "200000.00",
+      "actual_return_pct": "0.22841500",
+      "hold_return_pct": "0",
+      "incremental_pnl_vs_hold_cny": "456.83",
+      "incremental_return_vs_hold_pct": "0.22841500"
+    },
+    {
+      "horizon_sessions": 40,
+      "date": "2025-07-14",
+      "status": "SCORED",
+      "actual_equity_cny": "200084.83",
+      "hold_counterfactual_equity_cny": "200000.00",
+      "actual_return_pct": "0.04241500",
+      "hold_return_pct": "0",
+      "incremental_pnl_vs_hold_cny": "84.83",
+      "incremental_return_vs_hold_pct": "0.04241500"
+    }
+  ],
+  "future_outcomes_were_separate_from_decision_phase": true,
+  "historical_prefix_reverified_before_scoring": true,
+  "request_regenerated_during_scoring": false,
+  "eligible_for_prompt_auto_improvement": false,
+  "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+}
