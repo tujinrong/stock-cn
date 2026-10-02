@@ -36,6 +36,7 @@ def test_future_tail_cannot_change_today_prompt(repo, tmp_path_factory):
         if day > '2025-08-01':
             for bar in stocks.values():
                 bar['open'] = '999.00'; bar['close'] = '1000.00'
+                bar['high'] = '1001.00'; bar['low'] = '998.00'; bar['volume'] = '99999999'
     two['evidence'] = [{'published_at':'2025-08-08T10:00:00+08:00', 'source':'TEST_ONLY', 'text':'FUTURE_WINNER_SECRET'}]
     a = VariantSimulation(repo,'A','A02','same',one)
     b = VariantSimulation(other,'A','A02','same',two)
