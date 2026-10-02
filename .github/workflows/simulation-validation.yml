@@ -1,0 +1,82 @@
+name: Simulation validation
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/stock_cn/sim*.py'
+      - 'tests/test_simulation.py'
+      - '.github/workflows/simulation-validation.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: simulation-validation-main
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      TEST_ID: ci-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test environment
+        run: python -m pip install -e '.[dev]'
+      - name: Unit and regression tests
+        run: python -m pytest -q --junitxml="$RUNNER_TEMP/pytest.xml"
+      - name: Actual repository templates, seven isolated variants, five sessions
+        run: python -m stock_cn.sim_cli selfcheck --test-id "$TEST_ID" --workers 2
+      - name: Probe real historical daily sources
+        id: sources
+        continue-on-error: true
+        run: python -m stock_cn.sim_cli probe --test-id "$TEST_ID" --start 2025-08-01 --end 2025-08-08 --output "$RUNNER_TEMP/stock-cn-history.json"
+      - name: Real-price flow replay when available (not AI investment evaluation)
+        shell: bash
+        run: |
+          if [ -f "$RUNNER_TEMP/stock-cn-history.json" ]; then
+            python -m stock_cn.sim_cli replay --variant A02 --test-id "$TEST_ID-real" --data "$RUNNER_TEMP/stock-cn-history.json" --agent scripted-smoke --max-calls 10
+            python -m stock_cn.sim_cli audit --variant A02 --test-id "$TEST_ID-real"
+          fi
+      - name: Confirm formal files were not modified
+        run: git diff --exit-code -- 'strategies/*/holdings.json' 'strategies/*/holdings.md' 'strategies/*/init.json' 'strategies/index.json' 'strategies/*/ai_input_template.md'
+      - name: Save validation metadata
+        env:
+          SOURCE_OUTCOME: ${{ steps.sources.outcome }}
+        run: |
+          python - <<'PY'
+          import json, os, shutil
+          from pathlib import Path
+          root = Path('runs/simulations') / os.environ['TEST_ID']
+          root.mkdir(parents=True, exist_ok=True)
+          shutil.copyfile(Path(os.environ['RUNNER_TEMP']) / 'pytest.xml', root / 'pytest.xml')
+          (root / 'ci.json').write_text(json.dumps({'source_commit': os.environ['GITHUB_SHA'], 'run_id': os.environ['GITHUB_RUN_ID'], 'source_probe_outcome': os.environ['SOURCE_OUTCOME'], 'paid_model_called': False, 'formal_execution': False}, indent=2) + '\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: simulation-validation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            runs/simulations/${{ env.TEST_ID }}/
+            strategies/*/simulations/${{ env.TEST_ID }}/
+            strategies/*/simulations/${{ env.TEST_ID }}-real/
+            ${{ runner.temp }}/pytest.xml
+      - name: Publish only generated simulation results (non-force)
+        if: success() && github.ref == 'refs/heads/main'
+        run: |
+          python - <<'PY'
+          import os, subprocess
+          from pathlib import Path
+          tid = os.environ['TEST_ID']
+          paths = list(Path('strategies').glob(f'*/simulations/{tid}')) + list(Path('strategies').glob(f'*/simulations/{tid}-real')) + [Path('runs/simulations') / tid]
+          paths = [str(p) for p in paths if p.exists()]
+          subprocess.run(['git', 'add', '--', *paths], check=True)
+          PY
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m "test: isolated simulation validation $TEST_ID [skip ci]"
+            git push origin HEAD:main
+          fi
