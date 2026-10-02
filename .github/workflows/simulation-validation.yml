@@ -9,6 +9,7 @@ on:
       - 'src/stock_cn/formal_paper.py'
       - 'src/stock_cn/time_travel.py'
       - 'src/stock_cn/evaluation.py'
+      - 'src/stock_cn/universe.py'
       - 'tools/*variants.py'
       - 'tools/refine_prompt_smoke.py'
       - 'tests/test_*simulation.py'
@@ -16,6 +17,7 @@ on:
       - 'tests/test_mode_parity.py'
       - 'tests/test_time_travel.py'
       - 'tests/test_evaluation.py'
+      - 'tests/test_universe.py'
       - '.github/workflows/simulation-validation.yml'
   workflow_dispatch:
 permissions:
