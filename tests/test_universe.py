@@ -5,7 +5,8 @@ from urllib.parse import urlparse, parse_qs
 import pytest
 
 from stock_cn.universe import (
-    bounded_prefilter, fetch_candidate_history, fetch_live_universe,
+    bounded_prefilter, build_deep_research_pack,
+    fetch_candidate_history, fetch_live_universe,
 )
 
 
@@ -133,3 +134,35 @@ def test_live_universe_falls_back_to_sina_without_mixing_partial_primary():
     assert "502" in snap["primary_failure"]
     assert snap["eligible_count"] == 120
     assert all(x["source_provider"] == "Sina" for x in snap["rows"])
+
+
+def test_deep_research_pack_routes_attention_without_becoming_trade_signal():
+    snap = fetch_live_universe(lambda url: clist_payload())
+    seed = bounded_prefilter(snap, "LOW_RECOVERY", max_candidates=10)
+    seed["rows"] = seed["rows"][:2]
+    data, _ = fetch_candidate_history(
+        seed, "2025-01-02", "2025-01-06", request=fake_history_request, max_symbols=10
+    )
+    pack = build_deep_research_pack(seed, data, data["sessions"][-1],
+                                    "LOW_RECOVERY", max_candidates=2)
+    assert pack["not_a_recommendation"] is True
+    assert pack["selected_count"] <= 2
+    assert all(x["not_a_trade_signal"] is True for x in pack["candidates"])
+    assert all("research_state" in x for x in pack["candidates"])
+
+
+def test_abnormal_drop_pack_does_not_call_fresh_drop_a_buy_signal():
+    snap = fetch_live_universe(lambda url: clist_payload())
+    seed = bounded_prefilter(snap, "ABNORMAL_DROP", max_candidates=10)
+    # Force a supported severe loser into the small history sample.
+    target = next(x for x in snap["rows"] if x["symbol"] == "002594.SZ")
+    seed["rows"] = [target]
+    seed["count"] = 1
+    data, _ = fetch_candidate_history(
+        seed, "2025-01-02", "2025-01-06", request=fake_history_request, max_symbols=10
+    )
+    pack = build_deep_research_pack(seed, data, data["sessions"][-1],
+                                    "ABNORMAL_DROP", max_candidates=1)
+    item = pack["candidates"][0]
+    assert item["not_a_trade_signal"] is True
+    assert "BUY" not in item["research_state"]
