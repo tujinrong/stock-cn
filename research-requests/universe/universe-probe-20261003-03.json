@@ -1,0 +1,8 @@
+{
+  "probe_id": "universe-probe-20261003-03",
+  "purpose": "Validate end-to-end D/F research-pack generation and persistent abnormal-drop watchlist proposal.",
+  "candidate_limit": 30,
+  "history_sample": 10,
+  "formal_execution": false,
+  "not_a_recommendation": true
+}
