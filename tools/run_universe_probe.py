@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 """Bounded current-universe source probe for AI_SELECT infrastructure.
 
-Persists only compact candidate/research summaries, never the full raw market feed.
+Persists compact candidate/research summaries, never the full raw market feed.
 Not a formal trading run and not a recommendation.
 """
 from __future__ import annotations
 
 import argparse
 import json
+from datetime import datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from stock_cn.simulation import Store, dumps, identifier
 from stock_cn.time_travel import symbol_snapshot
 from stock_cn.universe import (
-    bounded_prefilter, fetch_candidate_history, fetch_live_universe,
+    bounded_prefilter,
+    build_deep_research_pack,
+    fetch_candidate_history,
+    fetch_live_universe,
+    update_abnormal_drop_watchlist,
 )
 
 
@@ -35,16 +41,27 @@ def compact_seed(seed):
     }
 
 
-def probe_history(seed, *, max_symbols=5):
+def probe_history(seed, purpose, start, end, *, max_symbols=5):
     tiny = dict(seed)
     tiny["rows"] = seed["rows"][:max_symbols]
+    tiny["count"] = len(tiny["rows"])
     data, attempts = fetch_candidate_history(
-        tiny, "2025-10-01", "2026-10-03", max_symbols=max_symbols
+        tiny, start, end, max_symbols=max_symbols
     )
     if data is None:
-        return {"verified": False, "attempts": attempts, "snapshots": []}
+        return {
+            "verified": False, "attempts": attempts, "snapshots": [],
+            "research_pack": None, "watchlist": None,
+        }
     cutoff = data["sessions"][-1]
     snaps = [symbol_snapshot(data, s, cutoff) for s in data["instruments"]]
+    pack = build_deep_research_pack(
+        tiny, data, cutoff, purpose, max_candidates=min(max_symbols, 12)
+    )
+    watchlist = (
+        update_abnormal_drop_watchlist(None, tiny, data, cutoff, max_entries=max(10, max_symbols))
+        if purpose == "ABNORMAL_DROP" else None
+    )
     return {
         "verified": True,
         "attempts": attempts,
@@ -52,6 +69,8 @@ def probe_history(seed, *, max_symbols=5):
         "history_end": cutoff,
         "candidate_count": len(data["instruments"]),
         "snapshots": snaps,
+        "research_pack": pack,
+        "watchlist": watchlist,
         "limitations": data["limitations"],
     }
 
@@ -65,15 +84,30 @@ def main():
     args = p.parse_args()
     identifier(args.probe_id)
     repo = Path(args.repo).resolve()
+
+    now_cn = datetime.now(ZoneInfo("Asia/Shanghai"))
+    history_end = now_cn.date().isoformat()
+    history_start = (now_cn.date() - timedelta(days=399)).isoformat()
+
     snap = fetch_live_universe()
     low = bounded_prefilter(snap, "LOW_RECOVERY", max_candidates=args.candidate_limit)
     drop = bounded_prefilter(snap, "ABNORMAL_DROP", max_candidates=args.candidate_limit)
-    low_hist = probe_history(low, max_symbols=args.history_sample)
-    drop_hist = probe_history(drop, max_symbols=args.history_sample)
+    low_hist = probe_history(
+        low, "LOW_RECOVERY", history_start, history_end,
+        max_symbols=args.history_sample
+    )
+    drop_hist = probe_history(
+        drop, "ABNORMAL_DROP", history_start, history_end,
+        max_symbols=args.history_sample
+    )
+
     root = repo / "runs/research/universe" / args.probe_id
     store = Store(root)
     store.write("summary.json", {
         "probe_id": args.probe_id,
+        "market_timezone": "Asia/Shanghai",
+        "history_requested_start": history_start,
+        "history_requested_end": history_end,
         "provider_eligible_count": snap["eligible_count"],
         "provider_total_rows": snap["total_provider_rows"],
         "source": snap["source"],
@@ -93,8 +127,18 @@ def main():
     })
     store.write("low-recovery-seed.json", compact_seed(low))
     store.write("abnormal-drop-seed.json", compact_seed(drop))
-    store.write("low-recovery-history-probe.json", low_hist)
-    store.write("abnormal-drop-history-probe.json", drop_hist)
+    store.write("low-recovery-history-probe.json", {
+        k: v for k, v in low_hist.items() if k not in {"research_pack", "watchlist"}
+    })
+    store.write("abnormal-drop-history-probe.json", {
+        k: v for k, v in drop_hist.items() if k not in {"research_pack", "watchlist"}
+    })
+    if low_hist.get("research_pack") is not None:
+        store.write("D-low-recovery-research-pack.json", low_hist["research_pack"])
+    if drop_hist.get("research_pack") is not None:
+        store.write("F-abnormal-drop-research-pack.json", drop_hist["research_pack"])
+    if drop_hist.get("watchlist") is not None:
+        store.write("F-watchlist-proposal.json", drop_hist["watchlist"])
     print(dumps(read_summary(root)))
 
 
