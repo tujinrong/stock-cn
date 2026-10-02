@@ -1,8 +1,9 @@
 {
-  "schema_version": "0.1-draft",
+  "schema_version": "0.2-draft",
   "purpose": "Candidate strategy catalog; not accounts or execution authorization",
   "formal_execution_enabled": false,
   "capital_scope": "one_200000_cny_pool_per_strategy_not_per_variant",
+  "series_supports_multiple_symbols": true,
   "evaluation_start": null,
   "evaluation_end": null,
   "global_universe_constraints": {
@@ -15,21 +16,20 @@
       "SIMULATION",
       "FORMAL"
     ],
-    "applies_to_strategy_types": [
-      "FIXED",
-      "AI_SELECT"
-    ],
     "unknown_board_action": "EXCLUDE_UNTIL_VERIFIED",
-    "preserve_other_agreed_restrictions": true,
-    "note": "用户明确要求本项目A股投资范围不包括科创板；固定名单、自主选股、临时测试与历史回放均继承。其他范围仍按既有约定或待确认状态处理。本配置不表示过滤功能已经实现。"
+    "preserve_other_agreed_restrictions": true
   },
   "strategies": [
     {
       "strategy_id": "A",
-      "name": "招商银行择时",
+      "name": "现有5股组合动态管理",
       "type": "FIXED",
       "symbols": [
-        "600036.SH"
+        "600036.SH",
+        "002594.SZ",
+        "600660.SH",
+        "600900.SH",
+        "601100.SH"
       ],
       "status": "DRAFT",
       "enabled": false,
@@ -42,37 +42,58 @@
       ],
       "prompt": "strategies/A/prompt.md",
       "initial_portfolio": {
-        "cash_pct": 1,
-        "positions": []
+        "cash_pct": 0.25,
+        "positions": [
+          {
+            "symbol": "600036.SH",
+            "name": "招商银行",
+            "target_pct": 0.15
+          },
+          {
+            "symbol": "002594.SZ",
+            "name": "比亚迪",
+            "target_pct": 0.15
+          },
+          {
+            "symbol": "600660.SH",
+            "name": "福耀玻璃",
+            "target_pct": 0.15
+          },
+          {
+            "symbol": "600900.SH",
+            "name": "长江电力",
+            "target_pct": 0.15
+          },
+          {
+            "symbol": "601100.SH",
+            "name": "恒立液压",
+            "target_pct": 0.15
+          }
+        ]
       }
     },
     {
       "strategy_id": "B",
-      "name": "比亚迪经营改善择时",
-      "type": "FIXED",
-      "symbols": [
-        "002594.SZ"
-      ],
-      "status": "DRAFT",
+      "name": "备用",
+      "type": "RESERVED",
+      "status": "RESERVED",
       "enabled": false,
-      "initial_cash_cny": 200000,
+      "initial_cash_cny": null,
       "active_variant": null,
-      "variants": [
-        "B01",
-        "B02",
-        "B03"
-      ],
-      "prompt": "strategies/B/prompt.md",
-      "initial_portfolio": {
-        "cash_pct": 1,
-        "positions": []
-      }
+      "variants": [],
+      "prompt": "strategies/B/prompt.md"
     },
     {
       "strategy_id": "C",
-      "name": "优质股年度低位回升",
-      "type": "AI_SELECT",
-      "universe_status": "PENDING_CONFIRMATION",
+      "name": "固定股票池择时",
+      "type": "FIXED",
+      "symbols": [
+        "600036.SH",
+        "002594.SZ",
+        "600660.SH",
+        "600900.SH",
+        "601100.SH"
+      ],
       "status": "DRAFT",
       "enabled": false,
       "initial_cash_cny": 200000,
@@ -90,7 +111,7 @@
     },
     {
       "strategy_id": "D",
-      "name": "业绩改善机会",
+      "name": "优质股年度低位回升",
       "type": "AI_SELECT",
       "universe_status": "PENDING_CONFIRMATION",
       "status": "DRAFT",
@@ -110,12 +131,9 @@
     },
     {
       "strategy_id": "E",
-      "name": "招商银行比亚迪现金动态分配",
-      "type": "FIXED",
-      "symbols": [
-        "600036.SH",
-        "002594.SZ"
-      ],
+      "name": "业绩改善机会",
+      "type": "AI_SELECT",
+      "universe_status": "PENDING_CONFIRMATION",
       "status": "DRAFT",
       "enabled": false,
       "initial_cash_cny": 200000,
@@ -148,63 +166,11 @@
         "cash_pct": 1,
         "positions": []
       }
-    },
-    {
-      "strategy_id": "G",
-      "name": "现有5股组合动态管理",
-      "type": "FIXED",
-      "symbols": [
-        "600036.SH",
-        "002594.SZ",
-        "600660.SH",
-        "600900.SH",
-        "601100.SH"
-      ],
-      "status": "DRAFT",
-      "enabled": false,
-      "initial_cash_cny": 200000,
-      "active_variant": null,
-      "variants": [
-        "G01",
-        "G02",
-        "G03"
-      ],
-      "prompt": "strategies/G/prompt.md",
-      "initial_portfolio": {
-        "cash_pct": 0.25,
-        "positions": [
-          {
-            "symbol": "600036.SH",
-            "name": "招商银行",
-            "target_pct": 0.15
-          },
-          {
-            "symbol": "002594.SZ",
-            "name": "比亚迪",
-            "target_pct": 0.15
-          },
-          {
-            "symbol": "600660.SH",
-            "name": "福耀玻璃",
-            "target_pct": 0.15
-          },
-          {
-            "symbol": "600900.SH",
-            "name": "长江电力",
-            "target_pct": 0.15
-          },
-          {
-            "symbol": "601100.SH",
-            "name": "恒立液压",
-            "target_pct": 0.15
-          }
-        ],
-        "note": "Draft interpretation: 75% stock exposure split equally across five stocks (15% of total capital each) plus 25% cash. Does not mirror the user's real account."
-      }
     }
   ],
   "default_initial_state": {
-    "non_G_strategies": "100% cash unless a strategy-specific prompt explicitly defines another starting portfolio",
-    "G_strategy": "75% stocks (15% each across five fixed symbols) + 25% cash, pending final confirmation"
+    "A_strategy": "75% stocks (15% each across five fixed symbols) + 25% cash",
+    "C_to_F": "100% cash unless a future strategy prompt explicitly defines another starting portfolio",
+    "B_series": "reserved; no account until explicitly defined"
   }
 }
