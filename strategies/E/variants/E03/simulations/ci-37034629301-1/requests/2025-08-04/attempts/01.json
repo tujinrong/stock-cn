@@ -1,0 +1,37 @@
+{
+  "response": {
+    "strategy_id": "E",
+    "variant_id": "E03",
+    "mode": "SIMULATION",
+    "run_id": "ci-37034629301-1-E03",
+    "decision_id": "ci-37034629301-1-E03-2025-08-04",
+    "date": "2025-08-04",
+    "decision_time": "2025-08-01T15:00:00+08:00",
+    "input_revision": 1,
+    "input_commit": "ef35d9e5fac32e146ccfcaeb471c4126e5d5cd1e",
+    "schema_version": "0.3-draft",
+    "status": "READY",
+    "action": "BUY",
+    "order_proposal": {
+      "symbol": "600036.SH",
+      "side": "BUY",
+      "quantity": 100,
+      "reference_price_cny": "40",
+      "quote_time": "2025-08-01T15:00:00+08:00",
+      "quote_source": "TEST_ONLY:synthetic-v1"
+    },
+    "target_weights": null,
+    "target_cash_weight": null,
+    "summary": "TEST_ONLY：脚本用于验证AI接口、交易校验和记账，不是投资判断。",
+    "risks": [
+      "不能用本次收益评价AI投资能力。"
+    ],
+    "evidence": [],
+    "data_gaps": [
+      "没有完整历史财务和新闻研究。"
+    ]
+  },
+  "feedback": [
+    "input_revision must be integer"
+  ]
+}
