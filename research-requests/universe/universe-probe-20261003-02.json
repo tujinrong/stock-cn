@@ -1,0 +1,8 @@
+{
+  "probe_id": "universe-probe-20261003-02",
+  "purpose": "Validate risk-aware bounded AI_SELECT candidate seeds and deeper 10-name history sample.",
+  "candidate_limit": 30,
+  "history_sample": 10,
+  "formal_execution": false,
+  "not_a_recommendation": true
+}
