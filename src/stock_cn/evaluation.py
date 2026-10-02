@@ -11,9 +11,10 @@ import json
 from decimal import Decimal
 from pathlib import Path
 
-from .simulation import Store, digest, money, read_json, require
+from .simulation import Store, digest, holdings_md, money, read_json, require
 from .sim_variants import VariantSimulation
-from .time_travel import _latest_structural_break
+from .paper_core import execute_single_order
+from .time_travel import _latest_structural_break, build_time_travel_context
 from .variant_prompts import variant_root
 
 
@@ -159,7 +160,12 @@ def _has_break(data, symbol, start_date, end_date):
 
 
 def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5, 20, 40)):
-    """Score a locked decision. Future data exists only here, after the lock."""
+    """Score a locked decision without regenerating the historical AI request.
+
+    The prepared request is immutable. Freshly fetched history is allowed only to
+    verify that the causal target-date market context is identical and to supply
+    execution/future valuation prices after the decision lock.
+    """
     repo = Path(repo).resolve()
     entry = _load_entry(repo, eval_id, variant, target_date)
     decision_path = repo / entry["decision_path"]
@@ -168,13 +174,105 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
     decision = read_json(decision_path)
     lock = read_json(lock_path)
     require(lock["decision_sha256"] == digest(decision), "locked decision changed")
+
     request = read_json(repo / entry["request_path"])
     require(request["prompt_sha256"] == lock["prompt_sha256"], "prompt changed after decision lock")
+
+    # Verify the newly fetched historical prefix describes the same world the AI saw.
+    stored_tt = read_json(repo / entry["time_travel_path"])
+    tt_symbols = [x["symbol"] for x in stored_tt["symbols"]]
+    fresh_tt = build_time_travel_context(
+        data, target_date, target_date, symbols=tt_symbols,
+        ignore_news=True, execution_date=entry["execution_date"],
+    )
+    require(fresh_tt == stored_tt,
+            "historical prefix changed since decision preparation; do not score against a different past")
+
+    # Validate the already-locked answer against the already-locked request.
+    # Instantiation provides symbol/universe rules but does not call prepare().
     sim = VariantSimulation(repo, variant[0], variant, entry["simulation_test_id"], data)
     sim.validate_decision(decision, request)
-    execution = sim.apply(entry["execution_date"], decision)
+
+    # Execute using only the future execution-day quote after the decision was locked.
+    order = decision.get("order_proposal")
+    if order:
+        symbol = order["symbol"]
+        require(symbol in data["bars"].get(entry["execution_date"], {}),
+                "execution-day bar missing")
+        bar = data["bars"][entry["execution_date"]][symbol]
+        quote = {
+            "price": bar["open"],
+            "source": bar["source"],
+            "quote_time": request["context"]["execution_time"],
+            "suspended": bar.get("suspended", False),
+            "limit_up": bar.get("limit_up"),
+            "limit_down": bar.get("limit_down"),
+        }
+        instrument = data["instruments"][symbol]
+    else:
+        quote = {
+            "price": "1.00", "source": "NO_TRADE",
+            "quote_time": request["context"]["execution_time"],
+            "suspended": False, "limit_up": "999999.99", "limit_down": "0.01",
+        }
+        instrument = {"name": "NO_TRADE", "lot_size": 100}
+
+    after, execution = execute_single_order(
+        request["holdings"], decision, quote, instrument, sim.fees,
+        mode="SIMULATION",
+        execution_basis="LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN",
+        execution_time=request["context"]["execution_time"],
+    )
+
+    # Complete the one-day paper account projection with execution-day close valuation.
+    day = entry["execution_date"]
+    after["date"] = day
+    after["_meta"].update(last_decision_date=day, valuation_time=f"{day}T15:00:00+08:00")
+    value = Decimal(str(after["cash_cny"]))
+    for p in after["positions"]:
+        require(p["symbol"] in data["bars"].get(day, {}), "execution-day valuation bar missing")
+        close = Decimal(str(data["bars"][day][p["symbol"]]["close"]))
+        p["valuation_price_cny"] = money(close)
+        value += close * p["quantity"]
+    after["total_equity_cny"] = money(value)
+
+    # Persist the execution into the isolated evaluation simulation ledger, without
+    # touching any FORMAL holdings and without regenerating the AI prompt.
+    before = sim.store.load()
+    require(before == request["source_holdings"], "prepared simulation account changed before scoring")
+    prefix = f"daily/{day}"
+    documents = {
+        f"{prefix}/ai_input.md": (repo / entry["ai_input_path"]).read_text(encoding="utf-8"),
+        f"{prefix}/holdings_before.json": request["holdings"],
+        f"{prefix}/decision.json": decision,
+        f"{prefix}/execution.json": execution,
+        f"{prefix}/holdings_after.json": after,
+        f"{prefix}/research.json": {
+            "evidence": decision.get("evidence", []),
+            "data_gaps": decision.get("data_gaps", []),
+            "scoring_phase_future_data_excluded": True,
+        },
+        f"{prefix}/closing.json": {
+            "date": day,
+            "total_equity_cny": after["total_equity_cny"],
+            "cash_cny": after["cash_cny"],
+            "valuation_time": after["_meta"]["valuation_time"],
+            "data_kind": data["kind"],
+        },
+        f"{prefix}/summary.md": (
+            f"# {day} {variant} 历史AI锁定判断执行\\n\\n"
+            f"判断：{decision.get('action')}；执行结果：{execution['status']}。\\n\\n"
+            f"{decision.get('summary','')}\\n"
+        ),
+    }
+    sim.store.commit(
+        "DAY_COMPLETED", before, after, documents,
+        {"decision": decision, "execution": execution,
+         "historical_ai_decision_locked_before_future_scoring": True},
+    )
     actual = sim.store.load()
     baseline = copy.deepcopy(request["holdings"])
+
     sessions = data["sessions"]
     ex_i = sessions.index(entry["execution_date"])
     scores = []
@@ -186,19 +284,19 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
         if idx >= len(sessions):
             scores.append({"horizon_sessions": h, "status": "INSUFFICIENT_FUTURE_SESSIONS"})
             continue
-        day = sessions[idx]
-        breaks = {s: _has_break(data, s, entry["execution_date"], day) for s in held_symbols}
+        score_day = sessions[idx]
+        breaks = {s: _has_break(data, s, entry["execution_date"], score_day) for s in held_symbols}
         breaks = {s: b for s, b in breaks.items() if b}
         if breaks:
-            scores.append({"horizon_sessions": h, "date": day,
+            scores.append({"horizon_sessions": h, "date": score_day,
                            "status": "UNSCORABLE_PRICE_BASIS_BREAK", "breaks": breaks})
             continue
-        actual_equity = _valuation(actual, data, day)
-        hold_equity = _valuation(baseline, data, day)
+        actual_equity = _valuation(actual, data, score_day)
+        hold_equity = _valuation(baseline, data, score_day)
         start_equity = Decimal(str(request["holdings"]["total_equity_cny"]))
         scores.append({
             "horizon_sessions": h,
-            "date": day,
+            "date": score_day,
             "status": "SCORED",
             "actual_equity_cny": money(actual_equity),
             "hold_counterfactual_equity_cny": money(hold_equity),
@@ -207,6 +305,7 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
             "incremental_pnl_vs_hold_cny": money(actual_equity - hold_equity),
             "incremental_return_vs_hold_pct": str((actual_equity / hold_equity - 1) * 100),
         })
+
     result = {
         "eval_id": eval_id, "variant": variant, "target_date": target_date,
         "execution_date": entry["execution_date"],
@@ -216,6 +315,8 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
         "execution": execution,
         "scores": scores,
         "future_outcomes_were_separate_from_decision_phase": True,
+        "historical_prefix_reverified_before_scoring": True,
+        "request_regenerated_during_scoring": False,
         "eligible_for_prompt_auto_improvement": False,
         "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab.",
     }
