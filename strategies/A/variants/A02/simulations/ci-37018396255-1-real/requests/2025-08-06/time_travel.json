@@ -1,0 +1,499 @@
+{
+  "mode": "TIME_TRAVEL",
+  "target_date": "2025-08-05",
+  "knowledge_cutoff": "2025-08-05T15:00:00+08:00",
+  "planned_execution_date": "2025-08-06",
+  "instruction": "你现在回到2025-08-05收盘时。请把自己视为当时的投资研究者。你只能使用2025-08-05收盘及以前已经可见的市场资料，不知道之后任何价格、涨跌、财报结果或事件。不要用后验结果修正当时判断。 本日线近似将在下一交易日2025-08-06开盘模拟执行。",
+  "news_policy": "IGNORE_ARCHIVED_NEWS_BY_DEFAULT",
+  "market_proxy": {
+    "kind": "CONFIGURED_UNIVERSE_EQUAL_WEIGHT_PROXY_NOT_BROAD_MARKET_INDEX",
+    "returns_pct": {
+      "5_sessions": null,
+      "20_sessions": null,
+      "60_sessions": null
+    }
+  },
+  "symbols": [
+    {
+      "symbol": "002594.SZ",
+      "name": "比亚迪",
+      "industry": "新能源汽车/汽车制造",
+      "industry_characteristics": [
+        "销量与单车盈利需同时看",
+        "价格竞争与产品周期敏感",
+        "海外扩张和资本开支影响现金流"
+      ],
+      "as_of_close": "104.8600",
+      "observations": 3,
+      "returns_pct": {
+        "5_sessions": null,
+        "20_sessions": null,
+        "60_sessions": null
+      },
+      "moving_average": {
+        "ma5": null,
+        "ma20": null,
+        "ma60": null
+      },
+      "range_position_0_to_1": {
+        "20_sessions": "0.0000",
+        "60_sessions": "0.0000",
+        "120_sessions": "0.0000",
+        "250_sessions": "0.0000"
+      },
+      "annualized_volatility_pct_approx": "6.7506",
+      "kline": {
+        "daily_last20": [
+          {
+            "date": "2025-08-01",
+            "open": "104.9500",
+            "high": "106.2400",
+            "low": "104.3600",
+            "close": "105.8000",
+            "volume": "362337.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz002594%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          },
+          {
+            "date": "2025-08-04",
+            "open": "104.0000",
+            "high": "105.1400",
+            "low": "102.5700",
+            "close": "104.8800",
+            "volume": "412937.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz002594%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          },
+          {
+            "date": "2025-08-05",
+            "open": "104.8800",
+            "high": "105.2100",
+            "low": "103.7800",
+            "close": "104.8600",
+            "volume": "338350.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz002594%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          }
+        ],
+        "weekly_last12": [
+          {
+            "period": "2025-W31",
+            "start": "2025-08-01",
+            "end": "2025-08-01",
+            "open": "104.9500",
+            "high": "106.2400",
+            "low": "104.3600",
+            "close": "105.8000",
+            "volume": "362337.0000"
+          },
+          {
+            "period": "2025-W32",
+            "start": "2025-08-04",
+            "end": "2025-08-05",
+            "open": "104.0000",
+            "high": "105.2100",
+            "low": "102.5700",
+            "close": "104.8600",
+            "volume": "751287.0000"
+          }
+        ],
+        "monthly_last12": [
+          {
+            "period": "2025-08",
+            "start": "2025-08-01",
+            "end": "2025-08-05",
+            "open": "104.9500",
+            "high": "106.2400",
+            "low": "102.5700",
+            "close": "104.8600",
+            "volume": "1113624.0000"
+          }
+        ]
+      }
+    },
+    {
+      "symbol": "600036.SH",
+      "name": "招商银行",
+      "industry": "银行",
+      "industry_characteristics": [
+        "利率与净息差敏感",
+        "资产质量与信用周期重要",
+        "分红和资本充足率影响估值"
+      ],
+      "as_of_close": "45.2500",
+      "observations": 3,
+      "returns_pct": {
+        "5_sessions": null,
+        "20_sessions": null,
+        "60_sessions": null
+      },
+      "moving_average": {
+        "ma5": null,
+        "ma20": null,
+        "ma60": null
+      },
+      "range_position_0_to_1": {
+        "20_sessions": "1.0000",
+        "60_sessions": "1.0000",
+        "120_sessions": "1.0000",
+        "250_sessions": "1.0000"
+      },
+      "annualized_volatility_pct_approx": "2.3898",
+      "kline": {
+        "daily_last20": [
+          {
+            "date": "2025-08-01",
+            "open": "44.5000",
+            "high": "44.9700",
+            "low": "44.3500",
+            "close": "44.4200",
+            "volume": "594621.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600036%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          },
+          {
+            "date": "2025-08-04",
+            "open": "44.3100",
+            "high": "44.9700",
+            "low": "44.3100",
+            "close": "44.9000",
+            "volume": "498008.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600036%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          },
+          {
+            "date": "2025-08-05",
+            "open": "44.7800",
+            "high": "45.4000",
+            "low": "44.6400",
+            "close": "45.2500",
+            "volume": "555258.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600036%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          }
+        ],
+        "weekly_last12": [
+          {
+            "period": "2025-W31",
+            "start": "2025-08-01",
+            "end": "2025-08-01",
+            "open": "44.5000",
+            "high": "44.9700",
+            "low": "44.3500",
+            "close": "44.4200",
+            "volume": "594621.0000"
+          },
+          {
+            "period": "2025-W32",
+            "start": "2025-08-04",
+            "end": "2025-08-05",
+            "open": "44.3100",
+            "high": "45.4000",
+            "low": "44.3100",
+            "close": "45.2500",
+            "volume": "1053266.0000"
+          }
+        ],
+        "monthly_last12": [
+          {
+            "period": "2025-08",
+            "start": "2025-08-01",
+            "end": "2025-08-05",
+            "open": "44.5000",
+            "high": "45.4000",
+            "low": "44.3100",
+            "close": "45.2500",
+            "volume": "1647887.0000"
+          }
+        ]
+      }
+    },
+    {
+      "symbol": "600660.SH",
+      "name": "福耀玻璃",
+      "industry": "汽车零部件/汽车玻璃",
+      "industry_characteristics": [
+        "汽车产销周期相关",
+        "高附加值产品结构影响利润",
+        "海外业务、汇率和能源成本可能影响盈利"
+      ],
+      "as_of_close": "55.7900",
+      "observations": 3,
+      "returns_pct": {
+        "5_sessions": null,
+        "20_sessions": null,
+        "60_sessions": null
+      },
+      "moving_average": {
+        "ma5": null,
+        "ma20": null,
+        "ma60": null
+      },
+      "range_position_0_to_1": {
+        "20_sessions": "1.0000",
+        "60_sessions": "1.0000",
+        "120_sessions": "1.0000",
+        "250_sessions": "1.0000"
+      },
+      "annualized_volatility_pct_approx": "17.3900",
+      "kline": {
+        "daily_last20": [
+          {
+            "date": "2025-08-01",
+            "open": "54.7500",
+            "high": "55.0100",
+            "low": "54.1800",
+            "close": "54.9100",
+            "volume": "116412.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600660%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          },
+          {
+            "date": "2025-08-04",
+            "open": "54.6600",
+            "high": "54.8700",
+            "low": "54.4500",
+            "close": "54.7500",
+            "volume": "75356.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600660%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          },
+          {
+            "date": "2025-08-05",
+            "open": "54.7600",
+            "high": "55.9500",
+            "low": "54.7600",
+            "close": "55.7900",
+            "volume": "159258.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600660%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          }
+        ],
+        "weekly_last12": [
+          {
+            "period": "2025-W31",
+            "start": "2025-08-01",
+            "end": "2025-08-01",
+            "open": "54.7500",
+            "high": "55.0100",
+            "low": "54.1800",
+            "close": "54.9100",
+            "volume": "116412.0000"
+          },
+          {
+            "period": "2025-W32",
+            "start": "2025-08-04",
+            "end": "2025-08-05",
+            "open": "54.6600",
+            "high": "55.9500",
+            "low": "54.4500",
+            "close": "55.7900",
+            "volume": "234614.0000"
+          }
+        ],
+        "monthly_last12": [
+          {
+            "period": "2025-08",
+            "start": "2025-08-01",
+            "end": "2025-08-05",
+            "open": "54.7500",
+            "high": "55.9500",
+            "low": "54.1800",
+            "close": "55.7900",
+            "volume": "351026.0000"
+          }
+        ]
+      }
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "长江电力",
+      "industry": "电力/水电",
+      "industry_characteristics": [
+        "现金流和分红属性较强",
+        "来水与发电量影响经营",
+        "利率环境影响高股息资产估值"
+      ],
+      "as_of_close": "28.1000",
+      "observations": 3,
+      "returns_pct": {
+        "5_sessions": null,
+        "20_sessions": null,
+        "60_sessions": null
+      },
+      "moving_average": {
+        "ma5": null,
+        "ma20": null,
+        "ma60": null
+      },
+      "range_position_0_to_1": {
+        "20_sessions": "0.7333",
+        "60_sessions": "0.7333",
+        "120_sessions": "0.7333",
+        "250_sessions": "0.7333"
+      },
+      "annualized_volatility_pct_approx": "5.3819",
+      "kline": {
+        "daily_last20": [
+          {
+            "date": "2025-08-01",
+            "open": "27.7900",
+            "high": "28.0500",
+            "low": "27.6800",
+            "close": "27.9900",
+            "volume": "981486.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600900%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          },
+          {
+            "date": "2025-08-04",
+            "open": "27.9000",
+            "high": "28.1700",
+            "low": "27.8000",
+            "close": "28.1400",
+            "volume": "823204.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600900%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          },
+          {
+            "date": "2025-08-05",
+            "open": "28.1400",
+            "high": "28.1800",
+            "low": "27.9600",
+            "close": "28.1000",
+            "volume": "787153.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600900%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          }
+        ],
+        "weekly_last12": [
+          {
+            "period": "2025-W31",
+            "start": "2025-08-01",
+            "end": "2025-08-01",
+            "open": "27.7900",
+            "high": "28.0500",
+            "low": "27.6800",
+            "close": "27.9900",
+            "volume": "981486.0000"
+          },
+          {
+            "period": "2025-W32",
+            "start": "2025-08-04",
+            "end": "2025-08-05",
+            "open": "27.9000",
+            "high": "28.1800",
+            "low": "27.8000",
+            "close": "28.1000",
+            "volume": "1610357.0000"
+          }
+        ],
+        "monthly_last12": [
+          {
+            "period": "2025-08",
+            "start": "2025-08-01",
+            "end": "2025-08-05",
+            "open": "27.7900",
+            "high": "28.1800",
+            "low": "27.6800",
+            "close": "28.1000",
+            "volume": "2591843.0000"
+          }
+        ]
+      }
+    },
+    {
+      "symbol": "601100.SH",
+      "name": "恒立液压",
+      "industry": "工业机械/液压",
+      "industry_characteristics": [
+        "工程机械与制造业资本开支相关",
+        "周期性需求和出口重要",
+        "产能利用率与产品结构影响利润率"
+      ],
+      "as_of_close": "77.4300",
+      "observations": 3,
+      "returns_pct": {
+        "5_sessions": null,
+        "20_sessions": null,
+        "60_sessions": null
+      },
+      "moving_average": {
+        "ma5": null,
+        "ma20": null,
+        "ma60": null
+      },
+      "range_position_0_to_1": {
+        "20_sessions": "1.0000",
+        "60_sessions": "1.0000",
+        "120_sessions": "1.0000",
+        "250_sessions": "1.0000"
+      },
+      "annualized_volatility_pct_approx": "29.0018",
+      "kline": {
+        "daily_last20": [
+          {
+            "date": "2025-08-01",
+            "open": "73.5700",
+            "high": "73.8500",
+            "low": "72.3300",
+            "close": "73.1600",
+            "volume": "64960.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601100%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          },
+          {
+            "date": "2025-08-04",
+            "open": "72.8000",
+            "high": "74.2300",
+            "low": "72.5600",
+            "close": "73.9400",
+            "volume": "62995.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601100%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          },
+          {
+            "date": "2025-08-05",
+            "open": "74.1400",
+            "high": "78.2800",
+            "low": "73.8100",
+            "close": "77.4300",
+            "volume": "172231.0000",
+            "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601100%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C"
+          }
+        ],
+        "weekly_last12": [
+          {
+            "period": "2025-W31",
+            "start": "2025-08-01",
+            "end": "2025-08-01",
+            "open": "73.5700",
+            "high": "73.8500",
+            "low": "72.3300",
+            "close": "73.1600",
+            "volume": "64960.0000"
+          },
+          {
+            "period": "2025-W32",
+            "start": "2025-08-04",
+            "end": "2025-08-05",
+            "open": "72.8000",
+            "high": "78.2800",
+            "low": "72.5600",
+            "close": "77.4300",
+            "volume": "235226.0000"
+          }
+        ],
+        "monthly_last12": [
+          {
+            "period": "2025-08",
+            "start": "2025-08-01",
+            "end": "2025-08-05",
+            "open": "73.5700",
+            "high": "78.2800",
+            "low": "72.3300",
+            "close": "77.4300",
+            "volume": "300186.0000"
+          }
+        ]
+      }
+    }
+  ],
+  "intraday_kline": {
+    "status": "UNAVAILABLE_UNLESS_ARCHIVED_INTRADAY_DATA_IS_SUPPLIED",
+    "rule": "不得用当日收盘或未来分钟线冒充历史盘中信息"
+  },
+  "limitations": [
+    "行业特点为结构性研究背景，不代表当日行业消息。",
+    "未提供真实大盘指数时，market_proxy只是本次可见股票池等权代理。",
+    "日/周/月K线均由knowledge_cutoff以前的未复权历史日线聚合。",
+    "新闻默认忽略；没有历史新闻不解释为当时没有新闻或风险。",
+    "AI模型本身可能含有后来知识，因此仍不能声称完全消除前视偏差。"
+  ]
+}
