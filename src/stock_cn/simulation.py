@@ -335,6 +335,7 @@ class Simulation:
                       "AUTHORIZED_UNIVERSE": dumps(self.spec.get("symbols", list(self.data["instruments"]))),
                       "EVIDENCE_AND_TOOL_CONTEXT": dumps({"historical_closes": market, "evidence": evidence,
                         "candidate_research_pack": self.data.get("candidate_research_pack"),
+                        "research_state": self.data.get("research_state"),
                         "universe_scope": self.data.get("universe_scope"),
                         "tools": "Use supplied point-in-time evidence only for this replay. No current-web lookahead.",
                         "limitations": self.data.get("limitations", []), "fundamentals_news_coverage": "only supplied evidence"})}
