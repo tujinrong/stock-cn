@@ -24,6 +24,8 @@ ISSUES = {
     'PROVENANCE': '证据同时记录来源和当时可知的发布时间；无法核查就报告缺口，不编造检索或引用。',
     'CANDIDATE_SCOPE': 'AI_SELECT候选池只分配研究预算，不是推荐排名；BUY只能从当次授权候选中选择，已有持仓即使掉出候选池仍可SELL。',
     'RESEARCH_STATE': 'research_state/watchlist是本变体跨日研究状态，不是持仓或交易信号；不得把候选观察状态直接转换成BUY。',
+    'LOW_POSITION_CONTEXT': 'D类年度低位研究优先解释250日位置；250日历史不足必须披露，短期已大幅反弹或处20日高位时不得仅因长期位置低就称为“刚出谷底”。',
+    'FRESH_DROP_CAUSALITY': 'F类异常下跌在发现当日只能进入FRESH_DROP_MONITOR；至少经过后续交易日后才能讨论稳定/回升，且任何watchlist状态都不是自动买入信号。',
 }
 
 
