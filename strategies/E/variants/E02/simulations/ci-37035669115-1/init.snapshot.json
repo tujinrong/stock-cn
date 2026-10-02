@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "E",
+  "status": "CONFIGURED_NOT_APPLIED",
+  "initial_capital_cny": 200000,
+  "start_date": null,
+  "evaluation_end_date": null,
+  "opening_method": "CASH_ONLY",
+  "cash_weight": 1.0,
+  "cash_target_cny": 200000,
+  "stocks": [],
+  "initialization_policy": {
+    "requires_explicit_authorization": true,
+    "apply_once_per_account": true,
+    "reset_on_daily_run": false
+  },
+  "note": "全现金开始寻找业绩改善机会。获授权初始化时保存一次期初事件，之后延续当前账户；排除科创板，其他限制按已确认范围执行。当前未初始化、未选股、未成交。",
+  "variant_id": "E02",
+  "account_scope": "INDEPENDENT_VARIANT"
+}

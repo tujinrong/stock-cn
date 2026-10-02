@@ -1,0 +1,20 @@
+{
+  "status": "FILLED",
+  "fill": {
+    "symbol": "600036.SH",
+    "side": "SELL",
+    "quantity": 100,
+    "price_cny": "44.78",
+    "fee_cny": "7.28",
+    "time": "2025-08-05T09:30:00+08:00",
+    "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600036%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C",
+    "quote_time": "2025-08-05T09:30:00+08:00",
+    "time_basis": "PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM"
+  },
+  "reason": "PAPER_FILL_USING_MODE_QUOTE",
+  "decision_id": "ci-37035669115-1-real-A02-2025-08-05",
+  "paper_only": true,
+  "mode": "SIMULATION",
+  "execution_basis": "PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM",
+  "simulation_only": true
+}
