@@ -17,6 +17,7 @@ from pathlib import Path
 from .paper_core import execute_single_order, validate_decision_contract
 from .evidence import official_disclosure_status, validate_official_disclosure_pack
 from .research_state import load_formal_state
+from .research_bundle import build_decision_research_bundle, buy_research_preflight
 from .sim_data import number
 from .simulation import digest, holding_table, require
 from .variant_prompts import variant_root, read as read_prompt_json, sha
@@ -192,6 +193,25 @@ class FormalPaperSession:
         for p in before["positions"]:
             # Existing holdings remain sellable even if they fall out of today's candidate pool.
             self.check_symbol(p["symbol"])
+        research_symbols = sorted(
+            held_symbols |
+            (set(self.runtime_buy_symbols or []) if self.spec["type"] == "AI_SELECT"
+             else set(snapshot["quotes"]))
+        )
+        research_bundle = build_decision_research_bundle(
+            research_symbols,
+            as_of=as_of,
+            official_disclosure_pack=snapshot.get("official_disclosure_pack"),
+            candidate_research_pack=snapshot.get("candidate_research_pack"),
+            research_state=research_state,
+            financial_reviews=snapshot.get("financial_reviews"),
+            news_research=snapshot.get("news_research"),
+            market_context={
+                "mode": "FORMAL",
+                "quote_symbols": sorted(snapshot["quotes"]),
+                "fidelity": snapshot.get("fidelity", "LIVE_PAPER"),
+            },
+        )
         context = {
             "mode": "FORMAL", "strategy_id": self.series, "variant_id": self.variant,
             "run_id": f"formal-{self.variant}-{day}",
@@ -224,7 +244,9 @@ class FormalPaperSession:
             "research_state": research_state,
             "universe_scope": snapshot.get("universe_scope"),
             "official_disclosure_pack": snapshot.get("official_disclosure_pack"),
+            "financial_reviews": snapshot.get("financial_reviews"),
             "news_research": snapshot.get("news_research"),
+            "decision_research_bundle": research_bundle,
             "tools": snapshot.get("tools", "verified live-data adapter"),
             "limitations": snapshot.get("limitations", []),
             "fundamentals_news_coverage": snapshot.get("fundamentals_news_coverage",
@@ -247,7 +269,7 @@ class FormalPaperSession:
             "context": context, "holdings": before, "market": market,
             "evidence": snapshot.get("evidence", []), "prompt": prompt,
             "prompt_sha256": digest(prompt), "source_holdings": state,
-            "live_snapshot": snapshot,
+            "live_snapshot": snapshot, "decision_research_bundle": research_bundle,
         }
 
     def validate_decision(self, response, request):
@@ -255,10 +277,10 @@ class FormalPaperSession:
             q = req["live_snapshot"]["quotes"].get(order["symbol"])
             require(q is not None, "selected symbol has no live quote")
             if order.get("side") == "BUY":
-                disclosure_status = official_disclosure_status(
-                    req["live_snapshot"].get("official_disclosure_pack"), order["symbol"])
-                require(disclosure_status in {"OK", "EMPTY"},
-                        "BUY requires successful official disclosure coverage; provider failure/unchecked is not 'no risk'")
+                preflight = buy_research_preflight(
+                    req.get("decision_research_bundle"), order["symbol"])
+                require(preflight["ready"],
+                        "BUY research preflight failed: " + ",".join(preflight["reasons"]))
             if self.spec["type"] == "AI_SELECT":
                 if order.get("side") == "BUY":
                     require(order["symbol"] in (self.runtime_buy_symbols or set()),
