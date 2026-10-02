@@ -1,0 +1,7 @@
+{
+  "round": 1,
+  "accepted": true,
+  "automatic_formal_promotion": false,
+  "candidate_sha256": "8539506f100db2d8b39aa7e4af357d2d617c988168e6d33b575d17e827758a66",
+  "validation_level": "STRUCTURAL_CONTRACT_ONLY"
+}

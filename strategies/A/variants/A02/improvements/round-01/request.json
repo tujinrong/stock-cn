@@ -1,0 +1,14 @@
+{
+  "round": 1,
+  "max_rounds": 10,
+  "issue_codes": [
+    "STRICT_JSON",
+    "IDENTITY",
+    "NONREADY",
+    "CAUSALITY",
+    "PROVENANCE"
+  ],
+  "objective": "STABILITY",
+  "future_prices_provided": false,
+  "performance_feedback_provided": false
+}

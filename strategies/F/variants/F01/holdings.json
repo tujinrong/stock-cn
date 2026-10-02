@@ -1,0 +1,17 @@
+{
+  "strategy_id": "F",
+  "variant_id": "F01",
+  "status": "NOT_INITIALIZED",
+  "date": null,
+  "initial_capital_cny": 200000,
+  "total_equity_cny": null,
+  "cash_cny": null,
+  "positions": [],
+  "_meta": {
+    "mode": "FORMAL",
+    "paper_only": true,
+    "revision": 0,
+    "execution_enabled": false
+  },
+  "note": "该变体独立的正式模拟账户尚未初始化；测试余额在simulations中，不从系列共享余额读取。"
+}

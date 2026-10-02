@@ -1,0 +1,58 @@
+{
+  "strategy_id": "A",
+  "variant_id": "A02",
+  "status": "NOT_INITIALIZED",
+  "date": null,
+  "initial_capital_cny": 200000,
+  "total_equity_cny": null,
+  "cash_cny": null,
+  "positions": [
+    {
+      "symbol": "600036.SH",
+      "name": "招商银行",
+      "quantity": null,
+      "sellable_quantity": null,
+      "average_cost_cny": null,
+      "valuation_price_cny": null
+    },
+    {
+      "symbol": "002594.SZ",
+      "name": "比亚迪",
+      "quantity": null,
+      "sellable_quantity": null,
+      "average_cost_cny": null,
+      "valuation_price_cny": null
+    },
+    {
+      "symbol": "600660.SH",
+      "name": "福耀玻璃",
+      "quantity": null,
+      "sellable_quantity": null,
+      "average_cost_cny": null,
+      "valuation_price_cny": null
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "长江电力",
+      "quantity": null,
+      "sellable_quantity": null,
+      "average_cost_cny": null,
+      "valuation_price_cny": null
+    },
+    {
+      "symbol": "601100.SH",
+      "name": "恒立液压",
+      "quantity": null,
+      "sellable_quantity": null,
+      "average_cost_cny": null,
+      "valuation_price_cny": null
+    }
+  ],
+  "_meta": {
+    "mode": "FORMAL",
+    "paper_only": true,
+    "revision": 0,
+    "execution_enabled": false
+  },
+  "note": "该变体独立的正式模拟账户尚未初始化；测试余额在simulations中，不从系列共享余额读取。"
+}

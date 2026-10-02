@@ -1,25 +1,302 @@
 {
-  "schema_version":"0.3-draft",
-  "purpose":"策略与文件入口，不是当前账户；初始化详情唯一来源为每系列init.json",
-  "formal_execution_enabled":false,
-  "capital_scope":"one_200000_cny_pool_per_strategy_not_per_variant",
-  "series_supports_multiple_symbols":true,
-  "evaluation_start":null,
-  "evaluation_end":null,
-  "account_layout":"strategy-local-v1",
-  "global_universe_constraints":{
-    "excluded_boards":["科创板"],
-    "inherit_by_all_strategies_and_variants":true,
-    "applies_to_modes":["DEBUG","SIMULATION","FORMAL"],
-    "unknown_board_action":"EXCLUDE_UNTIL_VERIFIED",
-    "preserve_other_agreed_restrictions":true
+  "schema_version": "0.5-draft",
+  "purpose": "策略与文件入口，不是当前账户；初始化详情唯一来源为每系列init.json",
+  "formal_execution_enabled": false,
+  "capital_scope": "200000_CNY_PER_INDEPENDENT_VARIANT",
+  "series_supports_multiple_symbols": true,
+  "evaluation_start": null,
+  "evaluation_end": null,
+  "account_layout": "strategy-local-v1",
+  "global_universe_constraints": {
+    "excluded_boards": [
+      "科创板"
+    ],
+    "inherit_by_all_strategies_and_variants": true,
+    "applies_to_modes": [
+      "DEBUG",
+      "SIMULATION",
+      "FORMAL"
+    ],
+    "unknown_board_action": "EXCLUDE_UNTIL_VERIFIED",
+    "preserve_other_agreed_restrictions": true
   },
-  "strategies":[
-    {"strategy_id":"A","name":"现有5股组合动态管理","type":"FIXED","symbols":["600036.SH","002594.SZ","600660.SH","600900.SH","601100.SH"],"status":"DRAFT","enabled":false,"active_variant":null,"variants":["A01","A02","A03"],"prompt":"strategies/A/prompt.md","ai_input_template":"strategies/A/ai_input_template.md","initialization":"strategies/A/init.json","holdings":"strategies/A/holdings.json","holdings_view":"strategies/A/holdings.md","daily_directory":"strategies/A/daily/","simulation_directory":"strategies/A/simulations/"},
-    {"strategy_id":"B","name":"备用","type":"RESERVED","status":"RESERVED","enabled":false,"active_variant":null,"variants":[],"prompt":"strategies/B/prompt.md","initialization":null,"holdings":null},
-    {"strategy_id":"C","name":"固定股票池择时","type":"FIXED","symbols":["600036.SH","002594.SZ","600660.SH","600900.SH","601100.SH"],"status":"DRAFT","enabled":false,"active_variant":null,"variants":["C01","C02","C03"],"prompt":"strategies/C/prompt.md","ai_input_template":"strategies/C/ai_input_template.md","initialization":"strategies/C/init.json","holdings":"strategies/C/holdings.json","holdings_view":"strategies/C/holdings.md","daily_directory":"strategies/C/daily/","simulation_directory":"strategies/C/simulations/"},
-    {"strategy_id":"D","name":"优质股年度低位回升","type":"AI_SELECT","universe_status":"PENDING_CONFIRMATION","status":"DRAFT","enabled":false,"active_variant":null,"variants":["D01","D02","D03"],"prompt":"strategies/D/prompt.md","ai_input_template":"strategies/D/ai_input_template.md","initialization":"strategies/D/init.json","holdings":"strategies/D/holdings.json","holdings_view":"strategies/D/holdings.md","daily_directory":"strategies/D/daily/","simulation_directory":"strategies/D/simulations/"},
-    {"strategy_id":"E","name":"业绩改善机会","type":"AI_SELECT","universe_status":"PENDING_CONFIRMATION","status":"DRAFT","enabled":false,"active_variant":null,"variants":["E01","E02","E03"],"prompt":"strategies/E/prompt.md","ai_input_template":"strategies/E/ai_input_template.md","initialization":"strategies/E/init.json","holdings":"strategies/E/holdings.json","holdings_view":"strategies/E/holdings.md","daily_directory":"strategies/E/daily/","simulation_directory":"strategies/E/simulations/"},
-    {"strategy_id":"F","name":"异常下跌后的回升买点","type":"AI_SELECT","universe_status":"PENDING_CONFIRMATION","status":"DRAFT","enabled":false,"active_variant":null,"variants":["F01"],"prompt":"strategies/F/prompt.md","ai_input_template":"strategies/F/ai_input_template.md","initialization":"strategies/F/init.json","holdings":"strategies/F/holdings.json","holdings_view":"strategies/F/holdings.md","daily_directory":"strategies/F/daily/","simulation_directory":"strategies/F/simulations/"}
-  ]
+  "strategies": [
+    {
+      "strategy_id": "A",
+      "name": "现有5股组合动态管理",
+      "type": "FIXED",
+      "symbols": [
+        "600036.SH",
+        "002594.SZ",
+        "600660.SH",
+        "600900.SH",
+        "601100.SH"
+      ],
+      "status": "DRAFT",
+      "enabled": false,
+      "variants": [
+        "A01",
+        "A02",
+        "A03"
+      ],
+      "prompt": "strategies/A/prompt.md",
+      "ai_input_template": "strategies/A/ai_input_template.md",
+      "initialization": "strategies/A/init.json",
+      "holdings": "strategies/A/holdings.json",
+      "holdings_view": "strategies/A/holdings.md",
+      "daily_directory": "strategies/A/daily/",
+      "simulation_directory": "strategies/A/simulations/",
+      "execution_role": "GROUP_ONLY"
+    },
+    {
+      "strategy_id": "B",
+      "name": "备用",
+      "type": "RESERVED",
+      "status": "RESERVED",
+      "enabled": false,
+      "active_variant": null,
+      "variants": [],
+      "prompt": "strategies/B/prompt.md",
+      "initialization": null,
+      "holdings": null
+    },
+    {
+      "strategy_id": "C",
+      "name": "固定股票池择时",
+      "type": "FIXED",
+      "symbols": [
+        "600036.SH",
+        "002594.SZ",
+        "600660.SH",
+        "600900.SH",
+        "601100.SH"
+      ],
+      "status": "DRAFT",
+      "enabled": false,
+      "variants": [
+        "C01",
+        "C02",
+        "C03"
+      ],
+      "prompt": "strategies/C/prompt.md",
+      "ai_input_template": "strategies/C/ai_input_template.md",
+      "initialization": "strategies/C/init.json",
+      "holdings": "strategies/C/holdings.json",
+      "holdings_view": "strategies/C/holdings.md",
+      "daily_directory": "strategies/C/daily/",
+      "simulation_directory": "strategies/C/simulations/",
+      "execution_role": "GROUP_ONLY"
+    },
+    {
+      "strategy_id": "D",
+      "name": "优质股年度低位回升",
+      "type": "AI_SELECT",
+      "universe_status": "PENDING_CONFIRMATION",
+      "status": "DRAFT",
+      "enabled": false,
+      "variants": [
+        "D01",
+        "D02",
+        "D03"
+      ],
+      "prompt": "strategies/D/prompt.md",
+      "ai_input_template": "strategies/D/ai_input_template.md",
+      "initialization": "strategies/D/init.json",
+      "holdings": "strategies/D/holdings.json",
+      "holdings_view": "strategies/D/holdings.md",
+      "daily_directory": "strategies/D/daily/",
+      "simulation_directory": "strategies/D/simulations/",
+      "execution_role": "GROUP_ONLY"
+    },
+    {
+      "strategy_id": "E",
+      "name": "业绩改善机会",
+      "type": "AI_SELECT",
+      "universe_status": "PENDING_CONFIRMATION",
+      "status": "DRAFT",
+      "enabled": false,
+      "variants": [
+        "E01",
+        "E02",
+        "E03"
+      ],
+      "prompt": "strategies/E/prompt.md",
+      "ai_input_template": "strategies/E/ai_input_template.md",
+      "initialization": "strategies/E/init.json",
+      "holdings": "strategies/E/holdings.json",
+      "holdings_view": "strategies/E/holdings.md",
+      "daily_directory": "strategies/E/daily/",
+      "simulation_directory": "strategies/E/simulations/",
+      "execution_role": "GROUP_ONLY"
+    },
+    {
+      "strategy_id": "F",
+      "name": "异常下跌后的回升买点",
+      "type": "AI_SELECT",
+      "universe_status": "PENDING_CONFIRMATION",
+      "status": "DRAFT",
+      "enabled": false,
+      "variants": [
+        "F01"
+      ],
+      "prompt": "strategies/F/prompt.md",
+      "ai_input_template": "strategies/F/ai_input_template.md",
+      "initialization": "strategies/F/init.json",
+      "holdings": "strategies/F/holdings.json",
+      "holdings_view": "strategies/F/holdings.md",
+      "daily_directory": "strategies/F/daily/",
+      "simulation_directory": "strategies/F/simulations/",
+      "execution_role": "GROUP_ONLY"
+    }
+  ],
+  "execution_unit": "VARIANT",
+  "variants": [
+    {
+      "variant_id": "A01",
+      "series_id": "A",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/A/variants/A01/prompt.md",
+      "initialization": "strategies/A/variants/A01/init.json",
+      "holdings": "strategies/A/variants/A01/holdings.json",
+      "simulation_directory": "strategies/A/variants/A01/simulations"
+    },
+    {
+      "variant_id": "A02",
+      "series_id": "A",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/A/variants/A02/prompt.md",
+      "initialization": "strategies/A/variants/A02/init.json",
+      "holdings": "strategies/A/variants/A02/holdings.json",
+      "simulation_directory": "strategies/A/variants/A02/simulations"
+    },
+    {
+      "variant_id": "A03",
+      "series_id": "A",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/A/variants/A03/prompt.md",
+      "initialization": "strategies/A/variants/A03/init.json",
+      "holdings": "strategies/A/variants/A03/holdings.json",
+      "simulation_directory": "strategies/A/variants/A03/simulations"
+    },
+    {
+      "variant_id": "C01",
+      "series_id": "C",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/C/variants/C01/prompt.md",
+      "initialization": "strategies/C/variants/C01/init.json",
+      "holdings": "strategies/C/variants/C01/holdings.json",
+      "simulation_directory": "strategies/C/variants/C01/simulations"
+    },
+    {
+      "variant_id": "C02",
+      "series_id": "C",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/C/variants/C02/prompt.md",
+      "initialization": "strategies/C/variants/C02/init.json",
+      "holdings": "strategies/C/variants/C02/holdings.json",
+      "simulation_directory": "strategies/C/variants/C02/simulations"
+    },
+    {
+      "variant_id": "C03",
+      "series_id": "C",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/C/variants/C03/prompt.md",
+      "initialization": "strategies/C/variants/C03/init.json",
+      "holdings": "strategies/C/variants/C03/holdings.json",
+      "simulation_directory": "strategies/C/variants/C03/simulations"
+    },
+    {
+      "variant_id": "D01",
+      "series_id": "D",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/D/variants/D01/prompt.md",
+      "initialization": "strategies/D/variants/D01/init.json",
+      "holdings": "strategies/D/variants/D01/holdings.json",
+      "simulation_directory": "strategies/D/variants/D01/simulations"
+    },
+    {
+      "variant_id": "D02",
+      "series_id": "D",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/D/variants/D02/prompt.md",
+      "initialization": "strategies/D/variants/D02/init.json",
+      "holdings": "strategies/D/variants/D02/holdings.json",
+      "simulation_directory": "strategies/D/variants/D02/simulations"
+    },
+    {
+      "variant_id": "D03",
+      "series_id": "D",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/D/variants/D03/prompt.md",
+      "initialization": "strategies/D/variants/D03/init.json",
+      "holdings": "strategies/D/variants/D03/holdings.json",
+      "simulation_directory": "strategies/D/variants/D03/simulations"
+    },
+    {
+      "variant_id": "E01",
+      "series_id": "E",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/E/variants/E01/prompt.md",
+      "initialization": "strategies/E/variants/E01/init.json",
+      "holdings": "strategies/E/variants/E01/holdings.json",
+      "simulation_directory": "strategies/E/variants/E01/simulations"
+    },
+    {
+      "variant_id": "E02",
+      "series_id": "E",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/E/variants/E02/prompt.md",
+      "initialization": "strategies/E/variants/E02/init.json",
+      "holdings": "strategies/E/variants/E02/holdings.json",
+      "simulation_directory": "strategies/E/variants/E02/simulations"
+    },
+    {
+      "variant_id": "E03",
+      "series_id": "E",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/E/variants/E03/prompt.md",
+      "initialization": "strategies/E/variants/E03/init.json",
+      "holdings": "strategies/E/variants/E03/holdings.json",
+      "simulation_directory": "strategies/E/variants/E03/simulations"
+    },
+    {
+      "variant_id": "F01",
+      "series_id": "F",
+      "status": "DRAFT",
+      "enabled": false,
+      "initial_capital_cny": 200000,
+      "prompt": "strategies/F/variants/F01/prompt.md",
+      "initialization": "strategies/F/variants/F01/init.json",
+      "holdings": "strategies/F/variants/F01/holdings.json",
+      "simulation_directory": "strategies/F/variants/F01/simulations"
+    }
+  ],
+  "prompt_improvement": {
+    "max_rounds_per_variant": 10,
+    "objective": "STABILITY_NOT_FUTURE_RETURNS"
+  }
 }

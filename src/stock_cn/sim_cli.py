@@ -9,11 +9,12 @@ from pathlib import Path
 from .sim_agents import Budget, FileAgent, OpenAIResponsesAgent, ScriptedSmokeAgent
 from .sim_data import SYMBOLS, fetch_daily, fixture, load_dataset
 from .simulation import Simulation, Store, ValidationError, digest, dumps, identifier, read_json, require
+from .sim_variants import VariantSimulation as Simulation
 
 
 def formal_fingerprints(repo):
     return {str(p.relative_to(repo)): digest(p.read_text(encoding="utf-8"))
-            for pat in ("strategies/*/holdings.json", "strategies/*/holdings.md", "strategies/*/init.json", "strategies/*/ai_input_template.md", "strategies/index.json")
+            for pat in ("strategies/*/variants/*/holdings.json", "strategies/*/variants/*/holdings.md", "strategies/*/variants/*/init.json", "strategies/*/holdings.json", "strategies/*/holdings.md", "strategies/*/init.json", "strategies/*/ai_input_template.md", "strategies/index.json")
             for p in repo.glob(pat)}
 
 
@@ -123,8 +124,8 @@ def main(argv=None):
                 Path(args.output).write_text(dumps(data), encoding="utf-8")
         elif args.command == "audit":
             variant, test_id = identifier(args.variant), identifier(args.test_id)
-            root = repo / "strategies" / variant[0] / "simulations" / test_id / variant
-            require(root.resolve().is_relative_to(repo / "strategies" / variant[0] / "simulations"), "path escape")
+            root = repo / "strategies" / variant[0] / "variants" / variant / "simulations" / test_id
+            require(root.resolve().is_relative_to(repo / "strategies" / variant[0] / "variants" / variant), "path escape")
             result = Store(root).audit(repair=args.repair)
         else:
             data = load_dataset(args.data)

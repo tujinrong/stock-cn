@@ -1,0 +1,7 @@
+{
+  "purpose": "STABILITY",
+  "passed": true,
+  "level": "STRUCTURAL_CONTRACT_ONLY",
+  "real_model_repetition_tested": false,
+  "uses_future_returns": false
+}
