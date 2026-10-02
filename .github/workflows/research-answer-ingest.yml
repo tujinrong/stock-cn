@@ -1,0 +1,57 @@
+name: AI research answer ingest
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research-answers/*.json'
+permissions:
+  contents: write
+concurrency:
+  group: ai-research-answer-ingest
+  cancel-in-progress: false
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -e '.[dev]'
+      - name: Ingest pending research answers
+        shell: bash
+        run: |
+          set -euo pipefail
+          found=0
+          for file in research-answers/*.json; do
+            [ -f "$file" ] || continue
+            job_id=$(python -c "import json; print(json.load(open('$file'))['job_id'])")
+            if [ -f "runs/research/jobs/$job_id/answer.json" ]; then
+              continue
+            fi
+            python tools/research_job.py ingest --job-id "$job_id" --answer "$file"
+            found=1
+          done
+          test "$found" -eq 1 || echo "No pending research answers."
+      - name: Verify trading/formal configuration unchanged
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in strategies/*/variants/*/holdings.json \
+                   strategies/*/variants/*/holdings.md \
+                   strategies/*/variants/*/formal_prompt.json \
+                   strategies/*/variants/*/research_state.json; do
+            [ -f "$f" ] || continue
+            git diff --exit-code -- "$f"
+          done
+      - name: Publish validated research inputs
+        run: |
+          git add -- research-inputs runs/research/jobs
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m "research: ingest validated AI research answers [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
