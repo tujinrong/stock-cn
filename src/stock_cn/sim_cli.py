@@ -130,15 +130,19 @@ def main(argv=None):
         elif args.command == "time-travel":
             data = load_dataset(args.data)
             require(args.date in data["sessions"], "time-travel date must be a supplied market session")
+            pos = data["sessions"].index(args.date)
+            require(pos + 1 < len(data["sessions"]), "time-travel date needs a following session for daily execution")
+            execution_day = data["sessions"][pos + 1]
             sim = Simulation(repo, args.variant[0], args.variant, args.test_id, data)
-            request = sim.prepare(args.date)
+            request = sim.prepare(execution_day)
             result = {
                 "completed": request.get("completed", False),
                 "variant": args.variant,
                 "target_date": args.date,
-                "ai_input": str(sim.store.root / "requests" / args.date / "ai_input.md"),
-                "time_travel_context": str(sim.store.root / "requests" / args.date / "time_travel.json"),
-                "note": "Same complete variant prompt plus runtime time-travel appendix; no future data.",
+                "planned_execution_date": execution_day,
+                "ai_input": str(sim.store.root / "requests" / execution_day / "ai_input.md"),
+                "time_travel_context": str(sim.store.root / "requests" / execution_day / "time_travel.json"),
+                "note": "Same complete variant prompt plus runtime time-travel appendix; target-date close knowledge, next-session open execution.",
             }
         elif args.command == "audit":
             variant, test_id = identifier(args.variant), identifier(args.test_id)
