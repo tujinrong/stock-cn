@@ -10,5 +10,5 @@
   "allow_prompt_improvement_from_scores": false,
   "formal_execution": false,
   "status": "REQUESTED",
-  "retry_revision": 2
+  "retry_revision": 3
 }
