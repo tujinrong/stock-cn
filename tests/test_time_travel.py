@@ -85,14 +85,16 @@ def test_variant_prompt_uses_same_full_prompt_plus_travel_appendix(repo):
     }]
     sim = VariantSimulation(repo, "A", "A02", "travel", data)
     req = sim.prepare("2025-08-04")
-    assert "你现在回到2025-08-04" in req["prompt"]
+    assert "你现在回到2025-08-01收盘时" in req["prompt"]
     assert "2025-08-01T15:00:00+08:00" in req["prompt"]
+    assert "下一交易日2025-08-04开盘模拟执行" in req["prompt"]
     assert "PAST_NEWS_DEFAULT_IGNORED" not in req["prompt"]
     travel = sim.store.path("requests/2025-08-04/time_travel.json")
     assert travel.exists()
     obj = __import__("json").loads(travel.read_text(encoding="utf-8"))
-    assert obj["target_date"] == "2025-08-04"
+    assert obj["target_date"] == "2025-08-01"
     assert obj["knowledge_cutoff"] == "2025-08-01T15:00:00+08:00"
+    assert obj["planned_execution_date"] == "2025-08-04"
     assert "IMMUTABLE_STRATEGY_START" in req["prompt"]
     assert "A02" in req["prompt"]
 
