@@ -99,3 +99,37 @@ def test_unknown_prefilter_purpose_rejected():
     snap = fetch_live_universe(lambda url: clist_payload())
     with pytest.raises(ValueError, match="purpose"):
         bounded_prefilter(snap, "BUY_WINNERS", max_candidates=20)
+
+
+def test_live_universe_falls_back_to_sina_without_mixing_partial_primary():
+    def primary(url):
+        raise RuntimeError("HTTP 502 simulated")
+
+    pages = {}
+    for node, market in (("sh_a", 1), ("sz_a", 0)):
+        rows = []
+        for i in range(60):
+            code = (f"600{i:03d}" if market == 1 else f"000{i:03d}")
+            rows.append({
+                "symbol": ("sh" if market == 1 else "sz") + code,
+                "code": code,
+                "name": f"{node}{i}",
+                "trade": str(10 + i / 10),
+                "changepercent": str((i % 9) - 4),
+                "amount": str(1000000 + i * 10000),
+                "turnoverratio": "1.2",
+            })
+        pages[node] = rows
+
+    def sina(url):
+        q = parse_qs(urlparse(url).query)
+        node = q["node"][0]
+        page = int(q["page"][0])
+        return pages[node] if page == 1 else []
+
+    snap = fetch_live_universe(primary, fallback_request=sina)
+    assert snap["source_provider"] == "Sina"
+    assert snap["fallback_used"] is True
+    assert "502" in snap["primary_failure"]
+    assert snap["eligible_count"] == 120
+    assert all(x["source_provider"] == "Sina" for x in snap["rows"])
