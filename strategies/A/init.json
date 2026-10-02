@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "A",
+  "status": "CONFIGURED_NOT_APPLIED",
+  "initial_capital_cny": 200000,
+  "start_date": null,
+  "valuation_time": null,
+  "evaluation_end_date": null,
+  "opening_method": "ASSUMED_EXISTING_PORTFOLIO",
+  "cash_weight": 0.25,
+  "cash_target_cny": 50000,
+  "stocks": [
+    {"symbol":"600036.SH","name":"招商银行","weight":0.15,"target_value_cny":30000,"quantity":null,"reference_price_cny":null},
+    {"symbol":"002594.SZ","name":"比亚迪","weight":0.15,"target_value_cny":30000,"quantity":null,"reference_price_cny":null},
+    {"symbol":"600660.SH","name":"福耀玻璃","weight":0.15,"target_value_cny":30000,"quantity":null,"reference_price_cny":null},
+    {"symbol":"600900.SH","name":"长江电力","weight":0.15,"target_value_cny":30000,"quantity":null,"reference_price_cny":null},
+    {"symbol":"601100.SH","name":"恒立液压","weight":0.15,"target_value_cny":30000,"quantity":null,"reference_price_cny":null}
+  ],
+  "initialization_policy": {
+    "requires_explicit_authorization": true,
+    "apply_once_per_account": true,
+    "price_basis": "起始时点可核实的未复权价格，保留来源与报价时间；不得猜测价格或导入用户真实成本",
+    "quantity_rule": "按适用交易单位向下取整，余数留现金，记录实际权重与目标偏差",
+    "opening_sellability": "期初假定已持有且已结算，作为模拟假设记录；不伪造真实买入日期",
+    "opening_accounting": "一次OPENING_BALANCE事件，不伪造成五笔当日买入，不虚构历史手续费；后续模拟交易照常计费",
+    "reset_on_daily_run": false
+  },
+  "note": "这是初始化计划，不是当前账户。75%股票资金由五股等分，即每股占总资产15%，现金25%只表示起点。实际股数待确定起始日期和可靠价格后建立；文件存在不表示已初始化或正式运行。"
+}

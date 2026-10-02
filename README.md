@@ -1,65 +1,57 @@
 # stock-cn
 
-**用自然语言提示词管理的 A 股 AI 模拟投资工程。** 用户确定投资意图与边界，AI 自主研究、判断买卖和仓位；通用工具负责取数、规则校验与记账，不把投资判断写成固定处理流程。
+**用完整AI提示词研究和管理的A股模拟投资辅助工程。** 用户确定意图与边界，AI综合资料决定买卖和仓位，通用工具负责取数、校验与文件记账；不把投资判断强制写成固定算法。
 
-## 从这里查看
+## 先看这三个文件
 
-| 内容 | 入口 |
+以A系列为例：
+
+| 文件 | 用途 |
 | --- | --- |
-| 策略编号总表 | [strategies/README.md](strategies/README.md) |
-| 所有策略共同提示词 | [strategies/common.md](strategies/common.md) |
-| 招商银行提示词及变体 | [策略 A](strategies/A/prompt.md) · [A01](strategies/A/variants/A01.md) · [A02](strategies/A/variants/A02.md) · [A03](strategies/A/variants/A03.md) |
-| 比亚迪提示词及变体 | [策略 B](strategies/B/prompt.md) · [B01](strategies/B/variants/B01.md) · [B02](strategies/B/variants/B02.md) · [B03](strategies/B/variants/B03.md) |
-| 自主选股与组合草案 | [策略 C](strategies/C/prompt.md) · [策略 D](strategies/D/prompt.md) · [策略 E](strategies/E/prompt.md) |
-| 目录与文件记账设计 | [docs/file-layout.md](docs/file-layout.md) |
-| 行情与资料来源方案 | [docs/data-sources.md](docs/data-sources.md) |
-| 正式模拟交易记录 | [trading/README.md](trading/README.md) |
-| 调试与历史模拟 | [simulations/README.md](simulations/README.md) |
-| 异步任务与批次 | [runs/README.md](runs/README.md) |
-| 收益汇总 | [reports/README.md](reports/README.md) |
-| 项目协作规范 | [AGENTS.md](AGENTS.md) |
+| [A/init.json](strategies/A/init.json) | 20万元初始化计划，五股各3万元、现金5万元；不等于已开账户 |
+| [A/ai_input_template.md](strategies/A/ai_input_template.md) | 完整AI提示词：当前情况、去哪里查、如何判断、输出及当天文件处理 |
+| [A/holdings.json](strategies/A/holdings.json) / [可读表](strategies/A/holdings.md) | 当前日期、总资产、现金、股票代码和股数；目前待初始化 |
 
-## 已确定的边界
+## 全部系列入口
 
-支持 N 个独立策略，每策略初始模拟资金20万元；A、B等为策略，A01、B02等为变体。正式默认每策略一个变体，对照实验独立记账，不重复计算资金。
+| 系列 | 策略 | 初始化 | 完整提示词 | 当前持仓 |
+| --- | --- | --- | --- | --- |
+| A | 现有五股组合管理 | [init](strategies/A/init.json) | [AI输入](strategies/A/ai_input_template.md) | [表格](strategies/A/holdings.md) |
+| B | 备用 | — | [说明](strategies/B/prompt.md) | — |
+| C | 固定五股池从现金择时 | [init](strategies/C/init.json) | [AI输入](strategies/C/ai_input_template.md) | [表格](strategies/C/holdings.md) |
+| D | 优质股年度低位回升 | [init](strategies/D/init.json) | [AI输入](strategies/D/ai_input_template.md) | [表格](strategies/D/holdings.md) |
+| E | 业绩改善 | [init](strategies/E/init.json) | [AI输入](strategies/E/ai_input_template.md) | [表格](strategies/E/holdings.md) |
+| F | 异常下跌后回升买点 | [init](strategies/F/init.json) | [AI输入](strategies/F/ai_input_template.md) | [表格](strategies/F/holdings.md) |
 
-FIXED 固定股票和 AI_SELECT 自主选股均由 AI 综合最新可得行情、财务、公告及新闻，围绕约定区间的净收益与损失/回撤决定买卖和仓位。两个月为评价区间例子，不是已开始考核；过去一年研究窗口不等于必须持有一年。
+[变体编号总表](strategies/README.md) · [共同提示词](strategies/common.md) · [输入/判断/落账契约](docs/ai-decision-contract.md) · [目录结构](docs/file-layout.md) · [数据主备](docs/data-sources.md) · [协作规范](AGENTS.md)
 
-每策略每交易日最多一次买入或卖出，也可不操作；不是买一次再卖一次。正式判断在有效交易时段进行；调试与历史回放可盘外运行，优先使用真实历史资料，按当时可知信息和虚拟日期推进。正式与测试收益完全分开。
+## 文件如何配合
 
-**不用数据库。所有策略、账本、日结和模拟结果以 GitHub 文件管理。** 原始行情按需临时读取，不建立本地行情库；关键成交价、每日估值、证据来源、提示词版本与账户状态必须保存。
+`初始化计划（一次） → 当前持仓 → 完整提示词＋当次数据 → AI判断 → 交易校验 → 保存当天结果、更新当前持仓`。
 
-未来支持多个策略后台异步分析、独立完成和统一汇总；同账户按时序推进，账本提交防重复、防冲突。正式策略可经对话明确授权或用户确认微调，只向前生效，不重置资金或历史收益。
+每个系列下面放init.json、ai_input_template.md、holdings.json和holdings.md。实际运行后的daily/<日期>/保存完整输入、分析前持仓、AI判断、执行结果、分析后持仓和摘要，closing.json用于日结。事实事件在同系列trading/events/，测试账户在同系列simulations/<test_id>/<variant_id>/，不混正式资金。根trading与simulations现仅导航。
 
-## 目前实际完成的内容
+用户重点看到日期、初始资金、当前总资产、现金、各股票代码/名称/股数；可卖股数、成本与估值支持校验/绩效，技术版本集中在_meta。当前持仓不是每次重新套用初始15%权重。
 
-已建立可浏览的目录入口、15个候选变体的 Markdown 提示词草案、纯文件记账与后台异步设计。策略索引全部为 DRAFT、enabled=false、active_variant=null。
+## 当前实际状态
 
-**策略尚未确认，未开始新策略编程，未开启后台任务、模拟交易或两个月回放。** trading/、simulations/、runs/、reports/ 当前只含使用说明，没有伪造的账户或成绩。
+已建立A、C、D、E、F五个系列的初始化文件、完整提示词、持仓JSON和可读表，全部为草案/未初始化。A股数、日期与价格留null，不猜测；C–F计划全现金但尚无期初记账。B备用无账户，旧G只留迁移说明。
 
-此前 Python 代码仍为离线演示：简化账户、撮合和交易规则、均线策略、规则分析器占位、命令行和测试。它尚不具备本设计全部能力；RuleBasedAIAnalyst 不是自主研究模型。本项目不连接真实券商。
+**尚未初始化、取得当前报价、生成成交、运行回放或建立后台任务。** 模板的动态填入、模拟撮合及每日自动更新还需后续实现。文件存在不表示工具已经运行或盈利。
 
-## 当前文件导航
+## 已约定边界
 
-```text
-stock-cn/
-├── AGENTS.md
-├── docs/                       # 目录/记账/取数设计及此前需求
-├── strategies/                 # 共同提示词、索引、A–E策略及编号变体
-├── trading/                    # 正式模拟事件、账户及逐日日结
-├── simulations/                # 临时测试、历史回放及独立结果
-├── runs/                       # 批次、任务状态及尝试记录
-├── reports/                    # 汇总报告、净值/交易CSV
-├── config/default.json         # 既有演示配置，并非已启用正式账户
-├── src/stock_cn/                # 既有离线演示，暂不改造
-├── tests/
-├── .github/workflows/test.yml  # 既有代码测试，不是投资定时任务
-└── pyproject.toml
-```
+每系列20万元总资产起点，可含多只股票；同系列变体独立测试但正式默认一个变体，不重复计算正式资金。A五股为招商银行、比亚迪、福耀玻璃、长江电力、恒立液压，初始股票75%+现金25%；C–F从全现金起步。
 
-## 仅运行既有离线演示
+A股排除科创板，其他范围依已确认限制。每系列每天最多一次决策、至多一笔买入或卖出，不日内短线；正式用有效时段实际资料，测试可盘外按真实历史时点连续回放。两个月是评价例子，不是已开始考核或收益保证。
 
-需要 Python 3.11+。
+不用数据库，不保存原始行情库；持仓、成交、每日估值和必要证据在GitHub文件中追溯。AI自主选择研究方法，计算预算内复用未失效资料。确认后微调只向前生效，不重置账户或回写历史。
+
+未来可并行分析不同策略，统一校验记账避免冲突；目前无后台运行器。仅保存项目模拟信息，不写用户真实账户/成本、个人资料或密钥。
+
+## 既有离线演示
+
+此前Python代码未改动，仍为简化账户、均线和规则分析器演示，不是真实自主研究模型。
 
 ```bash
 python -m venv .venv
@@ -70,6 +62,4 @@ stock-cn demo --cash 200000
 pytest
 ```
 
-演示不建立持久正式账户、不读取真实历史或实时数据、不启动每日任务。待策略确认后，再按需要编写通用工具并进行取数、并发、记账与收益校验。
-
-> 仓库可能公开，仅保存项目模拟资料，不写真实券商账户、真实持仓、个人资料或密钥。投资研究与历史模拟均不构成收益承诺。
+演示不会应用新的init.json或更新新的持仓文件，不读取真实行情，也不创建每日任务。

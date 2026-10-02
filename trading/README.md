@@ -1,11 +1,14 @@
-# 正式模拟交易文件
+# 正式模拟记录入口
 
-本目录只用于获授权的正式Paper Trading，不是真实券商交易。**目前只有说明文件，没有已开账户、成交或收益。**
+按用户最新要求，持仓和每日结果统一放在各策略目录，本根目录只导航，不再创建trading/<系列>/account.json等第二套账本。
 
-策略确认并实际运行后按策略资金池建立 A/、B/ 等，包含 account.json、events/、prompts/ 与 daily/YYYY-MM-DD/。同系列不同变体不能各自盲写一个正式账户。
+[全部系列持仓和AI输入](../strategies/README.md)。当前A/C/D/E/F的holdings.json已建立，但状态均为NOT_INITIALIZED；B备用，没有账户。没有实际成交或每日收益。
 
-用户看 daily/.../summary.md 理解当日为什么买卖或不操作；看 result.json 核对订单/成交，closing.json 看净值与估值时点，prompts/<run_id>.md 看当时使用的完整项目投资提示词。
+运行后每系列使用：
 
-已提交事件是事实，账户与报表为可重建视图。一次决策相关文件一致提交；重试按唯一ID去重。历史修订保留原记录，不追补不存在的交易。未运行、数据失败和AI判断HOLD分开。
+- strategies/<系列>/holdings.json：当前日期、总资产、现金、股数和版本。
+- strategies/<系列>/holdings.md：可读持仓。
+- strategies/<系列>/daily/<日期>/：实际输入、AI判断、执行、前后快照及摘要/日结。
+- strategies/<系列>/trading/events/：事实事件；投影与快照一致提交。
 
-不保存原始行情库，不导入用户真实股票账户、真实成本、个人信息或密钥。字段与并发保障见 [file-layout](../docs/file-layout.md)。
+AI建议先交易校验，有效模拟成交才改余额；HOLD、拒绝、数据不足和未运行分开。只保存项目模拟数据，不导入真实账户。详见[AI契约](../docs/ai-decision-contract.md)和[文件结构](../docs/file-layout.md)。

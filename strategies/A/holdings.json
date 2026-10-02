@@ -1,0 +1,30 @@
+{
+  "strategy_id": "A",
+  "status": "NOT_INITIALIZED",
+  "date": null,
+  "initial_capital_cny": 200000,
+  "total_equity_cny": null,
+  "cash_cny": null,
+  "positions": [
+    {"symbol":"600036.SH","name":"招商银行","quantity":null,"sellable_quantity":null,"average_cost_cny":null,"valuation_price_cny":null},
+    {"symbol":"002594.SZ","name":"比亚迪","quantity":null,"sellable_quantity":null,"average_cost_cny":null,"valuation_price_cny":null},
+    {"symbol":"600660.SH","name":"福耀玻璃","quantity":null,"sellable_quantity":null,"average_cost_cny":null,"valuation_price_cny":null},
+    {"symbol":"600900.SH","name":"长江电力","quantity":null,"sellable_quantity":null,"average_cost_cny":null,"valuation_price_cny":null},
+    {"symbol":"601100.SH","name":"恒立液压","quantity":null,"sellable_quantity":null,"average_cost_cny":null,"valuation_price_cny":null}
+  ],
+  "_meta": {
+    "schema_version":"0.3-draft",
+    "mode":"FORMAL",
+    "paper_only":true,
+    "active_variant":null,
+    "revision":0,
+    "updated_at":null,
+    "valuation_time":null,
+    "valuation_quality":"NOT_AVAILABLE",
+    "last_event_id":null,
+    "daily_decision_date":null,
+    "daily_decision_id":null,
+    "trade_count_on_decision_date":0
+  },
+  "note": "尚未建立模拟期初余额。null表示未确定，不是0股；20万元是计划起点，当前总资产和现金尚未记账。初始化计划见init.json；不得把15%目标权重当每日当前持仓。"
+}

@@ -1,0 +1,11 @@
+{
+  "strategy_id": "D",
+  "status": "NOT_INITIALIZED",
+  "date": null,
+  "initial_capital_cny": 200000,
+  "total_equity_cny": null,
+  "cash_cny": null,
+  "positions": [],
+  "_meta": {"schema_version":"0.3-draft","mode":"FORMAL","paper_only":true,"active_variant":null,"revision":0,"updated_at":null,"valuation_time":null,"valuation_quality":"NOT_AVAILABLE","last_event_id":null,"daily_decision_date":null,"daily_decision_id":null,"trade_count_on_decision_date":0},
+  "note": "计划20万元全现金起步，尚未建立模拟期初余额、选股或成交。初始化之后逐日延续现金和股数；未初始化null不等于0元。"
+}
