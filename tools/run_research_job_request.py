@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import datetime
 from pathlib import Path
 
 from stock_cn.research_jobs import prepare_research_job
@@ -32,6 +33,61 @@ def filtered_candidate_pack(pack, symbols):
     return out
 
 
+def filtered_official_pack(pack, symbols, cutoff):
+    """Filter a later-retrieved official pack back to the decision-time frontier."""
+    symbols = set(symbols)
+    cutoff_dt = datetime.fromisoformat(cutoff)
+    if cutoff_dt.tzinfo is None:
+        raise ValueError("information_cutoff must be timezone-aware")
+    out = dict(pack)
+    results = []
+    for result in pack.get("results", []):
+        if result.get("symbol") not in symbols:
+            continue
+        r = dict(result)
+        items = []
+        for item in result.get("items", []):
+            published = datetime.fromisoformat(item["published_at"])
+            if published.tzinfo is None:
+                raise ValueError("official disclosure timestamp must be timezone-aware")
+            if published <= cutoff_dt:
+                items.append(item)
+        r["items"] = items
+        # Provider status describes query success, not whether causal items remain.
+        if r.get("provider_status") == "OK" and not items:
+            r["provider_status"] = "EMPTY"
+        results.append(r)
+    if {x.get("symbol") for x in results} != symbols:
+        raise ValueError("official disclosure pack does not cover requested research symbols")
+
+    out["results"] = results
+    out["symbols_requested"] = list(sorted(symbols))
+    out["symbols_ok_or_empty"] = [
+        r["symbol"] for r in results if r.get("provider_status") in {"OK", "EMPTY"}
+    ]
+    out["symbols_failed"] = [
+        r["symbol"] for r in results if r.get("provider_status") == "FAILED"
+    ]
+    out["complete_for_requested_symbols"] = not out["symbols_failed"]
+    all_items = [x for r in results for x in r.get("items", [])]
+    out["latest_periodic_report_refs"] = sorted(
+        [x for x in all_items if x.get("is_periodic_report_body")],
+        key=lambda x: x["published_at"], reverse=True
+    )[:len(symbols) * 3]
+    important_categories = {
+        "EARNINGS", "BUYBACK", "HOLDER_CHANGE", "CONTRACT", "MNA",
+        "FINANCING", "GOVERNANCE", "RISK", "DIVIDEND",
+    }
+    out["important_recent_refs"] = sorted(
+        [x for x in all_items if x.get("category") in important_categories],
+        key=lambda x: x["published_at"], reverse=True
+    )[:50]
+    out["as_of"] = cutoff
+    out["causal_filter_applied"] = True
+    out["causal_filter_cutoff"] = cutoff
+    return out
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--repo", default=".")
@@ -40,7 +96,11 @@ def main():
     repo = Path(args.repo).resolve()
     spec = load(repo / args.request)
 
-    official = load(repo / spec["official_disclosure_pack_path"])
+    official = filtered_official_pack(
+        load(repo / spec["official_disclosure_pack_path"]),
+        spec["symbols"],
+        spec["information_cutoff"],
+    )
     candidate = None
     if spec.get("candidate_research_pack_path"):
         candidate = filtered_candidate_pack(
