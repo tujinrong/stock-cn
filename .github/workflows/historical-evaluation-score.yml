@@ -37,8 +37,17 @@ jobs:
           done
           test "$found" -eq 1 || echo "No pending requested evaluation scores."
       - name: Verify prompt-improvement state and formal accounts are not changed by scoring
+        shell: bash
         run: |
-          git diff --exit-code -- 'strategies/*/variants/*/holdings.json' 'strategies/*/variants/*/holdings.md' 'strategies/*/variants/*/improvement_state.json' 'strategies/*/variants/*/simulation_prompt.json' 'strategies/*/variants/*/formal_prompt.json'
+          set -euo pipefail
+          # Let the shell expand exactly one variant-directory level. Do not use
+          # quoted git pathspec globs, because git '*' can match nested simulation paths.
+          git diff --exit-code -- \
+            strategies/*/variants/*/holdings.json \
+            strategies/*/variants/*/holdings.md \
+            strategies/*/variants/*/improvement_state.json \
+            strategies/*/variants/*/simulation_prompt.json \
+            strategies/*/variants/*/formal_prompt.json
       - name: Publish locked decisions and outcome scores
         run: |
           git add -- runs/evaluations strategies/*/variants/*/simulations/eval-*
