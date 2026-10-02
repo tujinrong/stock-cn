@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "C",
+  "status": "CONFIGURED_NOT_APPLIED",
+  "initial_capital_cny": 200000,
+  "start_date": null,
+  "evaluation_end_date": null,
+  "opening_method": "CASH_ONLY",
+  "cash_weight": 1.0,
+  "cash_target_cny": 200000,
+  "stocks": [],
+  "candidate_symbols_not_holdings": [
+    "600036.SH",
+    "002594.SZ",
+    "600660.SH",
+    "600900.SH",
+    "601100.SH"
+  ],
+  "initialization_policy": {
+    "requires_explicit_authorization": true,
+    "apply_once_per_account": true,
+    "reset_on_daily_run": false
+  },
+  "note": "20万元全现金起步，候选池不是已经持有的股票。获授权初始化时保存一次期初事件；日常从holdings.json延续，不重置现金、持仓或收益。当前尚未应用此计划。",
+  "variant_id": "C03",
+  "account_scope": "INDEPENDENT_VARIANT"
+}
