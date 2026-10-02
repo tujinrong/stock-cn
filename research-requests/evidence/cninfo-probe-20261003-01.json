@@ -1,0 +1,14 @@
+{
+  "probe_id": "cninfo-probe-20261003-01",
+  "purpose": "Validate bounded official disclosure metadata for formal AI research.",
+  "symbols": [
+    "600036.SH",
+    "600276.SH",
+    "600519.SH"
+  ],
+  "lookback_days": 120,
+  "max_pages": 3,
+  "metadata_only": true,
+  "download_pdfs": false,
+  "formal_execution": false
+}
