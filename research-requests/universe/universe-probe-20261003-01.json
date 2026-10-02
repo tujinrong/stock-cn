@@ -4,5 +4,6 @@
   "candidate_limit": 30,
   "history_sample": 5,
   "formal_execution": false,
-  "not_a_recommendation": true
+  "not_a_recommendation": true,
+  "retry_revision": 1
 }
