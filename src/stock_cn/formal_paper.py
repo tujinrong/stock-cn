@@ -15,6 +15,7 @@ from decimal import Decimal
 from pathlib import Path
 
 from .paper_core import execute_single_order, validate_decision_contract
+from .evidence import official_disclosure_status, validate_official_disclosure_pack
 from .research_state import load_formal_state
 from .sim_data import number
 from .simulation import digest, holding_table, require
@@ -109,6 +110,9 @@ def validate_live_snapshot(snapshot, *, max_quote_age_seconds=300):
         pt = datetime.fromisoformat(item["published_at"])
         require(pt.tzinfo is not None and pt <= as_of, "future formal evidence")
         require(item.get("source"), "formal evidence missing source")
+    official = snapshot.get("official_disclosure_pack")
+    if official is not None:
+        validate_official_disclosure_pack(official, as_of=snapshot["as_of"])
     return True
 
 
@@ -219,6 +223,8 @@ class FormalPaperSession:
             "candidate_research_pack": snapshot.get("candidate_research_pack"),
             "research_state": research_state,
             "universe_scope": snapshot.get("universe_scope"),
+            "official_disclosure_pack": snapshot.get("official_disclosure_pack"),
+            "news_research": snapshot.get("news_research"),
             "tools": snapshot.get("tools", "verified live-data adapter"),
             "limitations": snapshot.get("limitations", []),
             "fundamentals_news_coverage": snapshot.get("fundamentals_news_coverage",
@@ -248,6 +254,11 @@ class FormalPaperSession:
         def quote_validator(order, req):
             q = req["live_snapshot"]["quotes"].get(order["symbol"])
             require(q is not None, "selected symbol has no live quote")
+            if order.get("side") == "BUY":
+                disclosure_status = official_disclosure_status(
+                    req["live_snapshot"].get("official_disclosure_pack"), order["symbol"])
+                require(disclosure_status in {"OK", "EMPTY"},
+                        "BUY requires successful official disclosure coverage; provider failure/unchecked is not 'no risk'")
             if self.spec["type"] == "AI_SELECT":
                 if order.get("side") == "BUY":
                     require(order["symbol"] in (self.runtime_buy_symbols or set()),
