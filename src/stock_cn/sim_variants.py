@@ -63,8 +63,10 @@ class VariantSimulation(BaseSimulation):
         evidence = ([e for e in self.data.get('evidence', [])
                      if datetime.fromisoformat(e['published_at']) <= when]
                     if include_evidence else [])
+        travel_day = cutoff[:10]
         travel = build_time_travel_context(
-            self.data, day, cutoff[:10], symbols=sorted(known), ignore_news=not include_evidence)
+            self.data, travel_day, travel_day, symbols=sorted(known),
+            ignore_news=not include_evidence, execution_date=day)
         runtime_prompt = append_time_travel_prompt(self.templates[self.prompt_path], travel)
         visible = {'cutoff': cutoff, 'holdings': self.store.load(), 'prompt': runtime_prompt,
                    'bars': {d: {s: b for s, b in rows.items() if s in known}
