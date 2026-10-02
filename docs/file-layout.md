@@ -15,7 +15,7 @@ stock-cn/
 │   ├── data-sources.md                # 主备来源与验收计划
 │   └── requirements-before-file-layout.md # 原样保留的此前需求
 ├── strategies/
-│   ├── README.md                     # A01–E03 总表及链接
+│   ├── README.md                     # A–F 策略变体总表及链接
 │   ├── index.json                    # DRAFT/确认/启用索引，不是交易账本
 │   ├── common.md                     # 全部策略共用投资提示词
 │   ├── A/
@@ -25,7 +25,10 @@ stock-cn/
 │   │       ├── A01.md                # 估值优先变体提示词
 │   │       ├── A02.md                # 改善确认变体提示词
 │   │       └── A03.md                # 耐心持有变体提示词
-│   └── B/ C/ D/ E/                   # 同结构，各3个候选变体
+│   ├── B/ C/ D/ E/                   # 同结构，各3个候选变体
+│   └── F/
+│       ├── prompt.md                 # 异常下跌后的回升买点
+│       └── variants/F01.md           # 首版只设回升确认一个变体
 ├── trading/                          # 运行后：正式 Paper Trading 账本
 │   └── A/
 │       ├── account.json              # 最新账户投影，关联事件与版本
@@ -73,7 +76,7 @@ stock-cn/
 
 ## 2. 编号、资金与草案确认
 
-A=招商银行；B=比亚迪；C=优质股年度低位；D=业绩改善；E=招商银行/比亚迪/现金分配。每个字母是一个策略/资金池，编号如 A01 是变体。A01与A02可平行测试，但不能把两个正式任务同时写入策略A的20万元账户。
+A=招商银行；B=比亚迪；C=优质股年度低位；D=业绩改善；E=招商银行/比亚迪/现金分配；F=异常下跌后的回升买点。每个字母是一个策略/资金池，编号如 A01 是变体。A01与A02可平行测试，但不能把两个正式任务同时写入策略A的20万元账户。F首版只有F01，继承同样的资金与隔离规则；运行后按同结构使用trading/F/及simulations/<test_id>/F01/，不提前生成账户。
 
 index.json 保存策略 ID、类型、草案范围、initial_cash_cny、variants、active_variant、status、enabled。初始资金字段是待启用配置，不是已开账户或已发生出资。
 
