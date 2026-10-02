@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 from datetime import date, datetime, timedelta, timezone
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -147,15 +147,44 @@ def fetch_daily(symbols, start, end, request=request_json):
     common = set.intersection(*sets)
     union = set.union(*sets)
     sessions = sorted(union)
+    # For the configured five ordinary main-board stocks, reconstruct the
+    # historical 10% daily limit from the previous raw close. If the raw series
+    # has a >25% discontinuity, treat it as a suspected corporate-action/data
+    # basis break and do not invent a limit price for that day.
+    for symbol, rows in output.items():
+        ordered = sorted(rows)
+        for i, day in enumerate(ordered):
+            bar = rows[day]
+            bar["suspended"] = False
+            if i == 0:
+                bar["limit_up"] = None
+                bar["limit_down"] = None
+                bar["limit_rule"] = "NO_PREVIOUS_CLOSE_IN_REQUEST_WINDOW"
+                continue
+            prev = number(rows[ordered[i-1]]["close"])
+            cur = number(bar["close"])
+            opened = number(bar["open"])
+            if abs(cur / prev - 1) > Decimal("0.25") or abs(opened / prev - 1) > Decimal("0.25"):
+                bar["limit_up"] = None
+                bar["limit_down"] = None
+                bar["limit_rule"] = "SUSPECTED_CORPORATE_ACTION_OR_DATA_BASIS_BREAK"
+                continue
+            tick = Decimal("0.01")
+            bar["limit_up"] = str((prev * Decimal("1.10")).quantize(tick, rounding=ROUND_HALF_UP))
+            bar["limit_down"] = str((prev * Decimal("0.90")).quantize(tick, rounding=ROUND_HALF_UP))
+            bar["limit_rule"] = "ORDINARY_MAIN_BOARD_10PCT_FROM_PREVIOUS_CLOSE"
     data = {"schema_version": "0.4", "kind": "REAL_HISTORY", "price_basis": "unadjusted",
             "fidelity": "FLOW_ONLY_REAL_PRICES", "sessions": sessions,
             "calendar_source": "returned provider sessions; not independently certified",
             "retrieved_at": datetime.now(timezone.utc).isoformat(),
             "limitations": ["No archived intraday/news/fundamental verification.",
                             "Previous close decision, next open execution; not 11:00 replay.",
-                            "Corporate actions not verified; not investment-performance evidence.",
+                            "For configured ordinary main-board stocks, 10% daily limit prices are reconstructed from the previous raw close; suspected >25% basis breaks are left unexecutable.",
+                            "Corporate actions are not fully adjusted; structural breaks are detected conservatively.",
                             f"Missing-symbol sessions are preserved and rejected, not dropped: {len(union-common)}"],
-            "instruments": {s: {"name": SYMBOLS[s], "board": "MAIN", "lot_size": 100} for s in symbols},
+            "instruments": {s: {"name": SYMBOLS[s], "board": "MAIN", "lot_size": 100,
+                                "price_limit_pct": "0.10",
+                                "price_limit_scope": "configured ordinary main-board stock"} for s in symbols},
             "bars": {d: {s: output[s][d] for s in symbols if d in output[s]} for d in sessions},
             "evidence": [], "corporate_actions": []}
     validate_dataset(data)
