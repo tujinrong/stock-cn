@@ -1,0 +1,14 @@
+{
+  "request_id": "D02-candidate-context-r01",
+  "variant": "D02",
+  "rounds": 1,
+  "status": "REQUESTED",
+  "issues": [
+    "CANDIDATE_SCOPE",
+    "RESEARCH_STATE",
+    "LOW_POSITION_CONTEXT"
+  ],
+  "reason": "Real universe probe exposed ambiguity between bounded candidate routing, 250-day low context, and a true early recovery. Structural clarification only.",
+  "future_performance_feedback": false,
+  "formal_promotion": false
+}
