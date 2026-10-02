@@ -5,6 +5,15 @@
   "capital_scope": "one_200000_cny_pool_per_strategy_not_per_variant",
   "evaluation_start": null,
   "evaluation_end": null,
+  "global_universe_constraints": {
+    "excluded_boards": ["科创板"],
+    "inherit_by_all_strategies_and_variants": true,
+    "applies_to_modes": ["DEBUG", "SIMULATION", "FORMAL"],
+    "applies_to_strategy_types": ["FIXED", "AI_SELECT"],
+    "unknown_board_action": "EXCLUDE_UNTIL_VERIFIED",
+    "preserve_other_agreed_restrictions": true,
+    "note": "用户明确要求本项目A股投资范围不包括科创板；固定名单、自主选股、临时测试与历史回放均继承。其他范围仍按既有约定或待确认状态处理。本配置不表示过滤功能已经实现。"
+  },
   "strategies": [
     {"strategy_id":"A","name":"招商银行择时","type":"FIXED","symbols":["600036.SH"],"status":"DRAFT","enabled":false,"initial_cash_cny":200000,"active_variant":null,"variants":["A01","A02","A03"],"prompt":"strategies/A/prompt.md"},
     {"strategy_id":"B","name":"比亚迪经营改善择时","type":"FIXED","symbols":["002594.SZ"],"status":"DRAFT","enabled":false,"initial_cash_cny":200000,"active_variant":null,"variants":["B01","B02","B03"],"prompt":"strategies/B/prompt.md"},
