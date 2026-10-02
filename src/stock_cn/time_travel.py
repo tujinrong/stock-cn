@@ -94,9 +94,9 @@ def _ma(closes, periods):
 
 
 def _range_position(closes, periods):
-    if len(closes) < 2:
+    if len(closes) < periods:
         return None
-    sample = closes[-min(periods, len(closes)):]
+    sample = closes[-periods:]
     lo, hi, cur = min(sample), max(sample), sample[-1]
     if hi == lo:
         return "0.5000"
@@ -133,6 +133,13 @@ def symbol_snapshot(data, symbol, cutoff_date):
         "industry_characteristics": meta.get("industry_characteristics") or profile.get("characteristics", []),
         "as_of_close": _fmt(closes[-1]),
         "observations": len(rows),
+        "history_coverage": {
+            "sessions": len(rows),
+            "has_20_sessions": len(rows) >= 20,
+            "has_60_sessions": len(rows) >= 60,
+            "has_120_sessions": len(rows) >= 120,
+            "has_250_sessions": len(rows) >= 250,
+        },
         "returns_pct": {
             "5_sessions": _ret(closes, 5),
             "20_sessions": _ret(closes, 20),
@@ -198,7 +205,7 @@ def build_time_travel_context(data, target_date, cutoff_date, *, symbols=None, i
         "limitations": [
             "行业特点为结构性研究背景，不代表当日行业消息。",
             "未提供真实大盘指数时，market_proxy只是本次可见股票池等权代理。",
-            "日/周/月K线均由knowledge_cutoff以前的未复权历史日线聚合。",
+            "日/周/月K线均由knowledge_cutoff以前的未复权历史日线聚合；某窗口历史不足时对应统计明确为null，不冒充完整周期。",
             "新闻默认忽略；没有历史新闻不解释为当时没有新闻或风险。",
             "AI模型本身可能含有后来知识，因此仍不能声称完全消除前视偏差。",
         ],
