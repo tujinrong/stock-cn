@@ -332,9 +332,12 @@ class Simulation:
                         if datetime.fromisoformat(x["published_at"]) <= datetime.fromisoformat(cutoff)]
             prior = [e["details"].get("decision", {}).get("summary", "") for e in self.store.events()[-3:]]
             research_bundle = None
+            # research_state alone is bookkeeping and must not turn a TEST_ONLY
+            # plumbing smoke test into an investment-research run. Candidate/evidence
+            # inputs (or a validated file manifest) activate the BUY research preflight.
             if any(self.data.get(k) is not None for k in (
                 "official_disclosure_pack", "financial_reviews", "news_research",
-                "candidate_research_pack", "research_state", "research_input_manifest",
+                "candidate_research_pack", "research_input_manifest",
             )):
                 research_bundle = build_decision_research_bundle(
                     sorted(self.data["instruments"]),
