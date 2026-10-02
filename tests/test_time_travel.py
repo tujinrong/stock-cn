@@ -105,3 +105,19 @@ def test_variant_time_travel_prompt_is_idempotent(repo):
     one = sim.prepare("2025-08-04")
     two = sim.prepare("2025-08-04")
     assert one == two
+
+
+def test_time_travel_jump_can_start_mid_history_without_fake_prior_trades(repo):
+    materialize(repo)
+    sim = VariantSimulation(repo, "A", "A02", "jump-mid", fixture())
+    opening = sim.jump_initialize("2025-08-05")
+    assert opening["date"] == "2025-08-05"
+    assert opening["_meta"]["time_travel_jump"] is True
+    assert len(sim.store.events()) == 1
+    req = sim.prepare("2025-08-06")
+    assert "你现在回到2025-08-05收盘时" in req["prompt"]
+    manifest = __import__("json").loads((sim.store.root / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["submode"] == "TIME_TRAVEL_JUMP"
+    assert manifest["time_travel_target_date"] == "2025-08-05"
+    assert manifest["planned_execution_date"] == "2025-08-06"
+    assert "does not recreate trades before that date" in " ".join(manifest["limitations"])
