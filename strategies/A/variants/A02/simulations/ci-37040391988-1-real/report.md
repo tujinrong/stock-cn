@@ -1,0 +1,28 @@
+# 模拟验证报告（不是投资成绩）
+
+```json
+{
+  "variant": "A02",
+  "test_id": "ci-37040391988-1-real",
+  "data_kind": "REAL_HISTORY",
+  "fidelity": "FLOW_ONLY_REAL_PRICES",
+  "completed_days": 5,
+  "requested_days": 5,
+  "complete": true,
+  "initial_equity_cny": "200000.00",
+  "final_equity_cny": "201875.32",
+  "net_pnl_cny": "1875.32",
+  "return_pct": "0.9376600",
+  "max_daily_drawdown_pct": "0.7650285258000439754624194900",
+  "fees_cny": "24.68",
+  "fills": 4,
+  "limitations": [
+    "No archived intraday/news/fundamental verification.",
+    "Previous close decision, next open execution; not 11:00 replay.",
+    "For configured ordinary main-board stocks, 10% daily limit prices are reconstructed from the previous raw close; suspected >25% basis breaks are left unexecutable.",
+    "Corporate actions are not fully adjusted; structural breaks are detected conservatively.",
+    "Missing-symbol sessions are preserved and rejected, not dropped: 0"
+  ],
+  "not_investment_validation": true
+}
+```
