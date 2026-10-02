@@ -32,6 +32,70 @@ def _causal_items(items, cutoff, *, time_field="published_at"):
     return out
 
 
+def validate_financial_review(review, *, symbol, as_of):
+    """Validate an AI-produced review of latest disclosed financial information."""
+    if not isinstance(review, dict):
+        raise ValueError("financial review must be an object")
+    if review.get("status") != "REVIEWED":
+        raise ValueError("financial review status must be REVIEWED")
+    if review.get("symbol") not in (None, symbol):
+        raise ValueError("financial review belongs to another symbol")
+    cutoff = _aware(as_of, "as_of")
+    review_time = _aware(review.get("as_of"), "financial review as_of")
+    if review_time > cutoff:
+        raise ValueError("future financial review")
+    if not review.get("source_report"):
+        raise ValueError("financial review source report missing")
+    if review.get("source_official") is not True:
+        raise ValueError("financial review must identify an official source")
+    facts = review.get("facts")
+    if not isinstance(facts, list) or not facts:
+        raise ValueError("financial review must contain at least one sourced fact")
+    for fact in facts:
+        if not isinstance(fact, dict):
+            raise ValueError("financial fact must be an object")
+        if not fact.get("name") or "value" not in fact or not fact.get("source"):
+            raise ValueError("financial fact missing name/value/source")
+    if not isinstance(review.get("data_gaps", []), list):
+        raise ValueError("financial review data_gaps must be a list")
+    return True
+
+
+def validate_news_research(news, *, as_of, allowed_symbols):
+    """Validate AI/web news-search provenance without judging sentiment."""
+    if not isinstance(news, dict):
+        raise ValueError("news research must be an object")
+    status = news.get("status")
+    if status not in {
+        "SEARCHED", "NO_RELEVANT_RECENT_NEWS", "UNAVAILABLE", "NOT_CHECKED"
+    }:
+        raise ValueError("invalid news research status")
+    cutoff = _aware(as_of, "as_of")
+    searched_at = news.get("searched_at") or news.get("as_of")
+    if searched_at:
+        if _aware(searched_at, "news searched_at") > cutoff:
+            raise ValueError("future news search timestamp")
+    items = news.get("items", [])
+    if not isinstance(items, list):
+        raise ValueError("news items must be a list")
+    if status == "NO_RELEVANT_RECENT_NEWS" and items:
+        raise ValueError("NO_RELEVANT_RECENT_NEWS cannot contain items")
+    allowed_symbols = set(allowed_symbols)
+    for item in items:
+        if not isinstance(item, dict):
+            raise ValueError("news item must be an object")
+        if not item.get("title") or not item.get("source") or not item.get("published_at"):
+            raise ValueError("news item missing title/source/published_at")
+        if _aware(item["published_at"], "news published_at") > cutoff:
+            raise ValueError("future news evidence")
+        symbols = set(item.get("symbols", []))
+        if not symbols <= allowed_symbols:
+            raise ValueError("news item references symbol outside research bundle")
+        if item.get("material_fact") is True and not item.get("official_recheck_status"):
+            raise ValueError("material media fact must declare official recheck status")
+    return True
+
+
 def build_decision_research_bundle(
     symbols,
     *,
@@ -56,7 +120,8 @@ def build_decision_research_bundle(
         )
 
     financial_reviews = financial_reviews or {}
-    news_research = news_research or {}
+    news_research = news_research or {"status": "NOT_CHECKED", "items": []}
+    validate_news_research(news_research, as_of=as_of, allowed_symbols=symbols)
     latest_reports = {}
     important = {}
     if official_disclosure_pack:
@@ -81,11 +146,8 @@ def build_decision_research_bundle(
         report = latest_reports.get(symbol)
         financial = financial_reviews.get(symbol)
         if financial:
-            if financial.get("as_of"):
-                _aware(financial["as_of"], "financial review as_of")
-                if _aware(financial["as_of"], "financial review as_of") > cutoff:
-                    raise ValueError("future financial review")
-            financial_status = financial.get("status", "REVIEWED")
+            validate_financial_review(financial, symbol=symbol, as_of=as_of)
+            financial_status = "REVIEWED"
         elif report:
             financial_status = "REPORT_REFERENCE_AVAILABLE_REVIEW_REQUIRED"
         else:
