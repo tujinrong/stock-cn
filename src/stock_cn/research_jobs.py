@@ -123,9 +123,7 @@ def prepare_research_job(
         "输出JSON顶层必须包含：financial_reviews、news_research。",
     ]
     store.write("request.json", request)
-    store.write("ai_task.md", "
-".join(task) + "
-")
+    store.write("ai_task.md", "\n".join(task) + "\n")
     store.write("official-disclosure-pack.json", official_disclosure_pack)
     if candidate_research_pack is not None:
         store.write("candidate-research-pack.json", candidate_research_pack)
