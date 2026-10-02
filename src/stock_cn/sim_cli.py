@@ -103,6 +103,11 @@ def main(argv=None):
             p.add_argument("--allow-paid", action="store_true")
             p.add_argument("--model")
             p.add_argument("--max-calls", type=int, default=10)
+    travel = sub.add_parser("time-travel", help="prepare the same full variant prompt at a historical date")
+    travel.add_argument("--test-id", required=True)
+    travel.add_argument("--variant", required=True)
+    travel.add_argument("--data", required=True)
+    travel.add_argument("--date", required=True)
     audit = sub.add_parser("audit")
     audit.add_argument("--test-id", required=True)
     audit.add_argument("--variant", required=True)
@@ -122,6 +127,19 @@ def main(argv=None):
             Store(repo / "runs/simulations" / args.test_id).write("source-probe.json", result)
             if data is not None:
                 Path(args.output).write_text(dumps(data), encoding="utf-8")
+        elif args.command == "time-travel":
+            data = load_dataset(args.data)
+            require(args.date in data["sessions"], "time-travel date must be a supplied market session")
+            sim = Simulation(repo, args.variant[0], args.variant, args.test_id, data)
+            request = sim.prepare(args.date)
+            result = {
+                "completed": request.get("completed", False),
+                "variant": args.variant,
+                "target_date": args.date,
+                "ai_input": str(sim.store.root / "requests" / args.date / "ai_input.md"),
+                "time_travel_context": str(sim.store.root / "requests" / args.date / "time_travel.json"),
+                "note": "Same complete variant prompt plus runtime time-travel appendix; no future data.",
+            }
         elif args.command == "audit":
             variant, test_id = identifier(args.variant), identifier(args.test_id)
             root = repo / "strategies" / variant[0] / "variants" / variant / "simulations" / test_id
