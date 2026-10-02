@@ -145,6 +145,10 @@ def materialize(repo):
                 write(root / 'holdings.md', f'# {variant} 独立持仓\n\n尚未初始化。计划初始总资产20万元；现金、日期和股数待该账户实际初始化。\n')
             if not (root / 'simulation_prompt.json').exists():
                 write(root / 'simulation_prompt.json', {'version': 'v000', 'path': 'prompt.md', 'sha256': sha((root / 'prompt.md').read_text(encoding='utf-8')), 'scope': 'NEW_SIMULATION_ONLY'})
+            if not (root / 'formal_prompt.json').exists():
+                write(root / 'formal_prompt.json', {'version': 'v000', 'path': 'prompt.md',
+                    'sha256': sha((root / 'prompt.md').read_text(encoding='utf-8')),
+                    'scope': 'FORMAL_BASELINE_NOT_EXECUTION_AUTHORIZATION'})
             if not (root / 'improvement_state.json').exists():
                 write(root / 'improvement_state.json', {'max_rounds': MAX_ROUNDS, 'rounds_used': 0,
                     'status': 'READY', 'active_prompt_version': 'v000', 'reset_requires_user_authorization': True})
@@ -164,6 +168,32 @@ def materialize(repo):
                  prompt_improvement={'max_rounds_per_variant': MAX_ROUNDS, 'objective': 'STABILITY_NOT_FUTURE_RETURNS'})
     write(index_path, index)
     return registry
+
+
+def approve_simulation_prompt_for_formal(repo, variant, *, expected_version, authorized=False):
+    """Promote the exact tested prompt pointer, never holdings/P&L or execution state.
+
+    This does NOT enable the variant or global formal execution.
+    """
+    if authorized is not True:
+        raise ValueError('explicit user authorization required for formal prompt promotion')
+    root = variant_root(repo, variant)
+    simulation = read(root / 'simulation_prompt.json')
+    if simulation.get('version') != expected_version:
+        raise ValueError('tested prompt version changed; re-check before promotion')
+    chosen = (root / simulation['path']).resolve()
+    if not chosen.is_relative_to(root.resolve()):
+        raise ValueError('simulation prompt path escape')
+    text = chosen.read_text(encoding='utf-8')
+    if sha(text) != simulation.get('sha256'):
+        raise ValueError('simulation prompt hash mismatch')
+    baseline = (root / 'prompt_versions/v000.md').read_text(encoding='utf-8')
+    validate_prompt(text, baseline)
+    pointer = {'version': simulation['version'], 'path': simulation['path'],
+               'sha256': simulation['sha256'],
+               'scope': 'FORMAL_PROMPT_APPROVED_NOT_EXECUTION_AUTHORIZATION'}
+    write(root / 'formal_prompt.json', pointer)
+    return pointer
 
 
 class PromptLab:
