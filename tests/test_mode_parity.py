@@ -105,6 +105,21 @@ def official_pack(symbols=("600036.SH",), *, status="OK"):
     }
 
 
+def financial_reviews(symbols):
+    return {
+        s: {
+            "status": "REVIEWED",
+            "as_of": "2026-10-08T10:50:00+08:00",
+            "source_report": f"https://static.cninfo.com.cn/{s}.pdf",
+            "period": "2026H1",
+            "facts": [{"name": "test-review", "value": True}],
+            "summary": "TEST_ONLY reviewed latest disclosed financial information",
+            "data_gaps": [],
+        }
+        for s in symbols
+    }
+
+
 def live_snapshot():
     return {
         "kind": "LIVE_SNAPSHOT", "market_date": "2026-10-08",
@@ -118,7 +133,8 @@ def live_snapshot():
         "evidence": [{"source": "TEST", "published_at": "2026-10-08T10:30:00+08:00",
                       "title": "已知资料"}],
         "official_disclosure_pack": official_pack(("600036.SH",)),
-        "news_research": {"status": "NOT_REQUIRED_FOR_TEST_FIXTURE"},
+        "financial_reviews": financial_reviews(("600036.SH",)),
+        "news_research": {"status": "SEARCHED", "items": []},
     }
 
 
@@ -244,7 +260,8 @@ def ai_live_snapshot():
         },
         "evidence": [],
         "official_disclosure_pack": official_pack(("600036.SH", "600900.SH")),
-        "news_research": {"status": "NOT_REQUIRED_FOR_TEST_FIXTURE"},
+        "financial_reviews": financial_reviews(("600036.SH", "600900.SH")),
+        "news_research": {"status": "SEARCHED", "items": []},
         "candidate_research_pack": {
             "kind": "AI_SELECT_DEEP_RESEARCH_PACK",
             "purpose": "LOW_RECOVERY",
@@ -379,13 +396,13 @@ def test_formal_buy_requires_successful_official_disclosure_coverage(tmp_path, m
     missing = live_snapshot()
     missing.pop("official_disclosure_pack")
     req = session.prepare(missing)
-    with pytest.raises(ValueError, match="official disclosure coverage"):
+    with pytest.raises(ValueError, match="BUY research preflight failed"):
         session.validate_decision(response("FORMAL"), req)
 
     failed = live_snapshot()
     failed["official_disclosure_pack"] = official_pack(("600036.SH",), status="FAILED")
     req2 = session.prepare(failed)
-    with pytest.raises(ValueError, match="official disclosure coverage"):
+    with pytest.raises(ValueError, match="BUY research preflight failed"):
         session.validate_decision(response("FORMAL"), req2)
 
 
@@ -402,3 +419,23 @@ def test_formal_sell_is_not_blocked_by_official_disclosure_provider_failure(tmp_
     after, execution = session.execute_preview(out, req)
     assert execution["status"] == "FILLED"
     assert after["positions"][0]["quantity"] == 1900
+
+
+
+def test_formal_buy_blocks_unreviewed_financials_or_unsearched_news(tmp_path, monkeypatch):
+    repo = make_repo(tmp_path)
+    monkeypatch.setattr("stock_cn.formal_paper._source_commit", lambda p: "TEST")
+
+    no_fin = live_snapshot()
+    no_fin["financial_reviews"] = {}
+    session = FormalPaperSession(repo, "A", "A01")
+    req = session.prepare(no_fin)
+    with pytest.raises(ValueError, match="FINANCIAL_REVIEW_NOT_COMPLETED"):
+        session.validate_decision(response("FORMAL"), req)
+
+    no_news = live_snapshot()
+    no_news["news_research"] = {"status": "NOT_CHECKED", "items": []}
+    session2 = FormalPaperSession(repo, "A", "A01")
+    req2 = session2.prepare(no_news)
+    with pytest.raises(ValueError, match="RECENT_NEWS_NOT_VERIFIED"):
+        session2.validate_decision(response("FORMAL"), req2)
