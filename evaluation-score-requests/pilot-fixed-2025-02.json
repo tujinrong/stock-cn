@@ -1,0 +1,7 @@
+{
+  "eval_id": "pilot-fixed-2025-02",
+  "requested_phase": "SCORE_AFTER_DECISIONS_LOCKED",
+  "expected_answers": 6,
+  "allow_prompt_improvement_from_scores": false,
+  "formal_execution": false
+}
