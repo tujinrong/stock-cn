@@ -14,6 +14,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 from .sim_data import number, request_json, validate_dataset
+from .time_travel import symbol_snapshot
 
 EASTMONEY_CLIST = "https://push2.eastmoney.com/api/qt/clist/get"
 SINA_CLIST = "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData"
@@ -410,3 +411,118 @@ def fetch_candidate_history(seed, start, end, request=request_json, *, max_symbo
     }
     validate_dataset(dataset)
     return dataset, attempts
+
+
+
+def build_deep_research_pack(seed, dataset, cutoff_date, purpose, *, max_candidates=12):
+    """Combine a bounded seed with causal K-line summaries for AI deep research.
+
+    Labels are attention-routing states, never trade recommendations. They help
+    keep prompts compact and make data gaps explicit.
+    """
+    date.fromisoformat(cutoff_date)
+    if purpose not in {"LOW_RECOVERY", "ABNORMAL_DROP"}:
+        raise ValueError("unknown research-pack purpose")
+    if type(max_candidates) is not int or not 1 <= max_candidates <= 30:
+        raise ValueError("deep-research budget must be 1..30")
+    seed_rows = {x["symbol"]: x for x in seed.get("rows", [])}
+    entries = []
+    for symbol in dataset.get("instruments", {}):
+        if symbol not in seed_rows:
+            continue
+        snap = symbol_snapshot(dataset, symbol, cutoff_date)
+        if not snap:
+            continue
+        meta = seed_rows[symbol]
+        risk_tags = list(meta.get("risk_tags") or [])
+        structural_break = snap.get("suspected_price_basis_break")
+        priority = 50
+        state = "GENERAL_RESEARCH"
+        reasons = []
+
+        if structural_break:
+            priority = 90
+            state = "DATA_BASIS_BREAK_REVIEW"
+            reasons.append("疑似除权/送转/价格口径断点，不能解释为经济性暴跌。")
+        elif risk_tags:
+            priority = 80
+            state = "RISK_TAGGED_REVIEW"
+            reasons.append("名称/上市状态含风险标签，先核查风险再谈交易。")
+        elif purpose == "LOW_RECOVERY":
+            ranges = snap["range_position_0_to_1"]
+            available = [number(x) for x in (
+                ranges.get("60_sessions"), ranges.get("120_sessions")
+            ) if x is not None]
+            low = bool(available) and min(available) <= Decimal("0.35")
+            r5 = snap["returns_pct"].get("5_sessions")
+            ma5 = snap["moving_average"].get("ma5")
+            recovering = (
+                r5 is not None and ma5 is not None
+                and number(r5) > 0
+                and number(snap["as_of_close"]) >= number(ma5)
+            )
+            if low and recovering:
+                priority = 10
+                state = "LOW_AND_EARLY_RECOVERY_RESEARCH"
+                reasons.append("处于较低区间且短期价格已有初步回升迹象，值得AI深查质量与持续性。")
+            elif low:
+                priority = 20
+                state = "LOW_WAITING_RECOVERY_RESEARCH"
+                reasons.append("价格位置偏低，但当前价量尚不足以确认回升。")
+            else:
+                priority = 40
+                state = "NOT_CLEARLY_LOW_RESEARCH"
+                reasons.append("当前可见区间位置不属于明显低位，仅保留为对照候选。")
+        else:
+            chg = meta.get("change_pct")
+            r5 = snap["returns_pct"].get("5_sessions")
+            ma5 = snap["moving_average"].get("ma5")
+            daily_drop = number(chg) if chg is not None else None
+            if daily_drop is not None and daily_drop <= Decimal("-5"):
+                if r5 is not None and ma5 is not None and number(r5) > 0 and number(snap["as_of_close"]) >= number(ma5):
+                    priority = 15
+                    state = "DROP_WITH_STABILIZATION_RESEARCH"
+                    reasons.append("当日仍属明显下跌，但短周期已有部分稳定迹象；必须核查下跌原因，不能直接视为反转。")
+                else:
+                    priority = 20
+                    state = "FRESH_DROP_MONITOR"
+                    reasons.append("近期/当日明显下跌，尚无可信回升确认，适合进入观察池而不是立即抄底。")
+            else:
+                priority = 40
+                state = "DROP_CONTEXT_RESEARCH"
+                reasons.append("由异常下跌轻筛进入，但当前截面需由AI重新核对异常程度和原因。")
+
+        entries.append({
+            "symbol": symbol,
+            "name": snap["name"],
+            "research_state": state,
+            "attention_priority": priority,
+            "attention_reasons": reasons,
+            "risk_tags": risk_tags,
+            "seed_snapshot": {
+                "price_cny": meta.get("price_cny"),
+                "change_pct": meta.get("change_pct"),
+                "amount_cny": meta.get("amount_cny"),
+                "source_provider": meta.get("source_provider"),
+            },
+            "market_history": snap,
+            "not_a_trade_signal": True,
+        })
+
+    entries.sort(key=lambda x: (x["attention_priority"], x["symbol"]))
+    selected = entries[:max_candidates]
+    return {
+        "kind": "AI_SELECT_DEEP_RESEARCH_PACK",
+        "purpose": purpose,
+        "cutoff_date": cutoff_date,
+        "candidate_budget": max_candidates,
+        "selected_count": len(selected),
+        "source_seed_count": seed.get("count"),
+        "seed_source": seed.get("source"),
+        "seed_provider": seed.get("source_provider"),
+        "seed_fallback_used": seed.get("fallback_used", False),
+        "not_a_recommendation": True,
+        "selection_note": "attention_priority allocates AI research budget only; final BUY/SELL/HOLD comes from the variant full prompt.",
+        "survivorship_warning": seed.get("survivorship_warning"),
+        "candidates": selected,
+    }
