@@ -1,6 +1,6 @@
 {
-  "version": "v000",
-  "path": "prompt.md",
-  "sha256": "58c222824abca20fffd2ff34a6ac5ee332e2c9238155c1f521e559c6d8613a5e",
+  "version": "v001",
+  "path": "prompt_versions/v001.md",
+  "sha256": "42578c83aba8a8d2364465f2dab6bfe22a9356c82c484962df04a0482530fb2c",
   "scope": "NEW_SIMULATION_ONLY"
 }
