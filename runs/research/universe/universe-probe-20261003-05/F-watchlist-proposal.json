@@ -1,0 +1,389 @@
+{
+  "kind": "ABNORMAL_DROP_RESEARCH_WATCHLIST",
+  "date": "2026-09-30",
+  "revision": 1,
+  "candidate_watchlist": [
+    {
+      "symbol": "000850.SZ",
+      "name": "华茂股份",
+      "origin_drop_date": "2026-09-30",
+      "origin_price_cny": "4.170",
+      "origin_change_pct": "-9.935",
+      "risk_tags": [],
+      "first_seen_source": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData",
+      "last_review_date": "2026-09-30",
+      "last_cross_section_change_pct": "-9.935",
+      "last_cross_section_price_cny": "4.170",
+      "last_close_cny": "4.1700",
+      "history_summary": {
+        "returns_pct": {
+          "5_sessions": "-1.4184",
+          "20_sessions": "-4.1379",
+          "60_sessions": "9.4488"
+        },
+        "moving_average": {
+          "ma5": "4.7420",
+          "ma20": "4.3210",
+          "ma60": "4.1527"
+        },
+        "range_position_0_to_1": {
+          "20_sessions": "0.1565",
+          "60_sessions": "0.3022",
+          "120_sessions": "0.4049",
+          "250_sessions": "0.2222"
+        },
+        "continuous_sessions": 263,
+        "suspected_price_basis_break": null
+      },
+      "research_state": "FRESH_DROP_MONITOR",
+      "recovery_evidence": [
+        "今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。"
+      ],
+      "not_a_trade_signal": true
+    },
+    {
+      "symbol": "001216.SZ",
+      "name": "华瓷股份",
+      "origin_drop_date": "2026-09-30",
+      "origin_price_cny": "26.180",
+      "origin_change_pct": "-10.003",
+      "risk_tags": [],
+      "first_seen_source": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData",
+      "last_review_date": "2026-09-30",
+      "last_cross_section_change_pct": "-10.003",
+      "last_cross_section_price_cny": "26.180",
+      "last_close_cny": "26.1800",
+      "history_summary": {
+        "returns_pct": {
+          "5_sessions": "-1.0956",
+          "20_sessions": "76.4151",
+          "60_sessions": "87.6703"
+        },
+        "moving_average": {
+          "ma5": "28.0040",
+          "ma20": "20.0375",
+          "ma60": "16.1008"
+        },
+        "range_position_0_to_1": {
+          "20_sessions": "0.7997",
+          "60_sessions": "0.8181",
+          "120_sessions": "0.8181",
+          "250_sessions": "0.8181"
+        },
+        "continuous_sessions": 263,
+        "suspected_price_basis_break": null
+      },
+      "research_state": "FRESH_DROP_MONITOR",
+      "recovery_evidence": [
+        "今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。"
+      ],
+      "not_a_trade_signal": true
+    },
+    {
+      "symbol": "001234.SZ",
+      "name": "泰慕士",
+      "origin_drop_date": "2026-09-30",
+      "origin_price_cny": "25.800",
+      "origin_change_pct": "-10.01",
+      "risk_tags": [],
+      "first_seen_source": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData",
+      "last_review_date": "2026-09-30",
+      "last_cross_section_change_pct": "-10.01",
+      "last_cross_section_price_cny": "25.800",
+      "last_close_cny": "25.8000",
+      "history_summary": {
+        "returns_pct": {
+          "5_sessions": "-11.7949",
+          "20_sessions": "10.7296",
+          "60_sessions": "30.9645"
+        },
+        "moving_average": {
+          "ma5": "30.7820",
+          "ma20": "25.6155",
+          "ma60": "22.3268"
+        },
+        "range_position_0_to_1": {
+          "20_sessions": "0.2820",
+          "60_sessions": "0.4570",
+          "120_sessions": "0.4476",
+          "250_sessions": "0.3602"
+        },
+        "continuous_sessions": 263,
+        "suspected_price_basis_break": null
+      },
+      "research_state": "FRESH_DROP_MONITOR",
+      "recovery_evidence": [
+        "今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。"
+      ],
+      "not_a_trade_signal": true
+    },
+    {
+      "symbol": "002119.SZ",
+      "name": "康强电子",
+      "origin_drop_date": "2026-09-30",
+      "origin_price_cny": "25.800",
+      "origin_change_pct": "-8.737",
+      "risk_tags": [],
+      "first_seen_source": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData",
+      "last_review_date": "2026-09-30",
+      "last_cross_section_change_pct": "-8.737",
+      "last_cross_section_price_cny": "25.800",
+      "last_close_cny": "25.8000",
+      "history_summary": {
+        "returns_pct": {
+          "5_sessions": "5.4352",
+          "20_sessions": "12.1252",
+          "60_sessions": "-26.2436"
+        },
+        "moving_average": {
+          "ma5": "28.0620",
+          "ma20": "24.6520",
+          "ma60": "24.3283"
+        },
+        "range_position_0_to_1": {
+          "20_sessions": "0.5000",
+          "60_sessions": "0.4217",
+          "120_sessions": "0.3143",
+          "250_sessions": "0.4120"
+        },
+        "continuous_sessions": 263,
+        "suspected_price_basis_break": null
+      },
+      "research_state": "FRESH_DROP_MONITOR",
+      "recovery_evidence": [
+        "今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。"
+      ],
+      "not_a_trade_signal": true
+    },
+    {
+      "symbol": "600156.SH",
+      "name": "华升股份",
+      "origin_drop_date": "2026-09-30",
+      "origin_price_cny": "7.350",
+      "origin_change_pct": "-10.037",
+      "risk_tags": [],
+      "first_seen_source": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData",
+      "last_review_date": "2026-09-30",
+      "last_cross_section_change_pct": "-10.037",
+      "last_cross_section_price_cny": "7.350",
+      "last_close_cny": "7.3500",
+      "history_summary": {
+        "returns_pct": {
+          "5_sessions": "-17.2297",
+          "20_sessions": "-14.8320",
+          "60_sessions": "-14.7332"
+        },
+        "moving_average": {
+          "ma5": "8.2720",
+          "ma20": "8.5695",
+          "ma60": "8.1302"
+        },
+        "range_position_0_to_1": {
+          "20_sessions": "0.0000",
+          "60_sessions": "0.2471",
+          "120_sessions": "0.0843",
+          "250_sessions": "0.0843"
+        },
+        "continuous_sessions": 263,
+        "suspected_price_basis_break": null
+      },
+      "research_state": "FRESH_DROP_MONITOR",
+      "recovery_evidence": [
+        "今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。"
+      ],
+      "not_a_trade_signal": true
+    },
+    {
+      "symbol": "603797.SH",
+      "name": "联泰环保",
+      "origin_drop_date": "2026-09-30",
+      "origin_price_cny": "4.820",
+      "origin_change_pct": "-10.075",
+      "risk_tags": [],
+      "first_seen_source": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData",
+      "last_review_date": "2026-09-30",
+      "last_cross_section_change_pct": "-10.075",
+      "last_cross_section_price_cny": "4.820",
+      "last_close_cny": "4.8200",
+      "history_summary": {
+        "returns_pct": {
+          "5_sessions": "-2.6263",
+          "20_sessions": "-1.0267",
+          "60_sessions": "24.8705"
+        },
+        "moving_average": {
+          "ma5": "5.0440",
+          "ma20": "4.8435",
+          "ma60": "4.4712"
+        },
+        "range_position_0_to_1": {
+          "20_sessions": "0.3077",
+          "60_sessions": "0.6860",
+          "120_sessions": "0.6860",
+          "250_sessions": "0.6860"
+        },
+        "continuous_sessions": 263,
+        "suspected_price_basis_break": null
+      },
+      "research_state": "FRESH_DROP_MONITOR",
+      "recovery_evidence": [
+        "今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。"
+      ],
+      "not_a_trade_signal": true
+    },
+    {
+      "symbol": "603949.SH",
+      "name": "雪龙集团",
+      "origin_drop_date": "2026-09-30",
+      "origin_price_cny": "18.410",
+      "origin_change_pct": "-9.976",
+      "risk_tags": [],
+      "first_seen_source": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData",
+      "last_review_date": "2026-09-30",
+      "last_cross_section_change_pct": "-9.976",
+      "last_cross_section_price_cny": "18.410",
+      "last_close_cny": "18.4100",
+      "history_summary": {
+        "returns_pct": {
+          "5_sessions": "31.8768",
+          "20_sessions": "28.2033",
+          "60_sessions": "0.2177"
+        },
+        "moving_average": {
+          "ma5": "17.9420",
+          "ma20": "15.0920",
+          "ma60": "14.4940"
+        },
+        "range_position_0_to_1": {
+          "20_sessions": "0.7073",
+          "60_sessions": "0.7545",
+          "120_sessions": "0.7545",
+          "250_sessions": "0.5199"
+        },
+        "continuous_sessions": 263,
+        "suspected_price_basis_break": null
+      },
+      "research_state": "FRESH_DROP_MONITOR",
+      "recovery_evidence": [
+        "今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。"
+      ],
+      "not_a_trade_signal": true
+    },
+    {
+      "symbol": "605058.SH",
+      "name": "澳弘电子",
+      "origin_drop_date": "2026-09-30",
+      "origin_price_cny": "53.640",
+      "origin_change_pct": "-10",
+      "risk_tags": [],
+      "first_seen_source": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData",
+      "last_review_date": "2026-09-30",
+      "last_cross_section_change_pct": "-10",
+      "last_cross_section_price_cny": "53.640",
+      "last_close_cny": "53.6400",
+      "history_summary": {
+        "returns_pct": {
+          "5_sessions": "0.6946",
+          "20_sessions": "93.7161",
+          "60_sessions": "78.8596"
+        },
+        "moving_average": {
+          "ma5": "57.2440",
+          "ma20": "41.9430",
+          "ma60": "31.3123"
+        },
+        "range_position_0_to_1": {
+          "20_sessions": "0.7996",
+          "60_sessions": "0.8253",
+          "120_sessions": "0.8253",
+          "250_sessions": "0.8253"
+        },
+        "continuous_sessions": 263,
+        "suspected_price_basis_break": null
+      },
+      "research_state": "FRESH_DROP_MONITOR",
+      "recovery_evidence": [
+        "今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。"
+      ],
+      "not_a_trade_signal": true
+    },
+    {
+      "symbol": "605162.SH",
+      "name": "新中港",
+      "origin_drop_date": "2026-09-30",
+      "origin_price_cny": "10.590",
+      "origin_change_pct": "-10.025",
+      "risk_tags": [],
+      "first_seen_source": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData",
+      "last_review_date": "2026-09-30",
+      "last_cross_section_change_pct": "-10.025",
+      "last_cross_section_price_cny": "10.590",
+      "last_close_cny": "10.5900",
+      "history_summary": {
+        "returns_pct": {
+          "5_sessions": "-10.4061",
+          "20_sessions": "-3.0220",
+          "60_sessions": "41.3885"
+        },
+        "moving_average": {
+          "ma5": "11.7760",
+          "ma20": "11.2485",
+          "ma60": "9.4832"
+        },
+        "range_position_0_to_1": {
+          "20_sessions": "0.1765",
+          "60_sessions": "0.6648",
+          "120_sessions": "0.5021",
+          "250_sessions": "0.4247"
+        },
+        "continuous_sessions": 263,
+        "suspected_price_basis_break": null
+      },
+      "research_state": "FRESH_DROP_MONITOR",
+      "recovery_evidence": [
+        "今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。"
+      ],
+      "not_a_trade_signal": true
+    },
+    {
+      "symbol": "605258.SH",
+      "name": "协和电子",
+      "origin_drop_date": "2026-09-30",
+      "origin_price_cny": "39.610",
+      "origin_change_pct": "-9.998",
+      "risk_tags": [],
+      "first_seen_source": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData",
+      "last_review_date": "2026-09-30",
+      "last_cross_section_change_pct": "-9.998",
+      "last_cross_section_price_cny": "39.610",
+      "last_close_cny": "39.6100",
+      "history_summary": {
+        "returns_pct": {
+          "5_sessions": "-6.0484",
+          "20_sessions": "29.2333",
+          "60_sessions": "43.0997"
+        },
+        "moving_average": {
+          "ma5": "41.6800",
+          "ma20": "36.1195",
+          "ma60": "29.6093"
+        },
+        "range_position_0_to_1": {
+          "20_sessions": "0.6992",
+          "60_sessions": "0.7984",
+          "120_sessions": "0.7984",
+          "250_sessions": "0.7984"
+        },
+        "continuous_sessions": 263,
+        "suspected_price_basis_break": null
+      },
+      "research_state": "FRESH_DROP_MONITOR",
+      "recovery_evidence": [
+        "今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。"
+      ],
+      "not_a_trade_signal": true
+    }
+  ],
+  "not_a_recommendation": true,
+  "rule": "Only the variant AI may convert researched recovery evidence into BUY/SELL/HOLD; watchlist state alone never trades."
+}
