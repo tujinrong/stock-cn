@@ -87,7 +87,7 @@ def validate_news_research(news, *, as_of, allowed_symbols):
         if not item.get("title") or not item.get("source") or not item.get("published_at"):
             raise ValueError("news item missing title/source/published_at")
         if _aware(item["published_at"], "news published_at") > cutoff:
-            raise ValueError("future news evidence")
+            raise ValueError("future research evidence: news")
         symbols = set(item.get("symbols", []))
         if not symbols <= allowed_symbols:
             raise ValueError("news item references symbol outside research bundle")
