@@ -1,0 +1,22 @@
+{
+  "probe_id": "universe-probe-20261003-04",
+  "market_timezone": "Asia/Shanghai",
+  "history_requested_start": "2025-08-30",
+  "history_requested_end": "2026-10-03",
+  "provider_eligible_count": 3197,
+  "provider_total_rows": null,
+  "source": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData",
+  "source_provider": "Sina",
+  "fallback_used": true,
+  "primary_failure": "HTTPError: HTTP Error 502: Bad Gateway",
+  "source_pages": 43,
+  "retrieved_at": "2026-10-02T16:52:38.642164+00:00",
+  "formal_live_validated": false,
+  "reason": "Research/source probe only; quote freshness/session executability not verified.",
+  "raw_full_universe_persisted": false,
+  "low_recovery_seed_count": 30,
+  "abnormal_drop_seed_count": 30,
+  "low_history_probe_verified": true,
+  "drop_history_probe_verified": true,
+  "not_a_recommendation": true
+}
