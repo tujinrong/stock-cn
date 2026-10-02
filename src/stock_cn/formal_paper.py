@@ -18,6 +18,7 @@ from .paper_core import execute_single_order, validate_decision_contract
 from .evidence import official_disclosure_status, validate_official_disclosure_pack
 from .research_state import load_formal_state
 from .research_bundle import build_decision_research_bundle, buy_research_preflight
+from .research_inputs import attach_research_inputs, load_research_inputs
 from .sim_data import number
 from .simulation import digest, holding_table, require
 from .variant_prompts import variant_root, read as read_prompt_json, sha
@@ -156,11 +157,21 @@ class FormalPaperSession:
 
     def prepare(self, snapshot):
         validate_live_snapshot(snapshot)
+        as_of = snapshot["as_of"]
+        day = snapshot["market_date"]
+        research_manifest = (
+            self.repo / "research-inputs" / self.variant / day / "manifest.json"
+        )
+        if research_manifest.exists():
+            file_bundle = load_research_inputs(
+                self.repo, self.variant, day, as_of=as_of
+            )
+            require(file_bundle.get("mode") == "FORMAL",
+                    "FORMAL runtime cannot use SIMULATION research inputs")
+            snapshot = attach_research_inputs(snapshot, file_bundle)
         state = read_json(self.holdings_path)
         require(state.get("status") != "NOT_INITIALIZED", "formal account not initialized")
         require(state.get("_meta", {}).get("mode") == "FORMAL", "not a formal account")
-        as_of = snapshot["as_of"]
-        day = snapshot["market_date"]
         before = copy.deepcopy(state)
         held_symbols = {p["symbol"] for p in before["positions"]}
         research_state = None
@@ -247,6 +258,7 @@ class FormalPaperSession:
             "financial_reviews": snapshot.get("financial_reviews"),
             "news_research": snapshot.get("news_research"),
             "decision_research_bundle": research_bundle,
+            "research_input_manifest": snapshot.get("research_input_manifest"),
             "tools": snapshot.get("tools", "verified live-data adapter"),
             "limitations": snapshot.get("limitations", []),
             "fundamentals_news_coverage": snapshot.get("fundamentals_news_coverage",
