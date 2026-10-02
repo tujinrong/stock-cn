@@ -1,0 +1,14 @@
+{
+  "request_id": "F01-candidate-context-r01",
+  "variant": "F01",
+  "rounds": 1,
+  "status": "REQUESTED",
+  "issues": [
+    "CANDIDATE_SCOPE",
+    "RESEARCH_STATE",
+    "FRESH_DROP_CAUSALITY"
+  ],
+  "reason": "Real universe probe confirmed drop-day candidates must remain monitor-only until later sessions. Structural clarification only.",
+  "future_performance_feedback": false,
+  "formal_promotion": false
+}
