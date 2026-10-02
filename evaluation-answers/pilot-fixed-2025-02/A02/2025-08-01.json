@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "A",
+  "variant_id": "A02",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-fixed-2025-02-20250801-A02",
+  "decision_id": "eval-pilot-fixed-2025-02-20250801-A02-2025-08-04",
+  "date": "2025-08-04",
+  "decision_time": "2025-08-01T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "36a5a2ab0fe6cf5817995b54b4d18b3e39c85f3d",
+  "status": "READY",
+  "action": "HOLD",
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "组合约66%为股票、34%为现金。股票池近20日整体偏弱，招商银行、福耀玻璃和长江电力均靠近短中期低位但尚未出现明确转强；比亚迪存在除权/送转导致的价格口径断点，无法可靠使用跨断点趋势指标。当前现金仍能缓冲波动，继续观察比贸然加仓或恐慌减仓更合适，因此HOLD。",
+  "risks": [
+    "弱势行情可能继续，现有股票仓位仍会承受下跌。",
+    "若低位迅速反转，等待会错过部分收益。",
+    "比亚迪断点后的连续样本过短，判断不确定性较高。"
+  ],
+  "evidence": [],
+  "data_gaps": [
+    "比亚迪断点后仅有很短连续价格样本。",
+    "缺少历史时点财务、公告和新闻。",
+    "尚无历史分钟线，使用收盘时点近似。"
+  ]
+}

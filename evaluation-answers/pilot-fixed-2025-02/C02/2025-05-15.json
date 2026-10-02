@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "C",
+  "variant_id": "C02",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-fixed-2025-02-20250515-C02",
+  "decision_id": "eval-pilot-fixed-2025-02-20250515-C02-2025-05-16",
+  "date": "2025-05-16",
+  "decision_time": "2025-05-15T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "36a5a2ab0fe6cf5817995b54b4d18b3e39c85f3d",
+  "status": "READY",
+  "action": "BUY",
+  "order_proposal": {
+    "symbol": "600660.SH",
+    "side": "BUY",
+    "quantity": 300,
+    "reference_price_cny": "56.670",
+    "quote_time": "2025-05-15T15:00:00+08:00",
+    "quote_source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600660%2Cday%2C2024-09-01%2C2025-09-30%2C320%2C"
+  },
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "账户全为现金。比亚迪、招商银行和长江电力都接近20日阶段高位，不适合在这一时点追价；恒立液压短期下跌且波动高。福耀玻璃的120日位置较低、价格接近20日均线，波动显著低于恒立液压，风险收益更均衡。建议先买入300股福耀玻璃作为约8%至9%的试探仓位，其余保持现金。",
+  "risks": [
+    "福耀玻璃尚未形成强趋势，可能继续横盘或下跌。",
+    "全现金转为持股后开始承担市场风险。",
+    "缺少当时财务和行业事件核验。"
+  ],
+  "evidence": [],
+  "data_gaps": [
+    "缺少历史时点财务、公告和新闻。",
+    "250日价格位置不可用。"
+  ]
+}

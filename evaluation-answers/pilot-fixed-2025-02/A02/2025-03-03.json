@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "A",
+  "variant_id": "A02",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-fixed-2025-02-20250303-A02",
+  "decision_id": "eval-pilot-fixed-2025-02-20250303-A02-2025-03-04",
+  "date": "2025-03-04",
+  "decision_time": "2025-03-03T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "36a5a2ab0fe6cf5817995b54b4d18b3e39c85f3d",
+  "status": "READY",
+  "action": "HOLD",
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "组合约56%为股票、44%为现金，已有较充足的防守缓冲。招商银行处于近60日高位，恒立液压此前涨幅大且波动高；福耀玻璃和长江电力虽处低位但仍在下行，缺少回升确认。当前没有一笔交易能明显改善组合的收益风险关系，因此维持现有持仓与现金。",
+  "risks": [
+    "低位持仓可能继续下跌，等待确认可能扩大账面波动。",
+    "招商银行和恒立液压处于相对高位，存在回撤风险。",
+    "只使用历史价量与结构性行业背景，缺少当时财务、公告和新闻核验。"
+  ],
+  "evidence": [],
+  "data_gaps": [
+    "缺少历史时点财务、公告和新闻。",
+    "可见历史不足250个交易日，年度位置判断不完整。"
+  ]
+}
