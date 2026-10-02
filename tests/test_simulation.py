@@ -183,6 +183,7 @@ def test_future_evidence_rejected(repo):
 def test_current_day_and_future_news_not_in_prompt(repo):
     data = fixture()
     data["bars"]["2025-08-04"]["600036.SH"]["close"] = "9999.99"
+    data["bars"]["2025-08-04"]["600036.SH"]["high"] = "10000.00"
     data["evidence"] = [{"published_at":"2025-08-04T12:00:00+08:00", "source":"fixture", "text":"FUTURE_SECRET"},
                         {"published_at":"2025-08-01T12:00:00+08:00", "source":"fixture", "text":"PAST_VISIBLE"}]
     request = sim(repo, data=data).prepare("2025-08-04")
