@@ -11,5 +11,6 @@
   "official_disclosure_pack_path": "runs/research/evidence/cninfo-probe-20261003-01/official-disclosure-pack.json",
   "candidate_research_pack_path": "runs/research/universe/universe-probe-20261003-04/D-low-recovery-research-pack.json",
   "coverage": "SURVIVORSHIP_LIMITED_HISTORICAL_CANDIDATE_SET",
-  "formal_execution": false
+  "formal_execution": false,
+  "retry_revision": 1
 }
