@@ -1,0 +1,34 @@
+{
+  "mode": "SIMULATION",
+  "submode": "TIME_TRAVEL_JUMP",
+  "series": "C",
+  "variant": "C03",
+  "test_id": "eval-pilot-variants-2025-01-20250303",
+  "time_travel_target_date": "2025-03-03",
+  "planned_execution_date": "2025-03-04",
+  "input_fingerprint": "d2f51b23911b6d89f6bea9a2ea96d699e4d04aa663d4becfdaafb75cca2b7d48",
+  "source_commit": "e8b735a9e4efb811f5daa7efd42d673d94d6f237",
+  "fees": {
+    "commission_rate": "0.00025",
+    "min_commission": "5.0",
+    "stamp_duty_sell_rate": "0.0005",
+    "transfer_fee_rate": "0.00001"
+  },
+  "data_kind": "REAL_HISTORY",
+  "fidelity": "FLOW_ONLY_REAL_PRICES",
+  "execution_basis": "TARGET_CLOSE_KNOWLEDGE_NEXT_SESSION_OPEN",
+  "initialization": "TIME_TRAVEL_OPENING_BALANCE_AT_TARGET_CLOSE",
+  "limitations": [
+    "No archived intraday/news/fundamental verification.",
+    "Previous close decision, next open execution; not 11:00 replay.",
+    "For configured ordinary main-board stocks, 10% daily limit prices are reconstructed from the previous raw close; suspected >25% basis breaks are left unexecutable.",
+    "Corporate actions are not fully adjusted; structural breaks are detected conservatively.",
+    "Missing-symbol sessions are preserved and rejected, not dropped: 0",
+    "Jump account starts at target-date close; it does not recreate trades before that date.",
+    "This is a point-in-time scenario, distinct from a continuous backtest."
+  ],
+  "source_version": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600036%2Cday%2C2024-09-01%2C2025-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600660%2Cday%2C2024-09-01%2C2025-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600900%2Cday%2C2024-09-01%2C2025-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601100%2Cday%2C2024-09-01%2C2025-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz002594%2Cday%2C2024-09-01%2C2025-09-30%2C320%2C",
+  "template_sha256": {
+    "strategies/C/variants/C03/prompt.md": "a81077130998a5bf0311f99b5fb63a114b126ef7d3332c5c97f39b71e71737da"
+  }
+}
