@@ -1,0 +1,41 @@
+{
+  "status": "SEARCHED",
+  "searched_at": "2026-09-30T14:50:00+08:00",
+  "items": [
+    {
+      "symbols": [
+        "600276.SH"
+      ],
+      "title": "恒瑞医药关于与Novo Nordisk A/S签署HRS-1596项目授权许可协议的公告",
+      "published_at": "2026-09-29T00:00:00+08:00",
+      "source": "CNINFO/恒瑞医药官方公告",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-09-29/1225586487.PDF",
+      "material_fact": true,
+      "official_recheck_status": "CONFIRMED_BY_OFFICIAL_DISCLOSURE"
+    },
+    {
+      "symbols": [
+        "600276.SH"
+      ],
+      "title": "恒瑞医药关于首次回购公司A股股份的公告",
+      "published_at": "2026-09-18T00:00:00+08:00",
+      "source": "CNINFO/恒瑞医药官方公告",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-09-18/1225569834.PDF",
+      "material_fact": true,
+      "official_recheck_status": "CONFIRMED_BY_OFFICIAL_DISCLOSURE"
+    },
+    {
+      "symbols": [
+        "600519.SH"
+      ],
+      "title": "贵州茅台2026年半年度业绩说明会",
+      "published_at": "2026-08-21T00:00:00+08:00",
+      "source": "贵州茅台公司官网",
+      "url": "https://www.moutaichina.com/mtgf/2026-08/21/article_2026082123470140683.html",
+      "material_fact": false
+    }
+  ],
+  "data_gaps": [
+    "历史新闻搜索不是完整新闻数据库；未发现的信息不能解释为当时不存在相关事件。"
+  ]
+}
