@@ -1,0 +1,25 @@
+{
+  "strategy_id": "D",
+  "variant_id": "D01",
+  "mode": "SIMULATION",
+  "run_id": "ci-37061038344-1-D01",
+  "decision_id": "ci-37061038344-1-D01-2025-08-06",
+  "date": "2025-08-06",
+  "decision_time": "2025-08-05T15:00:00+08:00",
+  "input_revision": 3,
+  "input_commit": "2f5b138bf30a0bc3cdb4527e94e1bd6516317fe3",
+  "schema_version": "0.3-draft",
+  "status": "READY",
+  "action": "HOLD",
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "TEST_ONLY：脚本用于验证AI接口、交易校验和记账，不是投资判断。",
+  "risks": [
+    "不能用本次收益评价AI投资能力。"
+  ],
+  "evidence": [],
+  "data_gaps": [
+    "没有完整历史财务和新闻研究。"
+  ]
+}
