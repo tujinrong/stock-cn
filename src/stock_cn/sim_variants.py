@@ -6,6 +6,8 @@ from datetime import datetime
 
 from .simulation import Simulation as BaseSimulation, Store, digest, money, number, read_json, require
 from .research_state import sync_simulation_state
+from .research_inputs import load_research_inputs
+from .research_bundle import buy_research_preflight
 from .variant_prompts import variant_root, validate_prompt
 from .time_travel import append_time_travel_prompt, build_time_travel_context
 
@@ -139,24 +141,48 @@ class VariantSimulation(BaseSimulation):
         require(day in days and days.index(day) > 0, 'not a replay session')
         cutoff = days[days.index(day)-1] + 'T15:00:00+08:00'
         when = datetime.fromisoformat(cutoff)
+        current_state = self.store.load()
+        held_symbols = {p['symbol'] for p in current_state['positions']}
         known = {s: m for s, m in self.data['instruments'].items()
                  if not m.get('known_at') or datetime.fromisoformat(m['known_at']) <= when}
+        travel_day = cutoff[:10]
+        file_research = None
+        research_manifest_path = (
+            self.repo / 'research-inputs' / self.variant / travel_day / 'manifest.json'
+        )
+        if research_manifest_path.exists():
+            file_research = load_research_inputs(
+                self.repo, self.variant, travel_day, as_of=cutoff
+            )
+            require(file_research.get('mode') == 'SIMULATION',
+                    'historical simulation cannot use FORMAL research inputs')
+            scope = file_research.get('universe_scope') or {}
+            authorized = set(scope.get('authorized_symbols') or [])
+            required = authorized | held_symbols
+            require(required <= set(known),
+                    'research input references symbol missing from historical dataset')
+            if required:
+                known = {s: m for s, m in known.items() if s in required}
         include_evidence = bool(self.data.get('time_travel_include_evidence', False))
         evidence = ([e for e in self.data.get('evidence', [])
                      if datetime.fromisoformat(e['published_at']) <= when]
                     if include_evidence else [])
-        travel_day = cutoff[:10]
         travel = build_time_travel_context(
             self.data, travel_day, travel_day, symbols=sorted(known),
             ignore_news=not include_evidence, execution_date=day)
         research_state = None
         if self.spec.get('type') == 'AI_SELECT':
-            pack = self.data.get('candidate_research_pack')
+            file_pack = file_research.get('candidate_research_pack') if file_research else None
+            file_scope = file_research.get('universe_scope') if file_research else None
+            pack = file_pack if file_pack is not None else self.data.get('candidate_research_pack')
+            if file_pack is not None and self.data.get('candidate_research_pack') is not None:
+                require(file_pack == self.data.get('candidate_research_pack'),
+                        'file candidate pack conflicts with supplied historical dataset')
             if isinstance(pack, dict) and pack.get('cutoff_date'):
                 require(pack['cutoff_date'] <= travel_day,
                         'candidate research pack comes from the future')
             watchlist = self.data.get('research_watchlist')
-            universe_scope = self.data.get('universe_scope') or {
+            universe_scope = file_scope or self.data.get('universe_scope') or {
                 'authorized_symbols': sorted(known),
                 'coverage': 'BOUNDED_RESEARCH_CANDIDATES_ONLY',
                 'not_full_a_share_claim': True,
@@ -179,6 +205,19 @@ class VariantSimulation(BaseSimulation):
         view.data['instruments'] = known
         view.data['evidence'] = evidence
         view.data['research_state'] = research_state
+        if file_research is not None:
+            view.data['official_disclosure_pack'] = file_research.get('official_disclosure_pack')
+            view.data['financial_reviews'] = file_research.get('financial_reviews')
+            view.data['news_research'] = file_research.get('news_research')
+            view.data['candidate_research_pack'] = file_research.get('candidate_research_pack')
+            view.data['universe_scope'] = file_research.get('universe_scope')
+            view.data['research_input_manifest'] = {
+                'variant_id': file_research['variant_id'],
+                'path': file_research['path'],
+                'information_cutoff': file_research['information_cutoff'],
+                'file_sha256': file_research['file_sha256'],
+                'missing_files': file_research['missing_files'],
+            }
         view.evaluation_start_override = self.data.get('evaluation_start_known')
         view.evaluation_end_override = self.data.get('evaluation_end_known')
         view.fingerprint = digest(visible)
@@ -192,6 +231,10 @@ class VariantSimulation(BaseSimulation):
             view.store.write(f"requests/{day}/time_travel.json", travel)
             if research_state is not None:
                 view.store.write(f"requests/{day}/research_state.json", research_state)
+            if file_research is not None:
+                view.store.write(
+                    f"requests/{day}/research_input_manifest.json",
+                    view.data['research_input_manifest'])
         return request
 
     def validate_decision(self, response, request):
@@ -208,6 +251,11 @@ class VariantSimulation(BaseSimulation):
         super().validate_decision(response, request)
         if self.variant_mode and response['order_proposal']:
             order = response['order_proposal']
+            if order.get('side') == 'BUY' and request.get('decision_research_bundle') is not None:
+                preflight = buy_research_preflight(
+                    request.get('decision_research_bundle'), order['symbol'])
+                require(preflight['ready'],
+                        'BUY research preflight failed: ' + ','.join(preflight['reasons']))
             rows = request['market'].get(order['symbol'], [])
             require(bool(rows), 'no point-in-time quote for selected stock')
             last = rows[-1]
