@@ -111,12 +111,41 @@ def _vol(closes, periods=20):
     return _fmt(statistics.pstdev(returns) * math.sqrt(252) * 100) if returns else None
 
 
+def _latest_structural_break(rows, threshold=Decimal("0.25")):
+    """Flag an implausibly large one-session raw-price jump/drop.
+
+    Ordinary main-board daily moves cannot normally explain a >25% close-to-close
+    discontinuity. Treat it as a suspected corporate-action/data-basis break, not
+    as an economic return, unless separately verified.
+    """
+    last = None
+    for i in range(1, len(rows)):
+        prev = number(rows[i-1][1]["close"])
+        cur = number(rows[i][1]["close"])
+        change = cur / prev - 1
+        if abs(change) > threshold:
+            last = {
+                "date": rows[i][0],
+                "previous_date": rows[i-1][0],
+                "previous_close": _fmt(prev),
+                "current_close": _fmt(cur),
+                "raw_change_pct": _fmt(change * 100),
+                "classification": "SUSPECTED_CORPORATE_ACTION_OR_DATA_BASIS_BREAK",
+            }
+    return last
+
+
 def symbol_snapshot(data, symbol, cutoff_date):
     rows = [(d, data["bars"][d][symbol]) for d in data["sessions"]
             if d <= cutoff_date and symbol in data["bars"].get(d, {})]
     if not rows:
         return None
-    closes = [number(b["close"]) for _, b in rows]
+    break_info = _latest_structural_break(rows)
+    continuous_rows = rows
+    if break_info:
+        break_date = break_info["date"]
+        continuous_rows = [(d, b) for d, b in rows if d >= break_date]
+    closes = [number(b["close"]) for _, b in continuous_rows]
     daily = [{"date": d, **_ohlcv(b)} for d, b in rows[-20:]]
     weekly = _aggregate(
         rows,
@@ -133,12 +162,15 @@ def symbol_snapshot(data, symbol, cutoff_date):
         "industry_characteristics": meta.get("industry_characteristics") or profile.get("characteristics", []),
         "as_of_close": _fmt(closes[-1]),
         "observations": len(rows),
+        "continuous_analysis_sessions": len(continuous_rows),
+        "suspected_price_basis_break": break_info,
         "history_coverage": {
             "sessions": len(rows),
-            "has_20_sessions": len(rows) >= 20,
-            "has_60_sessions": len(rows) >= 60,
-            "has_120_sessions": len(rows) >= 120,
-            "has_250_sessions": len(rows) >= 250,
+            "continuous_sessions": len(continuous_rows),
+            "has_20_sessions": len(continuous_rows) >= 20,
+            "has_60_sessions": len(continuous_rows) >= 60,
+            "has_120_sessions": len(continuous_rows) >= 120,
+            "has_250_sessions": len(continuous_rows) >= 250,
         },
         "returns_pct": {
             "5_sessions": _ret(closes, 5),
@@ -205,7 +237,7 @@ def build_time_travel_context(data, target_date, cutoff_date, *, symbols=None, i
         "limitations": [
             "行业特点为结构性研究背景，不代表当日行业消息。",
             "未提供真实大盘指数时，market_proxy只是本次可见股票池等权代理。",
-            "日/周/月K线均由knowledge_cutoff以前的未复权历史日线聚合；某窗口历史不足时对应统计明确为null，不冒充完整周期。",
+            "日/周/月K线均由knowledge_cutoff以前的未复权历史日线聚合；若检测到疑似除权/送转或数据口径断点，跨断点收益、均线和区间位置不混算，只使用断点后的连续价格段；历史不足时对应统计为null。",
             "新闻默认忽略；没有历史新闻不解释为当时没有新闻或风险。",
             "AI模型本身可能含有后来知识，因此仍不能声称完全消除前视偏差。",
         ],
