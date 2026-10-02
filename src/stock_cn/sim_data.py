@@ -62,9 +62,15 @@ def validate_dataset(data):
                 raise ValueError("unknown symbol or missing provenance")
             if number(bar["open"]) <= 0 or number(bar["close"]) <= 0:
                 raise ValueError("prices must be positive")
-            for key in ("open", "close", "limit_up", "limit_down"):
+            for key in ("open", "close", "high", "low", "limit_up", "limit_down"):
                 if bar.get(key) is not None and number(bar[key]) * 100 != (number(bar[key]) * 100).to_integral_value():
                     raise ValueError("price not on the 0.01 tick")
+            if bar.get("high") is not None and number(bar["high"]) < max(number(bar["open"]), number(bar["close"])):
+                raise ValueError("high below open/close")
+            if bar.get("low") is not None and number(bar["low"]) > min(number(bar["open"]), number(bar["close"])):
+                raise ValueError("low above open/close")
+            if bar.get("volume") is not None and number(bar["volume"]) < 0:
+                raise ValueError("negative volume")
     for item in data.get("evidence", []):
         ts = datetime.fromisoformat(item["published_at"])
         if ts.tzinfo is None or not item.get("source"):
@@ -95,8 +101,8 @@ def fetch_daily(symbols, start, end, request=request_json):
     date.fromisoformat(end)
     if end < start or len(symbols) > 10:
         raise ValueError("invalid interval or more than 10 requested symbols")
-    if (date.fromisoformat(end) - date.fromisoformat(start)).days > 180:
-        raise ValueError("probe/replay request limited to 180 calendar days")
+    if (date.fromisoformat(end) - date.fromisoformat(start)).days > 400:
+        raise ValueError("probe/replay request limited to 400 calendar days")
     output, attempts = {}, []
     for symbol in symbols:
         if symbol not in SYMBOLS:
@@ -118,7 +124,10 @@ def fetch_daily(symbols, start, end, request=request_json):
                     rows = payload["data"][tx_symbol]["day"]
                 else:
                     rows = [x.split(",") for x in payload["data"]["klines"]]
-                selected = {x[0]: {"open": str(number(x[1])), "close": str(number(x[2])),
+                selected = {x[0]: {
+                                      "open": str(number(x[1])), "close": str(number(x[2])),
+                                      "high": str(number(x[3])), "low": str(number(x[4])),
+                                      "volume": str(number(x[5])) if len(x) > 5 and x[5] not in (None, "") else None,
                                       "source": url, "provider": provider}
                             for x in rows if start <= x[0] <= end}
                 if len(selected) < 2:
@@ -161,6 +170,9 @@ def fixture():
     for i, day in enumerate(days):
         bars[day] = {s: {"open": str(number(p) + number(i) / 10),
                          "close": str(number(p) + number(i) / 5),
+                         "high": str(number(p) + number(i) / 5 + Decimal("0.20")),
+                         "low": str(number(p) + number(i) / 10 - Decimal("0.20")),
+                         "volume": str(100000 + i * 1000),
                          "source": "TEST_ONLY:synthetic-v1", "suspended": False,
                          "limit_down": str(number(p) * Decimal("0.9")),
                          "limit_up": str(number(p) * Decimal("1.1"))}
