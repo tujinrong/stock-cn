@@ -34,30 +34,61 @@ def _symbol(code, market):
     return code + (".SH" if market == 1 else ".SZ")
 
 
-def fetch_live_universe(request=request_json, *, page_size=5000):
+def fetch_live_universe(request=request_json, *, page_size=100, max_pages=60):
     """Fetch a current broad A-share cross section from Eastmoney.
 
-    This is a current/live-discovery adapter, not a historical universe archive.
+    The public list endpoint is paged conservatively because large single-page
+    requests may be truncated. This is a current discovery adapter, not a
+    historical universe archive.
     """
-    if not 100 <= page_size <= 6000:
-        raise ValueError("invalid page size")
-    url = EASTMONEY_CLIST + "?" + urlencode({
-        "pn": 1, "pz": page_size, "po": 1, "np": 1, "fltt": 2, "invt": 2,
-        "fid": "f3",
-        "fs": "m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23",
-        "fields": "f2,f3,f6,f8,f12,f13,f14,f20,f21",
-    })
-    payload = request(url)
-    data = payload.get("data") or {}
-    diff = data.get("diff") or []
-    if isinstance(diff, dict):
-        rows = list(diff.values())
-    elif isinstance(diff, list):
-        rows = diff
-    else:
-        raise ValueError("unexpected universe payload")
+    if not 20 <= page_size <= 200 or not 1 <= max_pages <= 100:
+        raise ValueError("invalid paging budget")
+    all_rows = {}
+    total = None
+    pages = 0
+    source_urls = []
+    for page in range(1, max_pages + 1):
+        url = EASTMONEY_CLIST + "?" + urlencode({
+            "pn": page, "pz": page_size, "po": 1, "np": 1, "fltt": 2, "invt": 2,
+            "fid": "f3",
+            "fs": "m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23",
+            "fields": "f2,f3,f6,f8,f12,f13,f14,f20,f21",
+        })
+        payload = request(url)
+        data = payload.get("data") or {}
+        if total is None:
+            total = data.get("total")
+        diff = data.get("diff") or []
+        if isinstance(diff, dict):
+            page_rows = list(diff.values())
+        elif isinstance(diff, list):
+            page_rows = diff
+        else:
+            raise ValueError("unexpected universe payload")
+        if not page_rows:
+            break
+        before = len(all_rows)
+        for row in page_rows:
+            code = str(row.get("f12", ""))
+            try:
+                market = int(row.get("f13"))
+            except (TypeError, ValueError):
+                continue
+            key = (market, code)
+            all_rows[key] = row
+        pages += 1
+        source_urls.append(url)
+        if len(all_rows) == before:
+            break
+        if total is not None:
+            try:
+                if len(all_rows) >= int(total):
+                    break
+            except (TypeError, ValueError):
+                pass
+
     out = []
-    for row in rows:
+    for (_, _), row in all_rows.items():
         code, market = str(row.get("f12", "")), row.get("f13")
         try:
             market = int(market)
@@ -91,13 +122,19 @@ def fetch_live_universe(request=request_json, *, page_size=5000):
             ) if cond],
         })
     if len(out) < 100:
-        raise ValueError("unexpectedly small eligible universe")
+        raise ValueError(
+            f"unexpectedly small eligible universe: eligible={len(out)} "
+            f"raw_unique={len(all_rows)} total={total} pages={pages}"
+        )
     return {
         "kind": "CURRENT_UNIVERSE_SNAPSHOT",
         "retrieved_at": datetime.now(timezone.utc).isoformat(),
-        "source": url,
+        "source": EASTMONEY_CLIST,
+        "source_pages": pages,
+        "source_last_url": source_urls[-1] if source_urls else None,
         "scope": "SH/SZ ordinary main-board prefixes supported by current project; STAR and unsupported boards excluded",
-        "total_provider_rows": data.get("total"),
+        "total_provider_rows": total,
+        "raw_unique_rows": len(all_rows),
         "eligible_count": len(out),
         "rows": out,
     }
