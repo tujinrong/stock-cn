@@ -157,3 +157,16 @@ def test_changed_locked_decision_is_rejected(repo):
     p.write_text(json.dumps(obj, ensure_ascii=False))
     with pytest.raises(ValidationError, match="changed"):
         score_locked_decision(repo, "ev4", "C02", target, data, (5,))
+
+def test_retrieval_timestamp_does_not_change_semantic_evaluation_identity(repo):
+    materialize(repo)
+    data = history()
+    data["retrieved_at"] = "2025-10-01T00:00:00+00:00"
+    target = data["sessions"][8]
+    prepare_batch(repo, "ev-retrieved", ["C02"], data, [target])
+    decision, _ = make_buy_decision(repo, "ev-retrieved", "C02", target)
+    save_locked_decision(repo, "ev-retrieved", "C02", target, decision)
+    refetched = copy.deepcopy(data)
+    refetched["retrieved_at"] = "2025-10-02T00:00:00+00:00"
+    result = score_locked_decision(repo, "ev-retrieved", "C02", target, refetched, (5,))
+    assert result["scores"][0]["status"] == "SCORED"
