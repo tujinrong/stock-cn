@@ -19,6 +19,7 @@ from pathlib import Path
 
 from .sim_data import number, validate_dataset
 from .paper_core import PaperCoreError, execute_single_order, validate_decision_contract
+from .research_bundle import build_decision_research_bundle
 
 
 class ValidationError(ValueError):
@@ -330,6 +331,25 @@ class Simulation:
             evidence = [x for x in self.data.get("evidence", [])
                         if datetime.fromisoformat(x["published_at"]) <= datetime.fromisoformat(cutoff)]
             prior = [e["details"].get("decision", {}).get("summary", "") for e in self.store.events()[-3:]]
+            research_bundle = None
+            if any(self.data.get(k) is not None for k in (
+                "official_disclosure_pack", "financial_reviews", "news_research",
+                "candidate_research_pack", "research_state", "research_input_manifest",
+            )):
+                research_bundle = build_decision_research_bundle(
+                    sorted(self.data["instruments"]),
+                    as_of=cutoff,
+                    official_disclosure_pack=self.data.get("official_disclosure_pack"),
+                    candidate_research_pack=self.data.get("candidate_research_pack"),
+                    research_state=self.data.get("research_state"),
+                    financial_reviews=self.data.get("financial_reviews"),
+                    news_research=self.data.get("news_research"),
+                    market_context={
+                        "mode": "SIMULATION",
+                        "visible_symbols": sorted(self.data["instruments"]),
+                        "fidelity": self.data.get("fidelity"),
+                    },
+                )
             fields = {"RUN_CONTEXT": dumps(context), "HOLDINGS_JSON": dumps(before),
                       "HOLDINGS_TABLE_ROWS": holding_table(before), "PREVIOUS_DECISION_SUMMARY": "\n".join(prior) or "模拟期初",
                       "AUTHORIZED_UNIVERSE": dumps(self.spec.get("symbols", list(self.data["instruments"]))),
@@ -338,7 +358,10 @@ class Simulation:
                         "research_state": self.data.get("research_state"),
                         "universe_scope": self.data.get("universe_scope"),
                         "official_disclosure_pack": self.data.get("official_disclosure_pack"),
+                        "financial_reviews": self.data.get("financial_reviews"),
                         "news_research": self.data.get("news_research"),
+                        "decision_research_bundle": research_bundle,
+                        "research_input_manifest": self.data.get("research_input_manifest"),
                         "tools": "Use supplied point-in-time evidence only for this replay. No current-web lookahead.",
                         "limitations": self.data.get("limitations", []), "fundamentals_news_coverage": "only supplied evidence"})}
             template = self.templates[f"strategies/{self.series}/ai_input_template.md"]
@@ -349,7 +372,9 @@ class Simulation:
                 template = template.replace("{{" + name + "}}", value)
             require(not re.search(r"\{\{[^}]+\}\}", template), "unresolved prompt variable")
             request = {"context": context, "holdings": before, "market": market, "evidence": evidence,
-                       "prompt": template, "prompt_sha256": digest(template), "source_holdings": state}
+                       "prompt": template, "prompt_sha256": digest(template), "source_holdings": state,
+                       "decision_research_bundle": research_bundle,
+                       "research_input_manifest": self.data.get("research_input_manifest")}
             folder = f"requests/{day}"
             existing = self.store.path(f"{folder}/request.json")
             if existing.exists():
