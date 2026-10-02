@@ -526,3 +526,106 @@ def build_deep_research_pack(seed, dataset, cutoff_date, purpose, *, max_candida
         "survivorship_warning": seed.get("survivorship_warning"),
         "candidates": selected,
     }
+
+
+
+def update_abnormal_drop_watchlist(previous_state, seed, dataset, cutoff_date, *, max_entries=50):
+    """Carry abnormal-drop candidates forward so recovery can be judged later.
+
+    This is research state only. A watchlist status never authorizes or implies a
+    trade. The initial drop day is deliberately MONITORING, not a buy point.
+    """
+    date.fromisoformat(cutoff_date)
+    if type(max_entries) is not int or not 10 <= max_entries <= 100:
+        raise ValueError("watchlist budget must be 10..100")
+    previous_state = previous_state or {}
+    old = {x["symbol"]: dict(x) for x in previous_state.get("candidate_watchlist", [])
+           if isinstance(x, dict) and x.get("symbol")}
+    seed_rows = {x["symbol"]: x for x in seed.get("rows", [])}
+    symbols = set(old) | set(seed_rows)
+    entries = []
+    for symbol in sorted(symbols):
+        snap = symbol_snapshot(dataset, symbol, cutoff_date) if symbol in dataset.get("instruments", {}) else None
+        item = dict(old.get(symbol, {}))
+        meta = seed_rows.get(symbol)
+        if not item:
+            item = {
+                "symbol": symbol,
+                "name": (meta or {}).get("name"),
+                "origin_drop_date": cutoff_date,
+                "origin_price_cny": (meta or {}).get("price_cny"),
+                "origin_change_pct": (meta or {}).get("change_pct"),
+                "risk_tags": list((meta or {}).get("risk_tags") or []),
+                "first_seen_source": seed.get("source"),
+            }
+        item["last_review_date"] = cutoff_date
+        if meta:
+            item["last_cross_section_change_pct"] = meta.get("change_pct")
+            item["last_cross_section_price_cny"] = meta.get("price_cny")
+        if not snap:
+            item["research_state"] = "DATA_UNAVAILABLE"
+            item["recovery_evidence"] = []
+            entries.append(item)
+            continue
+        item["last_close_cny"] = snap["as_of_close"]
+        item["history_summary"] = {
+            "returns_pct": snap["returns_pct"],
+            "moving_average": snap["moving_average"],
+            "range_position_0_to_1": snap["range_position_0_to_1"],
+            "continuous_sessions": snap["continuous_analysis_sessions"],
+            "suspected_price_basis_break": snap["suspected_price_basis_break"],
+        }
+        evidence = []
+        if snap["suspected_price_basis_break"]:
+            state = "DATA_BASIS_BREAK_REVIEW"
+            evidence.append("存在疑似权益事件/价格口径断点。")
+        elif item.get("risk_tags"):
+            state = "RISK_TAGGED_REVIEW"
+            evidence.append("存在风险名称/特殊上市状态标签。")
+        elif item["origin_drop_date"] == cutoff_date:
+            state = "FRESH_DROP_MONITOR"
+            evidence.append("今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。")
+        else:
+            r5 = snap["returns_pct"].get("5_sessions")
+            ma5 = snap["moving_average"].get("ma5")
+            closes = [number(x["close"]) for x in snap["kline"]["daily_last20"]]
+            no_new_low_last3 = len(closes) >= 4 and min(closes[-3:]) > min(closes[-4:])
+            above_ma5 = ma5 is not None and number(snap["as_of_close"]) >= number(ma5)
+            positive_5d = r5 is not None and number(r5) > 0
+            if positive_5d:
+                evidence.append("近5个交易日收益已转正。")
+            if above_ma5:
+                evidence.append("当前收盘不低于MA5。")
+            if no_new_low_last3:
+                evidence.append("最近3个收盘未再创前一观察窗口新低。")
+            if positive_5d and above_ma5 and no_new_low_last3:
+                state = "RECOVERY_CONFIRMATION_RESEARCH"
+            elif above_ma5 or no_new_low_last3:
+                state = "EARLY_STABILIZATION_RESEARCH"
+            else:
+                state = "MONITORING_DROP"
+        item["research_state"] = state
+        item["recovery_evidence"] = evidence
+        item["not_a_trade_signal"] = True
+        entries.append(item)
+
+    rank = {
+        "RECOVERY_CONFIRMATION_RESEARCH": 10,
+        "EARLY_STABILIZATION_RESEARCH": 20,
+        "FRESH_DROP_MONITOR": 30,
+        "MONITORING_DROP": 40,
+        "RISK_TAGGED_REVIEW": 80,
+        "DATA_BASIS_BREAK_REVIEW": 90,
+        "DATA_UNAVAILABLE": 95,
+    }
+    entries.sort(key=lambda x: (rank.get(x.get("research_state"), 70),
+                                x.get("origin_drop_date") or "", x["symbol"]))
+    entries = entries[:max_entries]
+    return {
+        "kind": "ABNORMAL_DROP_RESEARCH_WATCHLIST",
+        "date": cutoff_date,
+        "revision": int(previous_state.get("revision", 0)) + 1,
+        "candidate_watchlist": entries,
+        "not_a_recommendation": True,
+        "rule": "Only the variant AI may convert researched recovery evidence into BUY/SELL/HOLD; watchlist state alone never trades.",
+    }
