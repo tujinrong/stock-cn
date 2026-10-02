@@ -132,3 +132,24 @@ def test_short_history_does_not_pretend_to_have_one_year_position():
     for stock in ctx["symbols"]:
         assert stock["history_coverage"]["has_250_sessions"] is False
         assert stock["range_position_0_to_1"]["250_sessions"] is None
+
+def test_structural_break_does_not_fake_abnormal_crash_signal():
+    data = long_history()
+    # Simulate a 3-for-1 style raw-price discontinuity near the target date.
+    split_day = data["sessions"][260]
+    for symbol in data["instruments"]:
+        for day in data["sessions"][260:]:
+            bar = data["bars"][day][symbol]
+            for key in ("open", "close", "high", "low"):
+                bar[key] = f"{float(bar[key]) / 3:.2f}"
+    cutoff = data["sessions"][269]
+    target = data["sessions"][270]
+    ctx = build_time_travel_context(data, target, cutoff)
+    for stock in ctx["symbols"]:
+        br = stock["suspected_price_basis_break"]
+        assert br is not None
+        assert br["classification"] == "SUSPECTED_CORPORATE_ACTION_OR_DATA_BASIS_BREAK"
+        assert stock["continuous_analysis_sessions"] == 10
+        assert stock["returns_pct"]["20_sessions"] is None
+        assert stock["moving_average"]["ma20"] is None
+        assert stock["range_position_0_to_1"]["250_sessions"] is None
