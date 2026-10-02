@@ -156,12 +156,16 @@ def materialize(repo):
                 write(root / 'research_state.json', {
                     'variant_id': variant,
                     'series_id': series['strategy_id'],
+                    'mode': 'FORMAL',
                     'status': 'NOT_STARTED',
                     'date': None,
                     'revision': 0,
                     'candidate_watchlist': [],
                     'last_candidate_pack': None,
                     'last_broad_universe_source': None,
+                    'universe_scope': None,
+                    'last_research_payload_sha256': None,
+                    'last_decision_summary': None,
                     'formal_research_enabled': False,
                     'note': '正式AI_SELECT研究状态；模拟/历史测试必须使用各自隔离目录，不得写入本文件。'
                 })
