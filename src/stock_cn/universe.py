@@ -11,10 +11,12 @@ import json
 from datetime import date, datetime, timezone
 from decimal import Decimal, ROUND_HALF_UP
 from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
 from .sim_data import number, request_json, validate_dataset
 
 EASTMONEY_CLIST = "https://push2.eastmoney.com/api/qt/clist/get"
+SINA_CLIST = "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData"
 
 SH_MAIN_PREFIXES = ("600", "601", "603", "605")
 SZ_MAIN_PREFIXES = ("000", "001", "002", "003")
@@ -34,110 +36,209 @@ def _symbol(code, market):
     return code + (".SH" if market == 1 else ".SZ")
 
 
-def fetch_live_universe(request=request_json, *, page_size=100, max_pages=60):
-    """Fetch a current broad A-share cross section from Eastmoney.
+def _sina_request_json(url, timeout=15):
+    req = Request(url, headers={
+        "User-Agent": "stock-cn-universe/0.5",
+        "Referer": "https://vip.stock.finance.sina.com.cn/",
+    })
+    with urlopen(req, timeout=timeout) as response:
+        raw = response.read(5_000_001)
+    if len(raw) > 5_000_000:
+        raise ValueError("sina response size limit exceeded")
+    return json.loads(raw.decode("utf-8"))
 
-    The public list endpoint is paged conservatively because large single-page
-    requests may be truncated. This is a current discovery adapter, not a
-    historical universe archive.
-    """
-    if not 20 <= page_size <= 200 or not 1 <= max_pages <= 100:
-        raise ValueError("invalid paging budget")
+
+def _row_from_eastmoney(row):
+    code = str(row.get("f12", ""))
+    try:
+        market = int(row.get("f13"))
+    except (TypeError, ValueError):
+        return None
+    if not _eligible(code, market):
+        return None
+    name = str(row.get("f14") or "").strip()
+    if not name:
+        return None
+    def dec(key):
+        value = row.get(key)
+        if value in (None, "", "-"):
+            return None
+        try:
+            return str(number(value))
+        except ValueError:
+            return None
+    return {
+        "symbol": _symbol(code, market),
+        "name": name,
+        "price_cny": dec("f2"),
+        "change_pct": dec("f3"),
+        "amount_cny": dec("f6"),
+        "turnover_rate_pct": dec("f8"),
+        "market_cap_cny": dec("f20"),
+        "float_market_cap_cny": dec("f21"),
+        "source_provider": "Eastmoney",
+        "risk_tags": [tag for tag, cond in (
+            ("ST_NAME", "ST" in name.upper()),
+            ("SPECIAL_NAME", name.startswith(("N", "C"))),
+        ) if cond],
+    }
+
+
+def _row_from_sina(row, market):
+    code = str(row.get("code") or "").strip()
+    if not _eligible(code, market):
+        return None
+    name = str(row.get("name") or "").strip()
+    if not name:
+        return None
+    def dec(key):
+        value = row.get(key)
+        if value in (None, "", "-"):
+            return None
+        try:
+            return str(number(value))
+        except ValueError:
+            return None
+    return {
+        "symbol": _symbol(code, market),
+        "name": name,
+        "price_cny": dec("trade"),
+        "change_pct": dec("changepercent"),
+        "amount_cny": dec("amount"),
+        "turnover_rate_pct": dec("turnoverratio"),
+        # Sina's mktcap/nmc unit convention is not treated as CNY here.
+        "market_cap_cny": None,
+        "float_market_cap_cny": None,
+        "source_provider": "Sina",
+        "risk_tags": [tag for tag, cond in (
+            ("ST_NAME", "ST" in name.upper()),
+            ("SPECIAL_NAME", name.startswith(("N", "C"))),
+        ) if cond],
+    }
+
+
+def _fetch_sina_universe(request, *, page_size=80, max_pages=80):
     all_rows = {}
-    total = None
     pages = 0
     source_urls = []
-    for page in range(1, max_pages + 1):
-        url = EASTMONEY_CLIST + "?" + urlencode({
-            "pn": page, "pz": page_size, "po": 1, "np": 1, "fltt": 2, "invt": 2,
-            "fid": "f3",
-            "fs": "m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23",
-            "fields": "f2,f3,f6,f8,f12,f13,f14,f20,f21",
-        })
-        payload = request(url)
-        data = payload.get("data") or {}
-        if total is None:
-            total = data.get("total")
-        diff = data.get("diff") or []
-        if isinstance(diff, dict):
-            page_rows = list(diff.values())
-        elif isinstance(diff, list):
-            page_rows = diff
-        else:
-            raise ValueError("unexpected universe payload")
-        if not page_rows:
-            break
-        before = len(all_rows)
-        for row in page_rows:
-            code = str(row.get("f12", ""))
-            try:
-                market = int(row.get("f13"))
-            except (TypeError, ValueError):
-                continue
-            key = (market, code)
-            all_rows[key] = row
-        pages += 1
-        source_urls.append(url)
-        if len(all_rows) == before:
-            break
-        if total is not None:
-            try:
-                if len(all_rows) >= int(total):
-                    break
-            except (TypeError, ValueError):
-                pass
-
-    out = []
-    for (_, _), row in all_rows.items():
-        code, market = str(row.get("f12", "")), row.get("f13")
-        try:
-            market = int(market)
-        except (TypeError, ValueError):
-            continue
-        if not _eligible(code, market):
-            continue
-        name = str(row.get("f14") or "").strip()
-        if not name:
-            continue
-        def dec(key):
-            value = row.get(key)
-            if value in (None, "", "-"):
-                return None
-            try:
-                return str(number(value))
-            except ValueError:
-                return None
-        out.append({
-            "symbol": _symbol(code, market),
-            "name": name,
-            "price_cny": dec("f2"),
-            "change_pct": dec("f3"),
-            "amount_cny": dec("f6"),
-            "turnover_rate_pct": dec("f8"),
-            "market_cap_cny": dec("f20"),
-            "float_market_cap_cny": dec("f21"),
-            "risk_tags": [tag for tag, cond in (
-                ("ST_NAME", "ST" in name.upper()),
-                ("SPECIAL_NAME", name.startswith(("N", "C"))),
-            ) if cond],
-        })
-    if len(out) < 100:
-        raise ValueError(
-            f"unexpectedly small eligible universe: eligible={len(out)} "
-            f"raw_unique={len(all_rows)} total={total} pages={pages}"
-        )
+    for node, market in (("sh_a", 1), ("sz_a", 0)):
+        for page in range(1, max_pages + 1):
+            url = SINA_CLIST + "?" + urlencode({
+                "page": page, "num": page_size, "sort": "symbol",
+                "asc": 1, "node": node, "_s_r_a": "page",
+            })
+            payload = request(url)
+            if not isinstance(payload, list):
+                raise ValueError("unexpected Sina universe payload")
+            if not payload:
+                break
+            before = len(all_rows)
+            for raw in payload:
+                item = _row_from_sina(raw, market)
+                if item:
+                    all_rows[item["symbol"]] = item
+            pages += 1
+            source_urls.append(url)
+            if len(payload) < page_size or len(all_rows) == before:
+                break
+    rows = list(all_rows.values())
+    if len(rows) < 100:
+        raise ValueError(f"unexpectedly small Sina universe: eligible={len(rows)} pages={pages}")
     return {
         "kind": "CURRENT_UNIVERSE_SNAPSHOT",
         "retrieved_at": datetime.now(timezone.utc).isoformat(),
-        "source": EASTMONEY_CLIST,
+        "source": SINA_CLIST,
+        "source_provider": "Sina",
         "source_pages": pages,
         "source_last_url": source_urls[-1] if source_urls else None,
         "scope": "SH/SZ ordinary main-board prefixes supported by current project; STAR and unsupported boards excluded",
-        "total_provider_rows": total,
-        "raw_unique_rows": len(all_rows),
-        "eligible_count": len(out),
-        "rows": out,
+        "total_provider_rows": None,
+        "raw_unique_rows": len(rows),
+        "eligible_count": len(rows),
+        "rows": rows,
     }
+
+
+def fetch_live_universe(request=request_json, *, page_size=100, max_pages=60, fallback_request=None):
+    """Fetch current broad A-share cross section with explicit provider fallback.
+
+    Eastmoney is primary. If any paging request fails or returns an implausibly
+    incomplete universe, the partial result is discarded and Sina is fetched from
+    scratch. This is current discovery, not a historical universe archive.
+    """
+    if not 20 <= page_size <= 200 or not 1 <= max_pages <= 100:
+        raise ValueError("invalid paging budget")
+    eastmoney_error = None
+    try:
+        all_rows = {}
+        total = None
+        pages = 0
+        source_urls = []
+        for page in range(1, max_pages + 1):
+            url = EASTMONEY_CLIST + "?" + urlencode({
+                "pn": page, "pz": page_size, "po": 1, "np": 1, "fltt": 2, "invt": 2,
+                "fid": "f3",
+                "fs": "m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23",
+                "fields": "f2,f3,f6,f8,f12,f13,f14,f20,f21",
+            })
+            payload = request(url)
+            data = payload.get("data") or {}
+            if total is None:
+                total = data.get("total")
+            diff = data.get("diff") or []
+            if isinstance(diff, dict):
+                page_rows = list(diff.values())
+            elif isinstance(diff, list):
+                page_rows = diff
+            else:
+                raise ValueError("unexpected Eastmoney universe payload")
+            if not page_rows:
+                break
+            before = len(all_rows)
+            for raw in page_rows:
+                item = _row_from_eastmoney(raw)
+                if item:
+                    all_rows[item["symbol"]] = item
+            pages += 1
+            source_urls.append(url)
+            if len(all_rows) == before:
+                break
+            if total is not None:
+                try:
+                    if page * page_size >= int(total):
+                        break
+                except (TypeError, ValueError):
+                    pass
+        rows = list(all_rows.values())
+        if len(rows) < 100:
+            raise ValueError(
+                f"unexpectedly small Eastmoney universe: eligible={len(rows)} "
+                f"total={total} pages={pages}"
+            )
+        return {
+            "kind": "CURRENT_UNIVERSE_SNAPSHOT",
+            "retrieved_at": datetime.now(timezone.utc).isoformat(),
+            "source": EASTMONEY_CLIST,
+            "source_provider": "Eastmoney",
+            "source_pages": pages,
+            "source_last_url": source_urls[-1] if source_urls else None,
+            "scope": "SH/SZ ordinary main-board prefixes supported by current project; STAR and unsupported boards excluded",
+            "total_provider_rows": total,
+            "raw_unique_rows": len(rows),
+            "eligible_count": len(rows),
+            "rows": rows,
+            "fallback_used": False,
+        }
+    except Exception as exc:
+        eastmoney_error = f"{type(exc).__name__}: {exc}"[:800]
+
+    fb = fallback_request
+    if fb is None:
+        fb = request if request is not request_json else _sina_request_json
+    result = _fetch_sina_universe(fb)
+    result["fallback_used"] = True
+    result["primary_failure"] = eastmoney_error
+    return result
 
 
 def _rank_numeric(rows, key, reverse=True):
