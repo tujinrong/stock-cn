@@ -74,6 +74,37 @@ def test_shared_execution_core_has_mode_parity():
     assert sim_ex["status"] == formal_ex["status"] == "FILLED"
 
 
+def official_pack(symbols=("600036.SH",), *, status="OK"):
+    return {
+        "kind": "OFFICIAL_DISCLOSURE_PACK",
+        "provider": "CNINFO",
+        "provider_official": True,
+        "requested_start": "2026-06-01",
+        "requested_end": "2026-10-08",
+        "as_of": "2026-10-08T11:00:00+08:00",
+        "symbols_requested": list(symbols),
+        "symbols_ok_or_empty": list(symbols) if status in {"OK", "EMPTY"} else [],
+        "symbols_failed": list(symbols) if status == "FAILED" else [],
+        "complete_for_requested_symbols": status != "FAILED",
+        "results": [
+            {
+                "symbol": s,
+                "provider": "CNINFO",
+                "provider_official": True,
+                "provider_status": status,
+                "items": [],
+                **({"error": "TEST_PROVIDER_FAILURE"} if status == "FAILED" else {}),
+            }
+            for s in symbols
+        ],
+        "latest_periodic_report_refs": [],
+        "important_recent_refs": [],
+        "metadata_only": True,
+        "financial_conclusions_extracted": False,
+        "news_research_required": True,
+    }
+
+
 def live_snapshot():
     return {
         "kind": "LIVE_SNAPSHOT", "market_date": "2026-10-08",
@@ -86,6 +117,8 @@ def live_snapshot():
         }},
         "evidence": [{"source": "TEST", "published_at": "2026-10-08T10:30:00+08:00",
                       "title": "已知资料"}],
+        "official_disclosure_pack": official_pack(("600036.SH",)),
+        "news_research": {"status": "NOT_REQUIRED_FOR_TEST_FIXTURE"},
     }
 
 
@@ -210,6 +243,8 @@ def ai_live_snapshot():
             },
         },
         "evidence": [],
+        "official_disclosure_pack": official_pack(("600036.SH", "600900.SH")),
+        "news_research": {"status": "NOT_REQUIRED_FOR_TEST_FIXTURE"},
         "candidate_research_pack": {
             "kind": "AI_SELECT_DEEP_RESEARCH_PACK",
             "purpose": "LOW_RECOVERY",
@@ -333,3 +368,37 @@ def test_ai_select_cutover_requires_research_enablement(tmp_path):
     blocked = cutover_readiness(repo, "D02")
     assert blocked["checks"]["formal_research_enabled"] is False
     assert blocked["ready"] is False
+
+
+
+def test_formal_buy_requires_successful_official_disclosure_coverage(tmp_path, monkeypatch):
+    repo = make_repo(tmp_path)
+    monkeypatch.setattr("stock_cn.formal_paper._source_commit", lambda p: "TEST")
+    session = FormalPaperSession(repo, "A", "A01")
+
+    missing = live_snapshot()
+    missing.pop("official_disclosure_pack")
+    req = session.prepare(missing)
+    with pytest.raises(ValueError, match="official disclosure coverage"):
+        session.validate_decision(response("FORMAL"), req)
+
+    failed = live_snapshot()
+    failed["official_disclosure_pack"] = official_pack(("600036.SH",), status="FAILED")
+    req2 = session.prepare(failed)
+    with pytest.raises(ValueError, match="official disclosure coverage"):
+        session.validate_decision(response("FORMAL"), req2)
+
+
+def test_formal_sell_is_not_blocked_by_official_disclosure_provider_failure(tmp_path, monkeypatch):
+    repo = make_repo(tmp_path)
+    monkeypatch.setattr("stock_cn.formal_paper._source_commit", lambda p: "TEST")
+    session = FormalPaperSession(repo, "A", "A01")
+    snap = live_snapshot()
+    snap["official_disclosure_pack"] = official_pack(("600036.SH",), status="FAILED")
+    req = session.prepare(snap)
+    out = response("FORMAL")
+    out["action"] = "SELL"
+    out["order_proposal"]["side"] = "SELL"
+    after, execution = session.execute_preview(out, req)
+    assert execution["status"] == "FILLED"
+    assert after["positions"][0]["quantity"] == 1900
