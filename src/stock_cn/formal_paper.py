@@ -15,6 +15,7 @@ from decimal import Decimal
 from pathlib import Path
 
 from .paper_core import execute_single_order, validate_decision_contract
+from .research_state import load_formal_state
 from .sim_data import number
 from .simulation import digest, holding_table, require
 from .variant_prompts import variant_root, read as read_prompt_json, sha
@@ -126,6 +127,8 @@ class FormalPaperSession:
         self.prompt, self.prompt_pointer = selected_prompt(root, "FORMAL")
         self.holdings_path = root / "holdings.json"
         self.source_commit = _source_commit(self.repo)
+        self.runtime_buy_symbols = None
+        self.runtime_allowed_symbols = None
         fee_file = self.repo / "config/default.json"
         cfg = read_json(fee_file) if fee_file.exists() else {}
         self.fees = {k: number(cfg.get(k, v)) for k, v in {
@@ -138,6 +141,9 @@ class FormalPaperSession:
         require(not symbol.startswith(("688", "689", "300", "301")), "excluded board")
         if self.spec["type"] == "FIXED":
             require(symbol in self.spec["symbols"], "outside fixed universe")
+        elif self.runtime_allowed_symbols is not None:
+            require(symbol in self.runtime_allowed_symbols,
+                    "outside current AI_SELECT candidates and holdings")
 
     def prepare(self, snapshot):
         validate_live_snapshot(snapshot)
@@ -147,8 +153,36 @@ class FormalPaperSession:
         as_of = snapshot["as_of"]
         day = snapshot["market_date"]
         before = copy.deepcopy(state)
+        held_symbols = {p["symbol"] for p in before["positions"]}
+        research_state = None
+        authorized_universe = self.spec.get("symbols", list(snapshot["quotes"]))
+        if self.spec["type"] == "AI_SELECT":
+            pack = snapshot.get("candidate_research_pack")
+            scope = snapshot.get("universe_scope")
+            require(isinstance(pack, dict) and pack.get("kind") == "AI_SELECT_DEEP_RESEARCH_PACK",
+                    "AI_SELECT formal preview requires a bounded candidate research pack")
+            require(isinstance(scope, dict), "AI_SELECT formal preview requires universe_scope")
+            candidates = set(scope.get("authorized_symbols") or [])
+            if not candidates:
+                candidates = {x.get("symbol") for x in pack.get("candidates", []) if x.get("symbol")}
+            require(bool(candidates), "AI_SELECT candidate universe is empty")
+            require(candidates <= set(snapshot["quotes"]), "candidate quote missing from live snapshot")
+            require(candidates <= set(snapshot.get("instruments", {})),
+                    "candidate instrument metadata missing from live snapshot")
+            self.runtime_buy_symbols = set(candidates)
+            self.runtime_allowed_symbols = set(candidates) | held_symbols
+            authorized_universe = {
+                "buy_candidates": sorted(candidates),
+                "existing_holdings_allowed_for_sell": sorted(held_symbols),
+                "coverage": scope.get("coverage"),
+                "not_full_a_share_claim": scope.get("not_full_a_share_claim", True),
+            }
+            research_state = load_formal_state(self.repo, self.series, self.variant)
+        else:
+            self.runtime_buy_symbols = None
+            self.runtime_allowed_symbols = None
         for p in before["positions"]:
-            # Sellability is persisted state; formal mode does not reset it just because prepare() ran.
+            # Existing holdings remain sellable even if they fall out of today's candidate pool.
             self.check_symbol(p["symbol"])
         context = {
             "mode": "FORMAL", "strategy_id": self.series, "variant_id": self.variant,
@@ -179,6 +213,7 @@ class FormalPaperSession:
             "current_quotes": snapshot["quotes"],
             "evidence": snapshot.get("evidence", []),
             "candidate_research_pack": snapshot.get("candidate_research_pack"),
+            "research_state": research_state,
             "universe_scope": snapshot.get("universe_scope"),
             "tools": snapshot.get("tools", "verified live-data adapter"),
             "limitations": snapshot.get("limitations", []),
@@ -191,7 +226,7 @@ class FormalPaperSession:
             "HOLDINGS_TABLE_ROWS": holding_table(before),
             "PREVIOUS_DECISION_SUMMARY": prior,
             "AUTHORIZED_UNIVERSE": json.dumps(
-                self.spec.get("symbols", list(snapshot["quotes"])), ensure_ascii=False, indent=2),
+                authorized_universe, ensure_ascii=False, indent=2),
             "EVIDENCE_AND_TOOL_CONTEXT": json.dumps(tools, ensure_ascii=False, indent=2),
         }
         prompt = self.prompt
@@ -209,6 +244,13 @@ class FormalPaperSession:
         def quote_validator(order, req):
             q = req["live_snapshot"]["quotes"].get(order["symbol"])
             require(q is not None, "selected symbol has no live quote")
+            if self.spec["type"] == "AI_SELECT":
+                if order.get("side") == "BUY":
+                    require(order["symbol"] in (self.runtime_buy_symbols or set()),
+                            "AI_SELECT buy is outside today's bounded candidate pool")
+                elif order.get("side") == "SELL":
+                    held = {p["symbol"] for p in req["holdings"]["positions"]}
+                    require(order["symbol"] in held, "AI_SELECT sell is not a current holding")
             require(number(order["reference_price_cny"]) == number(q["price"]),
                     "reference price must match current verified quote")
             require(order["quote_time"] == q["quote_time"], "reference quote time mismatch")
