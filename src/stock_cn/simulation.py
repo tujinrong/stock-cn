@@ -334,6 +334,8 @@ class Simulation:
                       "HOLDINGS_TABLE_ROWS": holding_table(before), "PREVIOUS_DECISION_SUMMARY": "\n".join(prior) or "模拟期初",
                       "AUTHORIZED_UNIVERSE": dumps(self.spec.get("symbols", list(self.data["instruments"]))),
                       "EVIDENCE_AND_TOOL_CONTEXT": dumps({"historical_closes": market, "evidence": evidence,
+                        "candidate_research_pack": self.data.get("candidate_research_pack"),
+                        "universe_scope": self.data.get("universe_scope"),
                         "tools": "Use supplied point-in-time evidence only for this replay. No current-web lookahead.",
                         "limitations": self.data.get("limitations", []), "fundamentals_news_coverage": "only supplied evidence"})}
             template = self.templates[f"strategies/{self.series}/ai_input_template.md"]
