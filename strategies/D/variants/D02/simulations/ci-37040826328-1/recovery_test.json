@@ -1,0 +1,24 @@
+{
+  "before": {
+    "event_count": 6,
+    "event_chain_valid": true,
+    "projection_errors": [
+      "holdings.md"
+    ],
+    "repaired": [],
+    "ok": false,
+    "scope": "Only rebuild projections; never change trades, strategy or prices."
+  },
+  "after": {
+    "event_count": 6,
+    "event_chain_valid": true,
+    "projection_errors": [
+      "holdings.md"
+    ],
+    "repaired": [
+      "holdings.md"
+    ],
+    "ok": true,
+    "scope": "Only rebuild projections; never change trades, strategy or prices."
+  }
+}
