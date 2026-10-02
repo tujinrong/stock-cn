@@ -150,7 +150,7 @@ def bounded_prefilter(snapshot, purpose, *, max_candidates=60):
         "source_retrieved_at": snapshot["retrieved_at"],
         "source": snapshot["source"],
         "not_a_recommendation": True,
-        "survivorship_warning": "This current universe snapshot must not be presented as a historically complete universe for past dates.",
+        "survivorship_warning": "Survivorship bias: this current universe snapshot must not be presented as a historically complete universe for past dates.",
         "rows": ordered,
     }
 
