@@ -5,6 +5,7 @@ import copy
 from datetime import datetime
 
 from .simulation import Simulation as BaseSimulation, Store, digest, money, number, read_json, require
+from .research_state import sync_simulation_state
 from .variant_prompts import variant_root, validate_prompt
 from .time_travel import append_time_travel_prompt, build_time_travel_context
 
@@ -148,16 +149,36 @@ class VariantSimulation(BaseSimulation):
         travel = build_time_travel_context(
             self.data, travel_day, travel_day, symbols=sorted(known),
             ignore_news=not include_evidence, execution_date=day)
+        research_state = None
+        if self.spec.get('type') == 'AI_SELECT':
+            pack = self.data.get('candidate_research_pack')
+            if isinstance(pack, dict) and pack.get('cutoff_date'):
+                require(pack['cutoff_date'] <= travel_day,
+                        'candidate research pack comes from the future')
+            watchlist = self.data.get('research_watchlist')
+            universe_scope = self.data.get('universe_scope') or {
+                'authorized_symbols': sorted(known),
+                'coverage': 'BOUNDED_RESEARCH_CANDIDATES_ONLY',
+                'not_full_a_share_claim': True,
+            }
+            research_state = sync_simulation_state(
+                self.store.root, self.series, self.variant, travel_day,
+                candidate_pack=pack,
+                watchlist=watchlist,
+                universe_scope=universe_scope,
+                broad_source=self.data.get('broad_universe_source'),
+            )
         runtime_prompt = append_time_travel_prompt(self.templates[self.prompt_path], travel)
         visible = {'cutoff': cutoff, 'holdings': self.store.load(), 'prompt': runtime_prompt,
                    'bars': {d: {s: b for s, b in rows.items() if s in known}
                             for d, rows in self.data['bars'].items() if d <= cutoff[:10]},
                    'evidence': evidence, 'known_symbols': sorted(known),
-                   'time_travel': travel}
+                   'time_travel': travel, 'research_state': research_state}
         view = copy.copy(self)
         view.data = copy.deepcopy(self.data)
         view.data['instruments'] = known
         view.data['evidence'] = evidence
+        view.data['research_state'] = research_state
         view.evaluation_start_override = self.data.get('evaluation_start_known')
         view.evaluation_end_override = self.data.get('evaluation_end_known')
         view.fingerprint = digest(visible)
@@ -169,6 +190,8 @@ class VariantSimulation(BaseSimulation):
         request = BaseSimulation.prepare(view, day)
         if not request.get('completed'):
             view.store.write(f"requests/{day}/time_travel.json", travel)
+            if research_state is not None:
+                view.store.write(f"requests/{day}/research_state.json", research_state)
         return request
 
     def validate_decision(self, response, request):
