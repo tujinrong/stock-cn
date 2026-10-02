@@ -1,0 +1,22 @@
+{
+  "strategy_id": "C",
+  "status": "SIMULATION",
+  "date": "2025-08-01",
+  "initial_capital_cny": "200000.00",
+  "cash_cny": "200000.00",
+  "total_equity_cny": "200000.00",
+  "positions": [],
+  "_meta": {
+    "schema_version": "0.4",
+    "mode": "SIMULATION",
+    "paper_only": true,
+    "variant_id": "C01",
+    "test_id": "ci-37038196289-1",
+    "revision": 1,
+    "valuation_time": "2025-08-01T15:00:00+08:00",
+    "fees_cny": "0.00",
+    "last_decision_date": null,
+    "data_kind": "TEST_ONLY",
+    "last_event_id": "000001"
+  }
+}
