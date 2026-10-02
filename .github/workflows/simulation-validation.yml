@@ -55,6 +55,30 @@ jobs:
             python -m stock_cn.sim_cli replay --variant A02 --test-id "$TEST_ID-real" --data "$RUNNER_TEMP/stock-cn-history.json" --agent scripted-smoke --max-calls 10
             python -m stock_cn.sim_cli audit --variant A02 --test-id "$TEST_ID-real"
           fi
+      - name: Real-history time-travel prompt with multi-timeframe K-lines
+        id: timetravel
+        continue-on-error: true
+        shell: bash
+        run: |
+          python -m stock_cn.sim_cli probe --test-id "$TEST_ID-time-source" --start 2025-01-01 --end 2025-08-08 --output "$RUNNER_TEMP/stock-cn-time-travel.json"
+          if [ -f "$RUNNER_TEMP/stock-cn-time-travel.json" ]; then
+            python -m stock_cn.sim_cli time-travel --variant A02 --test-id "$TEST_ID-time-travel" --data "$RUNNER_TEMP/stock-cn-time-travel.json" --date 2025-08-01
+            python - <<'PY'
+          import json, os
+          from pathlib import Path
+          root = Path('strategies/A/variants/A02/simulations') / (os.environ['TEST_ID'] + '-time-travel')
+          matches = list(root.glob('requests/*/time_travel.json'))
+          assert len(matches) == 1
+          obj = json.loads(matches[0].read_text())
+          assert obj['target_date'] == '2025-08-01'
+          assert obj['knowledge_cutoff'].startswith('2025-08-01')
+          assert obj['symbols']
+          assert all(x['kline']['daily_last20'] for x in obj['symbols'])
+          assert any(x['kline']['weekly_last12'] for x in obj['symbols'])
+          assert any(x['kline']['monthly_last12'] for x in obj['symbols'])
+          assert all(max(k['date'] for k in x['kline']['daily_last20']) <= '2025-08-01' for x in obj['symbols'])
+          PY
+          fi
       - name: Preserve old formal holdings and save test metadata
         env:
           SOURCE_OUTCOME: ${{ steps.sources.outcome }}
