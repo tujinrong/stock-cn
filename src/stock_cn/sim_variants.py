@@ -6,6 +6,7 @@ from datetime import datetime
 
 from .simulation import Simulation as BaseSimulation, Store, digest, number, read_json, require
 from .variant_prompts import variant_root, validate_prompt
+from .time_travel import append_time_travel_prompt, build_time_travel_context
 
 
 class DecisionUnavailable(RuntimeError):
@@ -58,11 +59,18 @@ class VariantSimulation(BaseSimulation):
         when = datetime.fromisoformat(cutoff)
         known = {s: m for s, m in self.data['instruments'].items()
                  if not m.get('known_at') or datetime.fromisoformat(m['known_at']) <= when}
-        evidence = [e for e in self.data.get('evidence', []) if datetime.fromisoformat(e['published_at']) <= when]
-        visible = {'cutoff': cutoff, 'holdings': self.store.load(), 'prompt': self.templates[self.prompt_path],
+        include_evidence = bool(self.data.get('time_travel_include_evidence', False))
+        evidence = ([e for e in self.data.get('evidence', [])
+                     if datetime.fromisoformat(e['published_at']) <= when]
+                    if include_evidence else [])
+        travel = build_time_travel_context(
+            self.data, day, cutoff[:10], symbols=sorted(known), ignore_news=not include_evidence)
+        runtime_prompt = append_time_travel_prompt(self.templates[self.prompt_path], travel)
+        visible = {'cutoff': cutoff, 'holdings': self.store.load(), 'prompt': runtime_prompt,
                    'bars': {d: {s: b for s, b in rows.items() if s in known}
                             for d, rows in self.data['bars'].items() if d <= cutoff[:10]},
-                   'evidence': evidence, 'known_symbols': sorted(known)}
+                   'evidence': evidence, 'known_symbols': sorted(known),
+                   'time_travel': travel}
         view = copy.copy(self)
         view.data = copy.deepcopy(self.data)
         view.data['instruments'] = known
@@ -71,9 +79,18 @@ class VariantSimulation(BaseSimulation):
         # Aliases exist only in this rendering view. Stored hashes/snapshots name
         # the actual standalone variant file, not the old shared template.
         view.templates = {
-            f'strategies/{self.series}/ai_input_template.md': self.templates[self.prompt_path],
+            f'strategies/{self.series}/ai_input_template.md': runtime_prompt,
             f'strategies/{self.series}/variants/{self.variant}.md': ''}
-        return BaseSimulation.prepare(view, day)
+        request = BaseSimulation.prepare(view, day)
+        if not request.get('completed'):
+            request['context']['time_travel'] = True
+            request['context']['time_travel_target_date'] = day
+            request['context']['time_travel_knowledge_cutoff'] = travel['knowledge_cutoff']
+            request['time_travel'] = travel
+            request['prompt_sha256'] = digest(request['prompt'])
+            view.store.write(f"requests/{day}/request.json", request)
+            view.store.write(f"requests/{day}/time_travel.json", travel)
+        return request
 
     def validate_decision(self, response, request):
         if isinstance(response, dict) and response.get('status') in {
