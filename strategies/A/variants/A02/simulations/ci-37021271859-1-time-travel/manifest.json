@@ -1,0 +1,33 @@
+{
+  "mode": "SIMULATION",
+  "submode": "TIME_TRAVEL_JUMP",
+  "series": "A",
+  "variant": "A02",
+  "test_id": "ci-37021271859-1-time-travel",
+  "time_travel_target_date": "2025-08-01",
+  "planned_execution_date": "2025-08-04",
+  "input_fingerprint": "cf899b3b40b6ea8c7878a03b1f7aa7a8ee6ffa51cbd12b42412adb6317d6ae70",
+  "source_commit": "c52ed16a2f86072b16ef5f94b985bb5b278d7d6e",
+  "fees": {
+    "commission_rate": "0.00025",
+    "min_commission": "5.0",
+    "stamp_duty_sell_rate": "0.0005",
+    "transfer_fee_rate": "0.00001"
+  },
+  "data_kind": "REAL_HISTORY",
+  "fidelity": "FLOW_ONLY_REAL_PRICES",
+  "execution_basis": "TARGET_CLOSE_KNOWLEDGE_NEXT_SESSION_OPEN",
+  "initialization": "TIME_TRAVEL_OPENING_BALANCE_AT_TARGET_CLOSE",
+  "limitations": [
+    "No archived intraday/news/fundamental verification.",
+    "Previous close decision, next open execution; not 11:00 replay.",
+    "Corporate actions not verified; not investment-performance evidence.",
+    "Missing-symbol sessions are preserved and rejected, not dropped: 0",
+    "Jump account starts at target-date close; it does not recreate trades before that date.",
+    "This is a point-in-time scenario, distinct from a continuous backtest."
+  ],
+  "source_version": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600036%2Cday%2C2025-01-01%2C2025-08-08%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600660%2Cday%2C2025-01-01%2C2025-08-08%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600900%2Cday%2C2025-01-01%2C2025-08-08%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601100%2Cday%2C2025-01-01%2C2025-08-08%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz002594%2Cday%2C2025-01-01%2C2025-08-08%2C320%2C",
+  "template_sha256": {
+    "strategies/A/variants/A02/prompt_versions/v001.md": "8539506f100db2d8b39aa7e4af357d2d617c988168e6d33b575d17e827758a66"
+  }
+}

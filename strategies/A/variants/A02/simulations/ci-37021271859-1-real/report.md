@@ -1,0 +1,27 @@
+# 模拟验证报告（不是投资成绩）
+
+```json
+{
+  "variant": "A02",
+  "test_id": "ci-37021271859-1-real",
+  "data_kind": "REAL_HISTORY",
+  "fidelity": "FLOW_ONLY_REAL_PRICES",
+  "completed_days": 5,
+  "requested_days": 5,
+  "complete": true,
+  "initial_equity_cny": "200000.00",
+  "final_equity_cny": "201845.00",
+  "net_pnl_cny": "1845.00",
+  "return_pct": "0.922500",
+  "max_daily_drawdown_pct": "0.7640155556320335891523557100",
+  "fees_cny": "0.00",
+  "fills": 0,
+  "limitations": [
+    "No archived intraday/news/fundamental verification.",
+    "Previous close decision, next open execution; not 11:00 replay.",
+    "Corporate actions not verified; not investment-performance evidence.",
+    "Missing-symbol sessions are preserved and rejected, not dropped: 0"
+  ],
+  "not_investment_validation": true
+}
+```
