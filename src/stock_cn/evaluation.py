@@ -118,9 +118,8 @@ def save_locked_decision(repo, eval_id, variant, target_date, decision):
     entry = _load_entry(repo, eval_id, variant, target_date)
     request = read_json(repo / entry["request_path"])
     require(request["prompt_sha256"] == entry["prompt_sha256"], "prepared prompt changed")
-    sim = VariantSimulation(repo, variant[0], variant, entry["simulation_test_id"], _dataset_placeholder_error())
-    # We cannot instantiate without the original dataset here; contract identity/hash is checked below,
-    # while full trading-rule validation is performed in score_locked_decision with the supplied dataset.
+    # No market data is loaded in the lock phase. Full trading-rule validation is
+    # deliberately deferred to score_locked_decision, after the decision is immutable.
     c = request["context"]
     require(isinstance(decision, dict), "decision must be an object")
     for field in ("strategy_id", "variant_id", "mode", "run_id", "decision_id", "date",
@@ -143,11 +142,6 @@ def save_locked_decision(repo, eval_id, variant, target_date, decision):
     }
     Store(root).write(f"decisions/{variant}/{target_date}.lock.json", lock)
     return lock
-
-
-def _dataset_placeholder_error():
-    """Sentinel: save_locked_decision intentionally never requires market data."""
-    raise RuntimeError("dataset is intentionally unavailable during decision lock phase")
 
 
 def _valuation(state, data, day):
