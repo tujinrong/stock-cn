@@ -6,6 +6,7 @@ import pytest
 
 from test_simulation import repo
 from stock_cn.universe import (
+    _low_recovery_attention,
     bounded_prefilter, build_deep_research_pack,
     fetch_candidate_history, fetch_live_universe,
     update_abnormal_drop_watchlist,
@@ -253,3 +254,46 @@ def test_abnormal_drop_watchlist_requires_later_sessions_before_recovery(repo):
         "EARLY_STABILIZATION_RESEARCH", "RECOVERY_CONFIRMATION_RESEARCH"
     }
     assert item["not_a_trade_signal"] is True
+
+
+
+def low_snap(*, p20, p60, p120, p250, r5, r20, close="50", ma5="49"):
+    return {
+        "as_of_close": close,
+        "range_position_0_to_1": {
+            "20_sessions": p20, "60_sessions": p60,
+            "120_sessions": p120, "250_sessions": p250,
+        },
+        "returns_pct": {
+            "5_sessions": r5, "20_sessions": r20, "60_sessions": "-10",
+        },
+        "moving_average": {"ma5": ma5, "ma20": "48", "ma60": "55"},
+    }
+
+
+def test_d_low_recovery_attention_prefers_true_annual_low_context():
+    priority, state, _ = _low_recovery_attention(low_snap(
+        p20="0.55", p60="0.30", p120="0.25", p250="0.18",
+        r5="3.0", r20="5.0",
+    ))
+    assert priority == 10
+    assert state == "LOW_AND_EARLY_RECOVERY_RESEARCH"
+
+
+def test_d_low_recovery_attention_flags_extended_rebound():
+    priority, state, reasons = _low_recovery_attention(low_snap(
+        p20="1.00", p60="0.90", p120="0.45", p250="0.22",
+        r5="8.0", r20="30.0",
+    ))
+    assert priority == 15
+    assert state == "LOW_BUT_EXTENDED_REBOUND_RESEARCH"
+    assert any("剩余" in x or "延伸" in x for x in reasons)
+
+
+def test_d_low_recovery_attention_marks_missing_250_day_history_as_limited():
+    priority, state, _ = _low_recovery_attention(low_snap(
+        p20="0.20", p60="0.10", p120="0.20", p250=None,
+        r5="2.0", r20="-3.0",
+    ))
+    assert priority == 30
+    assert state == "LOW_POSITION_HISTORY_LIMITED_RESEARCH"
