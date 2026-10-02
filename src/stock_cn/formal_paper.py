@@ -64,6 +64,7 @@ def cutover_readiness(repo, variant):
     index = read_json(repo / "strategies/index.json")
     reg = next(x for x in index.get("variants", []) if x["variant_id"] == variant)
     holdings = read_json(root / "holdings.json")
+    series = next(x for x in index["strategies"] if x["strategy_id"] == reg["series_id"])
     checks = {
         "same_prompt_hash": sha(sim_text) == sha(formal_text),
         "formal_global_enabled": index.get("formal_execution_enabled") is True,
@@ -72,6 +73,9 @@ def cutover_readiness(repo, variant):
         "formal_account_initialized": holdings.get("status") != "NOT_INITIALIZED",
         "formal_account_execution_enabled": holdings.get("_meta", {}).get("execution_enabled") is True,
     }
+    if series.get("type") == "AI_SELECT":
+        research = load_formal_state(repo, series["strategy_id"], variant)
+        checks["formal_research_enabled"] = research.get("formal_research_enabled") is True
     return {
         "variant_id": variant,
         "simulation_prompt_version": sim["version"],
