@@ -1,0 +1,10 @@
+{
+  "status": "REJECTED",
+  "fill": null,
+  "reason": "MISSING_DAILY_LIMIT_METADATA",
+  "decision_id": "ci-37018632242-1-real-A02-2025-08-05",
+  "paper_only": true,
+  "mode": "SIMULATION",
+  "execution_basis": "PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM",
+  "simulation_only": true
+}
