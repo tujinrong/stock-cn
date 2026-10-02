@@ -111,8 +111,9 @@ def financial_reviews(symbols):
             "status": "REVIEWED",
             "as_of": "2026-10-08T10:50:00+08:00",
             "source_report": f"https://static.cninfo.com.cn/{s}.pdf",
+            "source_official": True,
             "period": "2026H1",
-            "facts": [{"name": "test-review", "value": True}],
+            "facts": [{"name": "test-review", "value": True, "source": "official report"}],
             "summary": "TEST_ONLY reviewed latest disclosed financial information",
             "data_gaps": [],
         }
