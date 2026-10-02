@@ -1,0 +1,37 @@
+{
+  "mode": "SIMULATION",
+  "series": "D",
+  "variant": "D02",
+  "test_id": "ci-36992371925-1",
+  "input_fingerprint": "1bb827ec5f52c54ba4356c42ccfe1b08f720a862bfe6ad98b7a4b73f46c7eb66",
+  "source_commit": "715954477ce988bf3ff3f21d541f4f36dde946d1",
+  "fees": {
+    "commission_rate": "0.00025",
+    "min_commission": "5.0",
+    "stamp_duty_sell_rate": "0.0005",
+    "transfer_fee_rate": "0.00001"
+  },
+  "data_kind": "TEST_ONLY",
+  "fidelity": "ENGINEERING_ONLY",
+  "execution_basis": "PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM",
+  "sessions": [
+    "2025-08-01",
+    "2025-08-04",
+    "2025-08-05",
+    "2025-08-06",
+    "2025-08-07",
+    "2025-08-08"
+  ],
+  "initialization": "ASSUMED_SETTLED_OPENING; not five same-day buys; no invented historic fees",
+  "limitations": [
+    "Synthetic prices and scripted decisions; not an AI investment test."
+  ],
+  "source_version": "TEST_ONLY:synthetic-v1",
+  "template_sha256": {
+    "AGENTS.md": "9f33487fc14cf74573927331b13f3e382e1c56a03b8381456add346c4f0c4acb",
+    "strategies/common.md": "458cde49d710e813b6e56643d249add319c957c0f1e5f58250a978474ae9ee38",
+    "strategies/D/prompt.md": "0db5bd734ef5483c84b8fefdeb8e81ac4f093e9de7e248d166b21df428f27335",
+    "strategies/D/variants/D02.md": "4f72bd3eb4b0a6054413f963a193667e2abe6ec97ec7f2f56f263f2a809253b6",
+    "strategies/D/ai_input_template.md": "4634c31b334a2a0395d05d58bd118e5d44656b659c6eb3b2dabbc58e7419813a"
+  }
+}

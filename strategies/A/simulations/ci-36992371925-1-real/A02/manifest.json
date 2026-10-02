@@ -1,0 +1,40 @@
+{
+  "mode": "SIMULATION",
+  "series": "A",
+  "variant": "A02",
+  "test_id": "ci-36992371925-1-real",
+  "input_fingerprint": "7441bd39d697b56e012057ff8d7a2e38215d0241a3998f726affafbc19046a05",
+  "source_commit": "715954477ce988bf3ff3f21d541f4f36dde946d1",
+  "fees": {
+    "commission_rate": "0.00025",
+    "min_commission": "5.0",
+    "stamp_duty_sell_rate": "0.0005",
+    "transfer_fee_rate": "0.00001"
+  },
+  "data_kind": "REAL_HISTORY",
+  "fidelity": "FLOW_ONLY_REAL_PRICES",
+  "execution_basis": "PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM",
+  "sessions": [
+    "2025-08-01",
+    "2025-08-04",
+    "2025-08-05",
+    "2025-08-06",
+    "2025-08-07",
+    "2025-08-08"
+  ],
+  "initialization": "ASSUMED_SETTLED_OPENING; not five same-day buys; no invented historic fees",
+  "limitations": [
+    "No archived intraday/news/fundamental verification.",
+    "Previous close decision, next open execution; not 11:00 replay.",
+    "Corporate actions not verified; not investment-performance evidence.",
+    "Missing-symbol sessions are preserved and rejected, not dropped: 0"
+  ],
+  "source_version": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600036%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600660%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600900%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601100%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz002594%2Cday%2C2025-08-01%2C2025-08-08%2C320%2C",
+  "template_sha256": {
+    "AGENTS.md": "9f33487fc14cf74573927331b13f3e382e1c56a03b8381456add346c4f0c4acb",
+    "strategies/common.md": "458cde49d710e813b6e56643d249add319c957c0f1e5f58250a978474ae9ee38",
+    "strategies/A/prompt.md": "409b56fc831489e7d8c02b849075ce2ee4905e72ba71bd9ad284b6b3fd14f0c3",
+    "strategies/A/variants/A02.md": "86c095170d85ea2da1ccfe9f58379888b5103e7b458c3a3e7f5752fe3e1af04f",
+    "strategies/A/ai_input_template.md": "7de3575c0076a1c131bc8e4c6cbe7562e757474dce5df51191870fcde1bd4cae"
+  }
+}
