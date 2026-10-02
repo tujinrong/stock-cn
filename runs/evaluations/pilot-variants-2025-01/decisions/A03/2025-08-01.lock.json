@@ -1,0 +1,7 @@
+{
+  "entry_id": "A03-2025-08-01",
+  "prompt_sha256": "85d5f69ca06a8bf5b44e29b9f79c128bc9012570421fd48274a6b24a070b1cf3",
+  "decision_sha256": "a79d73235e35b48b5d186c8302f9bc17427709d07d9505317eb42dd420f37ed4",
+  "locked": true,
+  "future_outcomes_seen_by_decision_phase": false
+}

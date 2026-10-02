@@ -1,0 +1,8 @@
+{
+  "evidence": [],
+  "data_gaps": [
+    "缺少历史时点财务、公告和新闻核验。",
+    "当前为日线时光穿越，不是历史11:00分钟级重演。"
+  ],
+  "scoring_phase_future_data_excluded": true
+}

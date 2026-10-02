@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "C",
+  "variant_id": "C03",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-variants-2025-01-20250801-C03",
+  "decision_id": "eval-pilot-variants-2025-01-20250801-C03-2025-08-04",
+  "date": "2025-08-04",
+  "decision_time": "2025-08-01T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "e8b735a9e4efb811f5daa7efd42d673d94d6f237",
+  "status": "READY",
+  "action": "BUY",
+  "order_proposal": {
+    "symbol": "600900.SH",
+    "side": "BUY",
+    "quantity": 500,
+    "reference_price_cny": "27.990",
+    "quote_time": "2025-08-01T15:00:00+08:00",
+    "quote_source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600900%2Cday%2C2024-09-01%2C2025-09-30%2C320%2C"
+  },
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "机会优先变体全现金，市场整体偏弱。长江电力处20/60日低位且波动较低，适合作为弱市中的小规模逆向机会；比亚迪断点样本不足，福耀玻璃和招商银行也尚未确认反转。买入500股长江电力，保留九成以上资金继续观察。",
+  "risks": [
+    "弱市中逆向买入可能过早。",
+    "低波动不代表不会继续下跌。"
+  ],
+  "evidence": [],
+  "data_gaps": [
+    "缺少历史时点财务、公告和新闻核验。",
+    "当前为日线时光穿越，不是历史11:00分钟级重演。"
+  ]
+}

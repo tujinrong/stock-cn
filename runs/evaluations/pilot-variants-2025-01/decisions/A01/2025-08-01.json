@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "A",
+  "variant_id": "A01",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-variants-2025-01-20250801-A01",
+  "decision_id": "eval-pilot-variants-2025-01-20250801-A01-2025-08-04",
+  "date": "2025-08-04",
+  "decision_time": "2025-08-01T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "e8b735a9e4efb811f5daa7efd42d673d94d6f237",
+  "status": "READY",
+  "action": "HOLD",
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "稳健变体已有约34%现金，股票池整体偏弱。招商银行、福耀玻璃和长江电力处于较低区间但尚未出现可靠回升，恒立液压波动偏高，比亚迪又存在价格口径断点。当前现金缓冲已足够，不在弱势中机械减仓，也不提前抄底，因此HOLD。",
+  "risks": [
+    "弱势可能延续，现有股票仓位仍会产生损失。",
+    "若低位迅速反转，等待确认会错过最初上涨。"
+  ],
+  "evidence": [],
+  "data_gaps": [
+    "缺少历史时点财务、公告和新闻核验。",
+    "当前为日线时光穿越，不是历史11:00分钟级重演。"
+  ]
+}

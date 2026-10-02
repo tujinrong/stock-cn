@@ -1,0 +1,9 @@
+{
+  "status": "NO_TRADE",
+  "fill": null,
+  "reason": "HOLD",
+  "decision_id": "eval-pilot-variants-2025-01-20250801-A01-2025-08-04",
+  "paper_only": true,
+  "mode": "SIMULATION",
+  "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+}
