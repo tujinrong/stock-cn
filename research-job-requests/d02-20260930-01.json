@@ -1,0 +1,15 @@
+{
+  "job_id": "d02-20260930-01",
+  "variant_id": "D02",
+  "mode": "SIMULATION",
+  "decision_date": "2026-09-30",
+  "information_cutoff": "2026-09-30T15:00:00+08:00",
+  "symbols": [
+    "600276.SH",
+    "600519.SH"
+  ],
+  "official_disclosure_pack_path": "runs/research/evidence/cninfo-probe-20261003-01/official-disclosure-pack.json",
+  "candidate_research_pack_path": "runs/research/universe/universe-probe-20261003-04/D-low-recovery-research-pack.json",
+  "coverage": "SURVIVORSHIP_LIMITED_HISTORICAL_CANDIDATE_SET",
+  "formal_execution": false
+}
