@@ -337,6 +337,8 @@ class Simulation:
                         "candidate_research_pack": self.data.get("candidate_research_pack"),
                         "research_state": self.data.get("research_state"),
                         "universe_scope": self.data.get("universe_scope"),
+                        "official_disclosure_pack": self.data.get("official_disclosure_pack"),
+                        "news_research": self.data.get("news_research"),
                         "tools": "Use supplied point-in-time evidence only for this replay. No current-web lookahead.",
                         "limitations": self.data.get("limitations", []), "fundamentals_news_coverage": "only supplied evidence"})}
             template = self.templates[f"strategies/{self.series}/ai_input_template.md"]
