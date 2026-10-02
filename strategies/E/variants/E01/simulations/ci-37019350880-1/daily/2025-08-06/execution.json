@@ -1,0 +1,10 @@
+{
+  "status": "NO_TRADE",
+  "fill": null,
+  "reason": "HOLD",
+  "decision_id": "ci-37019350880-1-E01-2025-08-06",
+  "paper_only": true,
+  "mode": "SIMULATION",
+  "execution_basis": "PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM",
+  "simulation_only": true
+}
