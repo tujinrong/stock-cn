@@ -475,18 +475,15 @@ def build_deep_research_pack(seed, dataset, cutoff_date, purpose, *, max_candida
                 reasons.append("当前可见区间位置不属于明显低位，仅保留为对照候选。")
         else:
             chg = meta.get("change_pct")
-            r5 = snap["returns_pct"].get("5_sessions")
-            ma5 = snap["moving_average"].get("ma5")
             daily_drop = number(chg) if chg is not None else None
+            # A candidate discovered because it is falling sharply today cannot be
+            # called a recovery on the same day, even if a 5-day aggregate is still
+            # positive from earlier gains. Recovery requires later sessions and is
+            # handled by update_abnormal_drop_watchlist().
             if daily_drop is not None and daily_drop <= Decimal("-5"):
-                if r5 is not None and ma5 is not None and number(r5) > 0 and number(snap["as_of_close"]) >= number(ma5):
-                    priority = 15
-                    state = "DROP_WITH_STABILIZATION_RESEARCH"
-                    reasons.append("当日仍属明显下跌，但短周期已有部分稳定迹象；必须核查下跌原因，不能直接视为反转。")
-                else:
-                    priority = 20
-                    state = "FRESH_DROP_MONITOR"
-                    reasons.append("近期/当日明显下跌，尚无可信回升确认，适合进入观察池而不是立即抄底。")
+                priority = 20
+                state = "FRESH_DROP_MONITOR"
+                reasons.append("当日明显下跌；发现日只能进入观察池，至少经过后续交易日才能判断回升。")
             else:
                 priority = 40
                 state = "DROP_CONTEXT_RESEARCH"
@@ -506,6 +503,8 @@ def build_deep_research_pack(seed, dataset, cutoff_date, purpose, *, max_candida
                 "source_provider": meta.get("source_provider"),
             },
             "market_history": snap,
+            "fundamental_quality_status": "NOT_VERIFIED_BY_PRICE_DATA_LAYER",
+            "event_or_drop_reason_status": "NOT_VERIFIED_BY_PRICE_DATA_LAYER",
             "not_a_trade_signal": True,
         })
 
