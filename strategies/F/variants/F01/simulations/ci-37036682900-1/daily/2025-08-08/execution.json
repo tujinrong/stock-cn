@@ -1,0 +1,20 @@
+{
+  "status": "FILLED",
+  "fill": {
+    "symbol": "600036.SH",
+    "side": "SELL",
+    "quantity": 100,
+    "price_cny": "40.50",
+    "fee_cny": "7.07",
+    "time": "2025-08-08T09:30:00+08:00",
+    "source": "TEST_ONLY:synthetic-v1",
+    "quote_time": "2025-08-08T09:30:00+08:00",
+    "time_basis": "PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM"
+  },
+  "reason": "PAPER_FILL_USING_MODE_QUOTE",
+  "decision_id": "ci-37036682900-1-F01-2025-08-08",
+  "paper_only": true,
+  "mode": "SIMULATION",
+  "execution_basis": "PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM",
+  "simulation_only": true
+}
