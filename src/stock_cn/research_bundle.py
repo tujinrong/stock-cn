@@ -189,6 +189,8 @@ def buy_research_preflight(bundle, symbol):
         reasons.append("RECENT_NEWS_NOT_VERIFIED")
     if row["latest_periodic_report_ref"] is None and row["financial_review"] is None:
         reasons.append("LATEST_FINANCIAL_REFERENCE_MISSING")
+    if row["financial_review_status"] != "REVIEWED":
+        reasons.append("FINANCIAL_REVIEW_NOT_COMPLETED")
     return {
         "ready": not reasons,
         "reasons": reasons,
