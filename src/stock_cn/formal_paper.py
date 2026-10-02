@@ -178,6 +178,8 @@ class FormalPaperSession:
         tools = {
             "current_quotes": snapshot["quotes"],
             "evidence": snapshot.get("evidence", []),
+            "candidate_research_pack": snapshot.get("candidate_research_pack"),
+            "universe_scope": snapshot.get("universe_scope"),
             "tools": snapshot.get("tools", "verified live-data adapter"),
             "limitations": snapshot.get("limitations", []),
             "fundamentals_news_coverage": snapshot.get("fundamentals_news_coverage",
