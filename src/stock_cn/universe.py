@@ -414,6 +414,52 @@ def fetch_candidate_history(seed, start, end, request=request_json, *, max_symbo
 
 
 
+def _low_recovery_attention(snap):
+    """Route D-style low/recovery candidates without turning it into a trade rule."""
+    ranges = snap["range_position_0_to_1"]
+    returns = snap["returns_pct"]
+    p250 = ranges.get("250_sessions")
+    p120 = ranges.get("120_sessions")
+    p60 = ranges.get("60_sessions")
+    p20 = ranges.get("20_sessions")
+    r5 = returns.get("5_sessions")
+    r20 = returns.get("20_sessions")
+    ma5 = snap["moving_average"].get("ma5")
+
+    annual_low = p250 is not None and number(p250) <= Decimal("0.35")
+    shorter = [number(x) for x in (p120, p60) if x is not None]
+    history_limited_low = p250 is None and bool(shorter) and min(shorter) <= Decimal("0.25")
+    recovering = (
+        r5 is not None and ma5 is not None
+        and number(r5) > 0
+        and number(snap["as_of_close"]) >= number(ma5)
+    )
+    extended = (
+        p20 is not None and number(p20) >= Decimal("0.90")
+        and r20 is not None and number(r20) >= Decimal("10")
+    )
+
+    if annual_low and recovering and not extended:
+        return 10, "LOW_AND_EARLY_RECOVERY_RESEARCH", [
+            "250日位置仍较低，且短期已有初步回升；值得AI深查公司质量、持续性与剩余空间。"
+        ]
+    if annual_low and recovering and extended:
+        return 15, "LOW_BUT_EXTENDED_REBOUND_RESEARCH", [
+            "250日位置仍偏低，但近20日反弹幅度/位置已经明显延伸；不能仅按长期低位称为刚出谷底，应重新判断剩余收益空间。"
+        ]
+    if annual_low:
+        return 20, "LOW_WAITING_RECOVERY_RESEARCH", [
+            "250日位置偏低，但当前价量尚不足以确认回升。"
+        ]
+    if history_limited_low:
+        return 30, "LOW_POSITION_HISTORY_LIMITED_RESEARCH", [
+            "较短历史窗口显示低位，但250日位置不可用；只能作为数据受限的次级候选。"
+        ]
+    return 40, "NOT_CLEARLY_LOW_RESEARCH", [
+        "当前可见长期/中期区间位置不属于明确年度低位，仅保留为对照候选。"
+    ]
+
+
 def build_deep_research_pack(seed, dataset, cutoff_date, purpose, *, max_candidates=12):
     """Combine a bounded seed with causal K-line summaries for AI deep research.
 
@@ -449,30 +495,7 @@ def build_deep_research_pack(seed, dataset, cutoff_date, purpose, *, max_candida
             state = "RISK_TAGGED_REVIEW"
             reasons.append("名称/上市状态含风险标签，先核查风险再谈交易。")
         elif purpose == "LOW_RECOVERY":
-            ranges = snap["range_position_0_to_1"]
-            available = [number(x) for x in (
-                ranges.get("60_sessions"), ranges.get("120_sessions")
-            ) if x is not None]
-            low = bool(available) and min(available) <= Decimal("0.35")
-            r5 = snap["returns_pct"].get("5_sessions")
-            ma5 = snap["moving_average"].get("ma5")
-            recovering = (
-                r5 is not None and ma5 is not None
-                and number(r5) > 0
-                and number(snap["as_of_close"]) >= number(ma5)
-            )
-            if low and recovering:
-                priority = 10
-                state = "LOW_AND_EARLY_RECOVERY_RESEARCH"
-                reasons.append("处于较低区间且短期价格已有初步回升迹象，值得AI深查质量与持续性。")
-            elif low:
-                priority = 20
-                state = "LOW_WAITING_RECOVERY_RESEARCH"
-                reasons.append("价格位置偏低，但当前价量尚不足以确认回升。")
-            else:
-                priority = 40
-                state = "NOT_CLEARLY_LOW_RESEARCH"
-                reasons.append("当前可见区间位置不属于明显低位，仅保留为对照候选。")
+            priority, state, reasons = _low_recovery_attention(snap)
         else:
             chg = meta.get("change_pct")
             daily_drop = number(chg) if chg is not None else None
