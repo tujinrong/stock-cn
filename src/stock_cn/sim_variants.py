@@ -4,7 +4,7 @@ from __future__ import annotations
 import copy
 from datetime import datetime
 
-from .simulation import Simulation as BaseSimulation, Store, digest, number, read_json, require
+from .simulation import Simulation as BaseSimulation, Store, digest, money, number, read_json, require
 from .variant_prompts import variant_root, validate_prompt
 from .time_travel import append_time_travel_prompt, build_time_travel_context
 
@@ -48,6 +48,85 @@ class VariantSimulation(BaseSimulation):
             return super().initialize()
         finally:
             self.fingerprint = public_fingerprint
+
+    def jump_initialize(self, target_date):
+        """Initialize an isolated time-travel account at target-date close.
+
+        This is for a one-point historical jump, not for continuous backtests.
+        It never rewrites a pre-existing simulation account and never touches FORMAL.
+        """
+        require(self.variant_mode, 'time-travel jump requires independent variant mode')
+        days = self.data['sessions']
+        require(target_date in days, 'time-travel target must be a supplied market session')
+        require(days.index(target_date) + 1 < len(days), 'time-travel target needs a following execution session')
+        with self.store.lock():
+            if self.store.events():
+                first = self.store.events()[0]['documents']['manifest.json']
+                require(first.get('time_travel_target_date') == target_date,
+                        'existing test account belongs to another time-travel target')
+                require(first['input_fingerprint'] == self._private_fingerprint,
+                        'inputs changed: use a new test_id')
+                return self.store.load()
+            cash = number(self.init['initial_capital_cny'])
+            positions = []
+            if self.init['opening_method'] == 'ASSUMED_EXISTING_PORTFOLIO':
+                require(number(self.init['cash_weight']) + sum(number(s['weight']) for s in self.init['stocks']) == 1,
+                        'initial weights do not sum to one')
+                for stock in self.init['stocks']:
+                    symbol = stock['symbol']
+                    self.check_symbol(symbol)
+                    price = number(self.bar(target_date, symbol)['close'])
+                    quantity = int(number(self.init['initial_capital_cny']) * number(stock['weight']) / price / 100) * 100
+                    cash -= quantity * price
+                    if quantity:
+                        positions.append({
+                            'symbol': symbol,
+                            'name': self.data['instruments'][symbol]['name'],
+                            'quantity': quantity,
+                            'sellable_quantity': quantity,
+                            'average_cost_cny': money(price),
+                            'cost_basis_cny': money(quantity * price),
+                            'valuation_price_cny': money(price),
+                        })
+            else:
+                require(not self.init.get('stocks') or all(number(s.get('weight', 0)) == 0 for s in self.init['stocks']),
+                        'cash opening contains positive stock weights')
+            state = {
+                'strategy_id': self.series, 'status': 'SIMULATION', 'date': target_date,
+                'initial_capital_cny': money(self.init['initial_capital_cny']),
+                'cash_cny': money(cash), 'total_equity_cny': money(self.init['initial_capital_cny']),
+                'positions': positions,
+                '_meta': {
+                    'schema_version': '0.4', 'mode': 'SIMULATION', 'paper_only': True,
+                    'variant_id': self.variant, 'test_id': self.test_id, 'revision': 0,
+                    'valuation_time': f'{target_date}T15:00:00+08:00',
+                    'fees_cny': '0.00', 'last_decision_date': None,
+                    'data_kind': self.data['kind'], 'time_travel_jump': True,
+                },
+            }
+            sources = sorted({b['source'] for b in self.data['bars'][target_date].values()})
+            manifest = {
+                'mode': 'SIMULATION', 'submode': 'TIME_TRAVEL_JUMP',
+                'series': self.series, 'variant': self.variant, 'test_id': self.test_id,
+                'time_travel_target_date': target_date,
+                'planned_execution_date': days[days.index(target_date) + 1],
+                'input_fingerprint': self._private_fingerprint,
+                'source_commit': self.source_commit,
+                'fees': {k: str(v) for k, v in self.fees.items()},
+                'data_kind': self.data['kind'], 'fidelity': self.data['fidelity'],
+                'execution_basis': 'TARGET_CLOSE_KNOWLEDGE_NEXT_SESSION_OPEN',
+                'initialization': 'TIME_TRAVEL_OPENING_BALANCE_AT_TARGET_CLOSE',
+                'limitations': self.data.get('limitations', []) + [
+                    'Jump account starts at target-date close; it does not recreate trades before that date.',
+                    'This is a point-in-time scenario, distinct from a continuous backtest.',
+                ],
+                'source_version': ' / '.join(sources),
+                'template_sha256': {k: digest(v) for k, v in self.templates.items()},
+            }
+            return self.store.commit(
+                'OPENING_BALANCE', None, state,
+                {'manifest.json': manifest, 'init.snapshot.json': self.init,
+                 'templates.snapshot.json': self.templates})
 
     def prepare(self, day):
         if not self.variant_mode:
