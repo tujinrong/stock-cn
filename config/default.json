@@ -1,0 +1,11 @@
+{
+  "initial_cash": 1000000,
+  "commission_rate": 0.00025,
+  "min_commission": 5.0,
+  "stamp_duty_sell_rate": 0.0005,
+  "transfer_fee_rate": 0.00001,
+  "main_board_limit": 0.10,
+  "growth_board_limit": 0.20,
+  "st_limit": 0.05,
+  "lot_size": 100
+}
