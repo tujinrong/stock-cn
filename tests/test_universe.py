@@ -167,6 +167,8 @@ def test_abnormal_drop_pack_does_not_call_fresh_drop_a_buy_signal():
                                     "ABNORMAL_DROP", max_candidates=1)
     item = pack["candidates"][0]
     assert item["not_a_trade_signal"] is True
+    assert item["research_state"] == "FRESH_DROP_MONITOR"
+    assert item["fundamental_quality_status"] == "NOT_VERIFIED_BY_PRICE_DATA_LAYER"
     assert "BUY" not in item["research_state"]
 
 
