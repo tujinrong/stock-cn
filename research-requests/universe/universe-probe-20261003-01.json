@@ -1,0 +1,8 @@
+{
+  "probe_id": "universe-probe-20261003-01",
+  "purpose": "Validate practical bounded AI_SELECT data path without storing full raw market feed.",
+  "candidate_limit": 30,
+  "history_sample": 5,
+  "formal_execution": false,
+  "not_a_recommendation": true
+}
