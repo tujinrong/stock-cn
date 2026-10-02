@@ -5,10 +5,13 @@ on:
     paths:
       - 'src/stock_cn/sim*.py'
       - 'src/stock_cn/variant_prompts.py'
+      - 'src/stock_cn/paper_core.py'
+      - 'src/stock_cn/formal_paper.py'
       - 'tools/*variants.py'
       - 'tools/refine_prompt_smoke.py'
       - 'tests/test_*simulation.py'
       - 'tests/test_prompt_lab.py'
+      - 'tests/test_mode_parity.py'
       - '.github/workflows/simulation-validation.yml'
   workflow_dispatch:
 permissions:
@@ -31,7 +34,7 @@ jobs:
         run: python -m pip install -e '.[dev]'
       - name: Build independent full variant prompts and accounts
         run: python tools/migrate_variants.py
-      - name: Unit, causal-prefix and ten-round-limit regression tests
+      - name: Unit, causal-prefix, mode-parity and ten-round-limit regression tests
         run: python -m pytest -q --junitxml="$RUNNER_TEMP/pytest.xml"
       - name: One bounded structural prompt improvement (not an AI investment test)
         run: |
