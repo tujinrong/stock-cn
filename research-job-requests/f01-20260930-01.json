@@ -1,0 +1,15 @@
+{
+  "job_id": "f01-20260930-01",
+  "variant_id": "F01",
+  "mode": "SIMULATION",
+  "decision_date": "2026-09-30",
+  "information_cutoff": "2026-09-30T15:00:00+08:00",
+  "symbols": [
+    "600156.SH",
+    "000850.SZ"
+  ],
+  "official_disclosure_pack_path": "runs/research/evidence/cninfo-probe-20261003-02/official-disclosure-pack.json",
+  "candidate_research_pack_path": "runs/research/universe/universe-probe-20261003-04/F-abnormal-drop-research-pack.json",
+  "coverage": "SURVIVORSHIP_LIMITED_HISTORICAL_CANDIDATE_SET",
+  "formal_execution": false
+}
