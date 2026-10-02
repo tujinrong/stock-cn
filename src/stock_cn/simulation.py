@@ -232,8 +232,10 @@ class Simulation:
             self.source_commit = subprocess.check_output(["git", "-C", str(self.repo), "rev-parse", "HEAD"], stderr=subprocess.DEVNULL, timeout=3, text=True).strip()
         except (OSError, subprocess.SubprocessError):
             self.source_commit = "UNCOMMITTED_LOCAL_WORKSPACE"
+        fingerprint_data = copy.deepcopy(self.data)
+        fingerprint_data.pop("retrieved_at", None)
         self.fingerprint = digest({"init": self.init, "templates": self.templates, "fees": {k: str(v) for k, v in self.fees.items()},
-                                   "dataset": self.data, "series_spec": self.spec})
+                                   "dataset": fingerprint_data, "series_spec": self.spec})
 
     def bar(self, day, symbol):
         require(symbol in self.data["bars"].get(day, {}), f"missing {day} {symbol}; never forward-fill an execution price")
