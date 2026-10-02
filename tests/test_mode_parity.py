@@ -440,3 +440,100 @@ def test_formal_buy_blocks_unreviewed_financials_or_unsearched_news(tmp_path, mo
     req2 = session2.prepare(no_news)
     with pytest.raises(ValueError, match="RECENT_NEWS_NOT_VERIFIED"):
         session2.validate_decision(response("FORMAL"), req2)
+
+
+
+def setup_formal_file_research(repo):
+    root = repo / "research-inputs/D02/2026-10-08"
+    write(root / "manifest.json", {
+        "variant_id": "D02",
+        "mode": "FORMAL",
+        "decision_date": "2026-10-08",
+        "information_cutoff": "2026-10-08T10:59:00+08:00",
+        "source_commit": "TEST",
+        "formal_execution": False,
+    })
+    reports = []
+    financials = {}
+    for symbol, name, value in (
+        ("600036.SH", "招商银行", "TEST_BANK"),
+        ("600900.SH", "长江电力", "TEST_POWER"),
+    ):
+        ref = {
+            "symbol": symbol,
+            "title": name + "2026年半年度报告",
+            "published_at": "2026-08-30T00:00:00+08:00",
+            "source_official": True,
+            "source_provider": "TEST_OFFICIAL",
+            "document_url": f"https://example.test/{symbol}.pdf",
+            "is_periodic_report_body": True,
+            "category": "PERIODIC_REPORT",
+        }
+        reports.append(ref)
+        financials[symbol] = {
+            "status": "REVIEWED",
+            "symbol": symbol,
+            "as_of": "2026-10-08T10:58:00+08:00",
+            "source_report": ref["document_url"],
+            "source_official": True,
+            "period": "2026H1",
+            "facts": [{
+                "name": "净利润",
+                "value": value,
+                "source": "官方半年报",
+            }],
+            "summary": value,
+            "data_gaps": [],
+        }
+    write(root / "official-disclosure-pack.json", {
+        "kind": "OFFICIAL_DISCLOSURE_PACK",
+        "symbols_requested": ["600036.SH", "600900.SH"],
+        "results": [{
+            "symbol": r["symbol"], "provider_status": "OK", "items": [r]
+        } for r in reports],
+        "latest_periodic_report_refs": reports,
+        "important_recent_refs": [],
+    })
+    write(root / "financial-reviews.json", financials)
+    write(root / "news-research.json", {
+        "status": "NO_RELEVANT_RECENT_NEWS",
+        "searched_at": "2026-10-08T10:58:30+08:00",
+        "items": [],
+    })
+    write(root / "candidate-research-pack.json", {
+        "kind": "AI_SELECT_DEEP_RESEARCH_PACK",
+        "purpose": "LOW_RECOVERY",
+        "cutoff_date": "2026-10-08",
+        "selected_count": 1,
+        "not_a_recommendation": True,
+        "candidates": [{"symbol": "600900.SH", "name": "长江电力"}],
+    })
+    write(root / "universe-scope.json", {
+        "authorized_symbols": ["600900.SH"],
+        "coverage": "BOUNDED_RESEARCH_CANDIDATES_ONLY",
+        "not_full_a_share_claim": True,
+    })
+
+
+def test_formal_preview_auto_loads_file_research_inputs(tmp_path, monkeypatch):
+    repo = make_ai_repo(tmp_path)
+    setup_formal_file_research(repo)
+    monkeypatch.setattr("stock_cn.formal_paper._source_commit", lambda p: "TEST")
+    snapshot = ai_live_snapshot()
+    for key in (
+        "official_disclosure_pack", "financial_reviews", "news_research",
+        "candidate_research_pack", "universe_scope",
+    ):
+        snapshot.pop(key, None)
+
+    session = FormalPaperSession(repo, "D", "D02")
+    req = session.prepare(snapshot)
+    assert req["live_snapshot"]["research_input_manifest"]["variant_id"] == "D02"
+    assert req["decision_research_bundle"]["coverage"]["financial_interpretation_completed"] == 2
+    assert "TEST_POWER" in req["prompt"]
+
+    after, execution = session.execute_preview(
+        ai_response(req, "BUY", "600900.SH"), req
+    )
+    assert execution["status"] == "FILLED"
+    assert any(p["symbol"] == "600900.SH" for p in after["positions"])
