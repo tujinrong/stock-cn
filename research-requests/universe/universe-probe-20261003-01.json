@@ -5,5 +5,6 @@
   "history_sample": 5,
   "formal_execution": false,
   "not_a_recommendation": true,
-  "retry_revision": 1
+  "retry_revision": 2,
+  "expected_universe_fallback": "Eastmoney primary -> Sina fallback; candidate history Tencent primary -> Eastmoney fallback"
 }
