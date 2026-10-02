@@ -26,7 +26,7 @@ def _aware(value, field):
 
 def _job_root(repo, job_id):
     repo = Path(repo).resolve()
-    if not isinstance(job_id, str) or not job_id or any(x in job_id for x in "/\"):
+    if not isinstance(job_id, str) or not job_id or any(x in job_id for x in ("/", "\\")):
         raise ValueError("invalid research job id")
     root = repo / "runs" / "research" / "jobs" / job_id
     if not root.resolve().is_relative_to((repo / "runs" / "research" / "jobs").resolve()):
