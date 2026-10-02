@@ -1,0 +1,15 @@
+{
+  "probe_id": "universe-probe-20261003-01",
+  "provider_eligible_count": 3197,
+  "provider_total_rows": null,
+  "source": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData",
+  "retrieved_at": "2026-10-02T16:36:27.416400+00:00",
+  "formal_live_validated": false,
+  "reason": "Research/source probe only; quote freshness/session executability not verified.",
+  "raw_full_universe_persisted": false,
+  "low_recovery_seed_count": 30,
+  "abnormal_drop_seed_count": 30,
+  "low_history_probe_verified": true,
+  "drop_history_probe_verified": true,
+  "not_a_recommendation": true
+}
