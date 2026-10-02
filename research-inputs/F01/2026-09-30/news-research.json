@@ -1,0 +1,41 @@
+{
+  "status": "SEARCHED",
+  "searched_at": "2026-09-30T14:50:00+08:00",
+  "items": [
+    {
+      "symbols": [
+        "600156.SH"
+      ],
+      "title": "华升股份9月30日盘中打开跌停，盘中约-9.91%",
+      "published_at": "2026-09-30T10:23:00+08:00",
+      "source": "东方财富Choice盘口异动",
+      "url": "https://finance.eastmoney.com/a/202609303887508920.html",
+      "material_fact": false
+    },
+    {
+      "symbols": [
+        "000850.SZ"
+      ],
+      "title": "华茂股份9月30日开盘跌幅达5%",
+      "published_at": "2026-09-30T09:26:00+08:00",
+      "source": "东方财富Choice盘口异动",
+      "url": "https://finance.eastmoney.com/a/202609303887321749.html",
+      "material_fact": false
+    },
+    {
+      "symbols": [
+        "000850.SZ"
+      ],
+      "title": "华茂股份9月29日收盘跌停及资金流向",
+      "published_at": "2026-09-30T09:10:37+08:00",
+      "source": "证券之星资金流向",
+      "url": "https://stock.stockstar.com/RB2026093000007631.shtml",
+      "material_fact": false
+    }
+  ],
+  "data_gaps": [
+    "未找到9月30日15:00以前由公司官方披露、可直接解释两只股票当日大跌原因的公告。",
+    "华升股份10月1日披露的重大资产重组进展公告晚于本次信息截止，已明确排除。",
+    "媒体对资金/题材原因的解释未作为已确认公司事实。"
+  ]
+}

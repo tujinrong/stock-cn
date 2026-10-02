@@ -1,0 +1,11 @@
+{
+  "variant_id": "F01",
+  "mode": "SIMULATION",
+  "decision_date": "2026-09-30",
+  "information_cutoff": "2026-09-30T15:00:00+08:00",
+  "source_commit": null,
+  "formal_execution": false,
+  "research_job_id": "f01-20260930-01",
+  "research_request_sha256": "763620093280d9cd2509b4a90d619aa5865ec73642ccff50e96d1dafde55f095",
+  "research_answer_sha256": "a099f71cb63ae69674c93883f8079e3ada369ea830b93f90c59ee2ade5bc603f"
+}
