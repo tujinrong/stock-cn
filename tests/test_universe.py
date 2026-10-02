@@ -166,3 +166,48 @@ def test_abnormal_drop_pack_does_not_call_fresh_drop_a_buy_signal():
     item = pack["candidates"][0]
     assert item["not_a_trade_signal"] is True
     assert "BUY" not in item["research_state"]
+
+
+def test_ai_select_variant_prompt_receives_only_bounded_authorized_universe(repo):
+    import copy
+    from stock_cn.sim_data import fixture
+    from stock_cn.sim_variants import VariantSimulation
+    from stock_cn.variant_prompts import materialize
+    from stock_cn.sim_agents import ScriptedSmokeAgent
+    from stock_cn.simulation import ValidationError
+
+    materialize(repo)
+    data = fixture()
+    keep = {"600036.SH", "600900.SH"}
+    data["instruments"] = {s: m for s, m in data["instruments"].items() if s in keep}
+    data["bars"] = {
+        d: {s: b for s, b in rows.items() if s in keep}
+        for d, rows in data["bars"].items()
+    }
+    data["candidate_research_pack"] = {
+        "kind": "AI_SELECT_DEEP_RESEARCH_PACK",
+        "purpose": "LOW_RECOVERY",
+        "not_a_recommendation": True,
+        "candidates": [{"symbol": "600036.SH"}, {"symbol": "600900.SH"}],
+    }
+    data["universe_scope"] = {
+        "authorized_symbols": sorted(keep),
+        "coverage": "BOUNDED_RESEARCH_CANDIDATES_ONLY",
+        "not_full_a_share_claim": True,
+    }
+    sim = VariantSimulation(repo, "D", "D02", "bounded-ai-select", data)
+    req = sim.prepare("2025-08-04")
+    assert "AI_SELECT_DEEP_RESEARCH_PACK" in req["prompt"]
+    assert "BOUNDED_RESEARCH_CANDIDATES_ONLY" in req["prompt"]
+    assert "600036.SH" in req["prompt"] and "600900.SH" in req["prompt"]
+
+    answer = ScriptedSmokeAgent().decide(req, [])
+    answer["order_proposal"] = {
+        "symbol": "600660.SH", "side": "BUY", "quantity": 100,
+        "reference_price_cny": "50.00",
+        "quote_time": req["context"]["information_cutoff"],
+        "quote_source": "TEST_ONLY",
+    }
+    answer["action"] = "BUY"
+    with pytest.raises(ValidationError, match="metadata"):
+        sim.validate_decision(answer, req)
