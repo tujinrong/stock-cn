@@ -59,7 +59,7 @@ jobs:
         id: timetravel
         shell: bash
         run: |
-          python -m stock_cn.sim_cli probe --test-id "$TEST_ID-time-source" --start 2024-08-01 --end 2025-08-08 --output "$RUNNER_TEMP/stock-cn-time-travel.json"
+          python -m stock_cn.sim_cli probe --test-id "$TEST_ID-time-source" --start 2024-07-05 --end 2025-08-08 --output "$RUNNER_TEMP/stock-cn-time-travel.json"
           if [ -f "$RUNNER_TEMP/stock-cn-time-travel.json" ]; then
             python -m stock_cn.sim_cli time-travel --variant A02 --test-id "$TEST_ID-time-travel" --data "$RUNNER_TEMP/stock-cn-time-travel.json" --date 2025-08-01
             python - <<'PY'
