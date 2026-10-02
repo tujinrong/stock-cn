@@ -1,0 +1,22 @@
+{
+  "strategy_id": "D",
+  "status": "SIMULATION",
+  "date": "2025-08-08",
+  "initial_capital_cny": "200000.00",
+  "cash_cny": "199995.80",
+  "total_equity_cny": "199995.80",
+  "positions": [],
+  "_meta": {
+    "schema_version": "0.4",
+    "mode": "SIMULATION",
+    "paper_only": true,
+    "variant_id": "D01",
+    "test_id": "ci-37038866756-1",
+    "revision": 6,
+    "valuation_time": "2025-08-08T15:00:00+08:00",
+    "fees_cny": "24.20",
+    "last_decision_date": "2025-08-08",
+    "data_kind": "TEST_ONLY",
+    "last_event_id": "000006"
+  }
+}
