@@ -1,0 +1,15 @@
+{
+  "rounds_used": 1,
+  "max_rounds": 10,
+  "status": "CANDIDATE_READY",
+  "rounds": [
+    {
+      "round": 1,
+      "accepted": true,
+      "automatic_formal_promotion": false,
+      "candidate_sha256": "db1067c86efe7e237d7090f21d8e0694ab47a44d4f3012f7a7850e1c54da91d5",
+      "validation_level": "STRUCTURAL_CONTRACT"
+    }
+  ],
+  "active_prompt_unchanged": true
+}

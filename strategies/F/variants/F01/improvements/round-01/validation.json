@@ -1,0 +1,9 @@
+{
+  "purpose": "STABILITY",
+  "passed": true,
+  "level": "STRUCTURAL_CONTRACT",
+  "missing_required_clauses": [],
+  "future_prices_used": false,
+  "performance_feedback_used": false,
+  "formal_prompt_modified": false
+}

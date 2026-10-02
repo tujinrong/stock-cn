@@ -1,0 +1,12 @@
+{
+  "round": 1,
+  "max_rounds": 10,
+  "issue_codes": [
+    "CANDIDATE_SCOPE",
+    "RESEARCH_STATE",
+    "FRESH_DROP_CAUSALITY"
+  ],
+  "objective": "STABILITY",
+  "future_prices_provided": false,
+  "performance_feedback_provided": false
+}
