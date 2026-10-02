@@ -382,3 +382,45 @@ def build_official_disclosure_pack(
             "successfully but returned no items in the bounded query."
         ),
     }
+
+
+
+def validate_official_disclosure_pack(pack, *, as_of, required_symbols=None):
+    """Validate causal official-disclosure metadata for a decision-time snapshot."""
+    if not isinstance(pack, dict) or pack.get("kind") != "OFFICIAL_DISCLOSURE_PACK":
+        raise ValueError("official disclosure pack missing or invalid")
+    cutoff = datetime.fromisoformat(as_of)
+    if cutoff.tzinfo is None:
+        raise ValueError("official disclosure cutoff must be timezone-aware")
+    results = pack.get("results")
+    if not isinstance(results, list):
+        raise ValueError("official disclosure results missing")
+    by_symbol = {}
+    for result in results:
+        symbol = result.get("symbol")
+        if not symbol:
+            raise ValueError("official disclosure result missing symbol")
+        status = result.get("provider_status")
+        if status not in {"OK", "EMPTY", "FAILED"}:
+            raise ValueError("invalid official disclosure provider status")
+        by_symbol[symbol] = result
+        for item in result.get("items", []):
+            published = datetime.fromisoformat(item["published_at"])
+            if published.tzinfo is None or published > cutoff:
+                raise ValueError("future/naive official disclosure in decision pack")
+            if item.get("source_official") is not True:
+                raise ValueError("non-official item inside official disclosure pack")
+    required = set(required_symbols or [])
+    missing = sorted(required - set(by_symbol))
+    if missing:
+        raise ValueError("official disclosure coverage missing symbols: " + ",".join(missing))
+    return True
+
+
+def official_disclosure_status(pack, symbol):
+    if not isinstance(pack, dict):
+        return "NOT_CHECKED"
+    for result in pack.get("results", []):
+        if result.get("symbol") == symbol:
+            return result.get("provider_status") or "INVALID"
+    return "NOT_CHECKED"
