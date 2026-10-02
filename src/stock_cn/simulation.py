@@ -18,7 +18,7 @@ from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 
 from .sim_data import number, validate_dataset
-from .paper_core import execute_single_order, validate_decision_contract
+from .paper_core import PaperCoreError, execute_single_order, validate_decision_contract
 
 
 class ValidationError(ValueError):
@@ -351,7 +351,10 @@ class Simulation:
             return request
 
     def validate_decision(self, response, request):
-        return validate_decision_contract(response, request, self.check_symbol)
+        try:
+            return validate_decision_contract(response, request, self.check_symbol)
+        except PaperCoreError as exc:
+            raise ValidationError(str(exc)) from exc
 
     def apply(self, day, response, actual_prompt=None):
         request = self.prepare(day)
@@ -377,17 +380,20 @@ class Simulation:
                     "limit_down": bar.get("limit_down"),
                 }
                 instrument = self.data["instruments"][symbol]
-            after, execution = execute_single_order(
-                request["holdings"], response,
-                quote or {"price": "1.00", "source": "NO_TRADE",
-                          "quote_time": request["context"]["execution_time"],
-                          "suspended": False, "limit_up": "999999.99", "limit_down": "0.01"},
-                instrument or {"name": "NO_TRADE", "lot_size": 100},
-                self.fees,
-                mode="SIMULATION",
-                execution_basis="PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM",
-                execution_time=request["context"]["execution_time"],
-            )
+            try:
+                after, execution = execute_single_order(
+                    request["holdings"], response,
+                    quote or {"price": "1.00", "source": "NO_TRADE",
+                              "quote_time": request["context"]["execution_time"],
+                              "suspended": False, "limit_up": "999999.99", "limit_down": "0.01"},
+                    instrument or {"name": "NO_TRADE", "lot_size": 100},
+                    self.fees,
+                    mode="SIMULATION",
+                    execution_basis="PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM",
+                    execution_time=request["context"]["execution_time"],
+                )
+            except PaperCoreError as exc:
+                raise ValidationError(str(exc)) from exc
             execution["simulation_only"] = True
             after["date"] = day
             after["_meta"].update(last_decision_date=day, valuation_time=f"{day}T15:00:00+08:00")
