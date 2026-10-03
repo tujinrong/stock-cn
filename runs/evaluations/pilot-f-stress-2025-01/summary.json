@@ -1,0 +1,249 @@
+{
+  "eval_id": "pilot-f-stress-2025-01",
+  "variant": "F01",
+  "method": "CAUSAL_WATCHLIST_VS_NAIVE_10PCT_NEXT_OPEN",
+  "capital_cny": 200000,
+  "results": [
+    {
+      "symbol": "600309.SH",
+      "name": "万华化学",
+      "drop_date": "2025-04-07",
+      "drop_change_pct": -9.993915424399136,
+      "execution_baseline_date": "2025-04-08",
+      "naive_quantity": 300,
+      "timeline": [
+        {
+          "date": "2025-04-07",
+          "state": "FRESH_DROP_MONITOR",
+          "evidence": [
+            "今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。"
+          ],
+          "close": "59.1700"
+        },
+        {
+          "date": "2025-04-08",
+          "state": "MONITORING_DROP",
+          "evidence": [],
+          "close": "60.2500"
+        },
+        {
+          "date": "2025-04-09",
+          "state": "MONITORING_DROP",
+          "evidence": [],
+          "close": "60.1700"
+        },
+        {
+          "date": "2025-04-10",
+          "state": "EARLY_STABILIZATION_RESEARCH",
+          "evidence": [
+            "最近3个收盘未再创前一观察窗口新低。"
+          ],
+          "close": "60.8800"
+        },
+        {
+          "date": "2025-04-11",
+          "state": "EARLY_STABILIZATION_RESEARCH",
+          "evidence": [
+            "当前收盘不低于MA5。"
+          ],
+          "close": "60.2000"
+        },
+        {
+          "date": "2025-04-14",
+          "state": "MONITORING_DROP",
+          "evidence": [
+            "近5个交易日收益已转正。"
+          ],
+          "close": "59.4500"
+        },
+        {
+          "date": "2025-04-15",
+          "state": "MONITORING_DROP",
+          "evidence": [],
+          "close": "56.2600"
+        },
+        {
+          "date": "2025-04-16",
+          "state": "MONITORING_DROP",
+          "evidence": [],
+          "close": "55.3500"
+        },
+        {
+          "date": "2025-04-17",
+          "state": "MONITORING_DROP",
+          "evidence": [],
+          "close": "54.8900"
+        },
+        {
+          "date": "2025-04-18",
+          "state": "MONITORING_DROP",
+          "evidence": [],
+          "close": "54.9900"
+        }
+      ],
+      "recovery_confirmation": null,
+      "F01_action_during_monitor": "HOLD/RESEARCH_ONLY until AI-confirmed recovery",
+      "horizons": [
+        {
+          "horizon_sessions": 5,
+          "date": "2025-04-15",
+          "naive_equity_cny": "198813.00",
+          "naive_return_pct": -0.5935,
+          "F01_cash_return_pct": 0.0,
+          "F01_advantage_vs_naive_pct": 0.5935,
+          "naive_annualized_pct": -25.919302360527617
+        },
+        {
+          "horizon_sessions": 20,
+          "date": "2025-05-09",
+          "naive_equity_cny": "198402.00",
+          "naive_return_pct": -0.799,
+          "F01_cash_return_pct": 0.0,
+          "F01_advantage_vs_naive_pct": 0.799,
+          "naive_annualized_pct": -9.613778559174103
+        },
+        {
+          "horizon_sessions": 40,
+          "date": "2025-06-09",
+          "naive_equity_cny": "198486.00",
+          "naive_return_pct": -0.757,
+          "F01_cash_return_pct": 0.0,
+          "F01_advantage_vs_naive_pct": 0.757,
+          "naive_annualized_pct": -4.674461066208058
+        }
+      ],
+      "attempts": [
+        {
+          "symbol": "600309.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 110,
+          "fallback_errors": []
+        }
+      ]
+    },
+    {
+      "symbol": "601088.SH",
+      "name": "中国神华",
+      "drop_date": "2025-07-07",
+      "drop_change_pct": -8.160779537149809,
+      "execution_baseline_date": "2025-07-08",
+      "naive_quantity": 500,
+      "timeline": [
+        {
+          "date": "2025-07-07",
+          "state": "FRESH_DROP_MONITOR",
+          "evidence": [
+            "今天是异常下跌发现日；尚未经过后续交易日确认，不构成回升买点。"
+          ],
+          "close": "37.7000"
+        },
+        {
+          "date": "2025-07-08",
+          "state": "MONITORING_DROP",
+          "evidence": [],
+          "close": "37.7200"
+        },
+        {
+          "date": "2025-07-09",
+          "state": "MONITORING_DROP",
+          "evidence": [],
+          "close": "37.5000"
+        },
+        {
+          "date": "2025-07-10",
+          "state": "MONITORING_DROP",
+          "evidence": [],
+          "close": "37.4600"
+        },
+        {
+          "date": "2025-07-11",
+          "state": "MONITORING_DROP",
+          "evidence": [],
+          "close": "36.8000"
+        },
+        {
+          "date": "2025-07-14",
+          "state": "EARLY_STABILIZATION_RESEARCH",
+          "evidence": [
+            "当前收盘不低于MA5。"
+          ],
+          "close": "37.4200"
+        },
+        {
+          "date": "2025-07-15",
+          "state": "EARLY_STABILIZATION_RESEARCH",
+          "evidence": [
+            "当前收盘不低于MA5。"
+          ],
+          "close": "37.4700"
+        },
+        {
+          "date": "2025-07-16",
+          "state": "EARLY_STABILIZATION_RESEARCH",
+          "evidence": [
+            "最近3个收盘未再创前一观察窗口新低。"
+          ],
+          "close": "37.2800"
+        },
+        {
+          "date": "2025-07-17",
+          "state": "MONITORING_DROP",
+          "evidence": [],
+          "close": "37.1300"
+        },
+        {
+          "date": "2025-07-18",
+          "state": "EARLY_STABILIZATION_RESEARCH",
+          "evidence": [
+            "近5个交易日收益已转正。",
+            "当前收盘不低于MA5。"
+          ],
+          "close": "37.4000"
+        }
+      ],
+      "recovery_confirmation": null,
+      "F01_action_during_monitor": "HOLD/RESEARCH_ONLY until AI-confirmed recovery",
+      "horizons": [
+        {
+          "horizon_sessions": 5,
+          "date": "2025-07-15",
+          "naive_equity_cny": "199855.00",
+          "naive_return_pct": -0.0725,
+          "F01_cash_return_pct": 0.0,
+          "F01_advantage_vs_naive_pct": 0.0725,
+          "naive_annualized_pct": -3.5893248233458186
+        },
+        {
+          "horizon_sessions": 20,
+          "date": "2025-08-19",
+          "naive_equity_cny": "200255.00",
+          "naive_return_pct": 0.1275,
+          "F01_cash_return_pct": 0.0,
+          "F01_advantage_vs_naive_pct": -0.1275,
+          "naive_annualized_pct": 1.618433751333992
+        },
+        {
+          "horizon_sessions": 40,
+          "date": "2025-09-16",
+          "naive_equity_cny": "200325.00",
+          "naive_return_pct": 0.1625,
+          "F01_cash_return_pct": 0.0,
+          "F01_advantage_vs_naive_pct": -0.1625,
+          "naive_annualized_pct": 1.028168805399421
+        }
+      ],
+      "attempts": [
+        {
+          "symbol": "601088.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 98,
+          "fallback_errors": []
+        }
+      ]
+    }
+  ],
+  "note": "Stress-test baseline only; F01 watchlist state is not itself an AI BUY signal.",
+  "formal_execution": false
+}
