@@ -1,0 +1,33 @@
+{
+  "mode": "SIMULATION",
+  "series": "C",
+  "variant": "C01",
+  "test_id": "ci-37085281780-1",
+  "input_fingerprint": "e3615f5595dd10cb16db4b62e2926b5f38279cfe2d4e0a7ff7b770154617b04b",
+  "source_commit": "212c30fc31c0dfe95d92a1466d078249591a3f68",
+  "fees": {
+    "commission_rate": "0.00025",
+    "min_commission": "5.0",
+    "stamp_duty_sell_rate": "0.0005",
+    "transfer_fee_rate": "0.00001"
+  },
+  "data_kind": "TEST_ONLY",
+  "fidelity": "ENGINEERING_ONLY",
+  "execution_basis": "PREVIOUS_CLOSE_NEXT_OPEN_NOT_11AM",
+  "sessions": [
+    "2025-08-01",
+    "2025-08-04",
+    "2025-08-05",
+    "2025-08-06",
+    "2025-08-07",
+    "2025-08-08"
+  ],
+  "initialization": "ASSUMED_SETTLED_OPENING; not five same-day buys; no invented historic fees",
+  "limitations": [
+    "Synthetic prices and scripted decisions; not an AI investment test."
+  ],
+  "source_version": "TEST_ONLY:synthetic-v1",
+  "template_sha256": {
+    "strategies/C/variants/C01/prompt.md": "2e4eda7b46b78e4c4dd73d4281ff9eb0bca37ca1a3a182f7419a7b64042cbb16"
+  }
+}
