@@ -1,0 +1,216 @@
+{
+  "probe_id": "f-stress-2025-01",
+  "threshold_pct": -5,
+  "episodes": [
+    {
+      "symbol": "600309.SH",
+      "name": "万华化学",
+      "date": "2025-04-07",
+      "close": 59.17,
+      "previous_close": 65.74,
+      "change_pct": -9.993915424399136
+    },
+    {
+      "symbol": "601318.SH",
+      "name": "中国平安",
+      "date": "2024-10-09",
+      "close": 55.7,
+      "previous_close": 61.73,
+      "change_pct": -9.768346023003394
+    },
+    {
+      "symbol": "600309.SH",
+      "name": "万华化学",
+      "date": "2024-10-09",
+      "close": 84.88,
+      "previous_close": 93.75,
+      "change_pct": -9.461333333333332
+    },
+    {
+      "symbol": "601088.SH",
+      "name": "中国神华",
+      "date": "2025-07-07",
+      "close": 37.7,
+      "previous_close": 41.05,
+      "change_pct": -8.160779537149809
+    },
+    {
+      "symbol": "600276.SH",
+      "name": "恒瑞医药",
+      "date": "2024-10-09",
+      "close": 51.68,
+      "previous_close": 56.01,
+      "change_pct": -7.730762363863597
+    },
+    {
+      "symbol": "600036.SH",
+      "name": "招商银行",
+      "date": "2024-10-09",
+      "close": 37.01,
+      "previous_close": 40.0,
+      "change_pct": -7.475000000000009
+    },
+    {
+      "symbol": "600519.SH",
+      "name": "贵州茅台",
+      "date": "2024-10-09",
+      "close": 1595.15,
+      "previous_close": 1723.0,
+      "change_pct": -7.420197330237954
+    },
+    {
+      "symbol": "600028.SH",
+      "name": "中国石化",
+      "date": "2025-04-07",
+      "close": 5.38,
+      "previous_close": 5.78,
+      "change_pct": -6.920415224913501
+    },
+    {
+      "symbol": "600028.SH",
+      "name": "中国石化",
+      "date": "2024-10-09",
+      "close": 6.58,
+      "previous_close": 7.02,
+      "change_pct": -6.2678062678062645
+    },
+    {
+      "symbol": "601318.SH",
+      "name": "中国平安",
+      "date": "2025-04-07",
+      "close": 48.56,
+      "previous_close": 51.48,
+      "change_pct": -5.6721056721056655
+    },
+    {
+      "symbol": "600660.SH",
+      "name": "福耀玻璃",
+      "date": "2025-04-07",
+      "close": 53.68,
+      "previous_close": 56.9,
+      "change_pct": -5.659050966608081
+    },
+    {
+      "symbol": "600036.SH",
+      "name": "招商银行",
+      "date": "2025-07-11",
+      "close": 45.64,
+      "previous_close": 48.24,
+      "change_pct": -5.389718076285243
+    },
+    {
+      "symbol": "600036.SH",
+      "name": "招商银行",
+      "date": "2025-03-26",
+      "close": 42.66,
+      "previous_close": 45.09,
+      "change_pct": -5.389221556886237
+    },
+    {
+      "symbol": "600309.SH",
+      "name": "万华化学",
+      "date": "2025-04-15",
+      "close": 56.26,
+      "previous_close": 59.45,
+      "change_pct": -5.36585365853659
+    },
+    {
+      "symbol": "600028.SH",
+      "name": "中国石化",
+      "date": "2025-08-01",
+      "close": 5.69,
+      "previous_close": 6.01,
+      "change_pct": -5.32445923460898
+    },
+    {
+      "symbol": "600660.SH",
+      "name": "福耀玻璃",
+      "date": "2025-10-17",
+      "close": 63.48,
+      "previous_close": 66.88,
+      "change_pct": -5.0837320574162685
+    },
+    {
+      "symbol": "600276.SH",
+      "name": "恒瑞医药",
+      "date": "2025-10-28",
+      "close": 63.62,
+      "previous_close": 67.01,
+      "change_pct": -5.058946425906596
+    }
+  ],
+  "attempts": [
+    {
+      "symbol": "600036.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600519.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600276.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600900.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600660.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600309.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "601318.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "601088.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 253,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600028.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "601006.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    }
+  ],
+  "selection_note": "Used only to choose F stress-test episodes; not a trading rule.",
+  "raw_market_data_persisted": false
+}
