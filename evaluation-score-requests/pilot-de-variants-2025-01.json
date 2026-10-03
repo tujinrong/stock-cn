@@ -1,0 +1,13 @@
+{
+  "eval_id": "pilot-de-variants-2025-01",
+  "status": "REQUESTED",
+  "requested_phase": "SCORE_AFTER_DECISIONS_LOCKED",
+  "expected_answers": 8,
+  "score_horizons": [
+    5,
+    20,
+    40
+  ],
+  "allow_prompt_improvement_from_scores": false,
+  "formal_execution": false
+}
