@@ -249,11 +249,7 @@ def prepare_research_only_request(repo, variant, test_id, data, target_date):
         } for d in sorted(visible_bars)[-10:] if s in visible_bars[d]]
         for s in known
     }
-    authorized_universe = (
-        scope if scope is not None else
-        (read_json(repo / "strategies/index.json")
-         if False else sorted(known))
-    )
+    authorized_universe = scope if scope is not None else sorted(known)
     tools = {
         "historical_closes": market,
         "candidate_research_pack": candidate_pack,
