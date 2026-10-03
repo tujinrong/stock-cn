@@ -1,0 +1,13 @@
+{
+  "evidence": [
+    {
+      "source": "CNINFO/长江电力2025年第一季度报告",
+      "published_at": "2025-04-30T00:00:00+08:00",
+      "title": "长江电力2025年第一季度报告"
+    }
+  ],
+  "data_gaps": [
+    "本次信息截止前2025半年报尚未披露。"
+  ],
+  "scoring_phase_future_data_excluded": true
+}

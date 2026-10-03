@@ -1,0 +1,13 @@
+{
+  "evidence": [
+    {
+      "source": "CNINFO/中国平安2025年中期报告摘要",
+      "published_at": "2025-08-27T00:00:00+08:00",
+      "title": "中国平安2025年中期报告摘要"
+    }
+  ],
+  "data_gaps": [
+    "营运利润与会计净利润存在口径差异。"
+  ],
+  "scoring_phase_future_data_excluded": true
+}

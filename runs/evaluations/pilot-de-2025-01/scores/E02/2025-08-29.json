@@ -1,0 +1,61 @@
+{
+  "eval_id": "pilot-de-2025-01",
+  "variant": "E02",
+  "target_date": "2025-08-29",
+  "execution_date": "2025-09-01",
+  "prompt_sha256": "a167a2f5085eae3155aa08e66204998877d0a8e879a4d49f78776931661e7bbe",
+  "decision_sha256": "cb626621e029ef74b6a79fc82be99b11055a0d32d8a7bdaa136c83010a428af8",
+  "action": "BUY",
+  "execution": {
+    "status": "FILLED",
+    "fill": {
+      "symbol": "601318.SH",
+      "side": "BUY",
+      "quantity": 300,
+      "price_cny": "59.79",
+      "fee_cny": "5.18",
+      "time": "2025-09-01T09:30:00+08:00",
+      "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C",
+      "quote_time": "2025-09-01T09:30:00+08:00",
+      "time_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+    },
+    "reason": "PAPER_FILL_USING_MODE_QUOTE",
+    "decision_id": "eval-pilot-de-2025-01-20250829-E02-2025-09-01",
+    "paper_only": true,
+    "mode": "SIMULATION",
+    "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+  },
+  "scores": [
+    {
+      "horizon_sessions": 5,
+      "date": "2025-09-08",
+      "status": "SCORED",
+      "actual_equity_cny": "199367.82",
+      "hold_counterfactual_equity_cny": "200000.00",
+      "actual_return_pct": "-0.3160900",
+      "hold_return_pct": "0",
+      "incremental_pnl_vs_hold_cny": "-632.18",
+      "incremental_return_vs_hold_pct": "-0.3160900"
+    },
+    {
+      "horizon_sessions": 20,
+      "date": "2025-09-29",
+      "status": "SCORED",
+      "actual_equity_cny": "198860.82",
+      "hold_counterfactual_equity_cny": "200000.00",
+      "actual_return_pct": "-0.5695900",
+      "hold_return_pct": "0",
+      "incremental_pnl_vs_hold_cny": "-1139.18",
+      "incremental_return_vs_hold_pct": "-0.5695900"
+    },
+    {
+      "horizon_sessions": 40,
+      "status": "INSUFFICIENT_FUTURE_SESSIONS"
+    }
+  ],
+  "future_outcomes_were_separate_from_decision_phase": true,
+  "historical_prefix_reverified_before_scoring": true,
+  "request_regenerated_during_scoring": false,
+  "eligible_for_prompt_auto_improvement": false,
+  "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+}
