@@ -1,0 +1,59 @@
+name: Research-only AI decision lock
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research-decision-answers/*.json'
+permissions:
+  contents: write
+concurrency:
+  group: research-only-ai-decision-lock
+  cancel-in-progress: false
+jobs:
+  lock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -e '.[dev]'
+      - name: Validate and lock pending decisions
+        shell: bash
+        run: |
+          set -euo pipefail
+          found=0
+          for file in research-decision-answers/*.json; do
+            [ -f "$file" ] || continue
+            test_id=$(python -c "import json; print(json.load(open('$file'))['test_id'])")
+            variant=$(python -c "import json; print(json.load(open('$file'))['variant_id'])")
+            target=$(python -c "import json; print(json.load(open('$file'))['target_date'])")
+            if [ -f "runs/research-decisions/$test_id/$variant/$target/decision.lock.json" ]; then
+              continue
+            fi
+            python tools/lock_research_decision_answer.py --answer "$file"
+            found=1
+          done
+          test "$found" -eq 1 || echo "No pending research-only decisions."
+      - name: Verify formal accounts and prompts unchanged
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in strategies/*/variants/*/holdings.json \
+                   strategies/*/variants/*/holdings.md \
+                   strategies/*/variants/*/formal_prompt.json \
+                   strategies/*/variants/*/research_state.json; do
+            [ -f "$f" ] || continue
+            git diff --exit-code -- "$f"
+          done
+      - name: Publish locked decisions
+        run: |
+          git add -- runs/research-decisions
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m "research: lock research-only AI decisions [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
