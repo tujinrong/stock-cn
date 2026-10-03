@@ -1,0 +1,9 @@
+{
+  "status": "NO_TRADE",
+  "fill": null,
+  "reason": "HOLD",
+  "decision_id": "eval-pilot-de-2025-02-20250515-D02-2025-05-16",
+  "paper_only": true,
+  "mode": "SIMULATION",
+  "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+}
