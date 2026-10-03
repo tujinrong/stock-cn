@@ -1,0 +1,29 @@
+{
+  "probe_id": "f-followup-2025-01",
+  "purpose": "F01 follow-up snapshots after two fixed-universe abnormal-drop stress events.",
+  "history_start": "2024-09-27",
+  "history_end": "2025-07-31",
+  "target_dates": [
+    "2025-04-07",
+    "2025-04-08",
+    "2025-04-09",
+    "2025-04-10",
+    "2025-04-11",
+    "2025-07-07",
+    "2025-07-08",
+    "2025-07-09",
+    "2025-07-10",
+    "2025-07-11"
+  ],
+  "universe": [
+    {
+      "symbol": "600309.SH",
+      "name": "万华化学"
+    },
+    {
+      "symbol": "601088.SH",
+      "name": "中国神华"
+    }
+  ],
+  "formal_execution": false
+}
