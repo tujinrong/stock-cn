@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.4",
+  "eval_id": "pilot-de-2025-01",
+  "purpose": "Historical point-decision comparison for D02 and E02 using fixed predeclared pilot universe and causal financial research.",
+  "variants": [
+    "D02",
+    "E02"
+  ],
+  "target_dates": [
+    "2025-05-15",
+    "2025-08-29"
+  ],
+  "history_start": "2024-09-27",
+  "history_end": "2025-10-31",
+  "symbols": [
+    "600036.SH",
+    "600519.SH",
+    "600276.SH",
+    "600900.SH",
+    "600660.SH",
+    "600309.SH",
+    "601318.SH",
+    "601088.SH",
+    "600028.SH",
+    "601006.SH"
+  ],
+  "score_horizons": [
+    5,
+    20,
+    40
+  ],
+  "archived_news_policy": "LIMITED_CAUSAL_RESEARCH_FILES",
+  "data_contract": "FIXED_EX_ANTE_PILOT_UNIVERSE_WITH_CAUSAL_FINANCIAL_INPUTS",
+  "raw_market_data_persisted": false,
+  "formal_execution": false
+}
