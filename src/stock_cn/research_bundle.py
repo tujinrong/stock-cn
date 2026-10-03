@@ -132,6 +132,13 @@ def build_decision_research_bundle(
 
     news_items = news_research.get("items", []) if isinstance(news_research, dict) else []
     news_items = _causal_items(news_items, cutoff)
+    news_checked_through = news_research.get('searched_at') or news_research.get('as_of')
+    news_checked_for_date = bool(news_checked_through and
+        _aware(news_checked_through, 'news coverage time').astimezone(cutoff.tzinfo).date() == cutoff.date())
+    historical_news_ignored = bool(market_context and market_context.get('mode') == 'SIMULATION' and
+        market_context.get('historical_news_policy') == 'IGNORE_UNRELIABLE_ARCHIVED_NEWS')
+    if historical_news_ignored:
+        news_items = []
     news_by_symbol = {s: [] for s in symbols}
     for item in news_items:
         for symbol in item.get("symbols", []):
@@ -157,6 +164,11 @@ def build_decision_research_bundle(
             news_research.get("status", "NOT_CHECKED")
             if isinstance(news_research, dict) else "NOT_CHECKED"
         )
+        source_news_status = global_news_status
+        if historical_news_ignored:
+            global_news_status = 'IGNORED_HISTORICAL_NEWS'
+        elif global_news_status in {'SEARCHED', 'NO_RELEVANT_RECENT_NEWS'} and not news_checked_for_date:
+            global_news_status = 'ARCHIVED_CHECK_ONLY' if news_checked_through else 'CHECK_TIME_UNKNOWN'
         symbol_news = sorted(
             news_by_symbol.get(symbol, []),
             key=lambda x: x["published_at"],
@@ -182,6 +194,9 @@ def build_decision_research_bundle(
             "financial_review": financial,
             "financial_review_status": financial_status,
             "recent_news_status": global_news_status,
+            "source_news_status": source_news_status,
+            "news_coverage_through": news_checked_through,
+            "news_checked_for_cutoff_date": news_checked_for_date and not historical_news_ignored,
             "recent_news_items": symbol_news[:8],
             "data_gaps": gaps,
             "no_investment_conclusion": True,
@@ -247,7 +262,11 @@ def buy_research_preflight(bundle, symbol):
     reasons = []
     if row["official_disclosure_status"] not in {"OK", "EMPTY"}:
         reasons.append("OFFICIAL_DISCLOSURE_NOT_SUCCESSFULLY_CHECKED")
-    if row["recent_news_status"] not in {"SEARCHED", "NO_RELEVANT_RECENT_NEWS"}:
+    context = bundle.get('market_context') or {}
+    ignored_historical = (row['recent_news_status'] == 'IGNORED_HISTORICAL_NEWS' and
+                          context.get('mode') == 'SIMULATION' and
+                          context.get('historical_news_policy') == 'IGNORE_UNRELIABLE_ARCHIVED_NEWS')
+    if row["recent_news_status"] not in {"SEARCHED", "NO_RELEVANT_RECENT_NEWS"} and not ignored_historical:
         reasons.append("RECENT_NEWS_NOT_VERIFIED")
     if row["latest_periodic_report_ref"] is None and row["financial_review"] is None:
         reasons.append("LATEST_FINANCIAL_REFERENCE_MISSING")

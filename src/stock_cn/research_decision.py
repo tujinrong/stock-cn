@@ -161,7 +161,7 @@ def prepare_research_only_request(repo, variant, test_id, data, target_date):
 
     travel = build_time_travel_context(
         data, target_date, target_date,
-        symbols=sorted(known), ignore_news=True, execution_date=None,
+        symbols=sorted(known), ignore_news=not data.get("time_travel_include_evidence"), execution_date=None,
     )
 
     official = file_research.get("official_disclosure_pack") if file_research else None
@@ -191,6 +191,8 @@ def prepare_research_only_request(repo, variant, test_id, data, target_date):
             news_research=news,
             market_context={
                 "mode": "SIMULATION",
+                "historical_news_policy": ('USE_POINT_IN_TIME_ARCHIVED_NEWS' if data.get('time_travel_include_evidence')
+                                           else 'IGNORE_UNRELIABLE_ARCHIVED_NEWS'),
                 "submode": "RESEARCH_ONLY_TIME_TRAVEL",
                 "fidelity": data.get("fidelity"),
                 "execution_available": False,
@@ -256,7 +258,7 @@ def prepare_research_only_request(repo, variant, test_id, data, target_date):
         "universe_scope": scope,
         "official_disclosure_pack": official,
         "financial_reviews": financials,
-        "news_research": news,
+        "news_research": news if data.get("time_travel_include_evidence") else None,
         "decision_research_bundle": decision_research_bundle,
         "research_input_manifest": research_input_manifest,
         "tools": (

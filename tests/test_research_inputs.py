@@ -303,16 +303,20 @@ def buy_from_request(req):
     return d
 
 
-def test_time_travel_auto_loads_same_day_research_files(repo):
+@pytest.mark.parametrize("include_news", [False, True])
+def test_time_travel_auto_loads_same_day_research_files(repo, include_news):
     materialize(repo)
     setup_historical_files(repo, include_financial=True)
+    data = one_symbol_fixture()
+    data["time_travel_include_evidence"] = include_news
     sim = VariantSimulation(
-        repo, "D", "D02", "auto-research-complete", one_symbol_fixture()
+        repo, "D", "D02", "auto-research-complete", data
     )
     req = sim.prepare("2025-08-04")
     assert req["research_input_manifest"]["variant_id"] == "D02"
     assert req["decision_research_bundle"]["coverage"]["financial_interpretation_completed"] == 1
-    assert req["decision_research_bundle"]["coverage"]["news_verified"] == 1
+    assert req["decision_research_bundle"]["coverage"]["news_verified"] == int(include_news)
+    assert ("历史测试新闻" in req["prompt"]) == include_news
     assert "历史官方半年报" in req["prompt"]
     assert "research_input_manifest" in req["prompt"]
     sim.validate_decision(buy_from_request(req), req)

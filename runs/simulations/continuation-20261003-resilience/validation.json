@@ -1,0 +1,101 @@
+{
+  "source_commit": "514b53e872e6451ff3ac9f4344c07f77810aefd1",
+  "pytest": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "195",
+    "time": "43.261",
+    "timestamp": "2026-10-03T22:28:56.696847+09:00",
+    "hostname": "DELL_DISKTOP1"
+  },
+  "code_sha256": {
+    ".github/workflows/simulation-validation.yml": "83f5eb058dd3e8b1340ebc1372bd74e43c42dad24871525c57e28a5f26133e4f",
+    "src/stock_cn/evaluation.py": "18be597760b63d30166660c7233a293faa7155680497ef459dc559d2f33e5378",
+    "src/stock_cn/performance.py": "d4bd58f368dca7377f645f4f2f7365802297c7951ed1724c8620ab5163c9d31a",
+    "src/stock_cn/research_bundle.py": "3ae90189252b4f4e9a1afa6f38a6afe1d337c29df2740d685a40cedd0f49acaf",
+    "src/stock_cn/research_decision.py": "89c360345d3b1c83de31745a90cf9cf9d6845e5b03b2e6d6bbf1658705a7023b",
+    "src/stock_cn/simulation.py": "60980706175971369df94a39cf7e32d7c21f867d4074debb4e3ca94b1bc1d474",
+    "tests/test_evaluation.py": "22adcbb9ca240d2a8728bea4504e464c7face33597e670e040e32a815662dd29",
+    "tests/test_mode_parity.py": "1df10aacf787a6efb0f842ef4ac7abc3ccd3b37df87d8981482dc798dbbf655e",
+    "tests/test_research_bundle.py": "ac3ed07fcfabb84b0299fbaeeadc3a302cda23c59254dfdf901c059cb482825a",
+    "tests/test_research_decision.py": "c09ce3ca21e1a02e361dd0b8540f4d4ec480db0ed92b1298d937c0e37741aea7",
+    "tests/test_research_inputs.py": "87523ede353a25a95ba3713e694f98a59107e0243b2cb5abd5e59b478d71ca08",
+    "tools/build_performance_comparison.py": "1a944a93dd2e94959b278776e1fa2d65a69c80cf59cd5adb7988f76614d9467d",
+    "tests/test_evaluation_resilience.py": "8ac2d8ff45ad210ebedc4132fb287b399146900f795813ab5f31757d3813a186"
+  },
+  "historical_repeat_checks": [
+    {
+      "variant": "D01",
+      "repeat_calls": 2,
+      "event_count_before": 2,
+      "event_count_after": 2,
+      "execution_status": "NO_TRADE"
+    },
+    {
+      "variant": "D02",
+      "repeat_calls": 2,
+      "event_count_before": 2,
+      "event_count_after": 2,
+      "execution_status": "NO_TRADE"
+    },
+    {
+      "variant": "D03",
+      "repeat_calls": 2,
+      "event_count_before": 2,
+      "event_count_after": 2,
+      "execution_status": "NO_TRADE"
+    },
+    {
+      "variant": "E01",
+      "repeat_calls": 2,
+      "event_count_before": 2,
+      "event_count_after": 2,
+      "execution_status": "FILLED"
+    },
+    {
+      "variant": "E02",
+      "repeat_calls": 2,
+      "event_count_before": 2,
+      "event_count_after": 2,
+      "execution_status": "NO_TRADE"
+    },
+    {
+      "variant": "E03",
+      "repeat_calls": 2,
+      "event_count_before": 1,
+      "event_count_after": 1,
+      "execution_status": "NOT_EXECUTED"
+    },
+    {
+      "variant": "F01",
+      "repeat_calls": 2,
+      "event_count_before": 1,
+      "event_count_after": 1,
+      "execution_status": "NOT_EXECUTED"
+    }
+  ],
+  "locked_requests_inputs_decisions_and_event_bytes_unchanged": true,
+  "existing_score_bytes_unchanged": true,
+  "formal_holdings_prompts_versions_and_pointers_unchanged": true,
+  "attempted_entries": 7,
+  "scored_entries": 5,
+  "unavailable_entries": 2,
+  "raw_data_outside_repository": true,
+  "new_ai_decisions": 0,
+  "paid_model_called": false,
+  "formal_execution": false,
+  "resilience_cases": [
+    "same-point concurrent scoring",
+    "crash after event before projections",
+    "crash before score write",
+    "extend incomplete horizons",
+    "subset preserves prior scores",
+    "original scenario fees retained",
+    "changed prepared input refused before lock",
+    "changed locked request refused",
+    "changed execution refused",
+    "changed scored outcome refused"
+  ]
+}

@@ -32,7 +32,21 @@ def _relative(repo, path):
     return Path(path).resolve().relative_to(Path(repo).resolve()).as_posix()
 
 
+def _point_store(repo, eval_id, variant, target_date):
+    from datetime import date
+    date.fromisoformat(target_date)
+    return Store(Path(repo).resolve() / 'runs/evaluations' / _safe_id(eval_id) /
+                 'locks' / _safe_id(variant) / target_date)
+
+
 def prepare_point(repo, eval_id, variant, data, target_date):
+    with _point_store(repo, eval_id, variant, target_date).lock():
+        locked = Path(repo).resolve() / 'runs/evaluations' / eval_id / 'decisions' / variant / f'{target_date}.json'
+        require(not locked.exists(), 'decision already locked; reuse the saved request or use a new eval_id')
+        return _prepare_point(repo, eval_id, variant, data, target_date)
+
+
+def _prepare_point(repo, eval_id, variant, data, target_date):
     """Prepare one isolated historical AI request without future outcomes."""
     repo = Path(repo).resolve()
     eval_id = _safe_id(eval_id)
@@ -55,6 +69,8 @@ def prepare_point(repo, eval_id, variant, data, target_date):
         "target_date": target_date,
         "execution_date": execution_date,
         "prompt_sha256": request["prompt_sha256"],
+        "request_sha256": digest(request),
+        "time_travel_sha256": digest(read_json(sim.store.path(f"requests/{execution_date}/time_travel.json"))),
         "input_revision": request["context"]["input_revision"],
         "input_commit": request["context"]["input_commit"],
         "simulation_test_id": test_id,
@@ -115,15 +131,30 @@ def _load_entry(repo, eval_id, variant, target_date):
 
 
 def save_locked_decision(repo, eval_id, variant, target_date, decision):
+    with _point_store(repo, eval_id, variant, target_date).lock():
+        return _save_locked_decision(repo, eval_id, variant, target_date, decision)
+
+
+def _save_locked_decision(repo, eval_id, variant, target_date, decision):
     """Lock a decision only when it matches the prepared historical request exactly."""
     repo = Path(repo).resolve()
     entry = _load_entry(repo, eval_id, variant, target_date)
     request = read_json(repo / entry["request_path"])
     require(request["prompt_sha256"] == entry["prompt_sha256"], "prepared prompt changed")
+    require(digest(request['prompt']) == entry['prompt_sha256'], 'prepared prompt content changed')
+    require((repo / entry['ai_input_path']).read_text(encoding='utf-8') == request['prompt'],
+            'saved AI input changed before decision lock')
+    travel = read_json(repo / entry['time_travel_path'])
+    if entry.get('request_sha256'):
+        require(digest(request) == entry['request_sha256'], 'prepared request changed before decision lock')
+    if entry.get('time_travel_sha256'):
+        require(digest(travel) == entry['time_travel_sha256'], 'prepared time-travel input changed before decision lock')
     # No market data is loaded in the lock phase. Full trading-rule validation is
     # deliberately deferred to score_locked_decision, after the decision is immutable.
     c = request["context"]
     require(isinstance(decision, dict), "decision must be an object")
+    require(type(decision.get('input_revision')) is int, 'decision revision must be integer')
+    require(isinstance(decision.get('summary'), str) and decision['summary'].strip(), 'decision summary missing')
     for field in ("strategy_id", "variant_id", "mode", "run_id", "decision_id", "date",
                   "decision_time", "input_revision", "input_commit"):
         require(decision.get(field) == c[field], f"decision identity mismatch: {field}")
@@ -131,6 +162,9 @@ def save_locked_decision(repo, eval_id, variant, target_date, decision):
     require(decision.get("status") in {"READY", "INSUFFICIENT_DATA", "NOT_INITIALIZED",
                                        "NOT_AUTHORIZED", "INVALID_INPUT"},
             "decision status invalid")
+    if decision['status'] != 'READY':
+        require(decision.get('action') is None and decision.get('order_proposal') is None,
+                'unavailable decision cannot carry an action or order')
     root = repo / "runs" / "evaluations" / eval_id
     p = root / "decisions" / variant / f"{target_date}.json"
     require(not p.exists(), "decision already locked; create a new eval_id to change it")
@@ -139,6 +173,8 @@ def save_locked_decision(repo, eval_id, variant, target_date, decision):
         "entry_id": entry["entry_id"],
         "prompt_sha256": entry["prompt_sha256"],
         "decision_sha256": digest(decision),
+        "request_sha256": digest(request),
+        "time_travel_sha256": digest(travel),
         "locked": True,
         "future_outcomes_seen_by_decision_phase": False,
     }
@@ -161,6 +197,11 @@ def _has_break(data, symbol, start_date, end_date):
 
 
 def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5, 20, 40)):
+    with _point_store(repo, eval_id, variant, target_date).lock():
+        return _score_locked_decision(repo, eval_id, variant, target_date, data, horizons)
+
+
+def _score_locked_decision(repo, eval_id, variant, target_date, data, horizons):
     """Score a locked decision without regenerating the historical AI request.
 
     The prepared request is immutable. Freshly fetched history is allowed only to
@@ -168,13 +209,17 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
     execution/future valuation prices after the decision lock.
     """
     repo = Path(repo).resolve()
-    require(all(type(h) is int and h > 0 for h in horizons), "horizon must be a positive integer")
+    require(bool(horizons) and len(horizons) == len(set(horizons)) and
+            all(type(h) is int and h > 0 for h in horizons), "horizons must be unique positive integers")
     entry = _load_entry(repo, eval_id, variant, target_date)
     decision_path = repo / entry["decision_path"]
     lock_path = decision_path.with_suffix(".lock.json")
     require(decision_path.is_file() and lock_path.is_file(), "locked decision missing")
     decision = read_json(decision_path)
     lock = read_json(lock_path)
+    require(lock.get('locked') is True and lock.get('future_outcomes_seen_by_decision_phase') is False,
+            'decision lock is not a sealed pre-outcome decision')
+    require(lock['prompt_sha256'] == entry['prompt_sha256'], 'entry prompt changed after decision lock')
     require(lock["decision_sha256"] == digest(decision), "locked decision changed")
 
     request = read_json(repo / entry["request_path"])
@@ -182,13 +227,18 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
     require(digest(request["prompt"]) == lock["prompt_sha256"], "prompt content changed after decision lock")
     require((repo / entry["ai_input_path"]).read_text(encoding="utf-8") == request["prompt"],
             "saved AI input changed after decision lock")
+    if lock.get('request_sha256'):
+        require(digest(request) == lock['request_sha256'], 'request changed after decision lock')
 
     # Verify the newly fetched historical prefix describes the same world the AI saw.
     stored_tt = read_json(repo / entry["time_travel_path"])
+    if lock.get('time_travel_sha256'):
+        require(digest(stored_tt) == lock['time_travel_sha256'], 'time-travel input changed after decision lock')
     tt_symbols = [x["symbol"] for x in stored_tt["symbols"]]
     fresh_tt = build_time_travel_context(
         data, target_date, target_date, symbols=tt_symbols,
-        ignore_news=True, execution_date=entry["execution_date"],
+        ignore_news=stored_tt['news_policy'] == 'IGNORE_ARCHIVED_NEWS_BY_DEFAULT',
+        execution_date=entry["execution_date"],
     )
     require(fresh_tt == stored_tt,
             "historical prefix changed since decision preparation; do not score against a different past")
@@ -205,12 +255,17 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
             'eligible_for_prompt_auto_improvement': False,
             'note': 'Missing decision evidence is not HOLD and has no performance score.',
         }
-        Store(repo / 'runs/evaluations' / eval_id).write(f'scores/{variant}/{target_date}.json', result)
+        _write_scores(repo, eval_id, variant, target_date, result)
         return result
 
     # Validate the already-locked answer against the already-locked request.
     # Instantiation provides symbol/universe rules but does not call prepare().
     sim = VariantSimulation(repo, variant[0], variant, entry["simulation_test_id"], data)
+    # Execution fees are part of the prepared scenario, not today's defaults.
+    opening_event = sim.store.events()[0]
+    require(opening_event['after'] == request['source_holdings'], 'prepared opening state changed')
+    from .sim_data import number
+    sim.fees = {k: number(v) for k, v in opening_event['documents']['manifest.json']['fees'].items()}
     sim.validate_decision(decision, request)
 
     # Execute using only the future execution-day quote after the decision was locked.
@@ -258,8 +313,7 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
 
     # Persist the execution into the isolated evaluation simulation ledger, without
     # touching any FORMAL holdings and without regenerating the AI prompt.
-    before = sim.store.load()
-    require(before == request["source_holdings"], "prepared simulation account changed before scoring")
+    before = request['source_holdings']
     prefix = f"daily/{day}"
     documents = {
         f"{prefix}/ai_input.md": (repo / entry["ai_input_path"]).read_text(encoding="utf-8"),
@@ -280,16 +334,32 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
             "data_kind": data["kind"],
         },
         f"{prefix}/summary.md": (
-            f"# {day} {variant} 历史AI锁定判断执行\\n\\n"
-            f"判断：{decision.get('action')}；执行结果：{execution['status']}。\\n\\n"
-            f"{decision.get('summary','')}\\n"
+            f"# {day} {variant} 历史AI锁定判断执行\n\n"
+            f"判断：{decision.get('action')}；执行结果：{execution['status']}。\n\n"
+            f"{decision.get('summary','')}\n"
         ),
     }
-    sim.store.commit(
-        "DAY_COMPLETED", before, after, documents,
-        {"decision": decision, "execution": execution,
-         "historical_ai_decision_locked_before_future_scoring": True},
-    )
+    with sim.store.lock():
+        events = sim.store.events()
+        if len(events) == 1:
+            sim.store.commit(
+                "DAY_COMPLETED", before, after, documents,
+                {"decision": decision, "execution": execution,
+                 "historical_ai_decision_locked_before_future_scoring": True},
+            )
+        else:
+            require(len(events) == 2, 'evaluation account advanced beyond its one locked decision')
+            event = events[-1]
+            require(event['type'] == 'DAY_COMPLETED' and event['before'] == before and
+                    event['details'].get('decision') == decision and
+                    event['details'].get('execution') == execution,
+                    'recorded execution differs; use a new eval_id')
+            expected = copy.deepcopy(after)
+            for field in ('revision', 'last_event_id'):
+                expected['_meta'][field] = event['after']['_meta'][field]
+            require(expected == event['after'], 'execution-day valuation changed; use a new eval_id')
+    # Recover a crash between the durable event and its derived files.
+    sim.store.audit(repair=True)
     actual = sim.store.load()
     baseline = copy.deepcopy(request["holdings"])
 
@@ -347,9 +417,25 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
         "eligible_for_prompt_auto_improvement": False,
         "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab.",
     }
-    root = repo / "runs" / "evaluations" / eval_id
-    Store(root).write(f"scores/{variant}/{target_date}.json", result)
+    _write_scores(repo, eval_id, variant, target_date, result)
     return result
+
+
+def _write_scores(repo, eval_id, variant, target_date, result):
+    root = repo / "runs" / "evaluations" / eval_id
+    existing = root / f'scores/{variant}/{target_date}.json'
+    if existing.exists():
+        old = read_json(existing)
+        current = {x['horizon_sessions']: x for x in result['scores']}
+        for old_score in old.get('scores', []):
+            if old_score.get('status') == 'SCORED' and old_score['horizon_sessions'] in current:
+                new_score = current[old_score['horizon_sessions']]
+                require(all(new_score.get(k) == v for k, v in old_score.items()),
+                        'previously scored outcome changed; use a new eval_id')
+        # Extending or requesting a subset must not discard previous horizons.
+        result['scores'] = sorted({**{x['horizon_sessions']: x for x in old.get('scores', [])},
+                                  **current}.values(), key=lambda x: x['horizon_sessions'])
+    Store(root).write(f"scores/{variant}/{target_date}.json", result)
 
 
 def _annualized_pct(return_pct, sessions):
@@ -403,7 +489,9 @@ def summarize(repo, eval_id):
 
     summary = {
         "eval_id": eval_id,
-        "scored_entries": len(scores),
+        "attempted_entries": len(scores),
+        "scored_entries": sum(any(x.get('status') == 'SCORED' for x in s.get('scores', [])) for s in scores),
+        "unavailable_entries": sum(s.get('execution', {}).get('status') == 'NOT_EXECUTED' for s in scores),
         "entries": scores,
         "variant_aggregates": aggregates,
         "annualization": {
@@ -469,7 +557,8 @@ def summarize(repo, eval_id):
             elapsed = x.get("elapsed_sessions", x["horizon_sessions"] + 1)
             comparison.append({
                 "variant": s["variant"], "start_date": s["target_date"],
-                "end_date": x.get("date", "—"), "completed_days": elapsed,
+                "end_date": x.get("date", "—"), "completed_days": elapsed if scored else None,
+                "horizon_sessions": x['horizon_sessions'], "requested_sessions": elapsed,
                 "return_pct": x.get("actual_return_pct") if scored else None,
                 "annualized_return_pct": _annualized_pct(x.get("actual_return_pct"), elapsed) if scored else None,
                 "max_daily_drawdown_pct": x.get("max_daily_drawdown_pct") if scored else None,

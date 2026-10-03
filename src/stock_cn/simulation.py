@@ -350,6 +350,8 @@ class Simulation:
                     news_research=self.data.get("news_research"),
                     market_context={
                         "mode": "SIMULATION",
+                        "historical_news_policy": ('USE_POINT_IN_TIME_ARCHIVED_NEWS' if self.data.get('time_travel_include_evidence')
+                                                   else 'IGNORE_UNRELIABLE_ARCHIVED_NEWS'),
                         "visible_symbols": sorted(self.data["instruments"]),
                         "fidelity": self.data.get("fidelity"),
                     },
@@ -363,7 +365,8 @@ class Simulation:
                         "universe_scope": self.data.get("universe_scope"),
                         "official_disclosure_pack": self.data.get("official_disclosure_pack"),
                         "financial_reviews": self.data.get("financial_reviews"),
-                        "news_research": self.data.get("news_research"),
+                        "news_research": (self.data.get("news_research")
+                                          if self.data.get("time_travel_include_evidence") else None),
                         "decision_research_bundle": research_bundle,
                         "research_input_manifest": self.data.get("research_input_manifest"),
                         "tools": "Use supplied point-in-time evidence only for this replay. No current-web lookahead.",

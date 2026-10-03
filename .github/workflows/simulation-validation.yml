@@ -26,6 +26,8 @@ on:
       - 'tests/test_mode_parity.py'
       - 'tests/test_time_travel.py'
       - 'tests/test_evaluation.py'
+      - 'tests/test_evaluation_resilience.py'
+      - 'tools/build_performance_comparison.py'
       - 'tests/test_performance.py'
       - 'tests/test_universe.py'
       - 'tests/test_research_state.py'

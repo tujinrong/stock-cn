@@ -82,7 +82,9 @@ def comparison_markdown(rows):
     def pct(value):
         return "—" if value is None else f"{float(value):+.4f}%"
     for r in rows:
-        lines.append(f"|{r['variant'][0]}/{r['variant']}|{r.get('start_date', '—')} → {r.get('end_date', '—')} ({r.get('completed_days', '—')}交易日)|"
+        completed = r.get('completed_days')
+        days = '—' if completed is None else str(completed)
+        lines.append(f"|{r['variant'][0]}/{r['variant']}|{r.get('start_date', '—')} → {r.get('end_date', '—')} ({days}交易日)|"
                      f"{r.get('score_status', 'COMPLETED')}|{pct(r.get('return_pct'))}|{pct(r.get('annualized_return_pct'))}|{pct(r.get('max_daily_drawdown_pct'))}|"
                      f"{pct(r.get('win_rate_pct'))}|{r.get('fills', '—')}|{pct(r.get('benchmark_return_pct'))}|"
                      f"{pct(r.get('excess_return_percentage_points'))}|{r.get('future_data_check', 'NOT_CHECKED')}|")

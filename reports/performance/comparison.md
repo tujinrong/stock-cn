@@ -11,8 +11,8 @@
 |D/D03|2025-05-30 → 2025-07-29 (41交易日)|SCORED|+0.0000%|+0.0000%|+0.0000%|—|0|+0.0000%|+0.0000%|PASS_LOCK_AND_PREFIX|
 |E/E01|2025-05-30 → 2025-07-29 (41交易日)|SCORED|+0.4505%|+2.8011%|+0.2119%|—|1|+0.0000%|+0.4505%|PASS_LOCK_AND_PREFIX|
 |E/E02|2025-05-30 → 2025-07-29 (41交易日)|SCORED|+0.0000%|+0.0000%|+0.0000%|—|0|+0.0000%|+0.0000%|PASS_LOCK_AND_PREFIX|
-|E/E03|2025-05-30 → — (41交易日)|DECISION_UNAVAILABLE|—|—|—|—|None|—|—|PASS_LOCK_AND_PREFIX|
-|F/F01|2025-05-30 → — (41交易日)|DECISION_UNAVAILABLE|—|—|—|—|None|—|—|PASS_LOCK_AND_PREFIX|
+|E/E03|2025-05-30 → — (—交易日)|DECISION_UNAVAILABLE|—|—|—|—|None|—|—|PASS_LOCK_AND_PREFIX|
+|F/F01|2025-05-30 → — (—交易日)|DECISION_UNAVAILABLE|—|—|—|—|None|—|—|PASS_LOCK_AND_PREFIX|
 
 年化按实际完成交易日复合换算，仅为数学换算，不是未来一年收益预测。连续模拟胜率按FIFO配对、扣买卖费用后的已实现卖单计算；涉及假定期初持股的卖单排除。无合格卖单或旧记录缺配对资料时为空，不能用上涨天数冒充胜率。
 
@@ -21,9 +21,9 @@
 |策略/变体|测试区间|评分状态|总收益|年化收益|最大回撤|胜率|交易次数|HOLD基准收益|超额收益（百分点）|未来数据检查|
 |---|---|---|---:|---:|---:|---|---:|---:|---:|---|
 |D/D02|2025-05-15 → 2025-07-14 (41交易日)|SCORED|+0.0000%|+0.0000%|—|—|0|+0.0000%|+0.0000%|PASS_LOCK_AND_PREFIX|
-|D/D02|2025-08-29 → — (41交易日)|INSUFFICIENT_FUTURE_SESSIONS|—|—|—|—|None|—|—|PASS_LOCK_AND_PREFIX|
+|D/D02|2025-08-29 → — (—交易日)|INSUFFICIENT_FUTURE_SESSIONS|—|—|—|—|None|—|—|PASS_LOCK_AND_PREFIX|
 |E/E02|2025-05-15 → 2025-07-14 (41交易日)|SCORED|+0.5554%|+3.4630%|—|—|1|+0.0000%|+0.5554%|PASS_LOCK_AND_PREFIX|
-|E/E02|2025-08-29 → — (41交易日)|INSUFFICIENT_FUTURE_SESSIONS|—|—|—|—|None|—|—|PASS_LOCK_AND_PREFIX|
+|E/E02|2025-08-29 → — (—交易日)|INSUFFICIENT_FUTURE_SESSIONS|—|—|—|—|None|—|—|PASS_LOCK_AND_PREFIX|
 
 年化按实际完成交易日复合换算，仅为数学换算，不是未来一年收益预测。连续模拟胜率按FIFO配对、扣买卖费用后的已实现卖单计算；涉及假定期初持股的卖单排除。无合格卖单或旧记录缺配对资料时为空，不能用上涨天数冒充胜率。
 

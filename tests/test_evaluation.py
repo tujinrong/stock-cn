@@ -105,6 +105,10 @@ def test_unavailable_decision_has_no_fake_hold_performance(repo):
     assert result['execution']['status'] == 'NOT_EXECUTED'
     assert all(s['status'] == 'DECISION_UNAVAILABLE' and 'actual_return_pct' not in s for s in result['scores'])
     assert len(list((repo / Path(entry['request_path']).parent.parent.parent / 'events').glob('*.json'))) == 1
+    summary = summarize(repo, 'missing-data')
+    assert summary['attempted_entries'] == 1 and summary['scored_entries'] == 0
+    assert summary['unavailable_entries'] == 1
+    assert read_json(repo / 'runs/evaluations/missing-data/comparison.json')[0]['completed_days'] is None
 
 
 def test_prompt_content_tamper_is_rejected_even_if_hash_field_unchanged(repo):

@@ -79,7 +79,8 @@ def setup_research(repo, date="2025-08-08", *, include_financial=True):
     write(root / "news-research.json", {
         "status": "SEARCHED",
         "searched_at": f"{date}T14:40:00+08:00",
-        "items": [],
+        "items": [{"symbols": ["600036.SH"], "title": "历史测试新闻",
+                   "source": "TEST_NEWS", "published_at": f"{date}T10:00:00+08:00"}],
     })
     write(root / "candidate-research-pack.json", {
         "kind": "AI_SELECT_DEEP_RESEARCH_PACK",
@@ -114,10 +115,12 @@ def buy_decision(req):
     return d
 
 
-def test_research_only_can_prepare_on_last_available_session(repo):
+@pytest.mark.parametrize("include_news", [False, True])
+def test_research_only_can_prepare_on_last_available_session(repo, include_news):
     materialize(repo)
     setup_research(repo)
     data = one_symbol_data()
+    data["time_travel_include_evidence"] = include_news
     assert data["sessions"][-1] == "2025-08-08"
 
     req = prepare_research_only_request(
@@ -128,6 +131,11 @@ def test_research_only_can_prepare_on_last_available_session(repo):
     assert req["execution_status"] == "WAITING_FOR_REAL_NEXT_SESSION_DATA"
     assert req["research_input_manifest"]["variant_id"] == "D02"
     assert req["decision_research_bundle"]["coverage"]["financial_interpretation_completed"] == 1
+    assert req["decision_research_bundle"]["coverage"]["news_verified"] == int(include_news)
+    assert ("历史测试新闻" in req["prompt"]) == include_news
+    assert ('"news_policy": "' + (
+        "USE_ONLY_POINT_IN_TIME_ARCHIVED_NEWS" if include_news else "IGNORE_ARCHIVED_NEWS_BY_DEFAULT"
+    ) + '"') in req["prompt"]
     assert "官方半年报" in req["prompt"]
     assert "NO_EXECUTION_UNTIL_REAL_NEXT_SESSION_DATA" in req["prompt"]
 

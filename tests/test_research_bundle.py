@@ -79,6 +79,43 @@ def test_research_bundle_maps_official_financial_and_news_coverage():
     assert buy_research_preflight(bundle, "600036.SH")["ready"] is True
 
 
+@pytest.mark.parametrize('checked_at', ['2026-10-08T10:55:00+08:00', None])
+def test_carried_news_snapshot_does_not_claim_current_date_coverage(checked_at):
+    source_news = news()
+    source_news['as_of'] = checked_at
+    bundle = build_decision_research_bundle(
+        ['600036.SH'], as_of='2026-10-09T11:00:00+08:00',
+        official_disclosure_pack=official_pack(),
+        financial_reviews={'600036.SH': financial_review()}, news_research=source_news,
+        market_context={'mode': 'FORMAL'})
+    row = bundle['per_symbol'][0]
+    assert row['news_coverage_through'] == checked_at
+    assert row['recent_news_status'] == ('ARCHIVED_CHECK_ONLY' if checked_at else 'CHECK_TIME_UNKNOWN')
+    assert bundle['coverage']['news_verified'] == 0
+    assert not buy_research_preflight(bundle, '600036.SH')['ready']
+
+
+def test_historical_news_can_be_explicitly_ignored_without_claiming_verification():
+    bundle = build_decision_research_bundle(
+        ['600036.SH'], as_of='2026-10-09T11:00:00+08:00',
+        official_disclosure_pack=official_pack(),
+        financial_reviews={'600036.SH': financial_review()}, news_research=news(),
+        market_context={'mode':'SIMULATION', 'historical_news_policy':'IGNORE_UNRELIABLE_ARCHIVED_NEWS'})
+    row = bundle['per_symbol'][0]
+    assert row['recent_news_status'] == 'IGNORED_HISTORICAL_NEWS'
+    assert row['recent_news_items'] == [] and bundle['coverage']['news_verified'] == 0
+    assert buy_research_preflight(bundle, '600036.SH')['ready']
+
+
+def test_ignore_historical_news_policy_cannot_bypass_formal_checks():
+    bundle = build_decision_research_bundle(
+        ['600036.SH'], as_of='2026-10-09T11:00:00+08:00',
+        official_disclosure_pack=official_pack(),
+        financial_reviews={'600036.SH': financial_review()}, news_research=news(),
+        market_context={'mode':'FORMAL', 'historical_news_policy':'IGNORE_UNRELIABLE_ARCHIVED_NEWS'})
+    assert not buy_research_preflight(bundle, '600036.SH')['ready']
+
+
 def test_failed_provider_and_unchecked_news_are_gaps_not_good_news():
     bundle = build_decision_research_bundle(
         ["600036.SH"],

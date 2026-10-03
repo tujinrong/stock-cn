@@ -135,7 +135,7 @@ def live_snapshot():
                       "title": "已知资料"}],
         "official_disclosure_pack": official_pack(("600036.SH",)),
         "financial_reviews": financial_reviews(("600036.SH",)),
-        "news_research": {"status": "SEARCHED", "items": []},
+        "news_research": {"status": "SEARCHED", "searched_at": "2026-10-08T10:50:00+08:00", "items": []},
     }
 
 
@@ -262,7 +262,7 @@ def ai_live_snapshot():
         "evidence": [],
         "official_disclosure_pack": official_pack(("600036.SH", "600900.SH")),
         "financial_reviews": financial_reviews(("600036.SH", "600900.SH")),
-        "news_research": {"status": "SEARCHED", "items": []},
+        "news_research": {"status": "SEARCHED", "searched_at": "2026-10-08T10:50:00+08:00", "items": []},
         "candidate_research_pack": {
             "kind": "AI_SELECT_DEEP_RESEARCH_PACK",
             "purpose": "LOW_RECOVERY",
