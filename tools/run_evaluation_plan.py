@@ -12,6 +12,7 @@ from pathlib import Path
 
 from stock_cn.evaluation import prepare_batch, save_locked_decision, score_locked_decision, summarize
 from stock_cn.sim_data import SYMBOLS, fetch_daily
+from stock_cn.universe import fetch_candidate_history
 from stock_cn.simulation import Store, dumps, require
 
 
@@ -30,10 +31,44 @@ def plan_path(repo, eval_id):
 
 def fetch(plan):
     symbols = plan.get("symbols") or list(SYMBOLS)
-    require(set(symbols) <= set(SYMBOLS), "pilot data adapter supports configured five only")
-    data, attempts = fetch_daily(symbols, plan["history_start"], plan["history_end"])
+    if set(symbols) <= set(SYMBOLS):
+        data, attempts = fetch_daily(
+            symbols, plan["history_start"], plan["history_end"]
+        )
+    else:
+        universe = plan.get("universe")
+        require(isinstance(universe, list) and universe,
+                "non-default evaluation symbols require an explicit bounded universe")
+        by_symbol = {x["symbol"]: x for x in universe}
+        require(set(symbols) == set(by_symbol),
+                "evaluation symbols/universe mismatch")
+        require(len(symbols) <= 30,
+                "historical AI evaluation universe exceeds bounded budget")
+        seed = {
+            "kind": "BOUNDED_CANDIDATE_SEED",
+            "purpose": "DECLARED_HISTORICAL_EVALUATION_UNIVERSE",
+            "count": len(symbols),
+            "rows": [{
+                "symbol": s,
+                "name": by_symbol[s]["name"],
+                "risk_tags": list(by_symbol[s].get("risk_tags", [])),
+            } for s in symbols],
+            "source": "evaluation plan declared universe",
+            "survivorship_warning": plan.get(
+                "universe_warning",
+                "Declared bounded historical evaluation universe; not full-market coverage."
+            ),
+        }
+        data, attempts = fetch_candidate_history(
+            seed,
+            plan["history_start"],
+            plan["history_end"],
+            max_symbols=len(symbols),
+        )
     if data is None:
-        raise RuntimeError("historical source failed: " + json.dumps(attempts, ensure_ascii=False))
+        raise RuntimeError(
+            "historical source failed: " + json.dumps(attempts, ensure_ascii=False)
+        )
     return data, attempts
 
 
