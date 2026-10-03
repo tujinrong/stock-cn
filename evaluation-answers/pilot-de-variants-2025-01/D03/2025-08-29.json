@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "D",
+  "variant_id": "D03",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-de-variants-2025-01-20250829-D03",
+  "decision_id": "eval-pilot-de-variants-2025-01-20250829-D03-2025-09-01",
+  "date": "2025-09-01",
+  "decision_time": "2025-08-29T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "e1ded75d33b91a925739d3adf6f374720f911d7c",
+  "status": "READY",
+  "action": "HOLD",
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "长江电力价格位置和Q1基本面符合低位观察，但D03特别要求事件支持。本次可用研究主要是较早的Q1财报，没有目标日前的新订单、回购或重大经营事件作为修复催化；8月30日半年报又晚于截止，因此保持现金。",
+  "risks": [
+    "缺少事件不代表股价不会因估值或资金因素回升。"
+  ],
+  "evidence": [
+    {
+      "source": "CNINFO/长江电力2025年第一季度报告",
+      "published_at": "2025-04-30T00:00:00+08:00",
+      "title": "长江电力2025年第一季度报告"
+    }
+  ],
+  "data_gaps": [
+    "目标日前缺少新鲜事件催化。"
+  ]
+}

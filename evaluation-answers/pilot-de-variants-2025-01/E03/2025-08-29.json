@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "E",
+  "variant_id": "E03",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-de-variants-2025-01-20250829-E03",
+  "decision_id": "eval-pilot-de-variants-2025-01-20250829-E03-2025-09-01",
+  "date": "2025-09-01",
+  "decision_time": "2025-08-29T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "e1ded75d33b91a925739d3adf6f374720f911d7c",
+  "status": "READY",
+  "action": "HOLD",
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "中国平安公司层面的营运利润和新业务价值改善得到中报确认，但E03要求行业层面的保险需求、利率、资本市场或竞争格局转折证据。本次研究输入没有提供完整行业转折包，不能仅凭单家公司改善替代行业判断，因此保持现金。",
+  "risks": [
+    "公司自身经营改善可能先于行业数据反映，等待会产生机会成本。"
+  ],
+  "evidence": [
+    {
+      "source": "CNINFO/中国平安2025年中期报告摘要",
+      "published_at": "2025-08-27T00:00:00+08:00",
+      "title": "中国平安2025年中期报告摘要"
+    }
+  ],
+  "data_gaps": [
+    "缺少保险行业层面的系统转折证据。"
+  ]
+}
