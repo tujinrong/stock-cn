@@ -1,0 +1,19 @@
+{
+  "status": "FILLED",
+  "fill": {
+    "symbol": "600276.SH",
+    "side": "BUY",
+    "quantity": 200,
+    "price_cny": "53.49",
+    "fee_cny": "5.11",
+    "time": "2025-05-16T09:30:00+08:00",
+    "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600276%2Cday%2C2024-10-15%2C2025-11-15%2C320%2C",
+    "quote_time": "2025-05-16T09:30:00+08:00",
+    "time_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+  },
+  "reason": "PAPER_FILL_USING_MODE_QUOTE",
+  "decision_id": "eval-pilot-de-variants-2025-01-20250515-E01-2025-05-16",
+  "paper_only": true,
+  "mode": "SIMULATION",
+  "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+}

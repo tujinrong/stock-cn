@@ -1,0 +1,13 @@
+{
+  "evidence": [
+    {
+      "source": "CNINFO/中国平安2025年中期报告摘要",
+      "published_at": "2025-08-27T00:00:00+08:00",
+      "title": "中国平安2025年中期报告摘要"
+    }
+  ],
+  "data_gaps": [
+    "未进一步拆分投资收益波动对会计利润的影响。"
+  ],
+  "scoring_phase_future_data_excluded": true
+}

@@ -1,0 +1,13 @@
+{
+  "evidence": [
+    {
+      "source": "CNINFO/万华化学2025年第一季度报告",
+      "published_at": "2025-04-15T00:00:00+08:00",
+      "title": "万华化学2025年第一季度报告"
+    }
+  ],
+  "data_gaps": [
+    "缺少完整产品价差与库存高频数据。"
+  ],
+  "scoring_phase_future_data_excluded": true
+}

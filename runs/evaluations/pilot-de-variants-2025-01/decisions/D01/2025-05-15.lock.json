@@ -1,0 +1,7 @@
+{
+  "entry_id": "D01-2025-05-15",
+  "prompt_sha256": "a98a6a5973652f6b1e5bc8172ca72887583e01f7029eb2dc435ca3f33aa0ecde",
+  "decision_sha256": "d6c9744347507e82fadb877fbc0dd3002b8f44b9b1f59e8558b33270d5f465af",
+  "locked": true,
+  "future_outcomes_seen_by_decision_phase": false
+}

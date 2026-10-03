@@ -1,0 +1,500 @@
+{
+  "eval_id": "pilot-de-variants-2025-01",
+  "scored_entries": 8,
+  "entries": [
+    {
+      "eval_id": "pilot-de-variants-2025-01",
+      "variant": "D01",
+      "target_date": "2025-05-15",
+      "execution_date": "2025-05-16",
+      "prompt_sha256": "a98a6a5973652f6b1e5bc8172ca72887583e01f7029eb2dc435ca3f33aa0ecde",
+      "decision_sha256": "d6c9744347507e82fadb877fbc0dd3002b8f44b9b1f59e8558b33270d5f465af",
+      "action": "HOLD",
+      "execution": {
+        "status": "NO_TRADE",
+        "fill": null,
+        "reason": "HOLD",
+        "decision_id": "eval-pilot-de-variants-2025-01-20250515-D01-2025-05-16",
+        "paper_only": true,
+        "mode": "SIMULATION",
+        "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+      },
+      "scores": [
+        {
+          "horizon_sessions": 5,
+          "date": "2025-05-23",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        },
+        {
+          "horizon_sessions": 20,
+          "date": "2025-06-16",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        },
+        {
+          "horizon_sessions": 40,
+          "date": "2025-07-14",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        }
+      ],
+      "future_outcomes_were_separate_from_decision_phase": true,
+      "historical_prefix_reverified_before_scoring": true,
+      "request_regenerated_during_scoring": false,
+      "eligible_for_prompt_auto_improvement": false,
+      "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+    },
+    {
+      "eval_id": "pilot-de-variants-2025-01",
+      "variant": "D01",
+      "target_date": "2025-08-29",
+      "execution_date": "2025-09-01",
+      "prompt_sha256": "7a0c59fe8af3c8a353de2304eeba02a397f1d8f939f506c5c2cb23e781cf9181",
+      "decision_sha256": "1ee9fe8727b726a49dfbec0d472de5779ca7264699cf4b20958a2f540651686a",
+      "action": "BUY",
+      "execution": {
+        "status": "FILLED",
+        "fill": {
+          "symbol": "600900.SH",
+          "side": "BUY",
+          "quantity": 1000,
+          "price_cny": "28.10",
+          "fee_cny": "7.31",
+          "time": "2025-09-01T09:30:00+08:00",
+          "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600900%2Cday%2C2024-10-15%2C2025-11-15%2C320%2C",
+          "quote_time": "2025-09-01T09:30:00+08:00",
+          "time_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+        },
+        "reason": "PAPER_FILL_USING_MODE_QUOTE",
+        "decision_id": "eval-pilot-de-variants-2025-01-20250829-D01-2025-09-01",
+        "paper_only": true,
+        "mode": "SIMULATION",
+        "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+      },
+      "scores": [
+        {
+          "horizon_sessions": 5,
+          "date": "2025-09-08",
+          "status": "SCORED",
+          "actual_equity_cny": "200042.69",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0.02134500",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "42.69",
+          "incremental_return_vs_hold_pct": "0.02134500"
+        },
+        {
+          "horizon_sessions": 20,
+          "date": "2025-09-29",
+          "status": "SCORED",
+          "actual_equity_cny": "199192.69",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "-0.40365500",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "-807.31",
+          "incremental_return_vs_hold_pct": "-0.40365500"
+        },
+        {
+          "horizon_sessions": 40,
+          "date": "2025-11-04",
+          "status": "SCORED",
+          "actual_equity_cny": "200492.69",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0.24634500",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "492.69",
+          "incremental_return_vs_hold_pct": "0.24634500"
+        }
+      ],
+      "future_outcomes_were_separate_from_decision_phase": true,
+      "historical_prefix_reverified_before_scoring": true,
+      "request_regenerated_during_scoring": false,
+      "eligible_for_prompt_auto_improvement": false,
+      "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+    },
+    {
+      "eval_id": "pilot-de-variants-2025-01",
+      "variant": "D03",
+      "target_date": "2025-05-15",
+      "execution_date": "2025-05-16",
+      "prompt_sha256": "f932ddfa7b5fabb7db3b0d12902f65a6c3b64098f11cc3de41370c3b46566d4a",
+      "decision_sha256": "a9e06240034364bf203d3557a9f5f534b962ad7701d5fcbd75506d1463f146fa",
+      "action": "HOLD",
+      "execution": {
+        "status": "NO_TRADE",
+        "fill": null,
+        "reason": "HOLD",
+        "decision_id": "eval-pilot-de-variants-2025-01-20250515-D03-2025-05-16",
+        "paper_only": true,
+        "mode": "SIMULATION",
+        "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+      },
+      "scores": [
+        {
+          "horizon_sessions": 5,
+          "date": "2025-05-23",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        },
+        {
+          "horizon_sessions": 20,
+          "date": "2025-06-16",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        },
+        {
+          "horizon_sessions": 40,
+          "date": "2025-07-14",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        }
+      ],
+      "future_outcomes_were_separate_from_decision_phase": true,
+      "historical_prefix_reverified_before_scoring": true,
+      "request_regenerated_during_scoring": false,
+      "eligible_for_prompt_auto_improvement": false,
+      "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+    },
+    {
+      "eval_id": "pilot-de-variants-2025-01",
+      "variant": "D03",
+      "target_date": "2025-08-29",
+      "execution_date": "2025-09-01",
+      "prompt_sha256": "46d703aaa0bf13a694f5b92843a113c12166605a6976cdd888579a45b74a631a",
+      "decision_sha256": "087473783895069d34d4df9bd9a09c4af5a2811df42a01e19328c9457a008b99",
+      "action": "HOLD",
+      "execution": {
+        "status": "NO_TRADE",
+        "fill": null,
+        "reason": "HOLD",
+        "decision_id": "eval-pilot-de-variants-2025-01-20250829-D03-2025-09-01",
+        "paper_only": true,
+        "mode": "SIMULATION",
+        "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+      },
+      "scores": [
+        {
+          "horizon_sessions": 5,
+          "date": "2025-09-08",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        },
+        {
+          "horizon_sessions": 20,
+          "date": "2025-09-29",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        },
+        {
+          "horizon_sessions": 40,
+          "date": "2025-11-04",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        }
+      ],
+      "future_outcomes_were_separate_from_decision_phase": true,
+      "historical_prefix_reverified_before_scoring": true,
+      "request_regenerated_during_scoring": false,
+      "eligible_for_prompt_auto_improvement": false,
+      "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+    },
+    {
+      "eval_id": "pilot-de-variants-2025-01",
+      "variant": "E01",
+      "target_date": "2025-05-15",
+      "execution_date": "2025-05-16",
+      "prompt_sha256": "e71b57982b81f0aee0c5e37eeac236d76542149b9043f7e93c1c082f5232ebce",
+      "decision_sha256": "b8739c1269a54f33c699bb7a9b0a640ae38420c3685a7b05f6315d97122f2cf7",
+      "action": "BUY",
+      "execution": {
+        "status": "FILLED",
+        "fill": {
+          "symbol": "600276.SH",
+          "side": "BUY",
+          "quantity": 200,
+          "price_cny": "53.49",
+          "fee_cny": "5.11",
+          "time": "2025-05-16T09:30:00+08:00",
+          "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600276%2Cday%2C2024-10-15%2C2025-11-15%2C320%2C",
+          "quote_time": "2025-05-16T09:30:00+08:00",
+          "time_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+        },
+        "reason": "PAPER_FILL_USING_MODE_QUOTE",
+        "decision_id": "eval-pilot-de-variants-2025-01-20250515-E01-2025-05-16",
+        "paper_only": true,
+        "mode": "SIMULATION",
+        "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+      },
+      "scores": [
+        {
+          "horizon_sessions": 5,
+          "date": "2025-05-23",
+          "status": "SCORED",
+          "actual_equity_cny": "200196.89",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0.09844500",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "196.89",
+          "incremental_return_vs_hold_pct": "0.09844500"
+        },
+        {
+          "horizon_sessions": 20,
+          "date": "2025-06-16",
+          "status": "SCORED",
+          "actual_equity_cny": "200048.89",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0.02444500",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "48.89",
+          "incremental_return_vs_hold_pct": "0.02444500"
+        },
+        {
+          "horizon_sessions": 40,
+          "date": "2025-07-14",
+          "status": "SCORED",
+          "actual_equity_cny": "200738.89",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0.36944500",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "738.89",
+          "incremental_return_vs_hold_pct": "0.36944500"
+        }
+      ],
+      "future_outcomes_were_separate_from_decision_phase": true,
+      "historical_prefix_reverified_before_scoring": true,
+      "request_regenerated_during_scoring": false,
+      "eligible_for_prompt_auto_improvement": false,
+      "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+    },
+    {
+      "eval_id": "pilot-de-variants-2025-01",
+      "variant": "E01",
+      "target_date": "2025-08-29",
+      "execution_date": "2025-09-01",
+      "prompt_sha256": "26cc70365fd35369789951210c6e5c56ec97b6836e51cd9b851f208ab51c61cb",
+      "decision_sha256": "b6686b2f8aca57c7df64f5c48a085ab85981c49ebd2c16cf4298c4b69b15f83e",
+      "action": "BUY",
+      "execution": {
+        "status": "FILLED",
+        "fill": {
+          "symbol": "601318.SH",
+          "side": "BUY",
+          "quantity": 200,
+          "price_cny": "59.79",
+          "fee_cny": "5.12",
+          "time": "2025-09-01T09:30:00+08:00",
+          "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-10-15%2C2025-11-15%2C320%2C",
+          "quote_time": "2025-09-01T09:30:00+08:00",
+          "time_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+        },
+        "reason": "PAPER_FILL_USING_MODE_QUOTE",
+        "decision_id": "eval-pilot-de-variants-2025-01-20250829-E01-2025-09-01",
+        "paper_only": true,
+        "mode": "SIMULATION",
+        "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+      },
+      "scores": [
+        {
+          "horizon_sessions": 5,
+          "date": "2025-09-08",
+          "status": "SCORED",
+          "actual_equity_cny": "199576.88",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "-0.2115600",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "-423.12",
+          "incremental_return_vs_hold_pct": "-0.2115600"
+        },
+        {
+          "horizon_sessions": 20,
+          "date": "2025-09-29",
+          "status": "SCORED",
+          "actual_equity_cny": "199238.88",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "-0.3805600",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "-761.12",
+          "incremental_return_vs_hold_pct": "-0.3805600"
+        },
+        {
+          "horizon_sessions": 40,
+          "date": "2025-11-04",
+          "status": "SCORED",
+          "actual_equity_cny": "199824.88",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "-0.0875600",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "-175.12",
+          "incremental_return_vs_hold_pct": "-0.0875600"
+        }
+      ],
+      "future_outcomes_were_separate_from_decision_phase": true,
+      "historical_prefix_reverified_before_scoring": true,
+      "request_regenerated_during_scoring": false,
+      "eligible_for_prompt_auto_improvement": false,
+      "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+    },
+    {
+      "eval_id": "pilot-de-variants-2025-01",
+      "variant": "E03",
+      "target_date": "2025-05-15",
+      "execution_date": "2025-05-16",
+      "prompt_sha256": "11e3e3118bc4a23ec98a583e82618240b1b2fa02905ab5e68e8219e10e4a8c09",
+      "decision_sha256": "8f0a9d27baf210062f06a6d7c886d99e801fd86a60425095de20a938edd40953",
+      "action": "HOLD",
+      "execution": {
+        "status": "NO_TRADE",
+        "fill": null,
+        "reason": "HOLD",
+        "decision_id": "eval-pilot-de-variants-2025-01-20250515-E03-2025-05-16",
+        "paper_only": true,
+        "mode": "SIMULATION",
+        "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+      },
+      "scores": [
+        {
+          "horizon_sessions": 5,
+          "date": "2025-05-23",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        },
+        {
+          "horizon_sessions": 20,
+          "date": "2025-06-16",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        },
+        {
+          "horizon_sessions": 40,
+          "date": "2025-07-14",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        }
+      ],
+      "future_outcomes_were_separate_from_decision_phase": true,
+      "historical_prefix_reverified_before_scoring": true,
+      "request_regenerated_during_scoring": false,
+      "eligible_for_prompt_auto_improvement": false,
+      "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+    },
+    {
+      "eval_id": "pilot-de-variants-2025-01",
+      "variant": "E03",
+      "target_date": "2025-08-29",
+      "execution_date": "2025-09-01",
+      "prompt_sha256": "0670c2ff10f19bda4c5ac6ad2ac6d115752384f7db447fcedded90264bde81b2",
+      "decision_sha256": "677d9f0a94067f13ee37e19b94ef2dd13c73a4a2e5c7bcbf6cc98904e9a6b4d6",
+      "action": "HOLD",
+      "execution": {
+        "status": "NO_TRADE",
+        "fill": null,
+        "reason": "HOLD",
+        "decision_id": "eval-pilot-de-variants-2025-01-20250829-E03-2025-09-01",
+        "paper_only": true,
+        "mode": "SIMULATION",
+        "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+      },
+      "scores": [
+        {
+          "horizon_sessions": 5,
+          "date": "2025-09-08",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        },
+        {
+          "horizon_sessions": 20,
+          "date": "2025-09-29",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        },
+        {
+          "horizon_sessions": 40,
+          "date": "2025-11-04",
+          "status": "SCORED",
+          "actual_equity_cny": "200000.00",
+          "hold_counterfactual_equity_cny": "200000.00",
+          "actual_return_pct": "0",
+          "hold_return_pct": "0",
+          "incremental_pnl_vs_hold_cny": "0.00",
+          "incremental_return_vs_hold_pct": "0"
+        }
+      ],
+      "future_outcomes_were_separate_from_decision_phase": true,
+      "historical_prefix_reverified_before_scoring": true,
+      "request_regenerated_during_scoring": false,
+      "eligible_for_prompt_auto_improvement": false,
+      "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+    }
+  ]
+}

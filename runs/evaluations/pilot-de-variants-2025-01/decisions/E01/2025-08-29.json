@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "E",
+  "variant_id": "E01",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-de-variants-2025-01-20250829-E01",
+  "decision_id": "eval-pilot-de-variants-2025-01-20250829-E01-2025-09-01",
+  "date": "2025-09-01",
+  "decision_time": "2025-08-29T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "e1ded75d33b91a925739d3adf6f374720f911d7c",
+  "status": "READY",
+  "action": "BUY",
+  "order_proposal": {
+    "symbol": "601318.SH",
+    "side": "BUY",
+    "quantity": 200,
+    "reference_price_cny": "59.880",
+    "quote_time": "2025-08-29T15:00:00+08:00",
+    "quote_source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-10-15%2C2025-11-15%2C320%2C"
+  },
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "E01依赖正式财报确认。中国平安2025H1归母营运利润增长3.7%、寿险及健康险新业务价值增长39.8%、中期股息提高，经营改善得到正式中报支持；但会计净利润与营运利润口径不同，且价格位置不低，因此买入200股约6%仓位。",
+  "risks": [
+    "营运利润与会计净利润口径不同。",
+    "价格处较高区间，存在估值回撤。"
+  ],
+  "evidence": [
+    {
+      "source": "CNINFO/中国平安2025年中期报告摘要",
+      "published_at": "2025-08-27T00:00:00+08:00",
+      "title": "中国平安2025年中期报告摘要"
+    }
+  ],
+  "data_gaps": [
+    "未进一步拆分投资收益波动对会计利润的影响。"
+  ]
+}

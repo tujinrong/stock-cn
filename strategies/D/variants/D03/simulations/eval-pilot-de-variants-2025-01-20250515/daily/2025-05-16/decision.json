@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "D",
+  "variant_id": "D03",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-de-variants-2025-01-20250515-D03",
+  "decision_id": "eval-pilot-de-variants-2025-01-20250515-D03-2025-05-16",
+  "date": "2025-05-16",
+  "decision_time": "2025-05-15T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "e1ded75d33b91a925739d3adf6f374720f911d7c",
+  "status": "READY",
+  "action": "HOLD",
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "D03要求低位之外还有可核实的经营改善、订单、回购或其他事件支持。万华化学虽然价格偏低，但2025Q1主要经营指标走弱，当前研究又没有足以解释估值修复的新增事件，因此不买入。",
+  "risks": [
+    "若行业价格或需求在财报后快速反转，本次可能错过修复。"
+  ],
+  "evidence": [
+    {
+      "source": "CNINFO/万华化学2025年第一季度报告",
+      "published_at": "2025-04-15T00:00:00+08:00",
+      "title": "万华化学2025年第一季度报告"
+    }
+  ],
+  "data_gaps": [
+    "没有发现本次截止前足够强的事件型修复催化。"
+  ]
+}
