@@ -1,0 +1,18 @@
+{
+  "entry_id": "E02-2025-08-29",
+  "eval_id": "pilot-de-2025-01",
+  "variant": "E02",
+  "target_date": "2025-08-29",
+  "execution_date": "2025-09-01",
+  "prompt_sha256": "a167a2f5085eae3155aa08e66204998877d0a8e879a4d49f78776931661e7bbe",
+  "input_revision": 1,
+  "input_commit": "aa8de862de7351a9811d082bb1f45d0162cef57b",
+  "simulation_test_id": "eval-pilot-de-2025-01-20250829",
+  "request_path": "strategies/E/variants/E02/simulations/eval-pilot-de-2025-01-20250829/requests/2025-09-01/request.json",
+  "ai_input_path": "strategies/E/variants/E02/simulations/eval-pilot-de-2025-01-20250829/requests/2025-09-01/ai_input.md",
+  "time_travel_path": "strategies/E/variants/E02/simulations/eval-pilot-de-2025-01-20250829/requests/2025-09-01/time_travel.json",
+  "decision_path": "runs/evaluations/pilot-de-2025-01/decisions/E02/2025-08-29.json",
+  "score_path": "runs/evaluations/pilot-de-2025-01/scores/E02/2025-08-29.json",
+  "status": "WAITING_FOR_AI",
+  "future_outcomes_in_prompt": false
+}

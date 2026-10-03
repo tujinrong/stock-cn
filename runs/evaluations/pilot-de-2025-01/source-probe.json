@@ -1,0 +1,78 @@
+{
+  "phase": "PREPARE",
+  "attempts": [
+    {
+      "symbol": "600036.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600519.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600276.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600900.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600660.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600309.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "601318.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "601088.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 253,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600028.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "601006.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 263,
+      "fallback_errors": []
+    }
+  ],
+  "history_start": "2024-09-27",
+  "history_end": "2025-10-31",
+  "raw_market_data_persisted": false
+}
