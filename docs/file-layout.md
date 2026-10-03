@@ -1,94 +1,172 @@
-# 纯文件结构：每个策略下直接查看提示词、持仓和日结
+# GitHub纯文件结构：策略、研究、判断、交易与续跑
 
-最新约定：将当前持仓与正式/测试数据集中在`strategies/<系列>/`。此版替代旧文档的根`trading/<系列>/account.json`和根`simulations/<test_id>/.../account.json`写入路径，不保留两套可写余额。旧目录只作导航。
+本项目不用数据库。**每个变体是独立执行单元**，策略系列只是分组。正式Paper账户、模拟账户、研究状态、提示词版本和历史评价都由GitHub文件保存；原始全市场行情不长期入库。
 
-## 1. 目录
+## 1. 主目录
 
 ```text
 stock-cn/
 ├── AGENTS.md
 ├── README.md
+├── config/
 ├── docs/
-│   ├── ai-decision-contract.md          # 初始化/AI输入/判断/落账契约
-│   ├── file-layout.md                   # 本文件
-│   ├── data-sources.md                  # 数据来源主备与验收
-│   └── requirements-before-file-layout.md # 历史需求，只作追溯
+│   ├── ai-decision-contract.md
+│   ├── ai-select-candidate-pipeline.md
+│   ├── data-sources.md
+│   ├── decision-research.md
+│   ├── research-input-files.md
+│   ├── file-layout.md
+│   ├── mode-parity.md
+│   ├── simulation-guide.md
+│   └── time-travel.md
 ├── strategies/
-│   ├── README.md                        # 可点击的统一入口
-│   ├── index.json                       # 系列/变体和文件路径，不是账户
-│   ├── common.md                        # 共同投资约束
-│   ├── A/
-│   │   ├── init.json                    # 20万元期初配置，未执行
-│   │   ├── prompt.md                    # 五股组合长期意图
-│   │   ├── ai_input_template.md         # AI完整提示词，动态填当次数据
-│   │   ├── holdings.json                # 唯一当前持仓，现为待初始化
-│   │   ├── holdings.md                  # 同版本可读持仓表
-│   │   ├── variants/A01.md A02.md A03.md
-│   │   ├── daily/                      # 以下为运行后生成
-│   │   │   └── YYYY-MM-DD/
-│   │   │       ├── ai_input.md          # 已展开、实际用过的提示词
-│   │   │       ├── holdings_before.json
-│   │   │       ├── research.json
-│   │   │       ├── decision.json
-│   │   │       ├── execution.json
-│   │   │       ├── holdings_after.json
-│   │   │       ├── closing.json         # 收盘估值，非盘中交易
-│   │   │       └── summary.md
-│   │   ├── trading/events/<event_id>.json
-│   │   └── simulations/<test_id>/<variant_id>/
-│   │       ├── manifest.json           # 模式、区间、版本和实际完成范围
-│   │       ├── init.json               # 此测试采用的初始化计划快照
-│   │       ├── holdings.json           # 此变体自己的连续账户
-│   │       ├── holdings.md
-│   │       ├── events/
-│   │       └── daily/YYYY-MM-DD/        # 同样的当日文件结构
-│   ├── B/prompt.md                      # 备用，无账户和运行文件
-│   └── C/ D/ E/ F/                     # 与A同结构，可持多股
-├── trading/README.md                    # 旧根目录导航，不再写第二账本
-├── simulations/README.md                # 旧根目录导航
-├── runs/                               # 批次/尝试状态，非余额或成交源
-├── reports/                            # 从策略账本汇总的报告和CSV
-└── src/ config/ tests/ .github/         # 既有离线演示，本轮未改代码
+│   ├── index.json
+│   ├── common.md
+│   ├── A/ C/ D/ E/ F/
+│   │   ├── prompt.md                 # 系列投资意图
+│   │   ├── ai_input_template.md
+│   │   ├── init.json
+│   │   └── variants/
+│   │       └── D02/
+│   │           ├── prompt.md         # 该变体完整基线提示词
+│   │           ├── prompt_versions/  # v000/v001...
+│   │           ├── simulation_prompt.json
+│   │           ├── formal_prompt.json
+│   │           ├── improvement_state.json
+│   │           ├── init.json
+│   │           ├── holdings.json     # 该变体唯一FORMAL Paper账户
+│   │           ├── holdings.md
+│   │           ├── research_state.json   # AI_SELECT正式研究状态
+│   │           └── simulations/
+│   │               └── <test_id>/    # 独立模拟连续账户
+│   │                   ├── events/
+│   │                   ├── holdings.json
+│   │                   ├── holdings.md
+│   │                   ├── manifest.json
+│   │                   ├── research_state.json
+│   │                   ├── requests/
+│   │                   └── daily/
+│   └── B/                         # 备用系列
+├── research-requests/
+│   ├── universe/                  # 全市场候选数据源探测请求
+│   └── evidence/                  # CNINFO官方公告探测请求
+├── research-job-requests/         # 请求AI财务/新闻研究任务包
+├── research-answers/              # AI财务/新闻研究答案
+├── research-inputs/
+│   └── <variant>/YYYY-MM-DD/      # 已校验、决策可直接读取的研究资料
+│       ├── manifest.json
+│       ├── candidate-research-pack.json
+│       ├── universe-scope.json
+│       ├── official-disclosure-pack.json
+│       ├── financial-reviews.json
+│       └── news-research.json
+├── research-decision-requests/    # 无未来成交价的研究决策输入请求
+├── research-decision-answers/     # BUY/SELL/HOLD判断答案
+├── research-execution-requests/   # 检查真实下一交易日是否已出现
+├── evaluation-plans/              # 历史AI评价计划
+├── evaluation-answers/
+├── evaluation-score-requests/
+├── prompt-improvement-requests/
+├── runs/
+│   ├── research/
+│   │   ├── universe/
+│   │   ├── evidence/
+│   │   └── jobs/
+│   ├── research-decisions/
+│   ├── evaluations/
+│   ├── prompt-improvements/
+│   └── simulations/
+├── reports/
+│   └── performance/
+├── src/stock_cn/
+├── tests/
+└── .github/workflows/
 ```
 
-本轮已创建五个有效系列的init、完整模板、holdings.json和holdings.md。日期目录、事件、测试账户、实际提示词快照和日结只有运行后才创建，不能用占位文件伪造成绩。
+## 2. 一个AI_SELECT判断的完整文件链
 
-## 2. 编号与资金
+以D02/F01为例：
 
-A=现有五股组合；B备用；C=固定五股池从现金择时；D=年度低位回升；E=业绩改善；F=异常下跌回升。一个系列是一个投资任务/资金池，可以持多股，不是一只股票。未来新增方案从G起，废弃G说明不参与运行。
+1. **宽市场轻筛**：东方财富主源，新浪备用；当前支持的沪深普通主板，排除科创板，当前实现也不开放创业板。
+2. **有限候选深查**：只给约30～60个轻筛种子分配历史K线预算，再缩到少量深查候选；轻筛排名不是推荐。
+3. **官方资料**：CNINFO保存公告元数据和正式报告引用，不把公告标题自动解释成利好/利空。
+4. **AI研究任务**：`runs/research/jobs/<job_id>/`保存当时资料和AI研究任务；AI输出财务复核和新闻研究。
+5. **研究输入**：验证通过后写入`research-inputs/<variant>/<date>/`。未来信息、非官方财务来源、股票范围冲突会被拒绝。
+6. **研究决策**：`runs/research-decisions/<test_id>/<variant>/<date>/`保存完整提示词、账户、时光穿越资料和锁定BUY/SELL/HOLD。
+7. **判断锁定**：`decision.lock.json`保存prompt/decision哈希；锁定后不再因后续涨跌修改判断。
+8. **延迟执行**：若下一真实交易日尚未存在，只写`execution-attempts/<date>.json`的WAITING；不伪造开盘价。
+9. **真实下一交易日出现后**：只使用第一个真实交易日开盘价，通过同一Paper交易核心生成`execution.json`、`holdings_after_execution.json`和`continuation.json`。
+10. **连续续跑**：`continuation.json`可以初始化新的隔离连续模拟账户，保留现金、股数、成本和费用，不重置20万元。
 
-每个正式系列初始总资金默认20万元；A股票目标75%（五股各15%）+现金25%，C–F全现金，B不建账户。init.json是当前初始化计划的唯一详细来源，index.json仅指向它；日常holdings.json是当前账户，不从init每日恢复。
+FORMAL账户从不被上述历史/研究流程修改。
 
-同系列对照变体各有独立测试起点，但不能把多个变体当额外正式出资。正式默认一个active_variant管理系列账户。测试路径区分test_id和variant_id，不能覆盖同系列正式文件。
+## 3. 每个变体自己的提示词与账户
 
-## 3. 数据与提示词
+当前执行单位是`VARIANT`。例如D02：
 
-用户关注的核心是日期、总资金/当前总资产、现金、股票代码和股数。成本、估值、可卖股数用于收益/可执行性；_meta集中少量版本与时间字段，避免把主表做得复杂。字段含义见[AI契约](ai-decision-contract.md)。
+```text
+strategies/D/variants/D02/
+├── prompt.md
+├── prompt_versions/v000.md
+├── prompt_versions/v001.md
+├── simulation_prompt.json
+├── formal_prompt.json
+├── improvement_state.json
+├── init.json
+├── holdings.json
+├── holdings.md
+├── research_state.json
+└── simulations/
+```
 
-完整版包含完整投资目标、变体偏好、查询网站与方向、持仓上下文、输出格式及当天文件处理；只有实际日期/账户/证据是动态变量。真正运行保存已展开ai_input.md与input_commit、input_revision及来源版本，不能只留会变化的文件路径。
+`simulation_prompt.json`可以指向稳定性改进后的版本；`formal_prompt.json`必须经过单独确认才可提升。提示词自动改进最多10轮，只改格式、时间边界、候选解释、资料缺口等稳定性问题，**不能用未来收益自动优化投资判断**。
 
-未初始化的null不代表0，股票池不代表持仓。金额按十进制规则计算，数量为整数，代码保留前导零和市场后缀，时间带时区。初始价格必须有来源；A假定期初已持有，不假造五笔当日交易。
+D02和F01已经完成第1轮稳定性改进（v001）；正式prompt仍为v000，未自动提升。
 
-## 4. 事实与一致记账
+## 4. 账户与交易事实
 
-事件为事实源；holdings.json、Markdown表、日快照及汇总CSV是可重建投影。交易、结算、分红、估值和修订要区分。旧事件不静默删除；更正追加有引用的纠正事件。真实净值要包括现金、浮动盈亏和费用。
+- 每个变体默认独立20万元模拟起点。
+- A系列可按五股+现金配置初始化；C/D/E/F从现金开始。
+- FORMAL账户在`strategies/<series>/variants/<variant>/holdings.json`。
+- 模拟连续账户在该变体自己的`simulations/<test_id>/`。
+- 一天最多一个完成的BUY/SELL/HOLD决策，最多一笔交易；不能同日卖一只再买另一只。
+- T+1、资金、整手、涨跌停、停牌、费用、报价时间等由程序层校验。
+- 有效成交才改变股数/现金；研究文件、AI建议、报价参考都不直接改账户。
+- FORMAL当前仍是Paper Trading设计，未连接券商。
 
-一个有效决策的事件、执行结果、前后快照、当前持仓和摘要一致提交，只有确认成功才说已保存。使用模式/系列/账户/市场日期/decision_id去重；版本只前进。并发写main须重读最新版本、串行合并并非强制提交，不能把JSON中的lock字段当互斥锁。
+## 5. 历史评价与未来信息隔离
 
-当天已完成HOLD/交易拒绝不能重新择时，技术取数失败可以恢复同一次尝试但先查已有结果。没有运行、数据不足、AI决定不动和已成交必须分别显示。收盘价缺失可暂估并说明，不把盘中数据伪作收盘。
+`runs/evaluations/<eval_id>/`使用两阶段：
 
-## 5. 异步与测试
+- 阶段A：时光穿越到历史时点，生成AI输入并锁定判断；
+- 阶段B：判断锁定后才读取未来5/20/40交易日价格评分，并与HOLD反事实比较。
 
-批次状态在runs/<batch_id>/manifest.json及jobs/<job_id>/status.json，使用QUEUED/RUNNING/COMPLETED/FAILED/SKIPPED/CANCELLED；状态不是成交账本。COMPLETED不代表一定交易。
+未来结果不进入当天AI输入，也不进入PromptLab自动改进。遇到疑似除权/送转价格断点时，相关区间标记不可可靠评分，不用错误的未复权收益评价判断。
 
-未来可并行研究不同策略/隔离变体；同账户各历史日必须按前日余额顺序推进。共同资料可以在相同信息截止时点只读复用，但不能让未来资料污染回放。提交成交前重核报价、时段、账户和策略版本。一个策略失败不应令其他策略结果虚构或无限挂起。
+## 6. 当前真实联调状态
 
-并发数、超时、费用预算和定时部署还待授权及验收，文件存在不代表后台运行已实现。没有实际任务不承诺定时执行。本轮没有新增代码、调度、付费服务或模拟交易。
+已完成的真实源验证包括：
 
-## 6. 留存与安全
+- 全市场当前普通主板候选：东方财富主、运行环境失败时新浪备用；
+- 候选历史日线：腾讯主、东方财富备用；
+- CNINFO官方公告与定期报告引用；
+- D02/F01的2026-09-30研究输入、完整AI判断和decision lock。
 
-不用数据库，不长期保存全市场K线、盘口、逐笔流或新闻全文。允许临时取数；保存必要来源时间、证据、初始化快照、模拟成交、每天净值即可。仅承诺按已保存记录追溯，不保证还原每次完整市场快照或同一AI输出。
+2026-09-30锁定结果：
 
-临时策略可在某系列的隔离测试下使用，不能自动成为正式策略。重跑使用新test_id、保留旧结果；报告仅统计实际完成区间，不把历史模拟和正式前向记录拼接。
+- D02：BUY恒瑞医药300股，约7.1%拟仓位；**尚未成交**。
+- F01：HOLD，100%现金。
+- 截至2026-10-03的真实数据检查，两者均为`WAITING_FOR_REAL_NEXT_SESSION_DATA`，没有伪造成交。
 
-根reports汇总各系列结果，不形成另一个账户。仓库可能公开，仅保存本项目模拟资料，不导入用户真实持仓/成本、个人信息、凭证或受限制数据。后续分年归档另约定，不擅自清理历史。
+## 7. 数据留存与安全
+
+不长期保存全市场原始行情、逐笔、盘口和新闻全文。保存必要的：
+
+- 候选与研究摘要；
+- 数据来源、发布时间、获取结果和失败原因；
+- 官方报告引用与AI财务复核；
+- 完整AI输入和decision；
+- 模拟成交、持仓、日结和绩效；
+- prompt版本、哈希和审计记录。
+
+仓库为公开项目时，不写真实券商账号、密钥、个人信息或真实私密持仓。
