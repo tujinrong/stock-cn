@@ -1,0 +1,20 @@
+{
+  "test_id": "f01-research-decision-20260930-01",
+  "variant_id": "F01",
+  "target_date": "2026-09-30",
+  "prompt_version": "v001",
+  "authorized_symbols": [
+    "600156.SH",
+    "000850.SZ"
+  ],
+  "research_input_path": "research-inputs/F01/2026-09-30",
+  "decision_research_coverage": {
+    "official_ok_or_empty": 2,
+    "financial_interpretation_completed": 2,
+    "news_verified": 2,
+    "symbol_count": 2
+  },
+  "execution_status": "WAITING_FOR_REAL_NEXT_SESSION_DATA",
+  "formal_execution": false,
+  "raw_market_data_persisted": false
+}

@@ -1,0 +1,14 @@
+{
+  "variant_id": "F01",
+  "path": "research-inputs/F01/2026-09-30",
+  "information_cutoff": "2026-09-30T15:00:00+08:00",
+  "file_sha256": {
+    "manifest.json": "fedb1ab77968f1ccf4ce1115f8a1c2e2976f4ab8ca3b913d3f49c7e2b8633a31",
+    "official-disclosure-pack.json": "6b9c684a43a447f1edfb289957ca38050a66cf852b6e1b0c5c705435963014ac",
+    "financial-reviews.json": "10556835fd7fa598526e2d3c53ed2534d6fd1b579c112fb3bb673ee9e9371421",
+    "news-research.json": "3018aaa5058b1287c5757003096cb0ce7dcca90047be9953494ff93ace225f5e",
+    "candidate-research-pack.json": "f5536655e2a2003b6d50cb3db0b78806e7d8db3d37b9e3e85d6a49502ce14af2",
+    "universe-scope.json": "b6426384fba192148b2d3c2f2e6ca8c23137c9997cca13121b1e5cebf1b1ae89"
+  },
+  "missing_files": []
+}
