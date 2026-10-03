@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import copy
 import json
+import math
 from decimal import Decimal
 from pathlib import Path
 
@@ -325,20 +326,117 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
     return result
 
 
+def _annualized_pct(return_pct, sessions):
+    if return_pct is None or sessions <= 0:
+        return None
+    r = float(return_pct) / 100.0
+    if r <= -1:
+        return None
+    return (math.pow(1.0 + r, 252.0 / sessions) - 1.0) * 100.0
+
+
 def summarize(repo, eval_id):
     repo = Path(repo).resolve()
     root = repo / "runs" / "evaluations" / eval_id
     scores = []
     for p in sorted((root / "scores").glob("*/*.json")) if (root / "scores").exists() else []:
         scores.append(read_json(p))
-    summary = {"eval_id": eval_id, "scored_entries": len(scores), "entries": scores}
+
+    grouped = {}
+    for item in scores:
+        g = grouped.setdefault(item["variant"], {
+            "variant": item["variant"],
+            "decision_count": 0,
+            "actions": [],
+            "actual_40d_pct": [],
+            "excess_40d_pct": [],
+        })
+        g["decision_count"] += 1
+        g["actions"].append(item.get("action"))
+        for x in item.get("scores", []):
+            if x.get("status") != "SCORED" or x.get("horizon_sessions") != 40:
+                continue
+            g["actual_40d_pct"].append(float(x["actual_return_pct"]))
+            g["excess_40d_pct"].append(float(x["incremental_return_vs_hold_pct"]))
+
+    aggregates = []
+    for variant in sorted(grouped):
+        g = grouped[variant]
+        actual = g["actual_40d_pct"]
+        excess = g["excess_40d_pct"]
+        avg_actual = sum(actual) / len(actual) if actual else None
+        avg_excess = sum(excess) / len(excess) if excess else None
+        aggregates.append({
+            "variant": variant,
+            "decision_count": g["decision_count"],
+            "actions": g["actions"],
+            "scored_40d_count": len(actual),
+            "average_actual_40d_return_pct": avg_actual,
+            "annualized_from_average_40d_pct": _annualized_pct(avg_actual, 40),
+            "average_excess_40d_return_pct": avg_excess,
+            "annualized_excess_from_average_40d_pct": _annualized_pct(avg_excess, 40),
+            "worst_actual_40d_return_pct": min(actual) if actual else None,
+            "best_actual_40d_return_pct": max(actual) if actual else None,
+        })
+
+    summary = {
+        "eval_id": eval_id,
+        "scored_entries": len(scores),
+        "entries": scores,
+        "variant_aggregates": aggregates,
+        "annualization": {
+            "formula": "(1 + return)^(252/sessions) - 1",
+            "reference_sessions": 40,
+            "interpretation": "scale conversion only; not a forecast",
+        },
+    }
     Store(root).write("summary.json", summary)
-    rows = ["|变体|历史时点|动作|5日vs HOLD|20日vs HOLD|40日vs HOLD|", "|---|---|---|---:|---:|---:|"]
+
+    rows = [
+        "|变体|历史时点|动作|40日账户收益|40日vs HOLD|40日折算年化|",
+        "|---|---|---|---:|---:|---:|",
+    ]
     for s in scores:
         m = {x["horizon_sessions"]: x for x in s["scores"]}
-        def val(h):
-            x = m.get(h, {})
-            return x.get("incremental_return_vs_hold_pct", x.get("status", "—"))
-        rows.append(f"|{s['variant']}|{s['target_date']}|{s.get('action')}|{val(5)}|{val(20)}|{val(40)}|")
-    Store(root).write("summary.md", "# 历史AI点决策评价\n\n评分不回流到提示词自动改进。\n\n" + "\n".join(rows) + "\n")
+        x = m.get(40, {})
+        if x.get("status") == "SCORED":
+            actual = float(x["actual_return_pct"])
+            excess = float(x["incremental_return_vs_hold_pct"])
+            annualized = _annualized_pct(actual, 40)
+            rows.append(
+                f"|{s['variant']}|{s['target_date']}|{s.get('action')}|"
+                f"{actual:+.4f}%|{excess:+.4f}%|{annualized:+.2f}%|"
+            )
+        else:
+            status = x.get("status", "—")
+            rows.append(
+                f"|{s['variant']}|{s['target_date']}|{s.get('action')}|"
+                f"{status}|{status}|—|"
+            )
+
+    agg_rows = [
+        "|变体|样本|动作|平均40日账户收益|折算年化|平均40日vs HOLD|最差40日|",
+        "|---|---:|---|---:|---:|---:|---:|",
+    ]
+    for a in aggregates:
+        def fmt(v, digits=4):
+            return "—" if v is None else f"{v:+.{digits}f}%"
+        agg_rows.append(
+            f"|{a['variant']}|{a['scored_40d_count']}|"
+            f"{' / '.join(str(x) for x in a['actions'])}|"
+            f"{fmt(a['average_actual_40d_return_pct'])}|"
+            f"{fmt(a['annualized_from_average_40d_pct'], 2)}|"
+            f"{fmt(a['average_excess_40d_return_pct'])}|"
+            f"{fmt(a['worst_actual_40d_return_pct'])}|"
+        )
+
+    md = (
+        "# 历史AI点决策评价\n\n"
+        "评分不回流到提示词自动改进。40日折算年化按"
+        "(1+r)^(252/40)-1 计算，仅用于理解尺度，不是未来收益预测。\n\n"
+        "## 逐次结果\n\n" + "\n".join(rows) +
+        "\n\n## 变体汇总\n\n" + "\n".join(agg_rows) + "\n"
+    )
+    Store(root).write("summary.md", md)
     return summary
+
