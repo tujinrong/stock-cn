@@ -1,0 +1,9 @@
+{
+  "variant_id": "D02",
+  "target_date": "2026-09-30",
+  "prompt_sha256": "a98ea58bc8777268329262d71e36eddd117da56fdec2be1de8605b43755907f2",
+  "decision_sha256": "5692664e00518691a3601ebd060e5b761f9a240532293883fed3e29fc3c3897a",
+  "execution_status": "WAITING_FOR_REAL_NEXT_SESSION_DATA",
+  "future_execution_data_seen": false,
+  "formal_state_changed": false
+}
