@@ -125,7 +125,11 @@ def test_decision_lock_is_immutable_and_score_is_post_lock_only(repo):
     assert request["prompt_sha256"] == result["prompt_sha256"]
     s = summarize(repo, "ev2")
     assert s["scored_entries"] == 1
-    assert (repo / "runs/evaluations/ev2/summary.md").exists()
+    assert s["variant_aggregates"][0]["scored_40d_count"] == 1
+    assert s["variant_aggregates"][0]["annualized_from_average_40d_pct"] is not None
+    assert s["annualization"]["reference_sessions"] == 40
+    text = (repo / "runs/evaluations/ev2/summary.md").read_text(encoding="utf-8")
+    assert "折算年化" in text
 
 
 def test_future_structural_break_is_invisible_to_prompt_but_blocks_score(repo):
