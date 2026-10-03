@@ -1,0 +1,53 @@
+{
+  "probe_id": "def-pilot-universe-2025-01",
+  "purpose": "Fixed ex-ante historical pilot universe for D/E/F comparison; not full-market backtest.",
+  "history_start": "2024-09-27",
+  "history_end": "2025-10-31",
+  "target_dates": [
+    "2025-05-15",
+    "2025-08-29"
+  ],
+  "universe": [
+    {
+      "symbol": "600036.SH",
+      "name": "招商银行"
+    },
+    {
+      "symbol": "600519.SH",
+      "name": "贵州茅台"
+    },
+    {
+      "symbol": "600276.SH",
+      "name": "恒瑞医药"
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "长江电力"
+    },
+    {
+      "symbol": "600660.SH",
+      "name": "福耀玻璃"
+    },
+    {
+      "symbol": "600309.SH",
+      "name": "万华化学"
+    },
+    {
+      "symbol": "601318.SH",
+      "name": "中国平安"
+    },
+    {
+      "symbol": "601088.SH",
+      "name": "中国神华"
+    },
+    {
+      "symbol": "600028.SH",
+      "name": "中国石化"
+    },
+    {
+      "symbol": "601006.SH",
+      "name": "大秦铁路"
+    }
+  ],
+  "formal_execution": false
+}
