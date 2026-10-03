@@ -1,0 +1,9 @@
+{
+  "variant_id": "D02",
+  "mode": "SIMULATION",
+  "decision_date": "2025-05-15",
+  "information_cutoff": "2025-05-15T15:00:00+08:00",
+  "source_commit": null,
+  "formal_execution": false,
+  "note": "Historical D/E pilot research input; fixed predeclared universe, not full-market backtest."
+}

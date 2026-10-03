@@ -1,0 +1,496 @@
+{
+  "kind": "AI_SELECT_DEEP_RESEARCH_PACK",
+  "purpose": "EARNINGS_IMPROVEMENT",
+  "cutoff_date": "2025-08-29",
+  "candidate_budget": 1,
+  "selected_count": 1,
+  "source_seed_count": 10,
+  "seed_source": "predeclared fixed historical pilot universe",
+  "seed_provider": "Tencent/Eastmoney history",
+  "seed_fallback_used": false,
+  "not_a_recommendation": true,
+  "selection_note": "Candidate chosen from predeclared pilot universe using only target-date-visible price context; final action comes from variant prompt.",
+  "survivorship_warning": "Pilot universe is fixed for this experiment and is not a claim of full historical A-share coverage.",
+  "candidates": [
+    {
+      "symbol": "601318.SH",
+      "name": "中国平安",
+      "research_state": "OPERATING_IMPROVEMENT_RESEARCH",
+      "attention_priority": 10,
+      "attention_reasons": [
+        "上半年归母营运利润增长、新业务价值显著增长，价格不在低位但E策略关注经营改善。"
+      ],
+      "risk_tags": [],
+      "seed_snapshot": {
+        "price_cny": "59.8800",
+        "change_pct": null,
+        "amount_cny": null,
+        "source_provider": "historical daily"
+      },
+      "market_history": {
+        "symbol": "601318.SH",
+        "name": "中国平安",
+        "industry": null,
+        "industry_characteristics": [],
+        "as_of_close": "59.8800",
+        "observations": 224,
+        "continuous_analysis_sessions": 224,
+        "suspected_price_basis_break": null,
+        "history_coverage": {
+          "sessions": 224,
+          "continuous_sessions": 224,
+          "has_20_sessions": true,
+          "has_60_sessions": true,
+          "has_120_sessions": true,
+          "has_250_sessions": false
+        },
+        "returns_pct": {
+          "5_sessions": "-1.0248",
+          "20_sessions": "2.8866",
+          "60_sessions": "12.1138"
+        },
+        "moving_average": {
+          "ma5": "59.7860",
+          "ma20": "59.2435",
+          "ma60": "57.4088"
+        },
+        "range_position_0_to_1": {
+          "20_sessions": "0.6000",
+          "60_sessions": "0.8564",
+          "120_sessions": "0.9100",
+          "250_sessions": null
+        },
+        "annualized_volatility_pct_approx": "19.2669",
+        "kline": {
+          "daily_last20": [
+            {
+              "date": "2025-08-04",
+              "open": "58.1000",
+              "high": "58.3400",
+              "low": "57.8500",
+              "close": "58.2100",
+              "volume": "360078.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-05",
+              "open": "58.3000",
+              "high": "59.4100",
+              "low": "58.2000",
+              "close": "59.1400",
+              "volume": "482956.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-06",
+              "open": "59.1400",
+              "high": "59.6400",
+              "low": "58.8200",
+              "close": "59.0600",
+              "volume": "324469.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-07",
+              "open": "59.1100",
+              "high": "59.4600",
+              "low": "58.5300",
+              "close": "58.8800",
+              "volume": "327972.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-08",
+              "open": "58.8800",
+              "high": "58.9000",
+              "low": "58.2200",
+              "close": "58.5400",
+              "volume": "397933.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-11",
+              "open": "58.7700",
+              "high": "59.1400",
+              "low": "58.4700",
+              "close": "58.4700",
+              "volume": "431869.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-12",
+              "open": "58.4700",
+              "high": "59.0700",
+              "low": "58.4700",
+              "close": "58.7500",
+              "volume": "426985.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-13",
+              "open": "58.9200",
+              "high": "59.4000",
+              "low": "58.4600",
+              "close": "58.6100",
+              "volume": "728453.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-14",
+              "open": "58.8000",
+              "high": "60.6000",
+              "low": "58.7700",
+              "close": "59.6200",
+              "volume": "1022768.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-15",
+              "open": "59.6000",
+              "high": "60.4500",
+              "low": "59.0000",
+              "close": "59.8000",
+              "volume": "892968.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-18",
+              "open": "59.9200",
+              "high": "60.3500",
+              "low": "59.3400",
+              "close": "59.3400",
+              "volume": "957263.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-19",
+              "open": "59.7700",
+              "high": "60.1800",
+              "low": "58.0800",
+              "close": "58.2000",
+              "volume": "954810.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-20",
+              "open": "58.0900",
+              "high": "59.2000",
+              "low": "57.6900",
+              "close": "59.2000",
+              "volume": "762725.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-21",
+              "open": "59.2000",
+              "high": "59.9600",
+              "low": "58.9100",
+              "close": "59.6200",
+              "volume": "574601.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-22",
+              "open": "59.5100",
+              "high": "60.5100",
+              "low": "59.4400",
+              "close": "60.5000",
+              "volume": "780974.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-25",
+              "open": "60.6000",
+              "high": "61.0500",
+              "low": "60.1100",
+              "close": "61.0000",
+              "volume": "670113.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-26",
+              "open": "60.9000",
+              "high": "61.0000",
+              "low": "60.4500",
+              "close": "60.5200",
+              "volume": "491986.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-27",
+              "open": "60.3800",
+              "high": "60.4500",
+              "low": "58.6900",
+              "close": "58.6900",
+              "volume": "1064558.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-28",
+              "open": "58.7500",
+              "high": "59.1200",
+              "low": "58.3100",
+              "close": "58.8400",
+              "volume": "636105.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            },
+            {
+              "date": "2025-08-29",
+              "open": "58.9500",
+              "high": "61.1000",
+              "low": "58.9400",
+              "close": "59.8800",
+              "volume": "1080309.0000",
+              "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-09-27%2C2025-10-31%2C320%2C"
+            }
+          ],
+          "weekly_last12": [
+            {
+              "period": "2025-W24",
+              "start": "2025-06-09",
+              "end": "2025-06-13",
+              "open": "53.5500",
+              "high": "55.3300",
+              "low": "53.3100",
+              "close": "54.4800",
+              "volume": "2617024.0000"
+            },
+            {
+              "period": "2025-W25",
+              "start": "2025-06-16",
+              "end": "2025-06-20",
+              "open": "54.3300",
+              "high": "54.8600",
+              "low": "53.1200",
+              "close": "54.7400",
+              "volume": "2721735.0000"
+            },
+            {
+              "period": "2025-W26",
+              "start": "2025-06-23",
+              "end": "2025-06-27",
+              "open": "54.5000",
+              "high": "58.1300",
+              "low": "54.2600",
+              "close": "56.9600",
+              "volume": "3870006.0000"
+            },
+            {
+              "period": "2025-W27",
+              "start": "2025-06-30",
+              "end": "2025-07-04",
+              "open": "55.5000",
+              "high": "57.3900",
+              "low": "55.1300",
+              "close": "56.5700",
+              "volume": "2292802.0000"
+            },
+            {
+              "period": "2025-W28",
+              "start": "2025-07-07",
+              "end": "2025-07-11",
+              "open": "56.5900",
+              "high": "59.0200",
+              "low": "55.8100",
+              "close": "57.7100",
+              "volume": "2965997.0000"
+            },
+            {
+              "period": "2025-W29",
+              "start": "2025-07-14",
+              "end": "2025-07-18",
+              "open": "57.6900",
+              "high": "58.2400",
+              "low": "56.2100",
+              "close": "57.0700",
+              "volume": "2085972.0000"
+            },
+            {
+              "period": "2025-W30",
+              "start": "2025-07-21",
+              "end": "2025-07-25",
+              "open": "57.1500",
+              "high": "59.0000",
+              "low": "56.1000",
+              "close": "58.0800",
+              "volume": "3247415.0000"
+            },
+            {
+              "period": "2025-W31",
+              "start": "2025-07-28",
+              "end": "2025-08-01",
+              "open": "58.2000",
+              "high": "61.3300",
+              "low": "58.0800",
+              "close": "58.2000",
+              "volume": "4025689.0000"
+            },
+            {
+              "period": "2025-W32",
+              "start": "2025-08-04",
+              "end": "2025-08-08",
+              "open": "58.1000",
+              "high": "59.6400",
+              "low": "57.8500",
+              "close": "58.5400",
+              "volume": "1893408.0000"
+            },
+            {
+              "period": "2025-W33",
+              "start": "2025-08-11",
+              "end": "2025-08-15",
+              "open": "58.7700",
+              "high": "60.6000",
+              "low": "58.4600",
+              "close": "59.8000",
+              "volume": "3503043.0000"
+            },
+            {
+              "period": "2025-W34",
+              "start": "2025-08-18",
+              "end": "2025-08-22",
+              "open": "59.9200",
+              "high": "60.5100",
+              "low": "57.6900",
+              "close": "60.5000",
+              "volume": "4030373.0000"
+            },
+            {
+              "period": "2025-W35",
+              "start": "2025-08-25",
+              "end": "2025-08-29",
+              "open": "60.6000",
+              "high": "61.1000",
+              "low": "58.3100",
+              "close": "59.8800",
+              "volume": "3943071.0000"
+            }
+          ],
+          "monthly_last12": [
+            {
+              "period": "2024-09",
+              "start": "2024-09-27",
+              "end": "2024-09-30",
+              "open": "51.9000",
+              "high": "57.0900",
+              "low": "50.7000",
+              "close": "57.0900",
+              "volume": "4016131.0000"
+            },
+            {
+              "period": "2024-10",
+              "start": "2024-10-08",
+              "end": "2024-10-31",
+              "open": "62.8000",
+              "high": "62.8000",
+              "low": "54.7500",
+              "close": "55.9200",
+              "volume": "22523329.0000"
+            },
+            {
+              "period": "2024-11",
+              "start": "2024-11-01",
+              "end": "2024-11-29",
+              "open": "56.1500",
+              "high": "61.4900",
+              "low": "52.1400",
+              "close": "53.2500",
+              "volume": "16417287.0000"
+            },
+            {
+              "period": "2024-12",
+              "start": "2024-12-02",
+              "end": "2024-12-31",
+              "open": "53.2000",
+              "high": "57.1800",
+              "low": "52.3500",
+              "close": "52.6500",
+              "volume": "11981196.0000"
+            },
+            {
+              "period": "2025-01",
+              "start": "2025-01-02",
+              "end": "2025-01-27",
+              "open": "52.7000",
+              "high": "52.7300",
+              "low": "48.1000",
+              "close": "50.8500",
+              "volume": "9744718.0000"
+            },
+            {
+              "period": "2025-02",
+              "start": "2025-02-05",
+              "end": "2025-02-28",
+              "open": "50.9800",
+              "high": "52.4800",
+              "low": "49.6700",
+              "close": "50.3800",
+              "volume": "10466411.0000"
+            },
+            {
+              "period": "2025-03",
+              "start": "2025-03-03",
+              "end": "2025-03-31",
+              "open": "50.5500",
+              "high": "54.3000",
+              "low": "50.0000",
+              "close": "51.6300",
+              "volume": "12453371.0000"
+            },
+            {
+              "period": "2025-04",
+              "start": "2025-04-01",
+              "end": "2025-04-30",
+              "open": "51.6000",
+              "high": "52.0000",
+              "low": "47.0000",
+              "close": "50.7100",
+              "volume": "10665141.0000"
+            },
+            {
+              "period": "2025-05",
+              "start": "2025-05-06",
+              "end": "2025-05-30",
+              "open": "51.0000",
+              "high": "55.1800",
+              "low": "50.5500",
+              "close": "53.2800",
+              "volume": "8720791.0000"
+            },
+            {
+              "period": "2025-06",
+              "start": "2025-06-03",
+              "end": "2025-06-30",
+              "open": "53.2100",
+              "high": "58.1300",
+              "low": "53.0000",
+              "close": "55.4800",
+              "volume": "11485835.0000"
+            },
+            {
+              "period": "2025-07",
+              "start": "2025-07-01",
+              "end": "2025-07-31",
+              "open": "55.6600",
+              "high": "61.3300",
+              "low": "55.3000",
+              "close": "58.6900",
+              "volume": "13564307.0000"
+            },
+            {
+              "period": "2025-08",
+              "start": "2025-08-01",
+              "end": "2025-08-29",
+              "open": "58.6800",
+              "high": "61.1000",
+              "low": "57.6900",
+              "close": "59.8800",
+              "volume": "13858681.0000"
+            }
+          ]
+        }
+      },
+      "not_a_trade_signal": true
+    }
+  ]
+}
