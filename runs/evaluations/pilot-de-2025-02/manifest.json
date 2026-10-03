@@ -1,0 +1,90 @@
+{
+  "eval_id": "pilot-de-2025-02",
+  "mode": "HISTORICAL_AI_EVALUATION",
+  "phase": "DECISION_PREPARATION_ONLY",
+  "variants": [
+    "D02",
+    "E02"
+  ],
+  "target_dates": [
+    "2025-05-15",
+    "2025-08-29"
+  ],
+  "entries": [
+    {
+      "entry_id": "D02-2025-05-15",
+      "eval_id": "pilot-de-2025-02",
+      "variant": "D02",
+      "target_date": "2025-05-15",
+      "execution_date": "2025-05-16",
+      "prompt_sha256": "79439a0a22c961e9a83e103b8de004bffaa828fb32d99f2d3177fb6b532957d2",
+      "input_revision": 1,
+      "input_commit": "4b0cf882cbed1f0efeee242b16bfbdc0fbbae058",
+      "simulation_test_id": "eval-pilot-de-2025-02-20250515",
+      "request_path": "strategies/D/variants/D02/simulations/eval-pilot-de-2025-02-20250515/requests/2025-05-16/request.json",
+      "ai_input_path": "strategies/D/variants/D02/simulations/eval-pilot-de-2025-02-20250515/requests/2025-05-16/ai_input.md",
+      "time_travel_path": "strategies/D/variants/D02/simulations/eval-pilot-de-2025-02-20250515/requests/2025-05-16/time_travel.json",
+      "decision_path": "runs/evaluations/pilot-de-2025-02/decisions/D02/2025-05-15.json",
+      "score_path": "runs/evaluations/pilot-de-2025-02/scores/D02/2025-05-15.json",
+      "status": "WAITING_FOR_AI",
+      "future_outcomes_in_prompt": false
+    },
+    {
+      "entry_id": "D02-2025-08-29",
+      "eval_id": "pilot-de-2025-02",
+      "variant": "D02",
+      "target_date": "2025-08-29",
+      "execution_date": "2025-09-01",
+      "prompt_sha256": "aef58fbb224c35b09f9ce5d743bde09d4d8e0dc4950b77b70d6b66495db34750",
+      "input_revision": 1,
+      "input_commit": "4b0cf882cbed1f0efeee242b16bfbdc0fbbae058",
+      "simulation_test_id": "eval-pilot-de-2025-02-20250829",
+      "request_path": "strategies/D/variants/D02/simulations/eval-pilot-de-2025-02-20250829/requests/2025-09-01/request.json",
+      "ai_input_path": "strategies/D/variants/D02/simulations/eval-pilot-de-2025-02-20250829/requests/2025-09-01/ai_input.md",
+      "time_travel_path": "strategies/D/variants/D02/simulations/eval-pilot-de-2025-02-20250829/requests/2025-09-01/time_travel.json",
+      "decision_path": "runs/evaluations/pilot-de-2025-02/decisions/D02/2025-08-29.json",
+      "score_path": "runs/evaluations/pilot-de-2025-02/scores/D02/2025-08-29.json",
+      "status": "WAITING_FOR_AI",
+      "future_outcomes_in_prompt": false
+    },
+    {
+      "entry_id": "E02-2025-05-15",
+      "eval_id": "pilot-de-2025-02",
+      "variant": "E02",
+      "target_date": "2025-05-15",
+      "execution_date": "2025-05-16",
+      "prompt_sha256": "a0b4717e40af7352612575b472b2312b9e4b12c36a6bf7153470354ccad9a4e2",
+      "input_revision": 1,
+      "input_commit": "4b0cf882cbed1f0efeee242b16bfbdc0fbbae058",
+      "simulation_test_id": "eval-pilot-de-2025-02-20250515",
+      "request_path": "strategies/E/variants/E02/simulations/eval-pilot-de-2025-02-20250515/requests/2025-05-16/request.json",
+      "ai_input_path": "strategies/E/variants/E02/simulations/eval-pilot-de-2025-02-20250515/requests/2025-05-16/ai_input.md",
+      "time_travel_path": "strategies/E/variants/E02/simulations/eval-pilot-de-2025-02-20250515/requests/2025-05-16/time_travel.json",
+      "decision_path": "runs/evaluations/pilot-de-2025-02/decisions/E02/2025-05-15.json",
+      "score_path": "runs/evaluations/pilot-de-2025-02/scores/E02/2025-05-15.json",
+      "status": "WAITING_FOR_AI",
+      "future_outcomes_in_prompt": false
+    },
+    {
+      "entry_id": "E02-2025-08-29",
+      "eval_id": "pilot-de-2025-02",
+      "variant": "E02",
+      "target_date": "2025-08-29",
+      "execution_date": "2025-09-01",
+      "prompt_sha256": "16eac8a0b4c3c644a81a76ed61ac93051d69002a99736ea215a57f918e2cb604",
+      "input_revision": 1,
+      "input_commit": "4b0cf882cbed1f0efeee242b16bfbdc0fbbae058",
+      "simulation_test_id": "eval-pilot-de-2025-02-20250829",
+      "request_path": "strategies/E/variants/E02/simulations/eval-pilot-de-2025-02-20250829/requests/2025-09-01/request.json",
+      "ai_input_path": "strategies/E/variants/E02/simulations/eval-pilot-de-2025-02-20250829/requests/2025-09-01/ai_input.md",
+      "time_travel_path": "strategies/E/variants/E02/simulations/eval-pilot-de-2025-02-20250829/requests/2025-09-01/time_travel.json",
+      "decision_path": "runs/evaluations/pilot-de-2025-02/decisions/E02/2025-08-29.json",
+      "score_path": "runs/evaluations/pilot-de-2025-02/scores/E02/2025-08-29.json",
+      "status": "WAITING_FOR_AI",
+      "future_outcomes_in_prompt": false
+    }
+  ],
+  "future_outcomes_in_prompt": false,
+  "decision_source": "EXTERNAL_OR_CHATGPT_FILE",
+  "scoring_policy": "Scores are generated only after decisions are locked; never used by PromptLab."
+}
