@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "D",
+  "variant_id": "D02",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-de-2025-02-20250515-D02",
+  "decision_id": "eval-pilot-de-2025-02-20250515-D02-2025-05-16",
+  "date": "2025-05-16",
+  "decision_time": "2025-05-15T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "4b0cf882cbed1f0efeee242b16bfbdc0fbbae058",
+  "status": "READY",
+  "action": "HOLD",
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "万华化学处于60/120日相对低位，且最近5日价格有所企稳，但2025Q1营业收入同比下降6.70%、归母净利润下降25.87%、扣非净利润下降26.33%、经营现金流下降81.15%。D02要求低位同时确认公司质量没有明显受损，因此本次不能仅凭低位买入，保持现金等待经营数据改善。",
+  "risks": [
+    "若化工景气在财报之后快速改善，等待可能错过低位反弹。",
+    "历史新闻覆盖有限，行业价差和库存没有完整纳入。"
+  ],
+  "evidence": [
+    {
+      "source": "CNINFO/万华化学2025年第一季度报告",
+      "published_at": "2025-04-15T00:00:00+08:00",
+      "title": "万华化学2025年第一季度报告"
+    }
+  ],
+  "data_gaps": [
+    "未纳入完整产品价差、库存和高频行业数据。"
+  ]
+}

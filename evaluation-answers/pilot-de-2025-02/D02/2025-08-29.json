@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.3-draft",
+  "strategy_id": "D",
+  "variant_id": "D02",
+  "mode": "SIMULATION",
+  "run_id": "eval-pilot-de-2025-02-20250829-D02",
+  "decision_id": "eval-pilot-de-2025-02-20250829-D02-2025-09-01",
+  "date": "2025-09-01",
+  "decision_time": "2025-08-29T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "4b0cf882cbed1f0efeee242b16bfbdc0fbbae058",
+  "status": "READY",
+  "action": "BUY",
+  "order_proposal": {
+    "symbol": "600900.SH",
+    "side": "BUY",
+    "quantity": 700,
+    "reference_price_cny": "28.090",
+    "quote_time": "2025-08-29T15:00:00+08:00",
+    "quote_source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600900%2Cday%2C2024-10-15%2C2025-11-15%2C320%2C"
+  },
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "长江电力60日和120日价格位置偏低，5日、20日收益已小幅转正，波动较低。信息截止前最新正式财务为2025Q1：营业收入同比增长8.68%、归母净利润增长30.56%、扣非净利润增长31.49%，经营现金流仅小幅下降2.20%。这满足D02“质量未明显恶化+低位+早期回升”的组合，买入700股作为约一成试探仓位，其余保持现金。",
+  "risks": [
+    "8月30日发布的半年报晚于本次截止，不能使用。",
+    "短期企稳幅度仍小，低位可能继续下移。"
+  ],
+  "evidence": [
+    {
+      "source": "CNINFO/长江电力2025年第一季度报告",
+      "published_at": "2025-04-30T00:00:00+08:00",
+      "title": "长江电力2025年第一季度报告"
+    }
+  ],
+  "data_gaps": [
+    "本次信息截止前2025半年报尚未披露。"
+  ]
+}
