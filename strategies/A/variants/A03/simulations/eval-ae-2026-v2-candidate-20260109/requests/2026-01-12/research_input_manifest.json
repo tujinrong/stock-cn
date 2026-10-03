@@ -1,0 +1,15 @@
+{
+  "variant_id": "A03",
+  "path": "research-inputs\\A03\\2026-01-09",
+  "information_cutoff": "2026-01-09T15:00:00+08:00",
+  "file_sha256": {
+    "manifest.json": "a7d94235efd4e8d0d024950ae0bce288da26bf55224fc2ecd1b6d24c32ecb7de",
+    "official-disclosure-pack.json": "f04c02bd4aaaa62e76326864d1d6bb73b3a2d2ece6d8dac64862b2aa4ddb80ca",
+    "financial-reviews.json": "595533bd637f0d3e93205b044f9f0c900e74cc7023737ecf1ba79d0145f7b16d",
+    "news-research.json": "a9a911e02336ffe13911f0d0017956a7922f3cde871ee06e97be3b2d7653e57d",
+    "universe-scope.json": "4058929e39d132b725c14ef679218428e5e1a085c8b9df51f295c9b6497fce4d"
+  },
+  "missing_files": [
+    "candidate-research-pack.json"
+  ]
+}

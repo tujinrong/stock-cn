@@ -1,0 +1,69 @@
+{
+  "strategy_id": "E",
+  "variant_id": "E02",
+  "mode": "SIMULATION",
+  "run_id": "eval-ae-2026-v3-baseline-20260430-E02",
+  "decision_id": "eval-ae-2026-v3-baseline-20260430-E02-2026-05-06",
+  "date": "2026-05-06",
+  "decision_time": "2026-04-30T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "4a05bf37108f70fbd9108748061024c6956bbe01",
+  "schema_version": "0.3-draft",
+  "status": "INSUFFICIENT_DATA",
+  "action": null,
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "仅研究事先声明的10股候选池，非全A股；独立20万元现金开局，无原持仓可卖。经营数据领先变体缺关键依据。8股资料主要是已经入财报的Q1结果，平安NBV20.8%属于已披露公司经营口径；石化库存增利/炼油副产品价差为季报回顾性解释，缺财报之后新增订单、产销、产品价格或渠道序列及其到利润/现金的传导。不能把万华现金同比高增或恒瑞盈利增长替代先行研究。另两股财务已按截止时间规则扣除。返回INSUFFICIENT_DATA、action=null，不伪装成HOLD。",
+  "risks": [
+    "模型预训练可能含后来知识，不能保证完全消除前视偏差。",
+    "40交易日内改善未必被价格及时反映；无法日内盯盘或随时退出。",
+    "回顾性经营解释未必预示未来季度，先行指标持续性不能核实。"
+  ],
+  "evidence": [
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235613.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601318.SH",
+      "facts_referenced": [
+        "平安Q1NBV20.8%、营运利润7.6%，均已在4/29报告披露且非净利润口径。",
+        "石化Q1利润增长公司解释库存增利及炼油副产品价差；现金流负55.58亿元。",
+        "万华Q1现金流同比1079.87%为已发生季度财务数据。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235941.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600028.SH",
+      "facts_referenced": [
+        "平安Q1NBV20.8%、营运利润7.6%，均已在4/29报告披露且非净利润口径。",
+        "石化Q1利润增长公司解释库存增利及炼油副产品价差；现金流负55.58亿元。",
+        "万华Q1现金流同比1079.87%为已发生季度财务数据。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-21/1225130687.PDF",
+      "published_at": "2026-04-21T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600309.SH",
+      "facts_referenced": [
+        "平安Q1NBV20.8%、营运利润7.6%，均已在4/29报告披露且非净利润口径。",
+        "石化Q1利润增长公司解释库存增利及炼油副产品价差；现金流负55.58亿元。",
+        "万华Q1现金流同比1079.87%为已发生季度财务数据。"
+      ]
+    },
+    {
+      "source": "SAVED_POINT_IN_TIME_PRICE_CONTEXT",
+      "published_at": "2026-04-30T15:00:00+08:00",
+      "kind": "ARCHIVED_OHLCV"
+    }
+  ],
+  "data_gaps": [
+    "长江电力、大秦铁路4/30报告只有日期精度，已按v3规则扣除；官方资料FAILED、financial_review=null，不使用旧v2所见数字评价或推荐这两股。",
+    "仅核读其余8股季报主要指标与部分解释，未完整审计附注、负债、估值及全部经营公告；新闻按历史协议忽略。",
+    "未完整独立核验权益事件与历史涨跌停；次日开盘代理成交须核验资金及100股手数，参考价不等于成交。",
+    "缺独立公开时间可验证的财报外订单/产销量/产品价格/渠道先行资料和盈利现金桥接。"
+  ]
+}

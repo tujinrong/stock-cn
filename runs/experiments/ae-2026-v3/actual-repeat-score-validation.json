@@ -1,0 +1,20 @@
+[
+  {
+    "arm": "baseline",
+    "variant": "A03",
+    "target_date": "2026-01-09",
+    "score_sha256_unchanged": "fec988943c32f3129b8c5f2b9cbce5ac9d8af59ed1f704d0d3793b8f211d2f11",
+    "event_count_before": 2,
+    "event_count_after": 2,
+    "repeat_equity_and_dividend_entitlements_identical": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "A03",
+    "target_date": "2026-07-31",
+    "score_sha256_unchanged": "653e46dd39cb22944b5452a9668ceaca06230129ef867b18889536a5f0c692fc",
+    "event_count_before": 2,
+    "event_count_after": 2,
+    "repeat_equity_and_dividend_entitlements_identical": true
+  }
+]

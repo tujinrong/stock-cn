@@ -1,0 +1,302 @@
+[
+  {
+    "arm": "baseline",
+    "variant": "A01",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/A01/2026-01-09.json",
+    "source_decision_sha256": "c0c9b5dbcd827d950969eae40457e2d3d70910ce09dea230bf41feda31a4191f",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "A01",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/A01/2026-01-09.json",
+    "source_decision_sha256": "e8cffdbb43c65af136ebb9414852fd6310767cdcc40537e7332b3b2bd3023d0b",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "A02",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/A02/2026-01-09.json",
+    "source_decision_sha256": "ffd07b5cee046466d2c2f9458adbe40978dd2cce2277fad40f76693538be84ef",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "A02",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/A02/2026-01-09.json",
+    "source_decision_sha256": "c26935fc11dc18dd32ea653cb25d31edf5658205330d397dd3eb63be534285b3",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "A03",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/A03/2026-01-09.json",
+    "source_decision_sha256": "d274a391f0c96015c2671db9618c3860baa94a1576f7c1b23e68ba465bc9487e",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "A03",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/A03/2026-01-09.json",
+    "source_decision_sha256": "ccfd13035295cd7e67dbd7305111eb8e9eabc5f8d85160ad31711ffa871ccf3a",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "C01",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/C01/2026-01-09.json",
+    "source_decision_sha256": "470173adba2823de845340b8ee01d172ba42da6aefbee00ef0ec3f6fe916e261",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "C01",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/C01/2026-01-09.json",
+    "source_decision_sha256": "22d4d79476704717d19739777d2dc7fbf7e520ebac64198c521c22cedf1acebf",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "C02",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/C02/2026-01-09.json",
+    "source_decision_sha256": "471efac1f5d4e50875d327b50967b8fa589a0d498c80eee7ba41d85f03655594",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "C02",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/C02/2026-01-09.json",
+    "source_decision_sha256": "44088920186eb380e7fc37cd32d0f391ba1ee9b667f23418fdb597d5d652ac3c",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "C03",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/C03/2026-01-09.json",
+    "source_decision_sha256": "bb6633d35c39faad04bb582ad96f9053d48b40b0c7331ca7d5bb81a284d7d729",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "C03",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/C03/2026-01-09.json",
+    "source_decision_sha256": "93d04493381744a5c55667ec9353b809e3cd7251fb841c083f3f55124edf76df",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "D01",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/D01/2026-01-09.json",
+    "source_decision_sha256": "5707661a0658cc533710831f2b968bbe446045062e1bb80e7ce77171b77b8561",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "D01",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/D01/2026-01-09.json",
+    "source_decision_sha256": "e8bf157b19701941f3fa679f8791e82fa5f78bad5c82e98381e3c4ca0a38583a",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "D02",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/D02/2026-01-09.json",
+    "source_decision_sha256": "7a17259e4d467b3aefd28197512f8adc89a31babaeb692b1d3fd7b09bb7116b0",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "D02",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/D02/2026-01-09.json",
+    "source_decision_sha256": "2e322a34f64ecc86eb8745e9c4d64876e5b73b3d1ef09b763c2b8be56bc11316",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "D03",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/D03/2026-01-09.json",
+    "source_decision_sha256": "45ae1e05149732c72306248188dc994d5cd15911e5c5db5b4d381b9ebd1fbc6b",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "D03",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/D03/2026-01-09.json",
+    "source_decision_sha256": "d6be675da91c3548bd13b1abff11eee1a4100b7e4a1c73d97ab431c6b4b177e5",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "E01",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/E01/2026-01-09.json",
+    "source_decision_sha256": "742fb0668cf75b97d55111217692d0d5ed26defccb0cfde3c6074a041e17347a",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "E01",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/E01/2026-01-09.json",
+    "source_decision_sha256": "5c1191782dcbfeadb8ce9436d5848757b6591154d55956a36b49434f1ed81c8a",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "E02",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/E02/2026-01-09.json",
+    "source_decision_sha256": "8e4a9b7cc7390d22c11ab206cb8ee9e5fc711733314e9c30ca611697f208a3a5",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "E02",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/E02/2026-01-09.json",
+    "source_decision_sha256": "d23027f409551a48539d1f0eb11e566232582f84dadc689993619a2b61fc37b8",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "E03",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/E03/2026-01-09.json",
+    "source_decision_sha256": "44c9bbead2de1abbdc8737f076fa2383af1305e4751a457deb2957b9b410d990",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "E03",
+    "target_date": "2026-01-09",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/E03/2026-01-09.json",
+    "source_decision_sha256": "2ef3138d19ce4534b28331974a5713d3448928bb29f20011d3c55408e7066af9",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "A01",
+    "target_date": "2026-07-31",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/A01/2026-07-31.json",
+    "source_decision_sha256": "f7480a4519525fb841857ec2fc4168f2660dd0875b3ffe14b579ab0c3524e4b0",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "A01",
+    "target_date": "2026-07-31",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/A01/2026-07-31.json",
+    "source_decision_sha256": "0f5f26d14bb5e5df4f4ed61cb7ed009905335d10156162682eb75f2efabd36a2",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "A02",
+    "target_date": "2026-07-31",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/A02/2026-07-31.json",
+    "source_decision_sha256": "791445f2dc01f41a41c5df23f2faa3e33a6f3c1a49e4a46783f7ff6c0ad3174d",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "A02",
+    "target_date": "2026-07-31",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/A02/2026-07-31.json",
+    "source_decision_sha256": "c22139a3cf3451c7961f2447bea224246c89eb3f850e5f7f494bd8731ef3f802",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "baseline",
+    "variant": "A03",
+    "target_date": "2026-07-31",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-baseline/decisions/A03/2026-07-31.json",
+    "source_decision_sha256": "35e0571489370508db5d12b4b246d3261413da8c29366f2548382f6eae006d41",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  },
+  {
+    "arm": "candidate",
+    "variant": "A03",
+    "target_date": "2026-07-31",
+    "source_decision_path": "runs/evaluations/ae-2026-v2-candidate/decisions/A03/2026-07-31.json",
+    "source_decision_sha256": "37a4f19595fcc7132eb7d1ddffe7abb0314868b8facc5683ba4de14aaa352c8a",
+    "causal_inputs_equivalent": true,
+    "actual_ai_choice_reused": true,
+    "source_future_scores_absent": true
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "authorized_symbols": [
+    "600036.SH",
+    "002594.SZ",
+    "600660.SH",
+    "600900.SH",
+    "601100.SH"
+  ],
+  "coverage": "PREDECLARED_FIXED_RESEARCH_UNIVERSE",
+  "not_full_a_share_claim": true
+}

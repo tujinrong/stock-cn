@@ -1,0 +1,55 @@
+{
+  "evidence": [
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+      "published_at": "2025-10-30T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600036.SH",
+      "facts_referenced": [
+        "招商2025Q3单季收入2.11%、归母1.04%；长电累计收入-0.89%、现金流-9.98%。",
+        "福耀扣非24.70%、现金流57.29%；万华归母-17.45%。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+      "published_at": "2025-10-31T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600900.SH",
+      "facts_referenced": [
+        "招商2025Q3单季收入2.11%、归母1.04%；长电累计收入-0.89%、现金流-9.98%。",
+        "福耀扣非24.70%、现金流57.29%；万华归母-17.45%。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+      "published_at": "2025-10-17T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600660.SH",
+      "facts_referenced": [
+        "招商2025Q3单季收入2.11%、归母1.04%；长电累计收入-0.89%、现金流-9.98%。",
+        "福耀扣非24.70%、现金流57.29%；万华归母-17.45%。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224733028.PDF",
+      "published_at": "2025-10-25T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600309.SH",
+      "facts_referenced": [
+        "招商2025Q3单季收入2.11%、归母1.04%；长电累计收入-0.89%、现金流-9.98%。",
+        "福耀扣非24.70%、现金流57.29%；万华归母-17.45%。"
+      ]
+    },
+    {
+      "source": "SAVED_POINT_IN_TIME_PRICE_CONTEXT",
+      "published_at": "2026-01-09T15:00:00+08:00",
+      "kind": "ARCHIVED_OHLCV"
+    }
+  ],
+  "data_gaps": [
+    "新闻按历史协议忽略，不能推断当时没有风险；仅有季报主要指标及部分解释，财务附注和全部经营公告未全面核读。",
+    "首日期连续价格仅248交易日（神华238日），250日年度统计为null；参考可见月线和120日位置，不能声称精确年度低点。",
+    "历史公司权益事件和交易所涨跌停未完整独立核验，次日开盘代理执行，报价与成交分离。"
+  ],
+  "scoring_phase_future_data_excluded": true
+}

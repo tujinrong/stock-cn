@@ -1,0 +1,10 @@
+{
+  "all_72_decisions_sealed": true,
+  "all_outcome_scores_absent": true,
+  "frozen_prompt_files_checked": true,
+  "requests_and_entries_and_decisions_hash_checked": true,
+  "shared_causal_imports": 30,
+  "new_ai_judgments": 42,
+  "scripted_investment_agent_used": false,
+  "paid_model_called": false
+}

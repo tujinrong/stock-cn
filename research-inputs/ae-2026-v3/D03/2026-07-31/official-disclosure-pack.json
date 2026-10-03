@@ -1,0 +1,312 @@
+{
+  "kind": "OFFICIAL_DISCLOSURE_PACK",
+  "symbols_requested": [
+    "600036.SH",
+    "600519.SH",
+    "600276.SH",
+    "600900.SH",
+    "600660.SH",
+    "600309.SH",
+    "601318.SH",
+    "601088.SH",
+    "600028.SH",
+    "601006.SH"
+  ],
+  "results": [
+    {
+      "symbol": "600036.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600036.SH",
+          "title": "招商银行股份有限公司2026年第一季度报告",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "2802004753a3bf4899ebebd55a8bd80d0704390cb791775d528565009d99802d"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "600519.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600519.SH",
+          "title": "贵州茅台2026年第一季度报告",
+          "published_at": "2026-04-25T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-25/1225187851.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "ca10d0e4fb3a1e4e9f258c04fc4c62000968f337a9b0bf6f714d4f153536d363"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "600276.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600276.SH",
+          "title": "恒瑞医药2026年第一季度报告",
+          "published_at": "2026-04-23T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-23/1225145521.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "a19485e9e1990141c43602db54efa7675a10dbb0a83a5e13a25324da45d4837e"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "600900.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600900.SH",
+          "title": "长江电力2026年一季度报告",
+          "published_at": "2026-04-30T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "3536efda5117d4ef071729a16b9de8449846aedca0a8f2d7ff9a5eafa2cafe84"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "600660.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600660.SH",
+          "title": "福耀玻璃2026年第一季度报告",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "55a8ded274c952d2fdbf5b999748f62f4311463b26b7d0d1aa64831c4bc2453e"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "600309.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600309.SH",
+          "title": "万华化学2026年一季度报告",
+          "published_at": "2026-04-21T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-21/1225130687.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "a52349c248a9b519cf0bc4bf82345194b0a12052af4a49030c14b10ce07b7e73"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "601318.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "601318.SH",
+          "title": "中国平安2026年第一季度报告",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235613.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "d5567e038cc150220ee431869b83d88b194fef0d6e5ca12ac976b1b7116d986f"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "601088.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "601088.SH",
+          "title": "中国神华2026年第一季度报告",
+          "published_at": "2026-04-25T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-25/1225185746.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "eafdac378c6aece9511c0e3c501ed99312a47addd138a5562d9710e66caf5959"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "600028.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600028.SH",
+          "title": "中国石化2026年第一季度报告",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235941.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "f6f32b6d7e53cc1e8776ae7f25aed1b87ad73ce9937bef10e9f02545d71192e8"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "601006.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "601006.SH",
+          "title": "大秦铁路2026年第一季度报告",
+          "published_at": "2026-04-30T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257887.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "b08f8e7c3d13878af94ef7528d1d14d66253bf7b3d4b0cea32ecaa6999a1309a"
+        }
+      ],
+      "error": null
+    }
+  ],
+  "latest_periodic_report_refs": [
+    {
+      "symbol": "600036.SH",
+      "title": "招商银行股份有限公司2026年第一季度报告",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "2802004753a3bf4899ebebd55a8bd80d0704390cb791775d528565009d99802d"
+    },
+    {
+      "symbol": "600519.SH",
+      "title": "贵州茅台2026年第一季度报告",
+      "published_at": "2026-04-25T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-25/1225187851.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "ca10d0e4fb3a1e4e9f258c04fc4c62000968f337a9b0bf6f714d4f153536d363"
+    },
+    {
+      "symbol": "600276.SH",
+      "title": "恒瑞医药2026年第一季度报告",
+      "published_at": "2026-04-23T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-23/1225145521.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "a19485e9e1990141c43602db54efa7675a10dbb0a83a5e13a25324da45d4837e"
+    },
+    {
+      "symbol": "600900.SH",
+      "title": "长江电力2026年一季度报告",
+      "published_at": "2026-04-30T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "3536efda5117d4ef071729a16b9de8449846aedca0a8f2d7ff9a5eafa2cafe84"
+    },
+    {
+      "symbol": "600660.SH",
+      "title": "福耀玻璃2026年第一季度报告",
+      "published_at": "2026-04-22T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "55a8ded274c952d2fdbf5b999748f62f4311463b26b7d0d1aa64831c4bc2453e"
+    },
+    {
+      "symbol": "600309.SH",
+      "title": "万华化学2026年一季度报告",
+      "published_at": "2026-04-21T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-21/1225130687.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "a52349c248a9b519cf0bc4bf82345194b0a12052af4a49030c14b10ce07b7e73"
+    },
+    {
+      "symbol": "601318.SH",
+      "title": "中国平安2026年第一季度报告",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235613.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "d5567e038cc150220ee431869b83d88b194fef0d6e5ca12ac976b1b7116d986f"
+    },
+    {
+      "symbol": "601088.SH",
+      "title": "中国神华2026年第一季度报告",
+      "published_at": "2026-04-25T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-25/1225185746.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "eafdac378c6aece9511c0e3c501ed99312a47addd138a5562d9710e66caf5959"
+    },
+    {
+      "symbol": "600028.SH",
+      "title": "中国石化2026年第一季度报告",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235941.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "f6f32b6d7e53cc1e8776ae7f25aed1b87ad73ce9937bef10e9f02545d71192e8"
+    },
+    {
+      "symbol": "601006.SH",
+      "title": "大秦铁路2026年第一季度报告",
+      "published_at": "2026-04-30T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257887.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "b08f8e7c3d13878af94ef7528d1d14d66253bf7b3d4b0cea32ecaa6999a1309a"
+    }
+  ],
+  "important_recent_refs": [],
+  "withheld_sources": [],
+  "coverage_note": "Latest report metadata checked against public archive; same-day date-only sources withheld, not all litigation/media events reviewed."
+}

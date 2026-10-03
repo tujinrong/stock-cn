@@ -1,0 +1,33 @@
+{
+  "strategy_id": "D",
+  "status": "SIMULATION",
+  "date": "2026-01-12",
+  "initial_capital_cny": "200000.00",
+  "cash_cny": "138033.89",
+  "total_equity_cny": "199713.89",
+  "positions": [
+    {
+      "symbol": "600036.SH",
+      "name": "招商银行",
+      "quantity": 1500,
+      "sellable_quantity": 0,
+      "average_cost_cny": "41.310740",
+      "cost_basis_cny": "61966.11",
+      "valuation_price_cny": "41.12"
+    }
+  ],
+  "_meta": {
+    "schema_version": "0.4",
+    "mode": "SIMULATION",
+    "paper_only": true,
+    "variant_id": "D01",
+    "test_id": "eval-ae-2026-v3-baseline-20260109",
+    "revision": 2,
+    "valuation_time": "2026-01-12T15:00:00+08:00",
+    "fees_cny": "16.11",
+    "last_decision_date": "2026-01-12",
+    "data_kind": "REAL_HISTORY",
+    "time_travel_jump": true,
+    "last_event_id": "000002"
+  }
+}

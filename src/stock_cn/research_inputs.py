@@ -11,7 +11,7 @@ from pathlib import Path
 
 from .evidence import validate_official_disclosure_pack
 from .research_bundle import validate_financial_review, validate_news_research
-from .simulation import digest, read_json, require
+from .simulation import digest, read_json, require, identifier
 
 
 FILENAMES = {
@@ -23,12 +23,15 @@ FILENAMES = {
 }
 
 
-def research_input_root(repo, variant_id, decision_date):
+def research_input_root(repo, variant_id, decision_date, *, namespace=None):
     repo = Path(repo).resolve()
     if not isinstance(variant_id, str) or len(variant_id) != 3:
         raise ValueError("invalid variant identifier")
     datetime.fromisoformat(decision_date)
-    root = repo / "research-inputs" / variant_id / decision_date
+    base = repo / 'research-inputs'
+    if namespace is not None:
+        base = base / identifier(namespace)
+    root = base / variant_id / decision_date
     if not root.resolve().is_relative_to((repo / "research-inputs").resolve()):
         raise ValueError("research input path escape")
     return root
@@ -50,14 +53,14 @@ def _candidate_symbols(pack):
     }
 
 
-def load_research_inputs(repo, variant_id, decision_date, *, as_of):
+def load_research_inputs(repo, variant_id, decision_date, *, as_of, namespace=None):
     """Load and validate one variant/day research-input directory.
 
     Missing optional files remain explicit None/NOT_CHECKED inputs. The caller may
     still prepare a SELL/HOLD decision, while BUY preflight can reject incomplete
     evidence later.
     """
-    root = research_input_root(repo, variant_id, decision_date)
+    root = research_input_root(repo, variant_id, decision_date, namespace=namespace)
     manifest_path = root / "manifest.json"
     if not manifest_path.exists():
         raise ValueError("research input manifest missing")

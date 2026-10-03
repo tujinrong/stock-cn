@@ -1,0 +1,9 @@
+{
+  "status": "NO_TRADE",
+  "fill": null,
+  "reason": "HOLD",
+  "decision_id": "eval-ae-2026-v3-baseline-20260731-D03-2026-08-03",
+  "paper_only": true,
+  "mode": "SIMULATION",
+  "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+}

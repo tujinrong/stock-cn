@@ -1,0 +1,146 @@
+{
+  "strategy_id": "E",
+  "variant_id": "E03",
+  "mode": "SIMULATION",
+  "run_id": "eval-ae-2026-v3-candidate-20260731-E03",
+  "decision_id": "eval-ae-2026-v3-candidate-20260731-E03-2026-08-03",
+  "date": "2026-08-03",
+  "decision_time": "2026-07-31T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "4a05bf37108f70fbd9108748061024c6956bbe01",
+  "schema_version": "0.3-draft",
+  "status": "INSUFFICIENT_DATA",
+  "action": null,
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "事先10股候选池研究，非全A股；独立20万元现金。机会成本审查后仍为资料不足：候选池多数近期上涨可能带来错失成本，但不能把价格或万华/石化Q1利润、神华H1预测混同为行业拐点。缺需求、库存、供给产能、成本与产品价差的最新持续证据及受益公司相对暴露，无法保持E03行业转折原意又给出可靠交易。招行与平安的公司财务、恒瑞研发和回款、福耀汇兑、大秦现金改善、长电水电结构背景、茅台季度增长均不补足该缺口。候选附录只要求审视现金与参与，不能替代行业研究或强迫买入；返回INSUFFICIENT_DATA，动作和订单为空。",
+  "risks": [
+    "模型预训练可能包含后来知识，不能保证完全消除前视偏差。",
+    "有限股票池共涨可来自估值或资金变化，推断经营拐点存在误判风险。",
+    "等待可能错过行情，强行参与则可能暴露于未验证的相关行业风险；收益未知。"
+  ],
+  "evidence": [
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600036.SH",
+      "facts_referenced": [
+        "候选池价格代理20日9.4415%但60日-1.4692%，且明示NOT_BROAD_MARKET_INDEX。",
+        "石化库存增利及炼油副产品价差解释、万华Q1扣非18.20%增长为季度公司事实，不证明7月行业转折。",
+        "神华7/15 H1扣非增长7.4%至15.6%是未审计预测；10股已披露完整财报最新仍为Q1。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-25/1225187851.PDF",
+      "published_at": "2026-04-25T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600519.SH",
+      "facts_referenced": [
+        "候选池价格代理20日9.4415%但60日-1.4692%，且明示NOT_BROAD_MARKET_INDEX。",
+        "石化库存增利及炼油副产品价差解释、万华Q1扣非18.20%增长为季度公司事实，不证明7月行业转折。",
+        "神华7/15 H1扣非增长7.4%至15.6%是未审计预测；10股已披露完整财报最新仍为Q1。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-23/1225145521.PDF",
+      "published_at": "2026-04-23T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600276.SH",
+      "facts_referenced": [
+        "候选池价格代理20日9.4415%但60日-1.4692%，且明示NOT_BROAD_MARKET_INDEX。",
+        "石化库存增利及炼油副产品价差解释、万华Q1扣非18.20%增长为季度公司事实，不证明7月行业转折。",
+        "神华7/15 H1扣非增长7.4%至15.6%是未审计预测；10股已披露完整财报最新仍为Q1。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+      "published_at": "2026-04-30T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600900.SH",
+      "facts_referenced": [
+        "候选池价格代理20日9.4415%但60日-1.4692%，且明示NOT_BROAD_MARKET_INDEX。",
+        "石化库存增利及炼油副产品价差解释、万华Q1扣非18.20%增长为季度公司事实，不证明7月行业转折。",
+        "神华7/15 H1扣非增长7.4%至15.6%是未审计预测；10股已披露完整财报最新仍为Q1。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+      "published_at": "2026-04-22T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600660.SH",
+      "facts_referenced": [
+        "候选池价格代理20日9.4415%但60日-1.4692%，且明示NOT_BROAD_MARKET_INDEX。",
+        "石化库存增利及炼油副产品价差解释、万华Q1扣非18.20%增长为季度公司事实，不证明7月行业转折。",
+        "神华7/15 H1扣非增长7.4%至15.6%是未审计预测；10股已披露完整财报最新仍为Q1。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-21/1225130687.PDF",
+      "published_at": "2026-04-21T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600309.SH",
+      "facts_referenced": [
+        "候选池价格代理20日9.4415%但60日-1.4692%，且明示NOT_BROAD_MARKET_INDEX。",
+        "石化库存增利及炼油副产品价差解释、万华Q1扣非18.20%增长为季度公司事实，不证明7月行业转折。",
+        "神华7/15 H1扣非增长7.4%至15.6%是未审计预测；10股已披露完整财报最新仍为Q1。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235613.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601318.SH",
+      "facts_referenced": [
+        "候选池价格代理20日9.4415%但60日-1.4692%，且明示NOT_BROAD_MARKET_INDEX。",
+        "石化库存增利及炼油副产品价差解释、万华Q1扣非18.20%增长为季度公司事实，不证明7月行业转折。",
+        "神华7/15 H1扣非增长7.4%至15.6%是未审计预测；10股已披露完整财报最新仍为Q1。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-25/1225185746.PDF",
+      "published_at": "2026-04-25T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601088.SH",
+      "facts_referenced": [
+        "候选池价格代理20日9.4415%但60日-1.4692%，且明示NOT_BROAD_MARKET_INDEX。",
+        "石化库存增利及炼油副产品价差解释、万华Q1扣非18.20%增长为季度公司事实，不证明7月行业转折。",
+        "神华7/15 H1扣非增长7.4%至15.6%是未审计预测；10股已披露完整财报最新仍为Q1。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235941.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600028.SH",
+      "facts_referenced": [
+        "候选池价格代理20日9.4415%但60日-1.4692%，且明示NOT_BROAD_MARKET_INDEX。",
+        "石化库存增利及炼油副产品价差解释、万华Q1扣非18.20%增长为季度公司事实，不证明7月行业转折。",
+        "神华7/15 H1扣非增长7.4%至15.6%是未审计预测；10股已披露完整财报最新仍为Q1。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257887.PDF",
+      "published_at": "2026-04-30T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601006.SH",
+      "facts_referenced": [
+        "候选池价格代理20日9.4415%但60日-1.4692%，且明示NOT_BROAD_MARKET_INDEX。",
+        "石化库存增利及炼油副产品价差解释、万华Q1扣非18.20%增长为季度公司事实，不证明7月行业转折。",
+        "神华7/15 H1扣非增长7.4%至15.6%是未审计预测；10股已披露完整财报最新仍为Q1。"
+      ]
+    },
+    {
+      "source": "SAVED_POINT_IN_TIME_PRICE_CONTEXT",
+      "published_at": "2026-07-31T15:00:00+08:00",
+      "kind": "ARCHIVED_OHLCV"
+    }
+  ],
+  "data_gaps": [
+    "缺行业供需、库存、产能利用、成本及产品价格的同期连续资料，不能确定转折与真实受益者。",
+    "行业结构特点仅背景，绝大多数行业字段空；历史新闻未可靠验证。",
+    "最新完整报告以Q1为主，神华H1只未审计预告；不提前引入之后半年报结果。",
+    "完整估值、负债和权益事件未全部审计；市场代理限定候选池，不支持全A股行业结论。"
+  ]
+}

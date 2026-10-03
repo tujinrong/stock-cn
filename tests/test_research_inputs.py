@@ -1,10 +1,11 @@
 import json
+import shutil
 from pathlib import Path
 
 import pytest
 
 from test_simulation import repo
-from stock_cn.research_inputs import attach_research_inputs, load_research_inputs
+from stock_cn.research_inputs import attach_research_inputs, load_research_inputs, research_input_root
 from stock_cn.sim_data import fixture
 from stock_cn.sim_agents import decision_base
 from stock_cn.sim_variants import VariantSimulation
@@ -121,6 +122,23 @@ def test_load_complete_research_input_bundle(tmp_path):
     assert bundle["financial_reviews"]["600036.SH"]["source_official"] is True
     assert bundle["news_research"]["status"] == "SEARCHED"
     assert len(bundle["file_sha256"]) == 6
+
+
+def test_experiment_namespace_preserves_prior_research_and_rejects_escape(tmp_path):
+    original = setup_files(tmp_path)
+    isolated = research_input_root(tmp_path, 'D02', '2026-10-08', namespace='year-2026')
+    shutil.copytree(original, isolated)
+    changed = financials()
+    changed['600036.SH']['summary'] = 'TEST_ONLY isolated experiment review'
+    write(isolated / 'financial-reviews.json', changed)
+    default = load_research_inputs(tmp_path, 'D02', '2026-10-08', as_of='2026-10-08T11:00:00+08:00')
+    experiment = load_research_inputs(tmp_path, 'D02', '2026-10-08',
+        as_of='2026-10-08T11:00:00+08:00', namespace='year-2026')
+    assert default['financial_reviews']['600036.SH']['summary'] == 'TEST_ONLY'
+    assert experiment['financial_reviews']['600036.SH']['summary'].endswith('experiment review')
+    assert default['file_sha256'] != experiment['file_sha256']
+    with pytest.raises(ValueError, match='identifier'):
+        research_input_root(tmp_path, 'D02', '2026-10-08', namespace='../escape')
 
 
 def test_missing_optional_files_remain_explicit_gaps(tmp_path):

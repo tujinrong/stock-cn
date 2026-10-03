@@ -1,0 +1,10 @@
+{
+  "status": "READY_FOR_AI",
+  "complete_inputs": 72,
+  "min_input_chars": 48881,
+  "max_input_chars": 94579,
+  "declared_input_limit": 120000,
+  "lossless_codec_roundtrip_tested": true,
+  "predecessor": "ae-2026-v2",
+  "actual_ai_decisions": 0
+}

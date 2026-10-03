@@ -1,0 +1,56 @@
+{
+  "strategy_id": "E",
+  "variant_id": "E02",
+  "mode": "SIMULATION",
+  "run_id": "eval-ae-2026-v2-candidate-20260109-E02",
+  "decision_id": "eval-ae-2026-v2-candidate-20260109-E02-2026-01-12",
+  "date": "2026-01-12",
+  "decision_time": "2026-01-09T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "4a05bf37108f70fbd9108748061024c6956bbe01",
+  "schema_version": "0.3-draft",
+  "status": "INSUFFICIENT_DATA",
+  "action": null,
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "仅研究事先声明的10股候选池，不代表全A股最优；各变体独立20万元现金开局，本次没有原持仓可卖。冻结机会成本审查受资料充分条件约束，仍返回资料不足。买入福耀等财报强公司会切换成E01，平安已公布季报NBV不能当未入财报的新增先行信息；等待可能错过经营改善，但扩大持仓或改为100股都无法建立订单/产销传导依据。保持action=null，不将资料不足包装成主动HOLD，也不把候选审查当强制交易。",
+  "risks": [
+    "模型预训练可能含有后来知识，不能声称绝对消除前视偏差。",
+    "只有40交易日评价窗口；单日一次动作，未来改善未必及时被价格反映。",
+    "经营证据缺失不能确定参与与持币的相对经济价值。"
+  ],
+  "evidence": [
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+      "published_at": "2025-10-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601318.SH",
+      "facts_referenced": [
+        "平安2025Q3NBV同比46.2%、营运利润7.2%，公司经营口径并已披露在财报。",
+        "恒瑞经营现金流增长包含海外授权首付款。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+      "published_at": "2025-10-28T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600276.SH",
+      "facts_referenced": [
+        "平安2025Q3NBV同比46.2%、营运利润7.2%，公司经营口径并已披露在财报。",
+        "恒瑞经营现金流增长包含海外授权首付款。"
+      ]
+    },
+    {
+      "source": "SAVED_POINT_IN_TIME_PRICE_CONTEXT",
+      "published_at": "2026-01-09T15:00:00+08:00",
+      "kind": "ARCHIVED_OHLCV"
+    }
+  ],
+  "data_gaps": [
+    "新闻按历史协议忽略，不能推断当时没有风险；仅有季报主要指标及部分解释，财务附注和全部经营公告未全面核读。",
+    "首日期连续价格仅248交易日（神华238日），250日年度统计为null；参考可见月线和120日位置，不能声称精确年度低点。",
+    "历史公司权益事件和交易所涨跌停未完整独立核验，次日开盘代理执行，报价与成交分离。",
+    "缺目标时点的财报外经营先行数据及利润、现金传导证据。"
+  ]
+}

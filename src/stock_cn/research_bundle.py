@@ -28,6 +28,8 @@ def _causal_items(items, cutoff, *, time_field="published_at"):
         when = _aware(item[time_field], time_field)
         if when > cutoff:
             raise ValueError("future research evidence")
+        if item.get('publication_precision', '').startswith('DATE_ONLY') and when.astimezone(cutoff.tzinfo).date() >= cutoff.date():
+            raise ValueError('date-only research publication unavailable at intraday cutoff')
         out.append(item)
     return out
 
@@ -44,6 +46,13 @@ def validate_financial_review(review, *, symbol, as_of):
     review_time = _aware(review.get("as_of"), "financial review as_of")
     if review_time > cutoff:
         raise ValueError("future financial review")
+    if review.get('source_published_at') and _aware(review['source_published_at'], 'source_published_at') > cutoff:
+        raise ValueError('future financial source publication')
+    precision = review.get('source_publication_precision', '')
+    if precision.startswith('DATE_ONLY') and review.get('source_published_at'):
+        published_day = _aware(review['source_published_at'], 'source_published_at').astimezone(cutoff.tzinfo).date()
+        if published_day >= cutoff.date():
+            raise ValueError('date-only financial publication unavailable at intraday cutoff')
     if not review.get("source_report"):
         raise ValueError("financial review source report missing")
     if review.get("source_official") is not True:
@@ -56,6 +65,8 @@ def validate_financial_review(review, *, symbol, as_of):
             raise ValueError("financial fact must be an object")
         if not fact.get("name") or "value" not in fact or not fact.get("source"):
             raise ValueError("financial fact missing name/value/source")
+        if fact.get('published_at') and _aware(fact['published_at'], 'financial fact published_at') > cutoff:
+            raise ValueError('future financial fact publication')
     if not isinstance(review.get("data_gaps", []), list):
         raise ValueError("financial review data_gaps must be a list")
     return True

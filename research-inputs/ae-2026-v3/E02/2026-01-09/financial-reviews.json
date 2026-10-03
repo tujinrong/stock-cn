@@ -1,0 +1,1286 @@
+{
+  "600036.SH": {
+    "symbol": "600036.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-01-09T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+    "source_report_title": "招商银行股份有限公司2025年第三季度报告",
+    "source_official": true,
+    "source_published_at": "2025-10-30T00:00:00+08:00",
+    "facts": [
+      {
+        "name": "营业收入",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "251420000000",
+        "unit": "CNY",
+        "source_reported_value": "251420",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "营业收入同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "-0.51",
+        "unit": "PERCENT",
+        "source_reported_value": "-0.51",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "归母净利润",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "113772000000",
+        "unit": "CNY",
+        "source_reported_value": "113772",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "归母净利润同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "0.52",
+        "unit": "PERCENT",
+        "source_reported_value": "0.52",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "扣非归母净利润",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "113690000000",
+        "unit": "CNY",
+        "source_reported_value": "113690",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "0.61",
+        "unit": "PERCENT",
+        "source_reported_value": "0.61",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "经营现金流净额",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "176134000000",
+        "unit": "CNY",
+        "source_reported_value": "176134",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "-38.68",
+        "unit": "PERCENT",
+        "source_reported_value": "-38.68",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "营业收入",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "81451000000",
+        "unit": "CNY",
+        "source_reported_value": "81451",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "营业收入同比",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "2.11",
+        "unit": "PERCENT",
+        "source_reported_value": "2.11",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "归母净利润",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "38842000000",
+        "unit": "CNY",
+        "source_reported_value": "38842",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "归母净利润同比",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "1.04",
+        "unit": "PERCENT",
+        "source_reported_value": "1.04",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "扣非归母净利润",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "38871000000",
+        "unit": "CNY",
+        "source_reported_value": "38871",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "1.28",
+        "unit": "PERCENT",
+        "source_reported_value": "1.28",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "经营现金流变化公司解释",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "2025年前三季度经营现金流同比下降主要因为客户存款同比少增。",
+        "unit": "COMPANY_EXPLANATION",
+        "value_type": "REPORT_PARAPHRASE"
+      }
+    ],
+    "data_gaps": [
+      "已核读主要会计指标与部分解释，不声称完整年报审计、全部经营公告或财务附注覆盖",
+      "公司报告指标不等于未来股价收益；不生成固定财务打分或买卖信号",
+      "银行现金流受客户存贷款和清算变动影响，不能套用工业公司CFO/净利润质量阈值"
+    ],
+    "latest_report": {
+      "title": "招商银行股份有限公司2025年第三季度报告",
+      "published_at": "2025-10-30T00:00:00+08:00",
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+      "period": "2025Q3_YTD",
+      "checked_against": "research2026-announcements.json"
+    },
+    "source_report_sha256": "8d50c7c12c76814d80da9763147ea0f109bc6e7f89e9193ec8de2498eaeaed48",
+    "latest_disclosed_periodic_report": "2025Q3",
+    "half_year_2026_report_available_at_target": false,
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "600519.SH": {
+    "symbol": "600519.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-01-09T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224764517.PDF",
+    "source_report_title": "贵州茅台2025年第三季度报告",
+    "source_report_sha256": "622935d03b23310dcde1ba3c3d398b130c3fbf73b753fb79fab934999524307a",
+    "source_official": true,
+    "source_published_at": "2025-10-30T00:00:00+08:00",
+    "latest_disclosed_periodic_report": "2025Q3",
+    "half_year_2026_report_available_at_target": false,
+    "facts": [
+      {
+        "name": "营业收入",
+        "value": "128453707655.86",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224764517.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "营业收入同比",
+        "value": "6.36",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224764517.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润",
+        "value": "64626746712.18",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224764517.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润同比",
+        "value": "6.25",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224764517.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润",
+        "value": "64680616431.20",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224764517.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "value": "6.42",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224764517.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额",
+        "value": "38196802155.27",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224764517.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "value": "-14.01",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224764517.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      }
+    ],
+    "data_gaps": [
+      "仅人工核读最新季报主要财务指标与部分非经常项，不声称全面年报审计或全部经营公告覆盖",
+      "未全面提取订单、产品价差或渠道领先资料",
+      "季度增长不等于未来股票收益"
+    ],
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "600276.SH": {
+    "symbol": "600276.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-01-09T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+    "source_report_title": "恒瑞医药2025年第三季度报告",
+    "source_report_sha256": "15136c6bfd4c60e46e7ba36f6744f833aebf1f9aca05e000601d2fc3365abfb2",
+    "source_official": true,
+    "source_published_at": "2025-10-28T00:00:00+08:00",
+    "latest_disclosed_periodic_report": "2025Q3",
+    "half_year_2026_report_available_at_target": false,
+    "facts": [
+      {
+        "name": "营业收入",
+        "value": "23188081928.77",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+        "published_at": "2025-10-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "营业收入同比",
+        "value": "14.85",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+        "published_at": "2025-10-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润",
+        "value": "5751169537.65",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+        "published_at": "2025-10-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润同比",
+        "value": "24.50",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+        "published_at": "2025-10-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润",
+        "value": "5589349747.69",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+        "published_at": "2025-10-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "value": "21.08",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+        "published_at": "2025-10-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额",
+        "value": "9110430290.27",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+        "published_at": "2025-10-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "value": "98.68",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+        "published_at": "2025-10-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "现金流增长原因",
+        "value": "公司披露药品销售及海外授权首付款收到的现金增加；不能全归于主营销量增长",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+        "published_at": "2025-10-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      }
+    ],
+    "data_gaps": [
+      "仅人工核读最新季报主要财务指标与部分非经常项，不声称全面年报审计或全部经营公告覆盖",
+      "未全面提取订单、产品价差或渠道领先资料",
+      "季度增长不等于未来股票收益"
+    ],
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "600900.SH": {
+    "symbol": "600900.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-01-09T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+    "source_report_title": "长江电力2025年第三季度报告",
+    "source_report_sha256": "1efb73a0c2327419f6c9d571bd34814f8c4672cbc4d3def87c414e65b3f6d3c0",
+    "source_official": true,
+    "source_published_at": "2025-10-31T00:00:00+08:00",
+    "latest_disclosed_periodic_report": "2025Q3",
+    "half_year_2026_report_available_at_target": false,
+    "facts": [
+      {
+        "name": "营业收入",
+        "value": "65741285681.72",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+        "published_at": "2025-10-31T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "营业收入同比",
+        "value": "-0.89",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+        "published_at": "2025-10-31T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润",
+        "value": "28192874494.95",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+        "published_at": "2025-10-31T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润同比",
+        "value": "0.60",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+        "published_at": "2025-10-31T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润",
+        "value": "28206547059.13",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+        "published_at": "2025-10-31T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "value": "0.79",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+        "published_at": "2025-10-31T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额",
+        "value": "42895214451.84",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+        "published_at": "2025-10-31T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "value": "-9.98",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+        "published_at": "2025-10-31T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      }
+    ],
+    "data_gaps": [
+      "仅人工核读最新季报主要财务指标与部分非经常项，不声称全面年报审计或全部经营公告覆盖",
+      "未全面提取订单、产品价差或渠道领先资料",
+      "季度增长不等于未来股票收益"
+    ],
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "600660.SH": {
+    "symbol": "600660.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-01-09T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+    "source_report_title": "福耀玻璃2025年第三季度报告",
+    "source_report_sha256": "f535ea9635e47908125371e932fe8cee2e11a114946bae134e1b5196a1328542",
+    "source_official": true,
+    "source_published_at": "2025-10-17T00:00:00+08:00",
+    "latest_disclosed_periodic_report": "2025Q3",
+    "half_year_2026_report_available_at_target": false,
+    "facts": [
+      {
+        "name": "营业收入",
+        "value": "33301907930",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+        "published_at": "2025-10-17T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "营业收入同比",
+        "value": "17.62",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+        "published_at": "2025-10-17T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润",
+        "value": "7063854155",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+        "published_at": "2025-10-17T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润同比",
+        "value": "28.93",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+        "published_at": "2025-10-17T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润",
+        "value": "6921634077",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+        "published_at": "2025-10-17T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "value": "24.70",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+        "published_at": "2025-10-17T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额",
+        "value": "9884629654",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+        "published_at": "2025-10-17T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "value": "57.29",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+        "published_at": "2025-10-17T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      }
+    ],
+    "data_gaps": [
+      "仅人工核读最新季报主要财务指标与部分非经常项，不声称全面年报审计或全部经营公告覆盖",
+      "未全面提取订单、产品价差或渠道领先资料",
+      "季度增长不等于未来股票收益"
+    ],
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "600309.SH": {
+    "symbol": "600309.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-01-09T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224733028.PDF",
+    "source_report_title": "万华化学2025年三季度报告",
+    "source_report_sha256": "e6736e3f96ae4b21dd85d3968d3eada22e4fabfcca2b657c26bad387bf7d5b27",
+    "source_official": true,
+    "source_published_at": "2025-10-25T00:00:00+08:00",
+    "latest_disclosed_periodic_report": "2025Q3",
+    "half_year_2026_report_available_at_target": false,
+    "facts": [
+      {
+        "name": "营业收入",
+        "value": "144225795451.00",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224733028.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "营业收入同比",
+        "value": "-2.29",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224733028.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润",
+        "value": "9157288304.88",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224733028.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润同比",
+        "value": "-17.45",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224733028.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润",
+        "value": "9100747635.50",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224733028.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "value": "-16.72",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224733028.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额",
+        "value": "17021574671.69",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224733028.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "value": "-11.83",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224733028.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      }
+    ],
+    "data_gaps": [
+      "仅人工核读最新季报主要财务指标与部分非经常项，不声称全面年报审计或全部经营公告覆盖",
+      "未全面提取订单、产品价差或渠道领先资料",
+      "季度增长不等于未来股票收益"
+    ],
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "601318.SH": {
+    "symbol": "601318.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-01-09T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+    "source_report_title": "中国平安2025年第三季度报告",
+    "source_official": true,
+    "source_published_at": "2025-10-29T00:00:00+08:00",
+    "facts": [
+      {
+        "name": "营业收入",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "832940000000",
+        "unit": "CNY",
+        "source_reported_value": "832940",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "营业收入同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "7.4",
+        "unit": "PERCENT",
+        "source_reported_value": "7.4",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "归母净利润",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "132856000000",
+        "unit": "CNY",
+        "source_reported_value": "132856",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "归母净利润同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "11.5",
+        "unit": "PERCENT",
+        "source_reported_value": "11.5",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "扣非归母净利润",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "142057000000",
+        "unit": "CNY",
+        "source_reported_value": "142057",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "26.9",
+        "unit": "PERCENT",
+        "source_reported_value": "26.9",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "经营现金流净额",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "340147000000",
+        "unit": "CNY",
+        "source_reported_value": "340147",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "-18.6",
+        "unit": "PERCENT",
+        "source_reported_value": "-18.6",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "营业收入",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "332864000000",
+        "unit": "CNY",
+        "source_reported_value": "332864",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "营业收入同比",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "18.7",
+        "unit": "PERCENT",
+        "source_reported_value": "18.7",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "归母净利润",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "64809000000",
+        "unit": "CNY",
+        "source_reported_value": "64809",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "归母净利润同比",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "45.4",
+        "unit": "PERCENT",
+        "source_reported_value": "45.4",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "扣非归母净利润",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "68486000000",
+        "unit": "CNY",
+        "source_reported_value": "68486",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "81.5",
+        "unit": "PERCENT",
+        "source_reported_value": "81.5",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "归母营运利润（公司经营口径，非归母净利润）",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "116264000000.00",
+        "unit": "CNY",
+        "source_reported_value": "1162.64",
+        "source_reported_unit": "人民币亿元"
+      },
+      {
+        "name": "归母营运利润（公司经营口径，非归母净利润）同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "7.2",
+        "unit": "PERCENT",
+        "source_reported_value": "7.2",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "寿险及健康险新业务价值（公司口径）",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "35724000000.00",
+        "unit": "CNY",
+        "source_reported_value": "357.24",
+        "source_reported_unit": "人民币亿元"
+      },
+      {
+        "name": "寿险及健康险新业务价值（公司口径）同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "46.2",
+        "unit": "PERCENT",
+        "source_reported_value": "46.2",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "投资收益口径说明",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+        "published_at": "2025-10-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "综合金融集团投资业务属于主营业务，报告将金融资产及股权投资公允价值变动/投资收益纳入经常性损益；营运利润和新业务价值不等同归母净利。",
+        "unit": "ACCOUNTING_SCOPE_NOTE",
+        "value_type": "REPORT_PARAPHRASE"
+      }
+    ],
+    "data_gaps": [
+      "已核读主要会计指标与部分解释，不声称完整年报审计、全部经营公告或财务附注覆盖",
+      "公司报告指标不等于未来股价收益；不生成固定财务打分或买卖信号",
+      "保险/银行综合金融现金流与工业现金转化不可直接比较；尚未逐项核查保险负债和投资组合附注"
+    ],
+    "latest_report": {
+      "title": "中国平安2025年第三季度报告",
+      "published_at": "2025-10-29T00:00:00+08:00",
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+      "period": "2025Q3_YTD",
+      "checked_against": "research2026-announcements.json"
+    },
+    "source_report_sha256": "2c5ab803ee456999bebf8478f910257c5b5d682fdd7d901e8a8cc27dd10a6a59",
+    "latest_disclosed_periodic_report": "2025Q3",
+    "half_year_2026_report_available_at_target": false,
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "601088.SH": {
+    "symbol": "601088.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-01-09T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224736591.PDF",
+    "source_report_title": "中国神华2025年第三季度报告",
+    "source_report_sha256": "e268baba86e13efdeabdb0b57fcc64d1153c30027d9435fbc2b4b272106e9342",
+    "source_official": true,
+    "source_published_at": "2025-10-25T00:00:00+08:00",
+    "latest_disclosed_periodic_report": "2025Q3",
+    "half_year_2026_report_available_at_target": false,
+    "facts": [
+      {
+        "name": "营业收入",
+        "value": "213151000000",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224736591.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "营业收入同比",
+        "value": "-16.6",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224736591.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润",
+        "value": "39052000000",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224736591.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润同比",
+        "value": "-10.0",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224736591.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润",
+        "value": "38704000000",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224736591.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "value": "-15.9",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224736591.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额",
+        "value": "65253000000",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224736591.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "value": "-19.9",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224736591.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "比较期重述",
+        "value": "2025年2月完成同一控制下杭锦能源收购，比较期合并表已追溯调整；上述同比均使用报告的调整后比较期。",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224736591.PDF",
+        "published_at": "2025-10-25T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      }
+    ],
+    "data_gaps": [
+      "仅人工核读最新季报主要财务指标与部分非经常项，不声称全面年报审计或全部经营公告覆盖",
+      "未全面提取订单、产品价差或渠道领先资料",
+      "季度增长不等于未来股票收益"
+    ],
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "600028.SH": {
+    "symbol": "600028.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-01-09T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+    "source_report_title": "中国石化2025年第三季度报告",
+    "source_official": true,
+    "source_published_at": "2025-10-30T00:00:00+08:00",
+    "facts": [
+      {
+        "name": "营业收入",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "2113441000000",
+        "unit": "CNY",
+        "source_reported_value": "2113441",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "营业收入同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "-10.7",
+        "unit": "PERCENT",
+        "source_reported_value": "-10.7",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "归母净利润",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "29984000000",
+        "unit": "CNY",
+        "source_reported_value": "29984",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "归母净利润同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "-32.2",
+        "unit": "PERCENT",
+        "source_reported_value": "-32.2",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "扣非归母净利润",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "30552000000",
+        "unit": "CNY",
+        "source_reported_value": "30552",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "-30.5",
+        "unit": "PERCENT",
+        "source_reported_value": "-30.5",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "经营现金流净额",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "114782000000",
+        "unit": "CNY",
+        "source_reported_value": "114782",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "13.0",
+        "unit": "PERCENT",
+        "source_reported_value": "13.0",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "营业收入",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "704389000000",
+        "unit": "CNY",
+        "source_reported_value": "704389",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "营业收入同比",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "-10.9",
+        "unit": "PERCENT",
+        "source_reported_value": "-10.9",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "归母净利润",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "8501000000",
+        "unit": "CNY",
+        "source_reported_value": "8501",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "归母净利润同比",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "-0.5",
+        "unit": "PERCENT",
+        "source_reported_value": "-0.5",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "扣非归母净利润",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "9337000000",
+        "unit": "CNY",
+        "source_reported_value": "9337",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "period": "2025Q3_SINGLE_QUARTER",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "11.4",
+        "unit": "PERCENT",
+        "source_reported_value": "11.4",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "利润下降公司解释",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "原油和产品价格持续走低导致库存减利，境内汽柴油销量下行，以及航煤、芳烃产品毛利下降。",
+        "unit": "COMPANY_EXPLANATION",
+        "value_type": "REPORT_PARAPHRASE"
+      }
+    ],
+    "data_gaps": [
+      "已核读主要会计指标与部分解释，不声称完整年报审计、全部经营公告或财务附注覆盖",
+      "公司报告指标不等于未来股价收益；不生成固定财务打分或买卖信号"
+    ],
+    "latest_report": {
+      "title": "中国石化2025年第三季度报告",
+      "published_at": "2025-10-30T00:00:00+08:00",
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+      "period": "2025Q3_YTD",
+      "checked_against": "research2026-announcements.json"
+    },
+    "source_report_sha256": "b054ea7dd51b06a5fa3d6ec38514ecd33a8f390a5d3956ecb8b4da8bc07a7fc0",
+    "latest_disclosed_periodic_report": "2025Q3",
+    "half_year_2026_report_available_at_target": false,
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "601006.SH": {
+    "symbol": "601006.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-01-09T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224765802.PDF",
+    "source_report_title": "大秦铁路股份有限公司2025年第三季度报告",
+    "source_report_sha256": "d686c6a6eb141d68fa8f4de9ad86a22c9c7578e08921083348da9d53cb13b56b",
+    "source_official": true,
+    "source_published_at": "2025-10-30T00:00:00+08:00",
+    "latest_disclosed_periodic_report": "2025Q3",
+    "half_year_2026_report_available_at_target": false,
+    "facts": [
+      {
+        "name": "营业收入",
+        "value": "57058158284",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224765802.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "营业收入同比",
+        "value": "3.34",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224765802.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润",
+        "value": "6223959089",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224765802.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润同比",
+        "value": "-27.66",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224765802.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润",
+        "value": "6188679193",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224765802.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "value": "-27.80",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224765802.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额",
+        "value": "3588391002",
+        "unit": "CNY",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224765802.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "value": "-21.42",
+        "unit": "PERCENT",
+        "period": "2025Q3_YTD",
+        "source": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224765802.PDF",
+        "published_at": "2025-10-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      }
+    ],
+    "data_gaps": [
+      "仅人工核读最新季报主要财务指标与部分非经常项，不声称全面年报审计或全部经营公告覆盖",
+      "未全面提取订单、产品价差或渠道领先资料",
+      "季度增长不等于未来股票收益"
+    ],
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  }
+}

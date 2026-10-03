@@ -1,0 +1,31 @@
+{
+  "entry_id": "A03-2026-01-09",
+  "eval_id": "ae-2026-v3-candidate",
+  "variant": "A03",
+  "target_date": "2026-01-09",
+  "execution_date": "2026-01-12",
+  "prompt_sha256": "53d299e2b5b6ff3292b8451b87a4fdc7fe55888c18a1b203b7fbdde0ff80eb92",
+  "request_sha256": "e854a70c4f98e6d326e74ce115a1d99b43e911bffaed3a964f18fac8e2e4e1d5",
+  "time_travel_sha256": "65b5cafa040517b673a173bcb623e96137a36083b3965741a42c79da3da35a4b",
+  "input_revision": 1,
+  "input_commit": "4a05bf37108f70fbd9108748061024c6956bbe01",
+  "simulation_test_id": "eval-ae-2026-v3-candidate-20260109",
+  "request_path": "strategies/A/variants/A03/simulations/eval-ae-2026-v3-candidate-20260109/requests/2026-01-12/request.json",
+  "ai_input_path": "strategies/A/variants/A03/simulations/eval-ae-2026-v3-candidate-20260109/requests/2026-01-12/ai_input.md",
+  "time_travel_path": "strategies/A/variants/A03/simulations/eval-ae-2026-v3-candidate-20260109/requests/2026-01-12/time_travel.json",
+  "decision_path": "runs/evaluations/ae-2026-v3-candidate/decisions/A03/2026-01-09.json",
+  "score_path": "runs/evaluations/ae-2026-v3-candidate/scores/A03/2026-01-09.json",
+  "status": "WAITING_FOR_AI",
+  "future_outcomes_in_prompt": false,
+  "point_dividend_policy": {
+    "scope": "LOCKED_POINT_OUTCOME_ONLY",
+    "income_basis": "EX_DATE_RECEIVABLE_WITH_TAX_RESERVE",
+    "tax_reserve_rate": "0.20",
+    "note": "Uniform conservative experimental reserve; not actual personal tax settlement."
+  },
+  "prompt_selection": {
+    "version": "ae-2026-v3-r3",
+    "path": "experiment-prompts/ae-2026-v3/candidate.md",
+    "sha256": "241520c01e823189edf749ade5c5999b54a4c487079e0328996c66e37269fc5e"
+  }
+}

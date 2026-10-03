@@ -1,0 +1,38 @@
+{
+  "variant_id": "E01",
+  "series_id": "E",
+  "mode": "SIMULATION",
+  "status": "RESEARCH_READY",
+  "date": "2026-01-09",
+  "revision": 1,
+  "candidate_watchlist": [],
+  "last_candidate_pack": {
+    "path": "research/2026-01-09/candidate_pack.json",
+    "sha256": "0d60c5365d31a897e59be15a01c18f6af31bb47f6808c16ebe2e3ada468c612c",
+    "kind": "AI_SELECT_DEEP_RESEARCH_PACK",
+    "purpose": "EARNINGS_IMPROVEMENT",
+    "candidate_count": 10,
+    "not_a_recommendation": true
+  },
+  "last_broad_universe_source": null,
+  "formal_research_enabled": null,
+  "last_decision_summary": null,
+  "note": "AI_SELECT research state only; never an order, holding or recommendation. Simulation state is isolated from FORMAL.",
+  "last_research_payload_sha256": "af441989abea2e7811ac64c56d80308aab6e19dd9da9b9ccdbe404d3630b0e28",
+  "universe_scope": {
+    "authorized_symbols": [
+      "600036.SH",
+      "600519.SH",
+      "600276.SH",
+      "600900.SH",
+      "600660.SH",
+      "600309.SH",
+      "601318.SH",
+      "601088.SH",
+      "600028.SH",
+      "601006.SH"
+    ],
+    "coverage": "PREDECLARED_FIXED_RESEARCH_UNIVERSE",
+    "not_full_a_share_claim": true
+  }
+}

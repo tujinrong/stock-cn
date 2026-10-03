@@ -1,0 +1,146 @@
+{
+  "strategy_id": "E",
+  "variant_id": "E03",
+  "mode": "SIMULATION",
+  "run_id": "eval-ae-2026-v3-baseline-20260731-E03",
+  "decision_id": "eval-ae-2026-v3-baseline-20260731-E03-2026-08-03",
+  "date": "2026-08-03",
+  "decision_time": "2026-07-31T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "4a05bf37108f70fbd9108748061024c6956bbe01",
+  "schema_version": "0.3-draft",
+  "status": "INSUFFICIENT_DATA",
+  "action": null,
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "候选池研究仅预先10股、非全A股；独立20万元现金。行业拐点资料不足，动作与订单为空。共同市场代理20日上涨9.4415%只代表本候选池价格，不能推出行业需求、库存、产能或成本转折。万华和石化Q1改善包含不同化工/炼油因素，但缺当期供需库存、产能利用率、原料及产品价差序列；神华H1预告扣非上升不等同煤炭行业供需转折，长电水电结构背景也不提供来水发电新资料。招行/平安金融利润与营运口径、恒瑞药企财报、福耀汇兑、大秦现金转正及茅台增长各有公司因素，均不足以识别行业盈利条件变化和真正受益者。不能从股价群体反弹补造行业依据。",
+  "risks": [
+    "模型预训练可能包含后来知识，不能保证完全消除前视偏差。",
+    "价格反弹可能是共同资金因素或短暂修复，不能当作供需盈利拐点。",
+    "不参与有机会成本；缺行业资料时勉强买入可能承受高度相关的周期风险。"
+  ],
+  "evidence": [
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600036.SH",
+      "facts_referenced": [
+        "共同market_proxy为配置候选池等权代理非大盘指数，20日9.4415%、60日-1.4692%。",
+        "万华Q1扣非18.20%增长，石化库存增利和炼油副产品价差公司解释均是单公司季度证据，不是全行业供需序列。",
+        "神华7/15未审计H1预告扣非同比7.4%至15.6%；长电industry_characteristics仅说明来水、发电量和利率敏感，没有当前来水数据。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-25/1225187851.PDF",
+      "published_at": "2026-04-25T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600519.SH",
+      "facts_referenced": [
+        "共同market_proxy为配置候选池等权代理非大盘指数，20日9.4415%、60日-1.4692%。",
+        "万华Q1扣非18.20%增长，石化库存增利和炼油副产品价差公司解释均是单公司季度证据，不是全行业供需序列。",
+        "神华7/15未审计H1预告扣非同比7.4%至15.6%；长电industry_characteristics仅说明来水、发电量和利率敏感，没有当前来水数据。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-23/1225145521.PDF",
+      "published_at": "2026-04-23T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600276.SH",
+      "facts_referenced": [
+        "共同market_proxy为配置候选池等权代理非大盘指数，20日9.4415%、60日-1.4692%。",
+        "万华Q1扣非18.20%增长，石化库存增利和炼油副产品价差公司解释均是单公司季度证据，不是全行业供需序列。",
+        "神华7/15未审计H1预告扣非同比7.4%至15.6%；长电industry_characteristics仅说明来水、发电量和利率敏感，没有当前来水数据。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+      "published_at": "2026-04-30T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600900.SH",
+      "facts_referenced": [
+        "共同market_proxy为配置候选池等权代理非大盘指数，20日9.4415%、60日-1.4692%。",
+        "万华Q1扣非18.20%增长，石化库存增利和炼油副产品价差公司解释均是单公司季度证据，不是全行业供需序列。",
+        "神华7/15未审计H1预告扣非同比7.4%至15.6%；长电industry_characteristics仅说明来水、发电量和利率敏感，没有当前来水数据。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+      "published_at": "2026-04-22T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600660.SH",
+      "facts_referenced": [
+        "共同market_proxy为配置候选池等权代理非大盘指数，20日9.4415%、60日-1.4692%。",
+        "万华Q1扣非18.20%增长，石化库存增利和炼油副产品价差公司解释均是单公司季度证据，不是全行业供需序列。",
+        "神华7/15未审计H1预告扣非同比7.4%至15.6%；长电industry_characteristics仅说明来水、发电量和利率敏感，没有当前来水数据。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-21/1225130687.PDF",
+      "published_at": "2026-04-21T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600309.SH",
+      "facts_referenced": [
+        "共同market_proxy为配置候选池等权代理非大盘指数，20日9.4415%、60日-1.4692%。",
+        "万华Q1扣非18.20%增长，石化库存增利和炼油副产品价差公司解释均是单公司季度证据，不是全行业供需序列。",
+        "神华7/15未审计H1预告扣非同比7.4%至15.6%；长电industry_characteristics仅说明来水、发电量和利率敏感，没有当前来水数据。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235613.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601318.SH",
+      "facts_referenced": [
+        "共同market_proxy为配置候选池等权代理非大盘指数，20日9.4415%、60日-1.4692%。",
+        "万华Q1扣非18.20%增长，石化库存增利和炼油副产品价差公司解释均是单公司季度证据，不是全行业供需序列。",
+        "神华7/15未审计H1预告扣非同比7.4%至15.6%；长电industry_characteristics仅说明来水、发电量和利率敏感，没有当前来水数据。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-25/1225185746.PDF",
+      "published_at": "2026-04-25T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601088.SH",
+      "facts_referenced": [
+        "共同market_proxy为配置候选池等权代理非大盘指数，20日9.4415%、60日-1.4692%。",
+        "万华Q1扣非18.20%增长，石化库存增利和炼油副产品价差公司解释均是单公司季度证据，不是全行业供需序列。",
+        "神华7/15未审计H1预告扣非同比7.4%至15.6%；长电industry_characteristics仅说明来水、发电量和利率敏感，没有当前来水数据。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235941.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600028.SH",
+      "facts_referenced": [
+        "共同market_proxy为配置候选池等权代理非大盘指数，20日9.4415%、60日-1.4692%。",
+        "万华Q1扣非18.20%增长，石化库存增利和炼油副产品价差公司解释均是单公司季度证据，不是全行业供需序列。",
+        "神华7/15未审计H1预告扣非同比7.4%至15.6%；长电industry_characteristics仅说明来水、发电量和利率敏感，没有当前来水数据。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257887.PDF",
+      "published_at": "2026-04-30T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601006.SH",
+      "facts_referenced": [
+        "共同market_proxy为配置候选池等权代理非大盘指数，20日9.4415%、60日-1.4692%。",
+        "万华Q1扣非18.20%增长，石化库存增利和炼油副产品价差公司解释均是单公司季度证据，不是全行业供需序列。",
+        "神华7/15未审计H1预告扣非同比7.4%至15.6%；长电industry_characteristics仅说明来水、发电量和利率敏感，没有当前来水数据。"
+      ]
+    },
+    {
+      "source": "SAVED_POINT_IN_TIME_PRICE_CONTEXT",
+      "published_at": "2026-07-31T15:00:00+08:00",
+      "kind": "ARCHIVED_OHLCV"
+    }
+  ],
+  "data_gaps": [
+    "缺各行业需求、库存、产能/利用率、成本、产品价格及持续变化的因果证据。",
+    "行业字段多数为空，现有银行、汽车玻璃、水电特点是结构背景，不是当日新闻或指标。",
+    "Q1财报与H1未审计预告不能替代行业研究；没有允许包中的H1实际财报或新的行业公告实质资料。",
+    "历史新闻、估值和完整权益事件未全部核查，不能声称覆盖全A股或证明行业景气反转。"
+  ]
+}

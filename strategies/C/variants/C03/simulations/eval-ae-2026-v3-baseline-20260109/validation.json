@@ -1,0 +1,8 @@
+{
+  "event_count": 2,
+  "event_chain_valid": true,
+  "projection_errors": [],
+  "repaired": [],
+  "ok": true,
+  "scope": "Only rebuild projections; never change trades, strategy or prices."
+}

@@ -1,0 +1,69 @@
+{
+  "strategy_id": "A",
+  "status": "SIMULATION",
+  "date": "2026-07-31",
+  "initial_capital_cny": "200000.00",
+  "cash_cny": "62905.00",
+  "total_equity_cny": "200000.00",
+  "positions": [
+    {
+      "symbol": "600036.SH",
+      "name": "招商银行",
+      "quantity": 700,
+      "sellable_quantity": 700,
+      "average_cost_cny": "39.62",
+      "cost_basis_cny": "27734.00",
+      "valuation_price_cny": "39.62"
+    },
+    {
+      "symbol": "002594.SZ",
+      "name": "比亚迪",
+      "quantity": 300,
+      "sellable_quantity": 300,
+      "average_cost_cny": "95.77",
+      "cost_basis_cny": "28731.00",
+      "valuation_price_cny": "95.77"
+    },
+    {
+      "symbol": "600660.SH",
+      "name": "福耀玻璃",
+      "quantity": 500,
+      "sellable_quantity": 500,
+      "average_cost_cny": "59.70",
+      "cost_basis_cny": "29850.00",
+      "valuation_price_cny": "59.70"
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "长江电力",
+      "quantity": 1000,
+      "sellable_quantity": 1000,
+      "average_cost_cny": "29.09",
+      "cost_basis_cny": "29090.00",
+      "valuation_price_cny": "29.09"
+    },
+    {
+      "symbol": "601100.SH",
+      "name": "恒立液压",
+      "quantity": 200,
+      "sellable_quantity": 200,
+      "average_cost_cny": "108.45",
+      "cost_basis_cny": "21690.00",
+      "valuation_price_cny": "108.45"
+    }
+  ],
+  "_meta": {
+    "schema_version": "0.4",
+    "mode": "SIMULATION",
+    "paper_only": true,
+    "variant_id": "A02",
+    "test_id": "eval-ae-2026-v2-candidate-20260731",
+    "revision": 1,
+    "valuation_time": "2026-07-31T15:00:00+08:00",
+    "fees_cny": "0.00",
+    "last_decision_date": null,
+    "data_kind": "REAL_HISTORY",
+    "time_travel_jump": true,
+    "last_event_id": "000001"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "strategy_id": "E",
+  "status": "SIMULATION",
+  "date": "2026-05-06",
+  "initial_capital_cny": "200000.00",
+  "cash_cny": "119375.04",
+  "total_equity_cny": "200132.04",
+  "positions": [
+    {
+      "symbol": "600309.SH",
+      "name": "万华化学",
+      "quantity": 900,
+      "sellable_quantity": 0,
+      "average_cost_cny": "89.583289",
+      "cost_basis_cny": "80624.96",
+      "valuation_price_cny": "89.73"
+    }
+  ],
+  "_meta": {
+    "schema_version": "0.4",
+    "mode": "SIMULATION",
+    "paper_only": true,
+    "variant_id": "E01",
+    "test_id": "eval-ae-2026-v3-candidate-20260430",
+    "revision": 2,
+    "valuation_time": "2026-05-06T15:00:00+08:00",
+    "fees_cny": "20.96",
+    "last_decision_date": "2026-05-06",
+    "data_kind": "REAL_HISTORY",
+    "time_travel_jump": true,
+    "last_event_id": "000002"
+  }
+}

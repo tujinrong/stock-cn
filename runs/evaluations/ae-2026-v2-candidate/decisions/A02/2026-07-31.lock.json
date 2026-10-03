@@ -1,0 +1,10 @@
+{
+  "entry_id": "A02-2026-07-31",
+  "prompt_sha256": "d6dc81737501cdacfb6ed1ae9ddc0907b5b3ade95c6139425a853d81f72210bd",
+  "decision_sha256": "c22139a3cf3451c7961f2447bea224246c89eb3f850e5f7f494bd8731ef3f802",
+  "entry_sha256": "898ec89caccc1c9971d3b4ca0b779489ac05a0e07dfb4486ebbccaa20230cd9d",
+  "request_sha256": "dd690db4ac6cc55fb19bf3281280d7468a58e0ec0513c8060db9e67859d747c2",
+  "time_travel_sha256": "49b2a2612fb04358951a50188aca05ad3752d968c8a756dd6b9e7e72693c93ec",
+  "locked": true,
+  "future_outcomes_seen_by_decision_phase": false
+}

@@ -1,0 +1,36 @@
+{
+  "mode": "SIMULATION",
+  "submode": "TIME_TRAVEL_JUMP",
+  "series": "C",
+  "variant": "C03",
+  "test_id": "eval-ae-2026-v1-baseline-20260430",
+  "time_travel_target_date": "2026-04-30",
+  "planned_execution_date": "2026-05-06",
+  "input_fingerprint": "ce37f24aa531af36bc73cc691524247afc56d483e4e4a9d59befe5aca35a92e7",
+  "source_commit": "4a05bf37108f70fbd9108748061024c6956bbe01",
+  "fees": {
+    "commission_rate": "0.00025",
+    "min_commission": "5.0",
+    "stamp_duty_sell_rate": "0.0005",
+    "transfer_fee_rate": "0.00001"
+  },
+  "data_kind": "REAL_HISTORY",
+  "fidelity": "BOUNDED_CANDIDATE_REAL_DAILY",
+  "execution_basis": "TARGET_CLOSE_KNOWLEDGE_NEXT_SESSION_OPEN",
+  "initialization": "TIME_TRAVEL_OPENING_BALANCE_AT_TARGET_CLOSE",
+  "limitations": [
+    "Twelve securities declared before evaluation; bounded coverage, not full A-share market.",
+    "Public unadjusted daily OHLCV; no archived intraday/news/fundamental completeness verification.",
+    "2025 warm-up and 2026 execution data fetched separately; previous close carried across year boundary.",
+    "Reconstructed 10% limits are not independently verified historical exchange price limits.",
+    "Corporate-action ledger not verified. A lack of >25% jumps does not prove no rights events.",
+    "Known/suspected price-basis breaks are unexecutable. No silent corporate-action adjustment.",
+    "Source action hints are unverified. Only post-lock official cash dividend records may resolve scoring gaps.",
+    "Jump account starts at target-date close; it does not recreate trades before that date.",
+    "This is a point-in-time scenario, distinct from a continuous backtest."
+  ],
+  "source_version": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600028%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600036%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600276%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600309%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600519%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600660%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600900%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601006%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601088%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601100%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz002594%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C",
+  "template_sha256": {
+    "strategies/C/variants/C03/prompt.md": "a81077130998a5bf0311f99b5fb63a114b126ef7d3332c5c97f39b71e71737da"
+  }
+}

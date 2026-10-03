@@ -320,6 +320,18 @@ def test_parallel_isolation_full_run(repo):
     assert report["calls_used"] == 42
 
 
+@pytest.mark.parametrize('layer', ['test_id', 'variant'])
+def test_nested_simulation_link_cannot_alias_another_directory(repo, tmp_path_factory, layer):
+    outside = tmp_path_factory.mktemp('nested-link-outside')
+    base = repo / 'strategies/C/simulations'
+    link = base / 'unit' if layer == 'test_id' else base / 'unit/C01'
+    link.parent.mkdir(parents=True, exist_ok=True)
+    link.symlink_to(outside, target_is_directory=True)
+    with pytest.raises(ValidationError, match='symlink escape'):
+        sim(repo)
+    assert not list(outside.iterdir())
+
+
 def test_multi_order_and_weight_validation(repo):
     s = sim(repo)
     d = decision(s)

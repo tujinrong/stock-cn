@@ -1,0 +1,63 @@
+{
+  "strategy_id": "E",
+  "variant_id": "E02",
+  "mode": "SIMULATION",
+  "run_id": "eval-ae-2026-v3-candidate-20260430-E02",
+  "decision_id": "eval-ae-2026-v3-candidate-20260430-E02-2026-05-06",
+  "date": "2026-05-06",
+  "decision_time": "2026-04-30T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "4a05bf37108f70fbd9108748061024c6956bbe01",
+  "schema_version": "0.3-draft",
+  "status": "INSUFFICIENT_DATA",
+  "action": null,
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "仅研究事先声明的10股候选池，非全A股；独立20万元现金开局，无原持仓可卖。冻结机会成本审查要求当前资料充分，因此仍资料不足。全现金可能错过经营改善，但买入万华或恒瑞只靠财报会把E02换成E01，平安NBV已入报不能伪装新增先行信号。提高或降低仓位不能填补缺少订单/销量/价差的事实，保留action=null；无原持仓可用持有或卖出替代。",
+  "risks": [
+    "模型预训练可能含后来知识，不能保证完全消除前视偏差。",
+    "40交易日内改善未必被价格及时反映；无法日内盯盘或随时退出。",
+    "无法可靠比较经营先行交易与持币机会成本，不能为了测试收益放宽证据门槛。"
+  ],
+  "evidence": [
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235613.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601318.SH",
+      "facts_referenced": [
+        "平安已披露Q1NBV20.8%；万华Q1扣非18.20%、现金流1079.87%；恒瑞Q1扣非16.59%均是财报结果。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-21/1225130687.PDF",
+      "published_at": "2026-04-21T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600309.SH",
+      "facts_referenced": [
+        "平安已披露Q1NBV20.8%；万华Q1扣非18.20%、现金流1079.87%；恒瑞Q1扣非16.59%均是财报结果。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-23/1225145521.PDF",
+      "published_at": "2026-04-23T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600276.SH",
+      "facts_referenced": [
+        "平安已披露Q1NBV20.8%；万华Q1扣非18.20%、现金流1079.87%；恒瑞Q1扣非16.59%均是财报结果。"
+      ]
+    },
+    {
+      "source": "SAVED_POINT_IN_TIME_PRICE_CONTEXT",
+      "published_at": "2026-04-30T15:00:00+08:00",
+      "kind": "ARCHIVED_OHLCV"
+    }
+  ],
+  "data_gaps": [
+    "长江电力、大秦铁路4/30报告只有日期精度，已按v3规则扣除；官方资料FAILED、financial_review=null，不使用旧v2所见数字评价或推荐这两股。",
+    "仅核读其余8股季报主要指标与部分解释，未完整审计附注、负债、估值及全部经营公告；新闻按历史协议忽略。",
+    "未完整独立核验权益事件与历史涨跌停；次日开盘代理成交须核验资金及100股手数，参考价不等于成交。",
+    "缺目标时点的财报外经营先行序列及利润现金传导证据。"
+  ]
+}

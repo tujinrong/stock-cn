@@ -17,6 +17,7 @@ from .paper_core import execute_single_order
 from .time_travel import _latest_structural_break, build_time_travel_context
 from .variant_prompts import variant_root
 from .performance import annualized_pct, max_drawdown_pct, comparison_markdown
+from .point_dividends import validate_cash_dividends, unresolved_actions, point_valuation, dividend_entitlements
 
 
 def _safe_id(value):
@@ -39,24 +40,27 @@ def _point_store(repo, eval_id, variant, target_date):
                  'locks' / _safe_id(variant) / target_date)
 
 
-def prepare_point(repo, eval_id, variant, data, target_date):
+def prepare_point(repo, eval_id, variant, data, target_date, *, prompt_selection=None):
     with _point_store(repo, eval_id, variant, target_date).lock():
         locked = Path(repo).resolve() / 'runs/evaluations' / eval_id / 'decisions' / variant / f'{target_date}.json'
         require(not locked.exists(), 'decision already locked; reuse the saved request or use a new eval_id')
-        return _prepare_point(repo, eval_id, variant, data, target_date)
+        return _prepare_point(repo, eval_id, variant, data, target_date,
+                              prompt_selection=prompt_selection)
 
 
-def _prepare_point(repo, eval_id, variant, data, target_date):
+def _prepare_point(repo, eval_id, variant, data, target_date, *, prompt_selection=None):
     """Prepare one isolated historical AI request without future outcomes."""
     repo = Path(repo).resolve()
     eval_id = _safe_id(eval_id)
     variant = _safe_id(variant)
+    validate_cash_dividends(data)
     require(target_date in data["sessions"], "evaluation target must be a supplied session")
     pos = data["sessions"].index(target_date)
     require(pos + 1 < len(data["sessions"]), "target needs a following execution session")
     execution_date = data["sessions"][pos + 1]
     test_id = f"eval-{eval_id}-{target_date.replace('-', '')}"
-    sim = VariantSimulation(repo, variant[0], variant, test_id, data)
+    sim = VariantSimulation(repo, variant[0], variant, test_id, data,
+                            prompt_selection=prompt_selection)
     sim.jump_initialize(target_date)
     request = sim.prepare(execution_date)
     require(not request.get("completed"), "fresh evaluation request unexpectedly completed")
@@ -81,12 +85,15 @@ def _prepare_point(repo, eval_id, variant, data, target_date):
         "score_path": f"runs/evaluations/{eval_id}/scores/{variant}/{target_date}.json",
         "status": "WAITING_FOR_AI",
         "future_outcomes_in_prompt": False,
+        "point_dividend_policy": copy.deepcopy(data.get('point_dividend_policy')),
     }
+    if getattr(sim, 'variant_mode', False):
+        entry['prompt_selection'] = copy.deepcopy(sim.prompt_selection)
     store.write(f"entries/{variant}/{target_date}.json", entry)
     return entry
 
 
-def prepare_batch(repo, eval_id, variants, data, target_dates):
+def prepare_batch(repo, eval_id, variants, data, target_dates, *, prompt_selections=None):
     """Prepare bounded independent requests; never score in this phase."""
     repo = Path(repo).resolve()
     _safe_id(eval_id)
@@ -94,11 +101,17 @@ def prepare_batch(repo, eval_id, variants, data, target_dates):
             "invalid evaluation variants")
     require(len(target_dates) == len(set(target_dates)) and 1 <= len(target_dates) <= 20,
             "invalid evaluation dates")
+    require(prompt_selections is None or
+            (isinstance(prompt_selections, dict) and set(prompt_selections) <= set(variants)),
+            'prompt selections must belong to the planned variants')
+    prompt_selections = prompt_selections or {}
     before = {
         str(p.relative_to(repo)): digest(p.read_text(encoding="utf-8"))
         for p in repo.glob("strategies/*/variants/*/holdings.json")
     }
-    entries = [prepare_point(repo, eval_id, v, data, d) for v in variants for d in target_dates]
+    entries = [prepare_point(repo, eval_id, v, data, d,
+                             prompt_selection=prompt_selections.get(v))
+               for v in variants for d in target_dates]
     after = {
         str(p.relative_to(repo)): digest(p.read_text(encoding="utf-8"))
         for p in repo.glob("strategies/*/variants/*/holdings.json")
@@ -173,6 +186,7 @@ def _save_locked_decision(repo, eval_id, variant, target_date, decision):
         "entry_id": entry["entry_id"],
         "prompt_sha256": entry["prompt_sha256"],
         "decision_sha256": digest(decision),
+        "entry_sha256": digest(entry),
         "request_sha256": digest(request),
         "time_travel_sha256": digest(travel),
         "locked": True,
@@ -213,6 +227,9 @@ def _score_locked_decision(repo, eval_id, variant, target_date, data, horizons):
             all(type(h) is int and h > 0 for h in horizons), "horizons must be unique positive integers")
     entry = _load_entry(repo, eval_id, variant, target_date)
     decision_path = repo / entry["decision_path"]
+    validate_cash_dividends(data)
+    require(entry.get('point_dividend_policy') == data.get('point_dividend_policy'),
+            'point dividend valuation assumption changed; use a new eval_id')
     lock_path = decision_path.with_suffix(".lock.json")
     require(decision_path.is_file() and lock_path.is_file(), "locked decision missing")
     decision = read_json(decision_path)
@@ -220,6 +237,8 @@ def _score_locked_decision(repo, eval_id, variant, target_date, data, horizons):
     require(lock.get('locked') is True and lock.get('future_outcomes_seen_by_decision_phase') is False,
             'decision lock is not a sealed pre-outcome decision')
     require(lock['prompt_sha256'] == entry['prompt_sha256'], 'entry prompt changed after decision lock')
+    if lock.get('entry_sha256'):
+        require(lock['entry_sha256'] == digest(entry), 'evaluation entry changed after decision lock')
     require(lock["decision_sha256"] == digest(decision), "locked decision changed")
 
     request = read_json(repo / entry["request_path"])
@@ -260,7 +279,8 @@ def _score_locked_decision(repo, eval_id, variant, target_date, data, horizons):
 
     # Validate the already-locked answer against the already-locked request.
     # Instantiation provides symbol/universe rules but does not call prepare().
-    sim = VariantSimulation(repo, variant[0], variant, entry["simulation_test_id"], data)
+    sim = VariantSimulation(repo, variant[0], variant, entry["simulation_test_id"], data,
+                            prompt_selection=entry.get('prompt_selection'))
     # Execution fees are part of the prepared scenario, not today's defaults.
     opening_event = sim.store.events()[0]
     require(opening_event['after'] == request['source_holdings'], 'prepared opening state changed')
@@ -375,17 +395,25 @@ def _score_locked_decision(repo, eval_id, variant, target_date, data, horizons):
             scores.append({"horizon_sessions": h, "status": "INSUFFICIENT_FUTURE_SESSIONS"})
             continue
         score_day = sessions[idx]
+        unresolved = unresolved_actions(data, held_symbols, target_date, score_day)
+        if unresolved:
+            scores.append({'horizon_sessions': h, 'date': score_day,
+                           'status': 'UNSCORABLE_CORPORATE_ACTION', 'unresolved_actions': unresolved})
+            continue
         breaks = {s: _has_break(data, s, target_date, score_day) for s in held_symbols}
         breaks = {s: b for s, b in breaks.items() if b}
         if breaks:
             scores.append({"horizon_sessions": h, "date": score_day,
                            "status": "UNSCORABLE_PRICE_BASIS_BREAK", "breaks": breaks})
             continue
-        actual_equity = _valuation(actual, data, score_day)
-        hold_equity = _valuation(baseline, data, score_day)
+        def value(state, day):
+            return point_valuation(state, request['holdings'], data, day,
+                                   start_date=target_date, execution_date=entry['execution_date'])
+        actual_equity = value(actual, score_day)
+        hold_equity = value(baseline, score_day)
         start_equity = Decimal(str(request["holdings"]["total_equity_cny"]))
         elapsed = idx - sessions.index(target_date)
-        curve = [start_equity] + [_valuation(actual, data, d)
+        curve = [start_equity] + [value(actual, d)
                                  for d in sessions[ex_i:idx + 1]]
         scores.append({
             "horizon_sessions": h,
@@ -402,6 +430,19 @@ def _score_locked_decision(repo, eval_id, variant, target_date, data, horizons):
             "incremental_pnl_vs_hold_cny": money(actual_equity - hold_equity),
             "incremental_return_vs_hold_pct": str((actual_equity / hold_equity - 1) * 100),
         })
+        if data.get('point_dividend_policy'):
+            income = dividend_entitlements(actual, request['holdings'], data, start_date=target_date,
+                                           execution_date=entry['execution_date'], day=score_day)
+            hold_income = dividend_entitlements(baseline, request['holdings'], data, start_date=target_date,
+                                                execution_date=entry['execution_date'], day=score_day)
+            tax = sum((Decimal(x['tax_reserve_cny']) for x in income), Decimal(0))
+            scores[-1].update(
+                point_dividend_policy=data['point_dividend_policy'],
+                dividend_entitlements=income, hold_dividend_entitlements=hold_income,
+                gross_equity_before_dividend_tax_reserve_cny=money(actual_equity + tax),
+                gross_return_before_dividend_tax_reserve_pct=str(((actual_equity + tax) / start_equity - 1) * 100),
+                dividend_tax_reserve_cny=money(tax),
+            )
 
     result = {
         "eval_id": eval_id, "variant": variant, "target_date": target_date,

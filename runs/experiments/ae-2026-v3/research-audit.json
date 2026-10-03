@@ -1,0 +1,9 @@
+{
+  "method": "36 reconstructed reviews from official archived report bodies; 2 unique same-day date-only sources withheld",
+  "raw_data_outside_repository": true,
+  "raw_reports_outside_repository": true,
+  "facts_sha256": "f00f4a7aa20dac4e112af0225a6113674b89b3fd8d70772c4c799bdf023e6ae7",
+  "no_future_prices_used_by_researchers": true,
+  "formal_files_unchanged": true,
+  "actual_ai_decisions_pending": 72
+}

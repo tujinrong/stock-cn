@@ -1,0 +1,8 @@
+{
+  "round": 1,
+  "accepted": true,
+  "scope": "EXPLICIT_EXPERIMENT_ONLY",
+  "candidate_sha256": "241520c01e823189edf749ade5c5999b54a4c487079e0328996c66e37269fc5e",
+  "automatic_formal_promotion": false,
+  "global_simulation_pointer_changed": false
+}

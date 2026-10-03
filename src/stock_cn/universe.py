@@ -13,7 +13,7 @@ from decimal import Decimal, ROUND_HALF_UP
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
-from .sim_data import number, request_json, validate_dataset
+from .sim_data import number, request_json, source_corporate_action_hints, validate_dataset
 from .time_travel import symbol_snapshot
 
 EASTMONEY_CLIST = "https://push2.eastmoney.com/api/qt/clist/get"
@@ -348,6 +348,7 @@ def fetch_candidate_history(seed, start, end, request=request_json, *, max_symbo
                     "open": str(number(x[1])), "close": str(number(x[2])),
                     "high": str(number(x[3])), "low": str(number(x[4])),
                     "volume": str(number(x[5])) if len(x) > 5 and x[5] not in (None, "") else None,
+                    "corporate_action_hints": source_corporate_action_hints(x, provider, url),
                     "source": url, "provider": provider,
                 } for x in raw if start <= x[0] <= end}
                 if len(selected) < 2:
@@ -400,6 +401,7 @@ def fetch_candidate_history(seed, start, end, request=request_json, *, max_symbo
             "No archived news/fundamentals/intraday verification in this adapter.",
             "Current-universe seeding has survivorship bias if reused for historical dates.",
             "Suspected >25% price-basis breaks are not assigned executable limit prices.",
+            "Tencent corporate_action_hints preserve unverified source metadata, not a complete rights ledger. Historical information availability and payment dates are unknown; do not use hints as verified AI facts.",
         ],
         "instruments": {r["symbol"]: {
             "name": names[r["symbol"]], "board": "MAIN", "lot_size": 100,

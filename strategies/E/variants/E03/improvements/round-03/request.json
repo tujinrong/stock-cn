@@ -1,0 +1,8 @@
+{
+  "round": 3,
+  "objective": "USER_AUTHORIZED_ISOLATED_RETURN_EXPERIMENT",
+  "experiment_id": "ae-2026-v3",
+  "future_prices_provided": false,
+  "performance_feedback_provided": false,
+  "automatic_formal_promotion": false
+}

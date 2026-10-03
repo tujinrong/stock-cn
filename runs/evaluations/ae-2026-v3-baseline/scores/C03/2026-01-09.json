@@ -1,0 +1,61 @@
+{
+  "eval_id": "ae-2026-v3-baseline",
+  "variant": "C03",
+  "target_date": "2026-01-09",
+  "execution_date": "2026-01-12",
+  "prompt_sha256": "21f6283792fd4886e49b47e99bb3e0f59f0ead2b5c389a0f7244c5fec136ca58",
+  "decision_sha256": "aefb97fa4d787f3f79d116245fff7ab031e0da7af9a1722d0cc06c156adf73d9",
+  "action": "BUY",
+  "execution": {
+    "status": "FILLED",
+    "fill": {
+      "symbol": "601100.SH",
+      "side": "BUY",
+      "quantity": 600,
+      "price_cny": "113.80",
+      "fee_cny": "17.75",
+      "time": "2026-01-12T09:30:00+08:00",
+      "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601100%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C",
+      "quote_time": "2026-01-12T09:30:00+08:00",
+      "time_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+    },
+    "reason": "PAPER_FILL_USING_MODE_QUOTE",
+    "decision_id": "eval-ae-2026-v3-baseline-20260109-C03-2026-01-12",
+    "paper_only": true,
+    "mode": "SIMULATION",
+    "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+  },
+  "scores": [
+    {
+      "horizon_sessions": 40,
+      "date": "2026-03-17",
+      "status": "SCORED",
+      "elapsed_sessions": 41,
+      "annualized_return_pct": -16.835868152624744,
+      "max_daily_drawdown_pct": 5.756841894426337,
+      "excess_return_percentage_points": "-2.95487500",
+      "actual_equity_cny": "194090.25",
+      "hold_counterfactual_equity_cny": "200000.00",
+      "actual_return_pct": "-2.95487500",
+      "hold_return_pct": "0",
+      "incremental_pnl_vs_hold_cny": "-5909.75",
+      "incremental_return_vs_hold_pct": "-2.95487500",
+      "point_dividend_policy": {
+        "scope": "LOCKED_POINT_OUTCOME_ONLY",
+        "income_basis": "EX_DATE_RECEIVABLE_WITH_TAX_RESERVE",
+        "tax_reserve_rate": "0.20",
+        "note": "Uniform conservative experimental reserve; not actual personal tax settlement."
+      },
+      "dividend_entitlements": [],
+      "hold_dividend_entitlements": [],
+      "gross_equity_before_dividend_tax_reserve_cny": "194090.25",
+      "gross_return_before_dividend_tax_reserve_pct": "-2.95487500",
+      "dividend_tax_reserve_cny": "0.00"
+    }
+  ],
+  "future_outcomes_were_separate_from_decision_phase": true,
+  "historical_prefix_reverified_before_scoring": true,
+  "request_regenerated_during_scoring": false,
+  "eligible_for_prompt_auto_improvement": false,
+  "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+}

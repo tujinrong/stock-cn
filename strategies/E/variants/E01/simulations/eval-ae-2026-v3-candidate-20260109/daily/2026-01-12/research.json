@@ -1,0 +1,46 @@
+{
+  "evidence": [
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+      "published_at": "2025-10-17T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600660.SH",
+      "facts_referenced": [
+        "福耀2025Q3收入17.62%、归母28.93%、扣非24.70%、现金流57.29%。",
+        "恒瑞现金增长包含海外授权首付款；平安营运利润7.2%、NBV46.2%与净利润非同口径。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+      "published_at": "2025-10-28T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600276.SH",
+      "facts_referenced": [
+        "福耀2025Q3收入17.62%、归母28.93%、扣非24.70%、现金流57.29%。",
+        "恒瑞现金增长包含海外授权首付款；平安营运利润7.2%、NBV46.2%与净利润非同口径。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+      "published_at": "2025-10-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601318.SH",
+      "facts_referenced": [
+        "福耀2025Q3收入17.62%、归母28.93%、扣非24.70%、现金流57.29%。",
+        "恒瑞现金增长包含海外授权首付款；平安营运利润7.2%、NBV46.2%与净利润非同口径。"
+      ]
+    },
+    {
+      "source": "SAVED_POINT_IN_TIME_PRICE_CONTEXT",
+      "published_at": "2026-01-09T15:00:00+08:00",
+      "kind": "ARCHIVED_OHLCV"
+    }
+  ],
+  "data_gaps": [
+    "新闻按历史协议忽略，不能推断当时没有风险；仅有季报主要指标及部分解释，财务附注和全部经营公告未全面核读。",
+    "首日期连续价格仅248交易日（神华238日），250日年度统计为null；参考可见月线和120日位置，不能声称精确年度低点。",
+    "历史公司权益事件和交易所涨跌停未完整独立核验，次日开盘代理执行，报价与成交分离。",
+    "福耀海外业务/扩产附注和2025年报未完整可用；估值相对吸引力为推断。"
+  ],
+  "scoring_phase_future_data_excluded": true
+}

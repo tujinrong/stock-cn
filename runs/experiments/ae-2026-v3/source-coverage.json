@@ -1,0 +1,382 @@
+{
+  "retrieved_at": "2026-10-03T13:57:07.930966+00:00",
+  "requested_start": "2025-01-01",
+  "requested_end": "2026-09-30",
+  "raw_data_path": "C:\\Users\\tujin\\Documents\\Codex\\2026-10-03\\referenced-chatgpt-conversation-this-is-an\\work\\data2026-full.json",
+  "source_attempts": [
+    {
+      "requested_start": "2025-01-01",
+      "requested_end": "2025-12-31",
+      "attempts": [
+        {
+          "symbol": "600036.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 243,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "002594.SZ",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 243,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "600660.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 243,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "600900.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 243,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "601100.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 243,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "600519.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 243,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "600276.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 243,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "600309.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 243,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "601318.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 243,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "601088.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 233,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "600028.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 243,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "601006.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 243,
+          "fallback_errors": []
+        }
+      ]
+    },
+    {
+      "requested_start": "2026-01-01",
+      "requested_end": "2026-09-30",
+      "attempts": [
+        {
+          "symbol": "600036.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 181,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "002594.SZ",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 181,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "600660.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 181,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "600900.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 181,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "601100.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 181,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "600519.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 181,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "600276.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 181,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "600309.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 181,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "601318.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 181,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "601088.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 181,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "600028.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 181,
+          "fallback_errors": []
+        },
+        {
+          "symbol": "601006.SH",
+          "provider": "Tencent",
+          "status": "OK",
+          "rows": 181,
+          "fallback_errors": []
+        }
+      ]
+    }
+  ],
+  "union_first_date": "2025-01-02",
+  "union_last_date": "2026-09-30",
+  "union_sessions": 424,
+  "union_2026_sessions": 181,
+  "symbols": {
+    "600036.SH": {
+      "name": "招商银行",
+      "all_rows": 424,
+      "2025_rows": 243,
+      "2026_rows": 181,
+      "actual_first_date": "2025-01-02",
+      "actual_last_date": "2026-09-30",
+      "actual_2026_first_date": "2026-01-05",
+      "actual_2026_last_date": "2026-09-30",
+      "missing_relative_to_union": [],
+      "missing_ohlcv": [],
+      "missing_limit_metadata_2026": [],
+      "zero_volume_sessions": []
+    },
+    "002594.SZ": {
+      "name": "比亚迪",
+      "all_rows": 424,
+      "2025_rows": 243,
+      "2026_rows": 181,
+      "actual_first_date": "2025-01-02",
+      "actual_last_date": "2026-09-30",
+      "actual_2026_first_date": "2026-01-05",
+      "actual_2026_last_date": "2026-09-30",
+      "missing_relative_to_union": [],
+      "missing_ohlcv": [],
+      "missing_limit_metadata_2026": [],
+      "zero_volume_sessions": []
+    },
+    "600660.SH": {
+      "name": "福耀玻璃",
+      "all_rows": 424,
+      "2025_rows": 243,
+      "2026_rows": 181,
+      "actual_first_date": "2025-01-02",
+      "actual_last_date": "2026-09-30",
+      "actual_2026_first_date": "2026-01-05",
+      "actual_2026_last_date": "2026-09-30",
+      "missing_relative_to_union": [],
+      "missing_ohlcv": [],
+      "missing_limit_metadata_2026": [],
+      "zero_volume_sessions": []
+    },
+    "600900.SH": {
+      "name": "长江电力",
+      "all_rows": 424,
+      "2025_rows": 243,
+      "2026_rows": 181,
+      "actual_first_date": "2025-01-02",
+      "actual_last_date": "2026-09-30",
+      "actual_2026_first_date": "2026-01-05",
+      "actual_2026_last_date": "2026-09-30",
+      "missing_relative_to_union": [],
+      "missing_ohlcv": [],
+      "missing_limit_metadata_2026": [],
+      "zero_volume_sessions": []
+    },
+    "601100.SH": {
+      "name": "恒立液压",
+      "all_rows": 424,
+      "2025_rows": 243,
+      "2026_rows": 181,
+      "actual_first_date": "2025-01-02",
+      "actual_last_date": "2026-09-30",
+      "actual_2026_first_date": "2026-01-05",
+      "actual_2026_last_date": "2026-09-30",
+      "missing_relative_to_union": [],
+      "missing_ohlcv": [],
+      "missing_limit_metadata_2026": [],
+      "zero_volume_sessions": []
+    },
+    "600519.SH": {
+      "name": "贵州茅台",
+      "all_rows": 424,
+      "2025_rows": 243,
+      "2026_rows": 181,
+      "actual_first_date": "2025-01-02",
+      "actual_last_date": "2026-09-30",
+      "actual_2026_first_date": "2026-01-05",
+      "actual_2026_last_date": "2026-09-30",
+      "missing_relative_to_union": [],
+      "missing_ohlcv": [],
+      "missing_limit_metadata_2026": [],
+      "zero_volume_sessions": []
+    },
+    "600276.SH": {
+      "name": "恒瑞医药",
+      "all_rows": 424,
+      "2025_rows": 243,
+      "2026_rows": 181,
+      "actual_first_date": "2025-01-02",
+      "actual_last_date": "2026-09-30",
+      "actual_2026_first_date": "2026-01-05",
+      "actual_2026_last_date": "2026-09-30",
+      "missing_relative_to_union": [],
+      "missing_ohlcv": [],
+      "missing_limit_metadata_2026": [],
+      "zero_volume_sessions": []
+    },
+    "600309.SH": {
+      "name": "万华化学",
+      "all_rows": 424,
+      "2025_rows": 243,
+      "2026_rows": 181,
+      "actual_first_date": "2025-01-02",
+      "actual_last_date": "2026-09-30",
+      "actual_2026_first_date": "2026-01-05",
+      "actual_2026_last_date": "2026-09-30",
+      "missing_relative_to_union": [],
+      "missing_ohlcv": [],
+      "missing_limit_metadata_2026": [],
+      "zero_volume_sessions": []
+    },
+    "601318.SH": {
+      "name": "中国平安",
+      "all_rows": 424,
+      "2025_rows": 243,
+      "2026_rows": 181,
+      "actual_first_date": "2025-01-02",
+      "actual_last_date": "2026-09-30",
+      "actual_2026_first_date": "2026-01-05",
+      "actual_2026_last_date": "2026-09-30",
+      "missing_relative_to_union": [],
+      "missing_ohlcv": [],
+      "missing_limit_metadata_2026": [],
+      "zero_volume_sessions": []
+    },
+    "601088.SH": {
+      "name": "中国神华",
+      "all_rows": 414,
+      "2025_rows": 233,
+      "2026_rows": 181,
+      "actual_first_date": "2025-01-02",
+      "actual_last_date": "2026-09-30",
+      "actual_2026_first_date": "2026-01-05",
+      "actual_2026_last_date": "2026-09-30",
+      "missing_relative_to_union": [
+        "2025-08-04",
+        "2025-08-05",
+        "2025-08-06",
+        "2025-08-07",
+        "2025-08-08",
+        "2025-08-11",
+        "2025-08-12",
+        "2025-08-13",
+        "2025-08-14",
+        "2025-08-15"
+      ],
+      "missing_ohlcv": [],
+      "missing_limit_metadata_2026": [],
+      "zero_volume_sessions": []
+    },
+    "600028.SH": {
+      "name": "中国石化",
+      "all_rows": 424,
+      "2025_rows": 243,
+      "2026_rows": 181,
+      "actual_first_date": "2025-01-02",
+      "actual_last_date": "2026-09-30",
+      "actual_2026_first_date": "2026-01-05",
+      "actual_2026_last_date": "2026-09-30",
+      "missing_relative_to_union": [],
+      "missing_ohlcv": [],
+      "missing_limit_metadata_2026": [],
+      "zero_volume_sessions": []
+    },
+    "601006.SH": {
+      "name": "大秦铁路",
+      "all_rows": 424,
+      "2025_rows": 243,
+      "2026_rows": 181,
+      "actual_first_date": "2025-01-02",
+      "actual_last_date": "2026-09-30",
+      "actual_2026_first_date": "2026-01-05",
+      "actual_2026_last_date": "2026-09-30",
+      "missing_relative_to_union": [],
+      "missing_ohlcv": [],
+      "missing_limit_metadata_2026": [],
+      "zero_volume_sessions": []
+    }
+  },
+  "suspected_25pct_price_basis_breaks": [
+    {
+      "symbol": "002594.SZ",
+      "date": "2025-07-29"
+    }
+  ],
+  "corporate_action_verification": "PROVIDER_EVENT_METADATA_FOUND; existing OHLCV adapter omits it. Independent announcement/payment-date verification still missing. Do not score event-crossing intervals without validated handling.",
+  "provider_rights_metadata_probe_path": "C:\\Users\\tujin\\Documents\\Codex\\2026-10-03\\referenced-chatgpt-conversation-this-is-an\\work\\data2026-rights-probe.json",
+  "provider_rights_metadata_found": 18
+}

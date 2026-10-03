@@ -1,0 +1,525 @@
+{
+  "600036.SH": {
+    "symbol": "600036.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-07-31T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+    "source_report_title": "招商银行股份有限公司2026年第一季度报告",
+    "source_official": true,
+    "source_published_at": "2026-04-29T00:00:00+08:00",
+    "facts": [
+      {
+        "name": "营业收入",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "86940000000",
+        "unit": "CNY",
+        "source_reported_value": "86940",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "营业收入同比",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "3.81",
+        "unit": "PERCENT",
+        "source_reported_value": "3.81",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "归母净利润",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "37852000000",
+        "unit": "CNY",
+        "source_reported_value": "37852",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "归母净利润同比",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "1.52",
+        "unit": "PERCENT",
+        "source_reported_value": "1.52",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "扣非归母净利润",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "37795000000",
+        "unit": "CNY",
+        "source_reported_value": "37795",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "1.77",
+        "unit": "PERCENT",
+        "source_reported_value": "1.77",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "经营现金流净额",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "125849000000",
+        "unit": "CNY",
+        "source_reported_value": "125849",
+        "source_reported_unit": "人民币百万元"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "32.44",
+        "unit": "PERCENT",
+        "source_reported_value": "32.44",
+        "source_reported_unit": "同比增减百分比"
+      },
+      {
+        "name": "经营现金流变化公司解释",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA",
+        "value": "2026Q1经营现金流增加主要因为贷款同比少增及待清算款项流入同比增加。",
+        "unit": "COMPANY_EXPLANATION",
+        "value_type": "REPORT_PARAPHRASE"
+      }
+    ],
+    "data_gaps": [
+      "已核读主要会计指标与部分解释，不声称完整年报审计、全部经营公告或财务附注覆盖",
+      "公司报告指标不等于未来股价收益；不生成固定财务打分或买卖信号",
+      "银行现金流受客户存贷款和清算变动影响，不能套用工业公司CFO/净利润质量阈值",
+      "7月31日最新已披露财报仍为Q1，不能将任何后续半年报结果提前使用；未全面读取可能存在的半年度预告"
+    ],
+    "latest_report": {
+      "title": "招商银行股份有限公司2026年第一季度报告",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+      "period": "2026Q1",
+      "checked_against": "research2026-announcements.json",
+      "halfyear_report_as_of_target": "截至2026-07-31的官方公告抓取未见2026半年报；仍使用已披露Q1，不能编造H1结果"
+    },
+    "source_report_sha256": "2802004753a3bf4899ebebd55a8bd80d0704390cb791775d528565009d99802d",
+    "latest_disclosed_periodic_report": "2026Q1",
+    "half_year_2026_report_available_at_target": false,
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "002594.SZ": {
+    "symbol": "002594.SZ",
+    "status": "REVIEWED",
+    "as_of": "2026-07-31T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF",
+    "source_report_title": "2026年一季度报告",
+    "source_report_sha256": "8e07bf9481c450daa0184c8bab218eb5b29f5587fc406116a911903852c0c907",
+    "source_official": true,
+    "source_published_at": "2026-04-29T00:00:00+08:00",
+    "latest_disclosed_periodic_report": "2026Q1",
+    "half_year_2026_report_available_at_target": false,
+    "facts": [
+      {
+        "name": "营业收入",
+        "value": "150225314000.00",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "营业收入同比",
+        "value": "-11.82",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润",
+        "value": "4084551000.00",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润同比",
+        "value": "-55.38",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润",
+        "value": "4147574000.00",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "value": "-49.24",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额",
+        "value": "2790305000.00",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "value": "-67.48",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "已知2025年7月送转",
+        "value": "送股2431252684股，转增3646879026股，送转后普通股9117197565股；报告EPS比较按调整后股数。跨送转未复权股价历史存在口径断点。",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF",
+        "published_at": "2026-04-29T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      }
+    ],
+    "data_gaps": [
+      "仅人工核读最新季报主要财务指标与部分非经常项，不声称全面年报审计或全部经营公告覆盖",
+      "未全面提取订单、产品价差或渠道领先资料",
+      "季度增长不等于未来股票收益"
+    ],
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "600660.SH": {
+    "symbol": "600660.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-07-31T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+    "source_report_title": "福耀玻璃2026年第一季度报告",
+    "source_report_sha256": "55a8ded274c952d2fdbf5b999748f62f4311463b26b7d0d1aa64831c4bc2453e",
+    "source_official": true,
+    "source_published_at": "2026-04-22T00:00:00+08:00",
+    "latest_disclosed_periodic_report": "2026Q1",
+    "half_year_2026_report_available_at_target": false,
+    "facts": [
+      {
+        "name": "营业收入",
+        "value": "10413026492",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+        "published_at": "2026-04-22T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "营业收入同比",
+        "value": "5.08",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+        "published_at": "2026-04-22T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润",
+        "value": "1711539612",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+        "published_at": "2026-04-22T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润同比",
+        "value": "-15.68",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+        "published_at": "2026-04-22T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润",
+        "value": "1642761951",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+        "published_at": "2026-04-22T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "value": "-17.32",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+        "published_at": "2026-04-22T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额",
+        "value": "357002919",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+        "published_at": "2026-04-22T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "value": "-82.22",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+        "published_at": "2026-04-22T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "公司披露汇兑对利润影响",
+        "value": "本期汇兑损失438700200元，上年同期收益235938900元；公司披露扣除此因素后利润总额同比增长9.63%。此为公司调整口径，不能替代报告净利润。",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+        "published_at": "2026-04-22T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      }
+    ],
+    "data_gaps": [
+      "仅人工核读最新季报主要财务指标与部分非经常项，不声称全面年报审计或全部经营公告覆盖",
+      "未全面提取订单、产品价差或渠道领先资料",
+      "季度增长不等于未来股票收益"
+    ],
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "600900.SH": {
+    "symbol": "600900.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-07-31T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+    "source_report_title": "长江电力2026年一季度报告",
+    "source_report_sha256": "3536efda5117d4ef071729a16b9de8449846aedca0a8f2d7ff9a5eafa2cafe84",
+    "source_official": true,
+    "source_published_at": "2026-04-30T00:00:00+08:00",
+    "latest_disclosed_periodic_report": "2026Q1",
+    "half_year_2026_report_available_at_target": false,
+    "facts": [
+      {
+        "name": "营业收入",
+        "value": "18111540767.50",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+        "published_at": "2026-04-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "营业收入同比",
+        "value": "6.44",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+        "published_at": "2026-04-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润",
+        "value": "6761006898.48",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+        "published_at": "2026-04-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润同比",
+        "value": "30.50",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+        "published_at": "2026-04-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润",
+        "value": "6237332251.35",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+        "published_at": "2026-04-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "value": "19.20",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+        "published_at": "2026-04-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额",
+        "value": "11710663090.90",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+        "published_at": "2026-04-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "value": "-1.15",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+        "published_at": "2026-04-30T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      }
+    ],
+    "data_gaps": [
+      "仅人工核读最新季报主要财务指标与部分非经常项，不声称全面年报审计或全部经营公告覆盖",
+      "未全面提取订单、产品价差或渠道领先资料",
+      "季度增长不等于未来股票收益"
+    ],
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  },
+  "601100.SH": {
+    "symbol": "601100.SH",
+    "status": "REVIEWED",
+    "as_of": "2026-07-31T15:00:00+08:00",
+    "source_report": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF",
+    "source_report_title": "江苏恒立液压股份有限公司2026年第一季度报告",
+    "source_report_sha256": "9dbf52d70f51140fbe05dec989f876098c616fdda45a2f644cfe8b1fa2305fbc",
+    "source_official": true,
+    "source_published_at": "2026-04-28T00:00:00+08:00",
+    "latest_disclosed_periodic_report": "2026Q1",
+    "half_year_2026_report_available_at_target": false,
+    "facts": [
+      {
+        "name": "营业收入",
+        "value": "3209889672.03",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF",
+        "published_at": "2026-04-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "营业收入同比",
+        "value": "32.52",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF",
+        "published_at": "2026-04-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润",
+        "value": "652191721.93",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF",
+        "published_at": "2026-04-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "归母净利润同比",
+        "value": "5.59",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF",
+        "published_at": "2026-04-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润",
+        "value": "557398389.25",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF",
+        "published_at": "2026-04-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "扣非归母净利润同比",
+        "value": "-18.33",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF",
+        "published_at": "2026-04-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额",
+        "value": "517796421.36",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF",
+        "published_at": "2026-04-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "经营现金流净额同比",
+        "value": "934.62",
+        "unit": "PERCENT",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF",
+        "published_at": "2026-04-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      },
+      {
+        "name": "持有及处置金融资产公允价值变动与投资收益等非经常性项目",
+        "value": "104623492.83",
+        "unit": "CNY",
+        "period": "2026Q1",
+        "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF",
+        "published_at": "2026-04-28T00:00:00+08:00",
+        "publication_precision": "DATE_ONLY_CNINFO_METADATA"
+      }
+    ],
+    "data_gaps": [
+      "仅人工核读最新季报主要财务指标与部分非经常项，不声称全面年报审计或全部经营公告覆盖",
+      "未全面提取订单、产品价差或渠道领先资料",
+      "季度增长不等于未来股票收益"
+    ],
+    "source_publication_precision": "DATE_ONLY_CNINFO_METADATA",
+    "review_type": "RECONSTRUCTED_FROM_CAUSAL_OFFICIAL_REPORT"
+  }
+}

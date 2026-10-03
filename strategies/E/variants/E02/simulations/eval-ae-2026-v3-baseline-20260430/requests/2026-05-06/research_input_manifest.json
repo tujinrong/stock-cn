@@ -1,0 +1,14 @@
+{
+  "variant_id": "E02",
+  "path": "research-inputs\\ae-2026-v3\\E02\\2026-04-30",
+  "information_cutoff": "2026-04-30T15:00:00+08:00",
+  "file_sha256": {
+    "manifest.json": "519aa62b3583d3b389c02fa11757dcd744e9a09f08f354b8eed93b4ac1883bf4",
+    "official-disclosure-pack.json": "9d272f3d150b77549c46a2b14a1b274346b3815ea50ea731b9525e1a75d98e81",
+    "financial-reviews.json": "5b00729cd005cdad5b526368047dca8809ba48be1f00528e60f85313b3a446f2",
+    "news-research.json": "a9a911e02336ffe13911f0d0017956a7922f3cde871ee06e97be3b2d7653e57d",
+    "candidate-research-pack.json": "9c887c64d1c6ab0662f68341881397a537174bcb2a31733ab6be7dfc0a49e357",
+    "universe-scope.json": "b7e9f8bd5b2f1e79b2ead2e60e5d2459f2cabda78e640e1263cf93240dff8eb0"
+  },
+  "missing_files": []
+}

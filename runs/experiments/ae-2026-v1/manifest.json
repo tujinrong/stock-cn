@@ -1,0 +1,207 @@
+{
+  "experiment_id": "ae-2026-v1",
+  "plan": {
+    "variants": [
+      "A01",
+      "A02",
+      "A03",
+      "C01",
+      "C02",
+      "C03",
+      "D01",
+      "D02",
+      "D03",
+      "E01",
+      "E02",
+      "E03"
+    ],
+    "targets": [
+      {
+        "date": "2026-01-09",
+        "phase": "DEVELOPMENT",
+        "capital_interval_end": "2026-03-17"
+      },
+      {
+        "date": "2026-04-30",
+        "phase": "HOLDOUT",
+        "capital_interval_end": "2026-07-02"
+      },
+      {
+        "date": "2026-07-31",
+        "phase": "HOLDOUT",
+        "capital_interval_end": "2026-09-29"
+      }
+    ],
+    "horizon_sessions": 40,
+    "elapsed_capital_sessions": 41,
+    "data_year": 2026,
+    "actual_history_end": "2026-09-30",
+    "fixed_symbols": [
+      "600036.SH",
+      "002594.SZ",
+      "600660.SH",
+      "600900.SH",
+      "601100.SH"
+    ],
+    "research_symbols": [
+      "600036.SH",
+      "600519.SH",
+      "600276.SH",
+      "600900.SH",
+      "600660.SH",
+      "600309.SH",
+      "601318.SH",
+      "601088.SH",
+      "600028.SH",
+      "601006.SH"
+    ],
+    "point_dividend_policy": {
+      "scope": "LOCKED_POINT_OUTCOME_ONLY",
+      "income_basis": "EX_DATE_RECEIVABLE_WITH_TAX_RESERVE",
+      "tax_reserve_rate": "0.20",
+      "note": "Uniform conservative experimental reserve; not actual personal tax settlement."
+    },
+    "initial_capital_per_variant_cny": "200000",
+    "objective": "ISOLATED_RETURN_COMPARISON",
+    "user_authorization": "用2026年数据，把A-E所有变体进行测试，并改进，提高收益率。",
+    "candidate_rule": "One frozen capital/holding opportunity-cost review; immutable strategy unchanged.",
+    "evaluation_rule": "Positive mean heldout net return difference with no worse daily drawdown in either holdout.",
+    "no_automatic_formal_or_default_simulation_promotion": true,
+    "B": {
+      "status": "RESERVED",
+      "variants": [],
+      "not_tested_reason": "No strategy/account exists; no invented B variants."
+    }
+  },
+  "plan_sha256": "6d6b7a8426021ccab295e83bfcd815dbf1e741f9f63d15708f471dd77a2c6971",
+  "appendix_sha256": "c3bc236ba179aa69a44e4fbfb6fc508aabbe64a7f33b9841f2f303c12ce5eddc",
+  "prompt_selections": {
+    "baseline": {
+      "A01": {
+        "version": "v000",
+        "path": "prompt.md",
+        "sha256": "6319d3a231db61bc9b68440136f73d1b7db780d5ea1c0d7c03a0a8101189b1c3"
+      },
+      "A02": {
+        "version": "v001",
+        "path": "prompt_versions/v001.md",
+        "sha256": "8539506f100db2d8b39aa7e4af357d2d617c988168e6d33b575d17e827758a66"
+      },
+      "A03": {
+        "version": "v000",
+        "path": "prompt.md",
+        "sha256": "f5e0da2d52312820222a25efa898910b86f22518ddf567d5e8f4967bdd5b6358"
+      },
+      "C01": {
+        "version": "v000",
+        "path": "prompt.md",
+        "sha256": "2e4eda7b46b78e4c4dd73d4281ff9eb0bca37ca1a3a182f7419a7b64042cbb16"
+      },
+      "C02": {
+        "version": "v000",
+        "path": "prompt.md",
+        "sha256": "35aca2fbc430a1e520dd1f6edb4bf1fd4168e8c0a626a580bcc7bab57d20c88f"
+      },
+      "C03": {
+        "version": "v000",
+        "path": "prompt.md",
+        "sha256": "a81077130998a5bf0311f99b5fb63a114b126ef7d3332c5c97f39b71e71737da"
+      },
+      "D01": {
+        "version": "v000",
+        "path": "prompt.md",
+        "sha256": "c16b102a91fa2a704a8c5865ae5c659280e51c7052ca314de96bb2348957a424"
+      },
+      "D02": {
+        "version": "v001",
+        "path": "prompt_versions/v001.md",
+        "sha256": "42578c83aba8a8d2364465f2dab6bfe22a9356c82c484962df04a0482530fb2c"
+      },
+      "D03": {
+        "version": "v000",
+        "path": "prompt.md",
+        "sha256": "3de49d57f920e32d2412fde57fe00d5f068ea4faaef910310c6763401025d051"
+      },
+      "E01": {
+        "version": "v000",
+        "path": "prompt.md",
+        "sha256": "de578e9ce237ae63dc2ba2922a33e8afede2c2f01c913cb66cec816cb075e68a"
+      },
+      "E02": {
+        "version": "v000",
+        "path": "prompt.md",
+        "sha256": "5f3071c9e5b0e257c94e22b39e68f8c02b173abcbd6280628416688fefae82b3"
+      },
+      "E03": {
+        "version": "v000",
+        "path": "prompt.md",
+        "sha256": "6bd91016d59a151a0069c0c2586323a560c2ea4b4035c9ce3b9f664e13416c05"
+      }
+    },
+    "candidate": {
+      "A01": {
+        "version": "ae-2026-v1-r1",
+        "path": "experiment-prompts/ae-2026-v1/candidate.md",
+        "sha256": "0c214f27ccbea779c101ca1a9b3caa99a7c7f043af27a8d83ce6e77951e1f1ee"
+      },
+      "A02": {
+        "version": "ae-2026-v1-r2",
+        "path": "experiment-prompts/ae-2026-v1/candidate.md",
+        "sha256": "7dfb8819f20379bdcd6c45d23b0f1bfd0c4f3f3bf40d48684c8729bf48139884"
+      },
+      "A03": {
+        "version": "ae-2026-v1-r1",
+        "path": "experiment-prompts/ae-2026-v1/candidate.md",
+        "sha256": "241520c01e823189edf749ade5c5999b54a4c487079e0328996c66e37269fc5e"
+      },
+      "C01": {
+        "version": "ae-2026-v1-r1",
+        "path": "experiment-prompts/ae-2026-v1/candidate.md",
+        "sha256": "1517bb9d7ad68bd15c1be23ab7245d8e03c035487b946aeb61f5f4f1c12df873"
+      },
+      "C02": {
+        "version": "ae-2026-v1-r1",
+        "path": "experiment-prompts/ae-2026-v1/candidate.md",
+        "sha256": "b4cca4fa50cde06c2e86757f9a464e2ca013310a2d3c3aa5b6babcffe52b2e68"
+      },
+      "C03": {
+        "version": "ae-2026-v1-r1",
+        "path": "experiment-prompts/ae-2026-v1/candidate.md",
+        "sha256": "22f0c4383b2bccd9766907c5f141c59e1cad2a73e643bda9c6ab238ff01774a0"
+      },
+      "D01": {
+        "version": "ae-2026-v1-r1",
+        "path": "experiment-prompts/ae-2026-v1/candidate.md",
+        "sha256": "e123becb7ca0a76db49dd130d64a2c4dccbc3710a8d6f17e762d6e62b6592c2d"
+      },
+      "D02": {
+        "version": "ae-2026-v1-r2",
+        "path": "experiment-prompts/ae-2026-v1/candidate.md",
+        "sha256": "41db458c93bc6b12132dd63d4dc0c483c7e585eda172341bfb9fe06ff189b7e6"
+      },
+      "D03": {
+        "version": "ae-2026-v1-r1",
+        "path": "experiment-prompts/ae-2026-v1/candidate.md",
+        "sha256": "11a1597de6b5ccb102ca4203c382edf1a2d546924034a34a62a74457cd5a50f8"
+      },
+      "E01": {
+        "version": "ae-2026-v1-r1",
+        "path": "experiment-prompts/ae-2026-v1/candidate.md",
+        "sha256": "d821b27a8d435bd38e66cb8ab2c327469bae49410143c84a832cc1ad1bf887af"
+      },
+      "E02": {
+        "version": "ae-2026-v1-r1",
+        "path": "experiment-prompts/ae-2026-v1/candidate.md",
+        "sha256": "16aa5d48133fd50c3e0c22c7c015c4fab2c042d0c6e753f1b2c7b4a97296648f"
+      },
+      "E03": {
+        "version": "ae-2026-v1-r1",
+        "path": "experiment-prompts/ae-2026-v1/candidate.md",
+        "sha256": "df3e4a9b76569d4fd2b44ae30f0b46297eb2af291ae57d1c13f0eacefdbe7bbd"
+      }
+    }
+  },
+  "future_outcomes_used_to_create_candidate": false,
+  "formal_promotion": false,
+  "kind": "INDEPENDENT_POINT_CASES_NOT_CONTINUOUS_YEAR_BACKTEST"
+}

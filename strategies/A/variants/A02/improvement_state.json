@@ -1,6 +1,6 @@
 {
   "max_rounds": 10,
-  "rounds_used": 1,
+  "rounds_used": 4,
   "status": "CANDIDATE_READY",
   "active_prompt_version": "v000",
   "reset_requires_user_authorization": true,

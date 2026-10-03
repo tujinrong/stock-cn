@@ -21,6 +21,7 @@ from .sim_data import number, validate_dataset
 from .paper_core import PaperCoreError, execute_single_order, validate_decision_contract
 from .research_bundle import build_decision_research_bundle
 from .performance import annualized_pct, ANNUALIZATION, realized_sell_win_rate
+from .prompt_payload import render_prompt_json
 
 
 class ValidationError(ValueError):
@@ -218,8 +219,17 @@ class Simulation:
         validate_dataset(data)
         self.data = copy.deepcopy(data)
         base = self.repo / "strategies" / series / "simulations"
-        root = base / test_id / variant
-        require(root.resolve().is_relative_to(base.absolute()), "simulation directory symlink escape")
+        # Anchor existing ancestors before concurrent accounts create parents.
+        # Resolving the base alone would accept an external symlink as trusted.
+        anchor = base.parent.resolve(strict=True) / base.name
+        require(anchor == base.absolute(), "simulation directory symlink escape")
+        base.mkdir(parents=True, exist_ok=True)
+        require(base.resolve(strict=True) == anchor, "simulation directory symlink escape")
+        run_root = base / test_id
+        run_root.mkdir(exist_ok=True)
+        require(run_root.resolve(strict=True) == anchor / test_id, "simulation directory symlink escape")
+        root = run_root / variant
+        require(root.resolve() == anchor / test_id / variant, "simulation directory symlink escape")
         self.store = Store(root)
         self.init = read_json(self.repo / "strategies" / series / "init.json")
         self.templates = {}
@@ -356,10 +366,11 @@ class Simulation:
                         "fidelity": self.data.get("fidelity"),
                     },
                 )
-            fields = {"RUN_CONTEXT": dumps(context), "HOLDINGS_JSON": dumps(before),
+            render_json = render_prompt_json if self.data.get('prompt_payload_codec') else dumps
+            fields = {"RUN_CONTEXT": render_json(context), "HOLDINGS_JSON": render_json(before),
                       "HOLDINGS_TABLE_ROWS": holding_table(before), "PREVIOUS_DECISION_SUMMARY": "\n".join(prior) or "模拟期初",
-                      "AUTHORIZED_UNIVERSE": dumps(self.spec.get("symbols", list(self.data["instruments"]))),
-                      "EVIDENCE_AND_TOOL_CONTEXT": dumps({"historical_closes": market, "evidence": evidence,
+                      "AUTHORIZED_UNIVERSE": render_json(self.spec.get("symbols", list(self.data["instruments"]))),
+                      "EVIDENCE_AND_TOOL_CONTEXT": render_json({"historical_closes": market, "evidence": evidence,
                         "candidate_research_pack": self.data.get("candidate_research_pack"),
                         "research_state": self.data.get("research_state"),
                         "universe_scope": self.data.get("universe_scope"),
@@ -402,6 +413,11 @@ class Simulation:
             require(digest(request["decision"]) == digest(response), "conflicting duplicate decision")
             return read_json(self.store.path(f"daily/{day}/execution.json"))
         self.validate_decision(response, request)
+        affected = {p['symbol'] for p in request['holdings']['positions']}
+        if response.get('order_proposal'):
+            affected.add(response['order_proposal']['symbol'])
+        require(not any(self.data['bars'].get(day, {}).get(s, {}).get('corporate_action_hints') for s in affected),
+                'corporate action on execution day requires verified continuous account processing; point outcome adapter is separate')
         with self.store.lock():
             before = self.store.load()
             require(before == request["source_holdings"], "stale account; no concurrent overwrite")

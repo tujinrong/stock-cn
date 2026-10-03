@@ -127,7 +127,7 @@ def classify_announcement_title(title):
     rules = [
         ("PERIODIC_REPORT", ("年度报告", "半年度报告", "第一季度报告", "第三季度报告", "季度报告")),
         ("EARNINGS", ("业绩预告", "业绩快报", "盈利预测", "业绩说明会")),
-        ("DIVIDEND", ("利润分配", "分红", "派息", "权益分派")),
+        ("DIVIDEND", ("利润分配", "分红", "派息", "权益分派", "股息分派", "股息派发", "股利分配")),
         ("BUYBACK", ("回购",)),
         ("HOLDER_CHANGE", ("减持", "增持", "持股变动", "股东变动")),
         ("CONTRACT", ("重大合同", "中标", "订单", "项目合同")),
@@ -144,9 +144,17 @@ def classify_announcement_title(title):
 
 def is_periodic_report_body(title):
     t = _clean_title(title)
-    if t.endswith("摘要") or any(x in t for x in ("审计报告", "内部控制", "提示性公告", "英文版")):
+    if any(x in t for x in (
+        "摘要", "审计报告", "内部控制", "提示性公告", "英文", "译本",
+        "修订说明", "修订内容", "修订部分", "更正说明", "更正内容", "更正部分",
+        "更正公告", "补充公告",
+    )):
         return False
-    return bool(re.search(r"\d{4}年(年度|半年度|第一季度|第三季度)报告(?:（[^）]+）)?$", t))
+    # Official issuers use both 2025年度报告 and 2025年年度报告, and may
+    # omit 第 in 一季度/三季度. A corrected full report remains a body;
+    # explanations, abstracts and translated excerpts do not become one.
+    return bool(re.search(
+        r"\d{4}(?:年)?(?:年度|半年度|第?[一三]季度)报告(?:（[^）]+）|\([^()]+\))?$", t))
 
 
 def _extract_org_id(item, sec_code):
@@ -408,6 +416,8 @@ def validate_official_disclosure_pack(pack, *, as_of, required_symbols=None):
             published = datetime.fromisoformat(item["published_at"])
             if published.tzinfo is None or published > cutoff:
                 raise ValueError("future/naive official disclosure in decision pack")
+            if item.get('publication_precision', '').startswith('DATE_ONLY') and published.astimezone(cutoff.tzinfo).date() >= cutoff.date():
+                raise ValueError('date-only official disclosure unavailable at intraday cutoff')
             if item.get("source_official") is not True:
                 raise ValueError("non-official item inside official disclosure pack")
     required = set(required_symbols or [])

@@ -1,0 +1,23 @@
+{
+  "eval_id": "ae-2026-v3-baseline",
+  "variant": "E03",
+  "target_date": "2026-01-09",
+  "execution_date": "2026-01-12",
+  "prompt_sha256": "971b15b06c3f0706e8f5fa87b4ad92087b50f22d739f1c37c034164f22e3708a",
+  "decision_sha256": "355fdf48e2ca2a4bdde8b5bdcd75b5e284a9681c9fb2dec885d6498b99e2b030",
+  "action": null,
+  "execution": {
+    "status": "NOT_EXECUTED",
+    "reason": "INSUFFICIENT_DATA"
+  },
+  "scores": [
+    {
+      "horizon_sessions": 40,
+      "status": "DECISION_UNAVAILABLE"
+    }
+  ],
+  "future_outcomes_were_separate_from_decision_phase": true,
+  "historical_prefix_reverified_before_scoring": true,
+  "eligible_for_prompt_auto_improvement": false,
+  "note": "Missing decision evidence is not HOLD and has no performance score."
+}

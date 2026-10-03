@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import copy
+import re
 from datetime import datetime
+from pathlib import Path
 
 from .simulation import Simulation as BaseSimulation, Store, digest, money, number, read_json, require
 from .research_state import sync_simulation_state
-from .research_inputs import load_research_inputs
+from .research_inputs import load_research_inputs, research_input_root
 from .research_bundle import buy_research_preflight
 from .variant_prompts import variant_root, validate_prompt
 from .time_travel import append_time_travel_prompt, build_time_travel_context
@@ -17,20 +19,38 @@ class DecisionUnavailable(RuntimeError):
 
 
 class VariantSimulation(BaseSimulation):
-    def __init__(self, repo, series, variant, test_id, data):
+    def __init__(self, repo, series, variant, test_id, data, *, prompt_selection=None):
         super().__init__(repo, series, variant, test_id, data)
         self.variant_mode = read_json(self.repo / 'strategies/index.json').get('execution_unit') == 'VARIANT'
         if not self.variant_mode:
+            require(prompt_selection is None, 'explicit prompt selection requires independent variant mode')
             return
         root = variant_root(self.repo, variant)
         selected = root / 'prompt.md'
-        if (root / 'simulation_prompt.json').exists():
+        pointer = prompt_selection
+        if pointer is None and (root / 'simulation_prompt.json').exists():
             pointer = read_json(root / 'simulation_prompt.json')
+        if pointer is not None:
+            require(isinstance(pointer, dict), 'prompt selection must be an object')
+            require(isinstance(pointer.get('version'), str) and
+                    re.fullmatch(r'[A-Za-z][A-Za-z0-9_.-]{0,63}', pointer['version']),
+                    'invalid prompt selection version')
+            require(isinstance(pointer.get('path'), str) and pointer['path'] and
+                    not Path(pointer['path']).is_absolute(),
+                    'prompt selection path must be relative to the variant')
+            require(isinstance(pointer.get('sha256'), str) and
+                    re.fullmatch(r'[0-9a-f]{64}', pointer['sha256']),
+                    'invalid prompt selection hash')
             selected = (root / pointer['path']).resolve()
             require(selected.is_relative_to(root.resolve()), 'candidate prompt path escape')
+            require(selected.is_file(), 'selected prompt file missing')
             require(digest(selected.read_text(encoding='utf-8')) == pointer['sha256'], 'candidate prompt hash mismatch')
         full = selected.read_text(encoding='utf-8')
         validate_prompt(full, (root / 'prompt_versions/v000.md').read_text(encoding='utf-8'))
+        self.prompt_selection = {
+            'version': pointer['version'] if pointer is not None else 'v000',
+            'path': selected.relative_to(root).as_posix(), 'sha256': digest(full),
+        }
         self.prompt_path = selected.relative_to(self.repo).as_posix()
         self.templates = {self.prompt_path: full}
         self.init = read_json(root / 'init.json')
@@ -147,12 +167,12 @@ class VariantSimulation(BaseSimulation):
                  if not m.get('known_at') or datetime.fromisoformat(m['known_at']) <= when}
         travel_day = cutoff[:10]
         file_research = None
-        research_manifest_path = (
-            self.repo / 'research-inputs' / self.variant / travel_day / 'manifest.json'
-        )
+        namespace = self.data.get('research_namespace')
+        research_manifest_path = research_input_root(
+            self.repo, self.variant, travel_day, namespace=namespace) / 'manifest.json'
         if research_manifest_path.exists():
             file_research = load_research_inputs(
-                self.repo, self.variant, travel_day, as_of=cutoff
+                self.repo, self.variant, travel_day, as_of=cutoff, namespace=namespace
             )
             require(file_research.get('mode') == 'SIMULATION',
                     'historical simulation cannot use FORMAL research inputs')
@@ -194,7 +214,8 @@ class VariantSimulation(BaseSimulation):
                 universe_scope=universe_scope,
                 broad_source=self.data.get('broad_universe_source'),
             )
-        runtime_prompt = append_time_travel_prompt(self.templates[self.prompt_path], travel)
+        runtime_prompt = append_time_travel_prompt(self.templates[self.prompt_path], travel,
+                                                 compact=bool(self.data.get('prompt_payload_codec')))
         visible = {'cutoff': cutoff, 'holdings': self.store.load(), 'prompt': runtime_prompt,
                    'bars': {d: {s: b for s, b in rows.items() if s in known}
                             for d, rows in self.data['bars'].items() if d <= cutoff[:10]},

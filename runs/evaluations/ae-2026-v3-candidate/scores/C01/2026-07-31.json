@@ -1,0 +1,51 @@
+{
+  "eval_id": "ae-2026-v3-candidate",
+  "variant": "C01",
+  "target_date": "2026-07-31",
+  "execution_date": "2026-08-03",
+  "prompt_sha256": "8c8811ac29bb467cc820fb5b1c22a43f07335fbd1dd8a124073f9a34d8a36e66",
+  "decision_sha256": "3bfa4787a975ba43d6174caa070db9111652cce1ec48bd971975f1df833ed4c1",
+  "action": "HOLD",
+  "execution": {
+    "status": "NO_TRADE",
+    "fill": null,
+    "reason": "HOLD",
+    "decision_id": "eval-ae-2026-v3-candidate-20260731-C01-2026-08-03",
+    "paper_only": true,
+    "mode": "SIMULATION",
+    "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+  },
+  "scores": [
+    {
+      "horizon_sessions": 40,
+      "date": "2026-09-29",
+      "status": "SCORED",
+      "elapsed_sessions": 41,
+      "annualized_return_pct": 0.0,
+      "max_daily_drawdown_pct": 0.0,
+      "excess_return_percentage_points": "0",
+      "actual_equity_cny": "200000.00",
+      "hold_counterfactual_equity_cny": "200000.00",
+      "actual_return_pct": "0",
+      "hold_return_pct": "0",
+      "incremental_pnl_vs_hold_cny": "0.00",
+      "incremental_return_vs_hold_pct": "0",
+      "point_dividend_policy": {
+        "scope": "LOCKED_POINT_OUTCOME_ONLY",
+        "income_basis": "EX_DATE_RECEIVABLE_WITH_TAX_RESERVE",
+        "tax_reserve_rate": "0.20",
+        "note": "Uniform conservative experimental reserve; not actual personal tax settlement."
+      },
+      "dividend_entitlements": [],
+      "hold_dividend_entitlements": [],
+      "gross_equity_before_dividend_tax_reserve_cny": "200000.00",
+      "gross_return_before_dividend_tax_reserve_pct": "0",
+      "dividend_tax_reserve_cny": "0.00"
+    }
+  ],
+  "future_outcomes_were_separate_from_decision_phase": true,
+  "historical_prefix_reverified_before_scoring": true,
+  "request_regenerated_during_scoring": false,
+  "eligible_for_prompt_auto_improvement": false,
+  "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+}

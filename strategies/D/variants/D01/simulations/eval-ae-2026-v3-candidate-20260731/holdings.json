@@ -1,0 +1,33 @@
+{
+  "strategy_id": "D",
+  "status": "SIMULATION",
+  "date": "2026-08-03",
+  "initial_capital_cny": "200000.00",
+  "cash_cny": "119173.99",
+  "total_equity_cny": "198673.99",
+  "positions": [
+    {
+      "symbol": "600276.SH",
+      "name": "恒瑞医药",
+      "quantity": 1500,
+      "sellable_quantity": 0,
+      "average_cost_cny": "53.884007",
+      "cost_basis_cny": "80826.01",
+      "valuation_price_cny": "53.00"
+    }
+  ],
+  "_meta": {
+    "schema_version": "0.4",
+    "mode": "SIMULATION",
+    "paper_only": true,
+    "variant_id": "D01",
+    "test_id": "eval-ae-2026-v3-candidate-20260731",
+    "revision": 2,
+    "valuation_time": "2026-08-03T15:00:00+08:00",
+    "fees_cny": "21.01",
+    "last_decision_date": "2026-08-03",
+    "data_kind": "REAL_HISTORY",
+    "time_travel_jump": true,
+    "last_event_id": "000002"
+  }
+}

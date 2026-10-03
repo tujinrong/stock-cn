@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 from datetime import date, datetime, timedelta, timezone
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from pathlib import Path
@@ -91,6 +92,40 @@ def request_json(url, timeout=12):
     return json.loads(raw.decode("utf-8"))
 
 
+def source_corporate_action_hints(row, provider, source):
+    """Preserve provider rights metadata without claiming verified availability.
+
+    Tencent's seventh daily-row column can contain a dictionary or a list of
+    rights records. Eastmoney's seventh column is turnover, not rights metadata.
+    Unknown record types remain visible for fail-closed downstream processing.
+    """
+    if provider != "Tencent" or len(row) <= 6 or row[6] is None:
+        return []
+
+    def records(payload):
+        if isinstance(payload, list):
+            for item in payload:
+                yield from records(item)
+        else:
+            yield payload
+
+    hints = []
+    for payload in records(row[6]):
+        raw = deepcopy(payload)
+        hint = dict(raw) if isinstance(raw, dict) else {"raw_payload": raw}
+        # Preserve source fields independently of the normalized status fields.
+        hint.update({
+            "raw_source_payload": raw,
+            "status": "UNVERIFIED_SOURCE_HINT",
+            "information_available_at": None,
+            "row_date": row[0],
+            "provider": provider,
+            "source": source,
+        })
+        hints.append(hint)
+    return hints
+
+
 def fetch_daily(symbols, start, end, request=request_json):
     """One Tencent request per symbol, Eastmoney fallback; no retries without limit.
 
@@ -128,6 +163,7 @@ def fetch_daily(symbols, start, end, request=request_json):
                                       "open": str(number(x[1])), "close": str(number(x[2])),
                                       "high": str(number(x[3])), "low": str(number(x[4])),
                                       "volume": str(number(x[5])) if len(x) > 5 and x[5] not in (None, "") else None,
+                                      "corporate_action_hints": source_corporate_action_hints(x, provider, url),
                                       "source": url, "provider": provider}
                             for x in rows if start <= x[0] <= end}
                 if len(selected) < 2:
@@ -181,6 +217,7 @@ def fetch_daily(symbols, start, end, request=request_json):
                             "Previous close decision, next open execution; not 11:00 replay.",
                             "For configured ordinary main-board stocks, 10% daily limit prices are reconstructed from the previous raw close; suspected >25% basis breaks are left unexecutable.",
                             "Corporate actions are not fully adjusted; structural breaks are detected conservatively.",
+                            "Tencent corporate_action_hints preserve unverified source metadata, not a complete rights ledger. Historical information availability and payment dates are unknown; do not use hints as verified AI facts.",
                             f"Missing-symbol sessions are preserved and rejected, not dropped: {len(union-common)}"],
             "instruments": {s: {"name": SYMBOLS[s], "board": "MAIN", "lot_size": 100,
                                 "price_limit_pct": "0.10",

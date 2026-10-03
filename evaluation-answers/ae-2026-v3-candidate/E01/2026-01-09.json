@@ -1,0 +1,73 @@
+{
+  "strategy_id": "E",
+  "variant_id": "E01",
+  "mode": "SIMULATION",
+  "run_id": "eval-ae-2026-v3-candidate-20260109-E01",
+  "decision_id": "eval-ae-2026-v3-candidate-20260109-E01-2026-01-12",
+  "date": "2026-01-12",
+  "decision_time": "2026-01-09T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "4a05bf37108f70fbd9108748061024c6956bbe01",
+  "schema_version": "0.3-draft",
+  "status": "READY",
+  "action": "BUY",
+  "order_proposal": {
+    "symbol": "600660.SH",
+    "side": "BUY",
+    "quantity": 1700,
+    "reference_price_cny": "63.530",
+    "quote_source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600660%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C",
+    "quote_time": "2026-01-09T15:00:00+08:00"
+  },
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "仅研究事先声明的10股候选池，不代表全A股最优；各变体独立20万元现金开局，本次没有原持仓可卖。冻结机会成本审查仍选福耀，1700股参考108001元、54.00%资产，保留91999元费用前现金。相较仅1100股，财报扣非与经营现金流共同确认、60日价格回撤使适度增加暴露能对账户结果产生实际贡献；全现金或100股会过少参与已验证增长。反证是财报滞后、海外需求/成本风险与单股集中，因而保留约46%现金、不满仓。若标的下跌10%，账户价格损失约5.40%（假设情景）；本仓位是证据权衡而非统一公式。并未把行业转折或授权首付款当作新的可持续销量依据。",
+  "risks": [
+    "模型预训练可能含有后来知识，不能声称绝对消除前视偏差。",
+    "只有40交易日评价窗口；单日一次动作，未来改善未必及时被价格反映。",
+    "约54%单股集中风险，下行损失对账户影响明显；40日内不保证兑现。"
+  ],
+  "evidence": [
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+      "published_at": "2025-10-17T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600660.SH",
+      "facts_referenced": [
+        "福耀2025Q3收入17.62%、归母28.93%、扣非24.70%、现金流57.29%。",
+        "恒瑞现金增长包含海外授权首付款；平安营运利润7.2%、NBV46.2%与净利润非同口径。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+      "published_at": "2025-10-28T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600276.SH",
+      "facts_referenced": [
+        "福耀2025Q3收入17.62%、归母28.93%、扣非24.70%、现金流57.29%。",
+        "恒瑞现金增长包含海外授权首付款；平安营运利润7.2%、NBV46.2%与净利润非同口径。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+      "published_at": "2025-10-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601318.SH",
+      "facts_referenced": [
+        "福耀2025Q3收入17.62%、归母28.93%、扣非24.70%、现金流57.29%。",
+        "恒瑞现金增长包含海外授权首付款；平安营运利润7.2%、NBV46.2%与净利润非同口径。"
+      ]
+    },
+    {
+      "source": "SAVED_POINT_IN_TIME_PRICE_CONTEXT",
+      "published_at": "2026-01-09T15:00:00+08:00",
+      "kind": "ARCHIVED_OHLCV"
+    }
+  ],
+  "data_gaps": [
+    "新闻按历史协议忽略，不能推断当时没有风险；仅有季报主要指标及部分解释，财务附注和全部经营公告未全面核读。",
+    "首日期连续价格仅248交易日（神华238日），250日年度统计为null；参考可见月线和120日位置，不能声称精确年度低点。",
+    "历史公司权益事件和交易所涨跌停未完整独立核验，次日开盘代理执行，报价与成交分离。",
+    "福耀海外业务/扩产附注和2025年报未完整可用；估值相对吸引力为推断。"
+  ]
+}

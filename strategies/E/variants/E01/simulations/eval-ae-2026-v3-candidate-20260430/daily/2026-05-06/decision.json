@@ -1,0 +1,73 @@
+{
+  "strategy_id": "E",
+  "variant_id": "E01",
+  "mode": "SIMULATION",
+  "run_id": "eval-ae-2026-v3-candidate-20260430-E01",
+  "decision_id": "eval-ae-2026-v3-candidate-20260430-E01-2026-05-06",
+  "date": "2026-05-06",
+  "decision_time": "2026-04-30T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "4a05bf37108f70fbd9108748061024c6956bbe01",
+  "schema_version": "0.3-draft",
+  "status": "READY",
+  "action": "BUY",
+  "order_proposal": {
+    "symbol": "600309.SH",
+    "side": "BUY",
+    "quantity": 900,
+    "reference_price_cny": "89.540",
+    "quote_source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600309%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C",
+    "quote_time": "2026-04-30T15:00:00+08:00"
+  },
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "仅研究事先声明的10股候选池，非全A股；独立20万元现金开局，无原持仓可卖。冻结机会成本审查后选择万华900股，参考80586元、40.29%资产，保留119414元费用前现金。扣非和绝对现金回收支持原财报交易逻辑；相较仅100股或全现金，40%左右暴露可让已确认改善有账户贡献。价格20日已涨8.05%、年度高部，现金同比又有低基数，因而仅适度增加并留近60%现金；假设标的回落10%，账户价格损失约4.03%。不把股价上涨当行业转折证据，未用无时间验证的长电/大秦报告。",
+  "risks": [
+    "模型预训练可能含后来知识，不能保证完全消除前视偏差。",
+    "40交易日内改善未必被价格及时反映；无法日内盯盘或随时退出。",
+    "约40%单一周期公司集中风险；高部价格可能使财报改善难以转化40日收益。"
+  ],
+  "evidence": [
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-21/1225130687.PDF",
+      "published_at": "2026-04-21T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600309.SH",
+      "facts_referenced": [
+        "万华Q1收入25.50%、归母20.62%、扣非18.20%、现金流68.57亿元；同比1079.87%有低基数影响。",
+        "恒瑞Q1现金流低于净利；石化负经营现金流及库存增利显示利润质量权衡。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-23/1225145521.PDF",
+      "published_at": "2026-04-23T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600276.SH",
+      "facts_referenced": [
+        "万华Q1收入25.50%、归母20.62%、扣非18.20%、现金流68.57亿元；同比1079.87%有低基数影响。",
+        "恒瑞Q1现金流低于净利；石化负经营现金流及库存增利显示利润质量权衡。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235941.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600028.SH",
+      "facts_referenced": [
+        "万华Q1收入25.50%、归母20.62%、扣非18.20%、现金流68.57亿元；同比1079.87%有低基数影响。",
+        "恒瑞Q1现金流低于净利；石化负经营现金流及库存增利显示利润质量权衡。"
+      ]
+    },
+    {
+      "source": "SAVED_POINT_IN_TIME_PRICE_CONTEXT",
+      "published_at": "2026-04-30T15:00:00+08:00",
+      "kind": "ARCHIVED_OHLCV"
+    }
+  ],
+  "data_gaps": [
+    "长江电力、大秦铁路4/30报告只有日期精度，已按v3规则扣除；官方资料FAILED、financial_review=null，不使用旧v2所见数字评价或推荐这两股。",
+    "仅核读其余8股季报主要指标与部分解释，未完整审计附注、负债、估值及全部经营公告；新闻按历史协议忽略。",
+    "未完整独立核验权益事件与历史涨跌停；次日开盘代理成交须核验资金及100股手数，参考价不等于成交。",
+    "万华资本开支与营运资金附注、行业价差未全面提取，估值剩余空间只是推断。"
+  ]
+}

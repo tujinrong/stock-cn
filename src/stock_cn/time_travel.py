@@ -244,14 +244,16 @@ def build_time_travel_context(data, target_date, cutoff_date, *, symbols=None, i
     }
 
 
-def append_time_travel_prompt(prompt, context):
+def append_time_travel_prompt(prompt, context, *, compact=False):
     """Use the same complete strategy prompt, adding only a runtime travel appendix."""
+    from .prompt_payload import render_prompt_json
+    context_json = render_prompt_json(context) if compact else json.dumps(context, ensure_ascii=False, indent=2, allow_nan=False)
     return (
         prompt.rstrip()
         + "\n\n## 时光穿越运行层（仅本次运行时注入，不改变策略正文）\n"
         + context["instruction"]
         + "\n\n下面数据均按knowledge_cutoff裁剪。把它们当作你在那个时点能看到的大致市场环境；"
           "新闻缺失可忽略，不允许根据后来的结果补全。\n\n"
-        + json.dumps(context, ensure_ascii=False, indent=2, allow_nan=False)
+        + context_json
         + "\n"
     )

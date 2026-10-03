@@ -124,16 +124,21 @@ def test_prompt_content_tamper_is_rejected_even_if_hash_field_unchanged(repo):
         score_locked_decision(repo, 'prompt-tamper', 'C02', target, data)
 
 
-def test_same_historical_prefix_same_prompt_even_if_future_changes(repo, tmp_path_factory):
+@pytest.mark.parametrize('compact', [False, True])
+def test_same_historical_prefix_same_prompt_even_if_future_changes(repo, tmp_path_factory, compact):
     materialize(repo)
     other = tmp_path_factory.mktemp("eval-prefix")
     shutil.copytree(repo, other, dirs_exist_ok=True)
     one = history()
+    one['prompt_payload_codec'] = compact
     two = copy.deepcopy(one)
     target = one["sessions"][8]
-    for d in two["sessions"][20:]:
+    for d in two["sessions"][9:]:
         two["bars"][d]["600036.SH"].update(
-            open="900.00", close="901.00", high="902.00", low="899.00")
+            open="900.00", close="901.00", high="902.00", low="899.00", volume='99999999',
+            corporate_action_hints=[{'cqr': d, 'FHcontent': 'future action'}])
+    two['evidence'].append({'published_at': two['sessions'][20] + 'T10:00:00+08:00',
+                            'source': 'TEST_ONLY_FUTURE', 'text': 'future event must stay invisible'})
     a = prepare_batch(repo, "same", ["C02"], one, [target])["entries"][0]
     b = prepare_batch(other, "same", ["C02"], two, [target])["entries"][0]
     assert (repo / a["ai_input_path"]).read_text() == (other / b["ai_input_path"]).read_text()

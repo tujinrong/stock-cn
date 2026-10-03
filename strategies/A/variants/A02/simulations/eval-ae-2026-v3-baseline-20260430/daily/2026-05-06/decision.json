@@ -1,0 +1,506 @@
+{
+  "strategy_id": "A",
+  "variant_id": "A02",
+  "mode": "SIMULATION",
+  "run_id": "eval-ae-2026-v3-baseline-20260430-A02",
+  "decision_id": "eval-ae-2026-v3-baseline-20260430-A02-2026-05-06",
+  "date": "2026-05-06",
+  "decision_time": "2026-04-30T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "4a05bf37108f70fbd9108748061024c6956bbe01",
+  "schema_version": "0.3-draft",
+  "status": "READY",
+  "action": "SELL",
+  "order_proposal": {
+    "symbol": "002594.SZ",
+    "side": "SELL",
+    "quantity": 100,
+    "reference_price_cny": "102.980",
+    "quote_source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz002594%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C",
+    "quote_time": "2026-04-30T15:00:00+08:00"
+  },
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "这是2026-04-30收盘的独立20万元已结算假定账户：招商700股、比亚迪200股、福耀500股、长江1000股、恒立200股，现金74864元，股票62.57%、现金37.43%，没有此前真实买入理由或盈亏。均衡判断：卖出比亚迪100股、保留100股。4/29一季报收入-11.82%、扣非利润-49.24%、经营现金流-67.48%足以降低原有10.30%敞口；60日价格+12.17%、5日+3.00%又说明市场仍可能认可后续修复，全部退出的反弹机会成本不小。将风险减半而不加仓别股，使剩余比亚迪约5.15%，按4/30参考价102.98元释放10298元扣卖出费用，股票约57.42%、现金约42.57%。100股由现有200股风险减半和账户贡献决定，不是机械最小手数。招商一季报收入+3.81%、归母利润+1.52%支持继续保留已有银行敞口，但最近两日价格转弱且资产质量及估值未完整核实，不加仓。福耀收入+5.08%，扣非利润-17.32%、经营现金流-82.22%；汇兑损失的公司解释是反证中的缓和因素，不能代替报表利润，保留500股但不扩大。恒立收入+32.52%而扣非利润-18.33%，经营增长尚未充分转化为经常利润；价格反弹且波动高，保留200股，不追涨。长江现有1000股本次不调整，仅保留既有水电风险分散敞口，不把结构性行业背景或上涨当成财报改善；对该股最新基本面判断资料不足。比亚迪收入、扣非利润和经营现金流恢复，或取得估值与经营证据足以解释疲弱时需重新研究；不依据未来消息或后续收益修改本时点建议。本次资料足够支持对有完整可用一季报的比亚迪作定向减仓；其他证据缺口均保留，不冒充完整五股基本面验收。",
+  "risks": [
+    "比亚迪季度疲弱可能已被部分定价；减仓会放弃新产品、竞争缓和或经营修复带来的反弹，60日价格上涨并未证明继续恶化。",
+    "福耀、比亚迪均受汽车产销和海外业务影响，组合相关风险仍在；恒立需求周期、非经常收益和较高波动可放大回撤。",
+    "保留长江电力持仓仍承担来水、利率及未知公告风险；缺财报不可解释为低风险，后续获得可用资料须重新判断。",
+    "下一交易日开盘代理执行存在假期间消息和跳空风险；截止4/30不知5/6成交价，锁定建议不等于已成交或保证执行。",
+    "固定40交易日评价区间的现金可能拖累上涨行情；季度数据不能保证未来收益，且不得假定全天监控或盘中止损。"
+  ],
+  "evidence": [
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600036.SH",
+      "facts_referenced": [
+        {
+          "symbol": "002594.SZ",
+          "name": "营业收入同比",
+          "value": "-11.82",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "扣非归母净利润同比",
+          "value": "-49.24",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "归母净利润同比",
+          "value": "-55.38",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "经营现金流净额同比",
+          "value": "-67.48",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "60交易日收益",
+          "value": "12.1664",
+          "unit": "PERCENT",
+          "as_of": "2026-04-30T15:00:00+08:00",
+          "source": "SUPPLIED_CAUSAL_TIME_TRAVEL_POST_BASIS_BREAK_SEGMENT"
+        },
+        {
+          "symbol": "600036.SH",
+          "name": "营业收入同比",
+          "value": "3.81",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF"
+        },
+        {
+          "symbol": "600036.SH",
+          "name": "归母净利润同比",
+          "value": "1.52",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF"
+        },
+        {
+          "symbol": "600660.SH",
+          "name": "营业收入同比",
+          "value": "5.08",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF"
+        },
+        {
+          "symbol": "600660.SH",
+          "name": "扣非归母净利润同比",
+          "value": "-17.32",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF"
+        },
+        {
+          "symbol": "600660.SH",
+          "name": "经营现金流净额同比",
+          "value": "-82.22",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF"
+        },
+        {
+          "symbol": "601100.SH",
+          "name": "营业收入同比",
+          "value": "32.52",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-28T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF"
+        },
+        {
+          "symbol": "601100.SH",
+          "name": "扣非归母净利润同比",
+          "value": "-18.33",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-28T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF"
+        }
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "002594.SZ",
+      "facts_referenced": [
+        {
+          "symbol": "002594.SZ",
+          "name": "营业收入同比",
+          "value": "-11.82",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "扣非归母净利润同比",
+          "value": "-49.24",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "归母净利润同比",
+          "value": "-55.38",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "经营现金流净额同比",
+          "value": "-67.48",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "60交易日收益",
+          "value": "12.1664",
+          "unit": "PERCENT",
+          "as_of": "2026-04-30T15:00:00+08:00",
+          "source": "SUPPLIED_CAUSAL_TIME_TRAVEL_POST_BASIS_BREAK_SEGMENT"
+        },
+        {
+          "symbol": "600036.SH",
+          "name": "营业收入同比",
+          "value": "3.81",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF"
+        },
+        {
+          "symbol": "600036.SH",
+          "name": "归母净利润同比",
+          "value": "1.52",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF"
+        },
+        {
+          "symbol": "600660.SH",
+          "name": "营业收入同比",
+          "value": "5.08",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF"
+        },
+        {
+          "symbol": "600660.SH",
+          "name": "扣非归母净利润同比",
+          "value": "-17.32",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF"
+        },
+        {
+          "symbol": "600660.SH",
+          "name": "经营现金流净额同比",
+          "value": "-82.22",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF"
+        },
+        {
+          "symbol": "601100.SH",
+          "name": "营业收入同比",
+          "value": "32.52",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-28T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF"
+        },
+        {
+          "symbol": "601100.SH",
+          "name": "扣非归母净利润同比",
+          "value": "-18.33",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-28T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF"
+        }
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+      "published_at": "2026-04-22T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600660.SH",
+      "facts_referenced": [
+        {
+          "symbol": "002594.SZ",
+          "name": "营业收入同比",
+          "value": "-11.82",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "扣非归母净利润同比",
+          "value": "-49.24",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "归母净利润同比",
+          "value": "-55.38",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "经营现金流净额同比",
+          "value": "-67.48",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "60交易日收益",
+          "value": "12.1664",
+          "unit": "PERCENT",
+          "as_of": "2026-04-30T15:00:00+08:00",
+          "source": "SUPPLIED_CAUSAL_TIME_TRAVEL_POST_BASIS_BREAK_SEGMENT"
+        },
+        {
+          "symbol": "600036.SH",
+          "name": "营业收入同比",
+          "value": "3.81",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF"
+        },
+        {
+          "symbol": "600036.SH",
+          "name": "归母净利润同比",
+          "value": "1.52",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF"
+        },
+        {
+          "symbol": "600660.SH",
+          "name": "营业收入同比",
+          "value": "5.08",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF"
+        },
+        {
+          "symbol": "600660.SH",
+          "name": "扣非归母净利润同比",
+          "value": "-17.32",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF"
+        },
+        {
+          "symbol": "600660.SH",
+          "name": "经营现金流净额同比",
+          "value": "-82.22",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF"
+        },
+        {
+          "symbol": "601100.SH",
+          "name": "营业收入同比",
+          "value": "32.52",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-28T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF"
+        },
+        {
+          "symbol": "601100.SH",
+          "name": "扣非归母净利润同比",
+          "value": "-18.33",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-28T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF"
+        }
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF",
+      "published_at": "2026-04-28T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601100.SH",
+      "facts_referenced": [
+        {
+          "symbol": "002594.SZ",
+          "name": "营业收入同比",
+          "value": "-11.82",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "扣非归母净利润同比",
+          "value": "-49.24",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "归母净利润同比",
+          "value": "-55.38",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "经营现金流净额同比",
+          "value": "-67.48",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF"
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "60交易日收益",
+          "value": "12.1664",
+          "unit": "PERCENT",
+          "as_of": "2026-04-30T15:00:00+08:00",
+          "source": "SUPPLIED_CAUSAL_TIME_TRAVEL_POST_BASIS_BREAK_SEGMENT"
+        },
+        {
+          "symbol": "600036.SH",
+          "name": "营业收入同比",
+          "value": "3.81",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF"
+        },
+        {
+          "symbol": "600036.SH",
+          "name": "归母净利润同比",
+          "value": "1.52",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-29T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF"
+        },
+        {
+          "symbol": "600660.SH",
+          "name": "营业收入同比",
+          "value": "5.08",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF"
+        },
+        {
+          "symbol": "600660.SH",
+          "name": "扣非归母净利润同比",
+          "value": "-17.32",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF"
+        },
+        {
+          "symbol": "600660.SH",
+          "name": "经营现金流净额同比",
+          "value": "-82.22",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-22T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF"
+        },
+        {
+          "symbol": "601100.SH",
+          "name": "营业收入同比",
+          "value": "32.52",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-28T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF"
+        },
+        {
+          "symbol": "601100.SH",
+          "name": "扣非归母净利润同比",
+          "value": "-18.33",
+          "unit": "PERCENT",
+          "period": "2026Q1",
+          "published_at": "2026-04-28T00:00:00+08:00",
+          "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF"
+        }
+      ]
+    },
+    {
+      "source": "SAVED_POINT_IN_TIME_PRICE_CONTEXT",
+      "published_at": "2026-04-30T15:00:00+08:00",
+      "kind": "ARCHIVED_OHLCV"
+    }
+  ],
+  "data_gaps": [
+    "长江电力2026-04-30报告只有日期，无法确认15:00前可得，严格输入已扣除；截至目标收盘未取得可用最新财报及财务复核，不能据此断言盈利、现金流或分红改善。",
+    "五家公司近期历史新闻未核实；仅有已披露季度主要指标及部分解释，未全面核读财务附注、全部经营公告、订单和产品价差，也无完整同期估值/资产质量/行业事件数据。",
+    "市场环境仅有固定五股等权代理，无真实宽基指数或完整行业横向覆盖；历史涨跌停由10%近似重建，未核实完整官方交易限制。",
+    "比亚迪2025年7月送转导致未复权历史断点；只使用断点后连续183交易日的统计，不用跨断点价格跌幅或250日位置证明便宜。",
+    "未查未来现金分红审计或未来权益事件；只能锁定建议，由隔离执行校验成交价、费用、权益口径和可卖量。模型预训练可能含后来知识，不能声称绝对无前视偏差。"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "AI_SELECT_DEEP_RESEARCH_PACK",
+  "purpose": "EARNINGS_IMPROVEMENT",
+  "cutoff_date": "2026-01-09",
+  "selected_count": 10,
+  "not_a_recommendation": true,
+  "candidates": [
+    {
+      "symbol": "600036.SH",
+      "name": null
+    },
+    {
+      "symbol": "600519.SH",
+      "name": null
+    },
+    {
+      "symbol": "600276.SH",
+      "name": null
+    },
+    {
+      "symbol": "600900.SH",
+      "name": null
+    },
+    {
+      "symbol": "600660.SH",
+      "name": null
+    },
+    {
+      "symbol": "600309.SH",
+      "name": null
+    },
+    {
+      "symbol": "601318.SH",
+      "name": null
+    },
+    {
+      "symbol": "601088.SH",
+      "name": null
+    },
+    {
+      "symbol": "600028.SH",
+      "name": null
+    },
+    {
+      "symbol": "601006.SH",
+      "name": null
+    }
+  ],
+  "coverage_note": "Same ten-stock declared universe as earlier pilot; candidates are research scope, not winners."
+}

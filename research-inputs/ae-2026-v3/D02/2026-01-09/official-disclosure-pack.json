@@ -1,0 +1,312 @@
+{
+  "kind": "OFFICIAL_DISCLOSURE_PACK",
+  "symbols_requested": [
+    "600036.SH",
+    "600519.SH",
+    "600276.SH",
+    "600900.SH",
+    "600660.SH",
+    "600309.SH",
+    "601318.SH",
+    "601088.SH",
+    "600028.SH",
+    "601006.SH"
+  ],
+  "results": [
+    {
+      "symbol": "600036.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600036.SH",
+          "title": "招商银行股份有限公司2025年第三季度报告",
+          "published_at": "2025-10-30T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "8d50c7c12c76814d80da9763147ea0f109bc6e7f89e9193ec8de2498eaeaed48"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "600519.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600519.SH",
+          "title": "贵州茅台2025年第三季度报告",
+          "published_at": "2025-10-30T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224764517.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "622935d03b23310dcde1ba3c3d398b130c3fbf73b753fb79fab934999524307a"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "600276.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600276.SH",
+          "title": "恒瑞医药2025年第三季度报告",
+          "published_at": "2025-10-28T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "15136c6bfd4c60e46e7ba36f6744f833aebf1f9aca05e000601d2fc3365abfb2"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "600900.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600900.SH",
+          "title": "长江电力2025年第三季度报告",
+          "published_at": "2025-10-31T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "1efb73a0c2327419f6c9d571bd34814f8c4672cbc4d3def87c414e65b3f6d3c0"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "600660.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600660.SH",
+          "title": "福耀玻璃2025年第三季度报告",
+          "published_at": "2025-10-17T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "f535ea9635e47908125371e932fe8cee2e11a114946bae134e1b5196a1328542"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "600309.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600309.SH",
+          "title": "万华化学2025年三季度报告",
+          "published_at": "2025-10-25T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224733028.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "e6736e3f96ae4b21dd85d3968d3eada22e4fabfcca2b657c26bad387bf7d5b27"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "601318.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "601318.SH",
+          "title": "中国平安2025年第三季度报告",
+          "published_at": "2025-10-29T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "2c5ab803ee456999bebf8478f910257c5b5d682fdd7d901e8a8cc27dd10a6a59"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "601088.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "601088.SH",
+          "title": "中国神华2025年第三季度报告",
+          "published_at": "2025-10-25T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224736591.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "e268baba86e13efdeabdb0b57fcc64d1153c30027d9435fbc2b4b272106e9342"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "600028.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600028.SH",
+          "title": "中国石化2025年第三季度报告",
+          "published_at": "2025-10-30T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "b054ea7dd51b06a5fa3d6ec38514ecd33a8f390a5d3956ecb8b4da8bc07a7fc0"
+        }
+      ],
+      "error": null
+    },
+    {
+      "symbol": "601006.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "601006.SH",
+          "title": "大秦铁路股份有限公司2025年第三季度报告",
+          "published_at": "2025-10-30T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224765802.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT",
+          "document_sha256": "d686c6a6eb141d68fa8f4de9ad86a22c9c7578e08921083348da9d53cb13b56b"
+        }
+      ],
+      "error": null
+    }
+  ],
+  "latest_periodic_report_refs": [
+    {
+      "symbol": "600036.SH",
+      "title": "招商银行股份有限公司2025年第三季度报告",
+      "published_at": "2025-10-30T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224763992.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "8d50c7c12c76814d80da9763147ea0f109bc6e7f89e9193ec8de2498eaeaed48"
+    },
+    {
+      "symbol": "600519.SH",
+      "title": "贵州茅台2025年第三季度报告",
+      "published_at": "2025-10-30T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224764517.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "622935d03b23310dcde1ba3c3d398b130c3fbf73b753fb79fab934999524307a"
+    },
+    {
+      "symbol": "600276.SH",
+      "title": "恒瑞医药2025年第三季度报告",
+      "published_at": "2025-10-28T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-28/1224743064.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "15136c6bfd4c60e46e7ba36f6744f833aebf1f9aca05e000601d2fc3365abfb2"
+    },
+    {
+      "symbol": "600900.SH",
+      "title": "长江电力2025年第三季度报告",
+      "published_at": "2025-10-31T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "1efb73a0c2327419f6c9d571bd34814f8c4672cbc4d3def87c414e65b3f6d3c0"
+    },
+    {
+      "symbol": "600660.SH",
+      "title": "福耀玻璃2025年第三季度报告",
+      "published_at": "2025-10-17T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-17/1224716138.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "f535ea9635e47908125371e932fe8cee2e11a114946bae134e1b5196a1328542"
+    },
+    {
+      "symbol": "600309.SH",
+      "title": "万华化学2025年三季度报告",
+      "published_at": "2025-10-25T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224733028.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "e6736e3f96ae4b21dd85d3968d3eada22e4fabfcca2b657c26bad387bf7d5b27"
+    },
+    {
+      "symbol": "601318.SH",
+      "title": "中国平安2025年第三季度报告",
+      "published_at": "2025-10-29T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-29/1224756115.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "2c5ab803ee456999bebf8478f910257c5b5d682fdd7d901e8a8cc27dd10a6a59"
+    },
+    {
+      "symbol": "601088.SH",
+      "title": "中国神华2025年第三季度报告",
+      "published_at": "2025-10-25T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-25/1224736591.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "e268baba86e13efdeabdb0b57fcc64d1153c30027d9435fbc2b4b272106e9342"
+    },
+    {
+      "symbol": "600028.SH",
+      "title": "中国石化2025年第三季度报告",
+      "published_at": "2025-10-30T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224767154.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "b054ea7dd51b06a5fa3d6ec38514ecd33a8f390a5d3956ecb8b4da8bc07a7fc0"
+    },
+    {
+      "symbol": "601006.SH",
+      "title": "大秦铁路股份有限公司2025年第三季度报告",
+      "published_at": "2025-10-30T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2025-10-30/1224765802.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT",
+      "document_sha256": "d686c6a6eb141d68fa8f4de9ad86a22c9c7578e08921083348da9d53cb13b56b"
+    }
+  ],
+  "important_recent_refs": [],
+  "withheld_sources": [],
+  "coverage_note": "Latest report metadata checked against public archive; same-day date-only sources withheld, not all litigation/media events reviewed."
+}

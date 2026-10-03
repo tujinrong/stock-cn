@@ -1,0 +1,9 @@
+{
+  "status": "WITHDRAWN_BEFORE_SCORING",
+  "reason": "Two report sources on 2026-04-30 had date-only publication precision; availability by 15:00 was unproven.",
+  "scores_read_or_generated": false,
+  "successor": "ae-2026-v3",
+  "old_locks_and_inputs_preserved": true,
+  "locked_decisions": 36,
+  "valid_prior_date_choices_reused": 30
+}

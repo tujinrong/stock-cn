@@ -1,0 +1,10 @@
+{
+  "variant_id": "E03",
+  "mode": "SIMULATION",
+  "decision_date": "2026-04-30",
+  "information_cutoff": "2026-04-30T15:00:00+08:00",
+  "source_commit": null,
+  "formal_execution": false,
+  "research_method": "PUBLIC_ARCHIVE_RECONSTRUCTION; only report facts published by cutoff",
+  "shared_research_origin": "ae-2026-v1; same reconstructed causal facts for v2 lossless rendering"
+}

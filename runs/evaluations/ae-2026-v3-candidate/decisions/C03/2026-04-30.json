@@ -1,0 +1,83 @@
+{
+  "strategy_id": "C",
+  "variant_id": "C03",
+  "mode": "SIMULATION",
+  "run_id": "eval-ae-2026-v3-candidate-20260430-C03",
+  "decision_id": "eval-ae-2026-v3-candidate-20260430-C03-2026-05-06",
+  "date": "2026-05-06",
+  "decision_time": "2026-04-30T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "4a05bf37108f70fbd9108748061024c6956bbe01",
+  "schema_version": "0.3-draft",
+  "status": "INSUFFICIENT_DATA",
+  "action": null,
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "机会成本复核不改变机会优先的证据要求。20万元全现金可能错过价格回升，但长电缺可靠最新财务、不能使用同日DATE_ONLY报告；恒立反弹和现金流改善线索尚不足以抵消扣非下降、非经常收益及高波动，额外集中资金的潜在损失与收益均不宜以未核实经营事实估计。福耀、比亚迪盈利现金流反证较强，银行增长温和且价格走弱。缺口决定本次不能给可执行选择和数量，返回INSUFFICIENT_DATA、action=null，不把现金机会成本解释成必须交易。",
+  "risks": [
+    "机会成本存在但未核实经营事实下无法合理扩大资金暴露",
+    "恒立高波动和盈利质量风险，汽车板块利润压力",
+    "下一开盘代理执行及单日一次调整延迟"
+  ],
+  "evidence": [
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-28/1225204109.PDF",
+      "published_at": "2026-04-28T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "601100.SH",
+      "facts_referenced": [
+        "恒立2026Q1扣非利润-18.33%，归母利润+5.59%并有非经常收益104623492.83元，经营现金流+934.62%",
+        "恒立4月30日5日收益+4.7496%、60日收益-7.0398%，近似波动44.9321%",
+        "比亚迪2026Q1利润-55.38%，福耀净利润-15.68%、现金流-82.22%",
+        "招商银行2026Q1利润+1.52%，目标日价格处20日区间低点；长电financial_review=null"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225233071.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "002594.SZ",
+      "facts_referenced": [
+        "恒立2026Q1扣非利润-18.33%，归母利润+5.59%并有非经常收益104623492.83元，经营现金流+934.62%",
+        "恒立4月30日5日收益+4.7496%、60日收益-7.0398%，近似波动44.9321%",
+        "比亚迪2026Q1利润-55.38%，福耀净利润-15.68%、现金流-82.22%",
+        "招商银行2026Q1利润+1.52%，目标日价格处20日区间低点；长电financial_review=null"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+      "published_at": "2026-04-22T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600660.SH",
+      "facts_referenced": [
+        "恒立2026Q1扣非利润-18.33%，归母利润+5.59%并有非经常收益104623492.83元，经营现金流+934.62%",
+        "恒立4月30日5日收益+4.7496%、60日收益-7.0398%，近似波动44.9321%",
+        "比亚迪2026Q1利润-55.38%，福耀净利润-15.68%、现金流-82.22%",
+        "招商银行2026Q1利润+1.52%，目标日价格处20日区间低点；长电financial_review=null"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225231394.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600036.SH",
+      "facts_referenced": [
+        "恒立2026Q1扣非利润-18.33%，归母利润+5.59%并有非经常收益104623492.83元，经营现金流+934.62%",
+        "恒立4月30日5日收益+4.7496%、60日收益-7.0398%，近似波动44.9321%",
+        "比亚迪2026Q1利润-55.38%，福耀净利润-15.68%、现金流-82.22%",
+        "招商银行2026Q1利润+1.52%，目标日价格处20日区间低点；长电financial_review=null"
+      ]
+    },
+    {
+      "source": "SAVED_POINT_IN_TIME_PRICE_CONTEXT",
+      "published_at": "2026-04-30T15:00:00+08:00",
+      "kind": "ARCHIVED_OHLCV"
+    }
+  ],
+  "data_gaps": [
+    "600900.SH最新官方报告及financial_review缺失，FAILED，同日DATE_ONLY报告不属于可用依据",
+    "估值、订单、产品结构及银行信用资料未完整提取",
+    "可靠历史新闻及全部权益交易规则未验证"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "eval_id": "ae-2026-v3-baseline",
+  "variant": "E01",
+  "target_date": "2026-04-30",
+  "execution_date": "2026-05-06",
+  "prompt_sha256": "3f33de762337d48bbec64595ebbc9e55142c48de3172cf186baf888b849eb7bf",
+  "decision_sha256": "f257d8bcac4aec2364f2ec950e0dd4652d38639fff33e4f47a366ad0b6e301c3",
+  "action": "BUY",
+  "execution": {
+    "status": "FILLED",
+    "fill": {
+      "symbol": "600309.SH",
+      "side": "BUY",
+      "quantity": 700,
+      "price_cny": "89.56",
+      "fee_cny": "16.30",
+      "time": "2026-05-06T09:30:00+08:00",
+      "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600309%2Cday%2C2026-01-01%2C2026-09-30%2C320%2C",
+      "quote_time": "2026-05-06T09:30:00+08:00",
+      "time_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+    },
+    "reason": "PAPER_FILL_USING_MODE_QUOTE",
+    "decision_id": "eval-ae-2026-v3-baseline-20260430-E01-2026-05-06",
+    "paper_only": true,
+    "mode": "SIMULATION",
+    "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+  },
+  "scores": [
+    {
+      "horizon_sessions": 40,
+      "date": "2026-07-02",
+      "status": "SCORED",
+      "elapsed_sessions": 41,
+      "annualized_return_pct": -35.9597020848686,
+      "max_daily_drawdown_pct": 7.549123525069876,
+      "excess_return_percentage_points": "-6.9941500",
+      "actual_equity_cny": "186011.70",
+      "hold_counterfactual_equity_cny": "200000.00",
+      "actual_return_pct": "-6.9941500",
+      "hold_return_pct": "0",
+      "incremental_pnl_vs_hold_cny": "-13988.30",
+      "incremental_return_vs_hold_pct": "-6.9941500",
+      "point_dividend_policy": {
+        "scope": "LOCKED_POINT_OUTCOME_ONLY",
+        "income_basis": "EX_DATE_RECEIVABLE_WITH_TAX_RESERVE",
+        "tax_reserve_rate": "0.20",
+        "note": "Uniform conservative experimental reserve; not actual personal tax settlement."
+      },
+      "dividend_entitlements": [
+        {
+          "kind": "VERIFIED_CASH_DIVIDEND",
+          "symbol": "600309.SH",
+          "published_at": "2026-05-21T00:00:00+08:00",
+          "record_date": "2026-05-26",
+          "ex_date": "2026-05-27",
+          "payment_date": "2026-05-27",
+          "cash_per_share_cny": "1.25",
+          "official_source": true,
+          "share_change": "NONE",
+          "source_url": "https://static.cninfo.com.cn/finalpage/2026-05-21/1225320346.PDF",
+          "verification": "OFFICIAL_IMPLEMENTATION_PDF_READ",
+          "eligible_quantity": 700,
+          "gross_dividend_cny": "875.00",
+          "tax_reserve_cny": "175.00",
+          "net_dividend_cny": "700.00",
+          "valuation_status": "PAID"
+        }
+      ],
+      "hold_dividend_entitlements": [],
+      "gross_equity_before_dividend_tax_reserve_cny": "186186.70",
+      "gross_return_before_dividend_tax_reserve_pct": "-6.9066500",
+      "dividend_tax_reserve_cny": "175.00"
+    }
+  ],
+  "future_outcomes_were_separate_from_decision_phase": true,
+  "historical_prefix_reverified_before_scoring": true,
+  "request_regenerated_during_scoring": false,
+  "eligible_for_prompt_auto_improvement": false,
+  "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
+}

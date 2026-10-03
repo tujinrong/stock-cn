@@ -1,0 +1,15 @@
+{
+  "round": 2,
+  "plan_sha256": "f7644a5c44bb165bcd0612a2660786fb4de2df0430ce3399733097c685cc4986",
+  "appendix_sha256": "c3bc236ba179aa69a44e4fbfb6fc508aabbe64a7f33b9841f2f303c12ce5eddc",
+  "selection": {
+    "version": "ae-2026-v2-r2",
+    "path": "experiment-prompts/ae-2026-v2/candidate.md",
+    "sha256": "d821b27a8d435bd38e66cb8ab2c327469bae49410143c84a832cc1ad1bf887af"
+  },
+  "baseline_selection": {
+    "version": "v000",
+    "path": "prompt.md",
+    "sha256": "de578e9ce237ae63dc2ba2922a33e8afede2c2f01c913cb66cec816cb075e68a"
+  }
+}

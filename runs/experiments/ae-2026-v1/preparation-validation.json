@@ -1,0 +1,11 @@
+{
+  "status": "INPUT_BUDGET_FAILED_BEFORE_AI_DECISIONS",
+  "actual_ai_decisions": 0,
+  "planned_decisions": 72,
+  "min_baseline_input_characters": 151095,
+  "max_baseline_input_characters": 316162,
+  "default_adapter_budget_characters": 80000,
+  "successor": "ae-2026-v2",
+  "improvement_rounds_retained": true,
+  "old_requests_retained": true
+}

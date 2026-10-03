@@ -1,0 +1,69 @@
+{
+  "strategy_id": "E",
+  "variant_id": "E03",
+  "mode": "SIMULATION",
+  "run_id": "eval-ae-2026-v3-baseline-20260430-E03",
+  "decision_id": "eval-ae-2026-v3-baseline-20260430-E03-2026-05-06",
+  "date": "2026-05-06",
+  "decision_time": "2026-04-30T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "4a05bf37108f70fbd9108748061024c6956bbe01",
+  "schema_version": "0.3-draft",
+  "status": "INSUFFICIENT_DATA",
+  "action": null,
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "仅研究事先声明的10股候选池，非全A股；独立20万元现金开局，无原持仓可卖。行业转折变体仍资料不足。石化季报说明当季原油上涨带来库存增利、炼油副产品价差好转，却同时现金占用增加；缺持续行业供需、库存、产能、成本与产品价格序列，不能由一家公司季度库存收益认定行业全面转折。万华财报增长和年度高部价格也不证明行业盈利条件持续改善；汽车玻璃/银行/水电仅有结构性背景，长电财务被扣除。无法比较真正受益公司与定价，action=null。",
+  "risks": [
+    "模型预训练可能含后来知识，不能保证完全消除前视偏差。",
+    "40交易日内改善未必被价格及时反映；无法日内盯盘或随时退出。",
+    "库存会计收益与持续经营利润不同，行业上涨热度不保证公司现金改善。"
+  ],
+  "evidence": [
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-29/1225235941.PDF",
+      "published_at": "2026-04-29T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600028.SH",
+      "facts_referenced": [
+        "石化Q1净利28.2%、扣非29.2%，公司解释库存增利及副产品价差好转，经营现金流-55.58亿元因保证金与库存占用。",
+        "万华Q1扣非18.20%为公司已发生财报结果。",
+        "福耀报告扣非-17.32%、现金流-82.22%。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-21/1225130687.PDF",
+      "published_at": "2026-04-21T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600309.SH",
+      "facts_referenced": [
+        "石化Q1净利28.2%、扣非29.2%，公司解释库存增利及副产品价差好转，经营现金流-55.58亿元因保证金与库存占用。",
+        "万华Q1扣非18.20%为公司已发生财报结果。",
+        "福耀报告扣非-17.32%、现金流-82.22%。"
+      ]
+    },
+    {
+      "source": "https://static.cninfo.com.cn/finalpage/2026-04-22/1225137958.PDF",
+      "published_at": "2026-04-22T00:00:00+08:00",
+      "kind": "OFFICIAL_REPORT_REVIEW",
+      "symbol": "600660.SH",
+      "facts_referenced": [
+        "石化Q1净利28.2%、扣非29.2%，公司解释库存增利及副产品价差好转，经营现金流-55.58亿元因保证金与库存占用。",
+        "万华Q1扣非18.20%为公司已发生财报结果。",
+        "福耀报告扣非-17.32%、现金流-82.22%。"
+      ]
+    },
+    {
+      "source": "SAVED_POINT_IN_TIME_PRICE_CONTEXT",
+      "published_at": "2026-04-30T15:00:00+08:00",
+      "kind": "ARCHIVED_OHLCV"
+    }
+  ],
+  "data_gaps": [
+    "长江电力、大秦铁路4/30报告只有日期精度，已按v3规则扣除；官方资料FAILED、financial_review=null，不使用旧v2所见数字评价或推荐这两股。",
+    "仅核读其余8股季报主要指标与部分解释，未完整审计附注、负债、估值及全部经营公告；新闻按历史协议忽略。",
+    "未完整独立核验权益事件与历史涨跌停；次日开盘代理成交须核验资金及100股手数，参考价不等于成交。",
+    "缺截止日前行业供需、库存、产能、成本及产品价差数据；公司季度解释不能替代行业转折与公司受益的完整链条。"
+  ]
+}
