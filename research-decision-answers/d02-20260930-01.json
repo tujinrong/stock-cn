@@ -1,0 +1,60 @@
+{
+  "test_id": "d02-research-decision-20260930-01",
+  "variant_id": "D02",
+  "target_date": "2026-09-30",
+  "decision": {
+    "schema_version": "0.3-draft",
+    "strategy_id": "D",
+    "variant_id": "D02",
+    "mode": "SIMULATION",
+    "run_id": "research-d02-research-decision-20260930-01-D02",
+    "decision_id": "research-d02-research-decision-20260930-01-D02-2026-09-30",
+    "date": "2026-09-30",
+    "decision_time": "2026-09-30T15:00:00+08:00",
+    "input_revision": 0,
+    "input_commit": "183c0ed660027be60612f0b27805dbc8ecff84a7",
+    "status": "READY",
+    "action": "BUY",
+    "order_proposal": {
+      "symbol": "600276.SH",
+      "side": "BUY",
+      "quantity": 300,
+      "reference_price_cny": "47.200",
+      "quote_time": "2026-09-30T15:00:00+08:00",
+      "quote_source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600276%2Cday%2C2025-08-27%2C2026-09-30%2C320%2C"
+    },
+    "target_weights": {
+      "600276.SH": "0.0708"
+    },
+    "target_cash_weight": "0.9292",
+    "summary": "D02要求低位后的改善已有一定确认。恒瑞医药仍处250日相对低位，9月28日至30日从44.47元连续回升至47.20元，收盘高于MA5和MA20；9月29日与Novo Nordisk签署HRS-1596授权许可协议，且公司此前启动回购，提供事件与资本层面的支持。财务上创新药收入同比增长16.38%、研发投入增加，但扣非利润下降12.71%、经营现金流同比下降53.80%，因此不能重仓。选择300股作为约7.1%的试探仓位，保留九成以上现金；这只是9月30日收盘时的锁定判断，尚未发生下一交易日成交。",
+    "risks": [
+      "9月30日价格已处近20个交易日区间高位，短期回升可能过快，下一交易日存在回撤风险。",
+      "扣非利润和经营现金流同比下降，经营质量尚未形成全面改善。",
+      "授权许可、回购等事件可能已部分反映在股价中，不能把事件本身等同于持续盈利改善。",
+      "研究时点无法知道下一交易日开盘价，300股只是待执行建议，不是成交。"
+    ],
+    "evidence": [
+      {
+        "source": "CNINFO/恒瑞医药2026年半年度报告",
+        "published_at": "2026-08-20T00:00:00+08:00",
+        "title": "恒瑞医药2026年半年度报告"
+      },
+      {
+        "source": "CNINFO/恒瑞医药官方公告",
+        "published_at": "2026-09-29T00:00:00+08:00",
+        "title": "关于与Novo Nordisk A/S签署HRS-1596项目授权许可协议的公告"
+      },
+      {
+        "source": "CNINFO/恒瑞医药官方公告",
+        "published_at": "2026-09-18T00:00:00+08:00",
+        "title": "关于首次回购公司A股股份的公告"
+      }
+    ],
+    "data_gaps": [
+      "历史新闻不是完整数据库，未发现的信息不能解释为当时不存在相关事件。",
+      "未对全部海外授权里程碑收入的可持续性逐项建模。",
+      "没有下一交易日真实开盘数据，因此本阶段不能判断是否成交或计算实际持仓成本。"
+    ]
+  }
+}
