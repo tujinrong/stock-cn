@@ -1,0 +1,25 @@
+{
+  "test_id": "f01-research-decision-20260930-01",
+  "variant_id": "F01",
+  "target_date": "2026-09-30",
+  "check_through": "2026-10-03",
+  "attempts": [
+    {
+      "symbol": "000850.SZ",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 14,
+      "fallback_errors": []
+    },
+    {
+      "symbol": "600156.SH",
+      "provider": "Tencent",
+      "status": "OK",
+      "rows": 14,
+      "fallback_errors": []
+    }
+  ],
+  "raw_market_data_persisted": false,
+  "result_status": "WAITING_FOR_REAL_NEXT_SESSION_DATA",
+  "formal_execution": false
+}

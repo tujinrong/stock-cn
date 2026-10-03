@@ -1,0 +1,10 @@
+{
+  "status": "WAITING_FOR_REAL_NEXT_SESSION_DATA",
+  "test_id": "f01-research-decision-20260930-01",
+  "variant_id": "F01",
+  "target_date": "2026-09-30",
+  "check_through": "2026-10-03",
+  "decision_sha256": "e6c6301bb9de8d4c2cb3cc4fc3385d5dfcf5eac645b1b70f63200eb0d2080f53",
+  "future_execution_data_seen_by_decision": false,
+  "formal_state_changed": false
+}

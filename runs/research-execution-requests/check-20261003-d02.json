@@ -1,0 +1,9 @@
+{
+  "request_id": "check-20261003-d02",
+  "test_id": "d02-research-decision-20260930-01",
+  "variant_id": "D02",
+  "target_date": "2026-09-30",
+  "check_through": "2026-10-03",
+  "max_symbols": 6,
+  "formal_execution": false
+}
