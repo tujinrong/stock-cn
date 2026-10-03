@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.5",
+  "eval_id": "pilot-de-variants-2025-01",
+  "purpose": "Compare D/E sibling variants on identical dates, prices and causal research facts.",
+  "variants": [
+    "D01",
+    "D03",
+    "E01",
+    "E03"
+  ],
+  "target_dates": [
+    "2025-05-15",
+    "2025-08-29"
+  ],
+  "history_start": "2024-10-15",
+  "history_end": "2025-11-15",
+  "symbols": [
+    "600036.SH",
+    "600519.SH",
+    "600276.SH",
+    "600900.SH",
+    "600660.SH",
+    "600309.SH",
+    "601318.SH",
+    "601088.SH",
+    "600028.SH",
+    "601006.SH"
+  ],
+  "universe": [
+    {
+      "symbol": "600036.SH",
+      "name": "招商银行"
+    },
+    {
+      "symbol": "600519.SH",
+      "name": "贵州茅台"
+    },
+    {
+      "symbol": "600276.SH",
+      "name": "恒瑞医药"
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "长江电力"
+    },
+    {
+      "symbol": "600660.SH",
+      "name": "福耀玻璃"
+    },
+    {
+      "symbol": "600309.SH",
+      "name": "万华化学"
+    },
+    {
+      "symbol": "601318.SH",
+      "name": "中国平安"
+    },
+    {
+      "symbol": "601088.SH",
+      "name": "中国神华"
+    },
+    {
+      "symbol": "600028.SH",
+      "name": "中国石化"
+    },
+    {
+      "symbol": "601006.SH",
+      "name": "大秦铁路"
+    }
+  ],
+  "universe_warning": "Fixed ex-ante 10-name main-board pilot universe; not full historical A-share coverage.",
+  "score_horizons": [
+    5,
+    20,
+    40
+  ],
+  "archived_news_policy": "LIMITED_CAUSAL_RESEARCH_FILES",
+  "data_contract": "SAME_CAUSAL_FACTS_ACROSS_SIBLING_VARIANTS",
+  "raw_market_data_persisted": false,
+  "formal_execution": false
+}
