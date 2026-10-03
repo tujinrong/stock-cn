@@ -1,0 +1,30 @@
+{
+  "eval_id": "pilot-f-stress-2025-01",
+  "variant": "F01",
+  "capital_cny": 200000,
+  "naive_position_pct": 0.1,
+  "monitor_sessions": 10,
+  "score_horizons": [
+    5,
+    20,
+    40
+  ],
+  "episodes": [
+    {
+      "symbol": "600309.SH",
+      "name": "万华化学",
+      "date": "2025-04-07",
+      "close": 59.17,
+      "change_pct": -9.993915424399136
+    },
+    {
+      "symbol": "601088.SH",
+      "name": "中国神华",
+      "date": "2025-07-07",
+      "close": 37.7,
+      "change_pct": -8.160779537149809
+    }
+  ],
+  "note": "Stress-test episodes chosen from predeclared fixed pilot universe; not full-market backtest.",
+  "formal_execution": false
+}
