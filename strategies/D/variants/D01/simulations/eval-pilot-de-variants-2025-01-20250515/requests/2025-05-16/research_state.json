@@ -1,0 +1,29 @@
+{
+  "variant_id": "D01",
+  "series_id": "D",
+  "mode": "SIMULATION",
+  "status": "RESEARCH_READY",
+  "date": "2025-05-15",
+  "revision": 1,
+  "candidate_watchlist": [],
+  "last_candidate_pack": {
+    "path": "research/2025-05-15/candidate_pack.json",
+    "sha256": "5690fc66c026024eb5f3bc135d6313f2391b72654d331eaaf1b09342e027b388",
+    "kind": "AI_SELECT_DEEP_RESEARCH_PACK",
+    "purpose": "LOW_RECOVERY",
+    "candidate_count": 1,
+    "not_a_recommendation": true
+  },
+  "last_broad_universe_source": null,
+  "formal_research_enabled": null,
+  "last_decision_summary": null,
+  "note": "AI_SELECT research state only; never an order, holding or recommendation. Simulation state is isolated from FORMAL.",
+  "last_research_payload_sha256": "5accf22f52df8b1ad839929f6ef4729c90e319addc92b2785412fd1d581c5442",
+  "universe_scope": {
+    "authorized_symbols": [
+      "600309.SH"
+    ],
+    "coverage": "FIXED_HISTORICAL_PILOT_UNIVERSE_CANDIDATE",
+    "not_full_a_share_claim": true
+  }
+}
