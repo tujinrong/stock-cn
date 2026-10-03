@@ -1,0 +1,18 @@
+{
+  "entry_id": "E03-2025-05-30",
+  "eval_id": "continuation-def-20250530",
+  "variant": "E03",
+  "target_date": "2025-05-30",
+  "execution_date": "2025-06-03",
+  "prompt_sha256": "f4a0774b037d88a57fa57ca2fd8436424f6c4a6b0b8266e841bf808aba82f91b",
+  "input_revision": 1,
+  "input_commit": "473c2a38e37ec17e67aecf3c1be6fc1e28de5dd3",
+  "simulation_test_id": "eval-continuation-def-20250530-20250530",
+  "request_path": "strategies/E/variants/E03/simulations/eval-continuation-def-20250530-20250530/requests/2025-06-03/request.json",
+  "ai_input_path": "strategies/E/variants/E03/simulations/eval-continuation-def-20250530-20250530/requests/2025-06-03/ai_input.md",
+  "time_travel_path": "strategies/E/variants/E03/simulations/eval-continuation-def-20250530-20250530/requests/2025-06-03/time_travel.json",
+  "decision_path": "runs/evaluations/continuation-def-20250530/decisions/E03/2025-05-30.json",
+  "score_path": "runs/evaluations/continuation-def-20250530/scores/E03/2025-05-30.json",
+  "status": "WAITING_FOR_AI",
+  "future_outcomes_in_prompt": false
+}

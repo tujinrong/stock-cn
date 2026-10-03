@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import copy
 import json
-import math
 from decimal import Decimal
 from pathlib import Path
 
@@ -17,6 +16,7 @@ from .sim_variants import VariantSimulation
 from .paper_core import execute_single_order
 from .time_travel import _latest_structural_break, build_time_travel_context
 from .variant_prompts import variant_root
+from .performance import annualized_pct, max_drawdown_pct, comparison_markdown
 
 
 def _safe_id(value):
@@ -29,7 +29,7 @@ def _entry_id(variant, target_date):
 
 
 def _relative(repo, path):
-    return str(Path(path).resolve().relative_to(Path(repo).resolve()))
+    return Path(path).resolve().relative_to(Path(repo).resolve()).as_posix()
 
 
 def prepare_point(repo, eval_id, variant, data, target_date):
@@ -168,6 +168,7 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
     execution/future valuation prices after the decision lock.
     """
     repo = Path(repo).resolve()
+    require(all(type(h) is int and h > 0 for h in horizons), "horizon must be a positive integer")
     entry = _load_entry(repo, eval_id, variant, target_date)
     decision_path = repo / entry["decision_path"]
     lock_path = decision_path.with_suffix(".lock.json")
@@ -178,6 +179,9 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
 
     request = read_json(repo / entry["request_path"])
     require(request["prompt_sha256"] == lock["prompt_sha256"], "prompt changed after decision lock")
+    require(digest(request["prompt"]) == lock["prompt_sha256"], "prompt content changed after decision lock")
+    require((repo / entry["ai_input_path"]).read_text(encoding="utf-8") == request["prompt"],
+            "saved AI input changed after decision lock")
 
     # Verify the newly fetched historical prefix describes the same world the AI saw.
     stored_tt = read_json(repo / entry["time_travel_path"])
@@ -188,6 +192,21 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
     )
     require(fresh_tt == stored_tt,
             "historical prefix changed since decision preparation; do not score against a different past")
+
+    if decision.get('status') != 'READY':
+        result = {
+            'eval_id': eval_id, 'variant': variant, 'target_date': target_date,
+            'execution_date': entry['execution_date'], 'prompt_sha256': lock['prompt_sha256'],
+            'decision_sha256': lock['decision_sha256'], 'action': None,
+            'execution': {'status': 'NOT_EXECUTED', 'reason': decision.get('status')},
+            'scores': [{'horizon_sessions': h, 'status': 'DECISION_UNAVAILABLE'} for h in horizons],
+            'future_outcomes_were_separate_from_decision_phase': True,
+            'historical_prefix_reverified_before_scoring': True,
+            'eligible_for_prompt_auto_improvement': False,
+            'note': 'Missing decision evidence is not HOLD and has no performance score.',
+        }
+        Store(repo / 'runs/evaluations' / eval_id).write(f'scores/{variant}/{target_date}.json', result)
+        return result
 
     # Validate the already-locked answer against the already-locked request.
     # Instantiation provides symbol/universe rules but does not call prepare().
@@ -286,7 +305,7 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
             scores.append({"horizon_sessions": h, "status": "INSUFFICIENT_FUTURE_SESSIONS"})
             continue
         score_day = sessions[idx]
-        breaks = {s: _has_break(data, s, entry["execution_date"], score_day) for s in held_symbols}
+        breaks = {s: _has_break(data, s, target_date, score_day) for s in held_symbols}
         breaks = {s: b for s, b in breaks.items() if b}
         if breaks:
             scores.append({"horizon_sessions": h, "date": score_day,
@@ -295,10 +314,17 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
         actual_equity = _valuation(actual, data, score_day)
         hold_equity = _valuation(baseline, data, score_day)
         start_equity = Decimal(str(request["holdings"]["total_equity_cny"]))
+        elapsed = idx - sessions.index(target_date)
+        curve = [start_equity] + [_valuation(actual, data, d)
+                                 for d in sessions[ex_i:idx + 1]]
         scores.append({
             "horizon_sessions": h,
             "date": score_day,
             "status": "SCORED",
+            "elapsed_sessions": elapsed,
+            "annualized_return_pct": annualized_pct((actual_equity / start_equity - 1) * 100, elapsed),
+            "max_daily_drawdown_pct": max_drawdown_pct(curve),
+            "excess_return_percentage_points": str((actual_equity - hold_equity) / start_equity * 100),
             "actual_equity_cny": money(actual_equity),
             "hold_counterfactual_equity_cny": money(hold_equity),
             "actual_return_pct": str((actual_equity / start_equity - 1) * 100),
@@ -327,12 +353,8 @@ def score_locked_decision(repo, eval_id, variant, target_date, data, horizons=(5
 
 
 def _annualized_pct(return_pct, sessions):
-    if return_pct is None or sessions <= 0:
-        return None
-    r = float(return_pct) / 100.0
-    if r <= -1:
-        return None
-    return (math.pow(1.0 + r, 252.0 / sessions) - 1.0) * 100.0
+    from .performance import annualized_pct
+    return annualized_pct(return_pct, sessions)
 
 
 def summarize(repo, eval_id):
@@ -372,9 +394,9 @@ def summarize(repo, eval_id):
             "actions": g["actions"],
             "scored_40d_count": len(actual),
             "average_actual_40d_return_pct": avg_actual,
-            "annualized_from_average_40d_pct": _annualized_pct(avg_actual, 40),
+            "annualized_from_average_40d_pct": _annualized_pct(avg_actual, 41),
             "average_excess_40d_return_pct": avg_excess,
-            "annualized_excess_from_average_40d_pct": _annualized_pct(avg_excess, 40),
+            "annualized_excess_from_average_40d_pct": _annualized_pct(avg_excess, 41),
             "worst_actual_40d_return_pct": min(actual) if actual else None,
             "best_actual_40d_return_pct": max(actual) if actual else None,
         })
@@ -387,6 +409,7 @@ def summarize(repo, eval_id):
         "annualization": {
             "formula": "(1 + return)^(252/sessions) - 1",
             "reference_sessions": 40,
+            "elapsed_sessions_from_target_close": 41,
             "interpretation": "scale conversion only; not a forecast",
         },
     }
@@ -402,10 +425,10 @@ def summarize(repo, eval_id):
         if x.get("status") == "SCORED":
             actual = float(x["actual_return_pct"])
             excess = float(x["incremental_return_vs_hold_pct"])
-            annualized = _annualized_pct(actual, 40)
+            annualized = _annualized_pct(actual, x.get("elapsed_sessions", 41))
             rows.append(
                 f"|{s['variant']}|{s['target_date']}|{s.get('action')}|"
-                f"{actual:+.4f}%|{excess:+.4f}%|{annualized:+.2f}%|"
+                f"{actual:+.4f}%|{excess:+.4f}%|{'—' if annualized is None else f'{annualized:+.2f}%'}|"
             )
         else:
             status = x.get("status", "—")
@@ -433,10 +456,32 @@ def summarize(repo, eval_id):
     md = (
         "# 历史AI点决策评价\n\n"
         "评分不回流到提示词自动改进。40日折算年化按"
-        "(1+r)^(252/40)-1 计算，仅用于理解尺度，不是未来收益预测。\n\n"
+        "(1+r)^(252/实际交易日间隔)-1 计算，仅为数学换算，不是未来收益预测。"
+        "旧40日评分指成交日起再后移40个交易日，从决策日收盘资本起算实际为41个交易日。\n\n"
         "## 逐次结果\n\n" + "\n".join(rows) +
         "\n\n## 变体汇总\n\n" + "\n".join(agg_rows) + "\n"
     )
     Store(root).write("summary.md", md)
+    comparison = []
+    for s in scores:
+        for x in s.get("scores", []):
+            scored = x.get("status") == "SCORED"
+            elapsed = x.get("elapsed_sessions", x["horizon_sessions"] + 1)
+            comparison.append({
+                "variant": s["variant"], "start_date": s["target_date"],
+                "end_date": x.get("date", "—"), "completed_days": elapsed,
+                "return_pct": x.get("actual_return_pct") if scored else None,
+                "annualized_return_pct": _annualized_pct(x.get("actual_return_pct"), elapsed) if scored else None,
+                "max_daily_drawdown_pct": x.get("max_daily_drawdown_pct") if scored else None,
+                "win_rate_pct": None,
+                "fills": int(s.get("execution", {}).get("status") == "FILLED") if scored else None,
+                "benchmark_return_pct": x.get("hold_return_pct") if scored else None,
+                "excess_return_percentage_points": (float(x["actual_return_pct"]) - float(x["hold_return_pct"])) if scored else None,
+                "future_data_check": "PASS_LOCK_AND_PREFIX" if s.get("historical_prefix_reverified_before_scoring") and s.get("future_outcomes_were_separate_from_decision_phase") else "NOT_CHECKED",
+                "score_status": x.get("status"),
+                "evaluation_kind": "LOCKED_POINT_DECISION_NOT_CONTINUOUS_REPLAY",
+            })
+    Store(root).write("comparison.json", comparison)
+    Store(root).write("comparison.md", "# 锁定点决策统一比较\n\n旧记录缺每日净值时最大回撤留空。不同历史起点不能拼成连续实绩。\n\n" + comparison_markdown(comparison))
     return summary
 

@@ -31,7 +31,7 @@ class VariantSimulation(BaseSimulation):
             require(digest(selected.read_text(encoding='utf-8')) == pointer['sha256'], 'candidate prompt hash mismatch')
         full = selected.read_text(encoding='utf-8')
         validate_prompt(full, (root / 'prompt_versions/v000.md').read_text(encoding='utf-8'))
-        self.prompt_path = str(selected.relative_to(self.repo))
+        self.prompt_path = selected.relative_to(self.repo).as_posix()
         self.templates = {self.prompt_path: full}
         self.init = read_json(root / 'init.json')
         require(self.init.get('variant_id') == variant, 'initialization belongs to another variant')

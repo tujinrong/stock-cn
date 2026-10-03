@@ -3,6 +3,7 @@ import json
 import shutil
 from datetime import date, timedelta
 from decimal import Decimal
+from pathlib import Path
 
 import pytest
 
@@ -83,11 +84,40 @@ def test_prepare_has_no_future_outcome_and_does_not_touch_formal(repo):
     m = prepare_batch(repo, "ev1", ["C02"], data, [target])
     assert m["future_outcomes_in_prompt"] is False
     e = m["entries"][0]
+    assert '\\' not in e['request_path']
     prompt = (repo / e["ai_input_path"]).read_text(encoding="utf-8")
     assert data["sessions"][-1] not in prompt
     assert "future_outcomes" not in prompt.lower()
     assert not (repo / "runs/evaluations/ev1/scores").exists()
     assert read_json(repo / "strategies/C/variants/C02/holdings.json") == before
+
+
+def test_unavailable_decision_has_no_fake_hold_performance(repo):
+    materialize(repo)
+    data = history()
+    target = data['sessions'][8]
+    entry = prepare_batch(repo, 'missing-data', ['E03'], data, [target])['entries'][0]
+    request = read_json(repo / entry['request_path'])
+    answer = decision_base(request)
+    answer.update(status='INSUFFICIENT_DATA', action=None, summary='Missing historical industry evidence')
+    save_locked_decision(repo, 'missing-data', 'E03', target, answer)
+    result = score_locked_decision(repo, 'missing-data', 'E03', target, data)
+    assert result['execution']['status'] == 'NOT_EXECUTED'
+    assert all(s['status'] == 'DECISION_UNAVAILABLE' and 'actual_return_pct' not in s for s in result['scores'])
+    assert len(list((repo / Path(entry['request_path']).parent.parent.parent / 'events').glob('*.json'))) == 1
+
+
+def test_prompt_content_tamper_is_rejected_even_if_hash_field_unchanged(repo):
+    materialize(repo)
+    data = history()
+    target = data['sessions'][8]
+    entry = prepare_batch(repo, 'prompt-tamper', ['C02'], data, [target])['entries'][0]
+    decision, request = make_buy_decision(repo, 'prompt-tamper', 'C02', target)
+    save_locked_decision(repo, 'prompt-tamper', 'C02', target, decision)
+    request['prompt'] += '\nFUTURE_WINNER_SECRET'
+    (repo / entry['request_path']).write_text(json.dumps(request), encoding='utf-8')
+    with pytest.raises(ValidationError, match='prompt content changed'):
+        score_locked_decision(repo, 'prompt-tamper', 'C02', target, data)
 
 
 def test_same_historical_prefix_same_prompt_even_if_future_changes(repo, tmp_path_factory):
@@ -121,6 +151,11 @@ def test_decision_lock_is_immutable_and_score_is_post_lock_only(repo):
     assert result["eligible_for_prompt_auto_improvement"] is False
     assert result["execution"]["status"] == "FILLED"
     assert all(x["status"] == "SCORED" for x in result["scores"])
+    assert [x['elapsed_sessions'] for x in result['scores']] == [6, 21, 41]
+    assert all(x['max_daily_drawdown_pct'] >= 0 for x in result['scores'])
+    from stock_cn.performance import annualized_pct
+    assert result['scores'][-1]['annualized_return_pct'] == pytest.approx(
+        annualized_pct(result['scores'][-1]['actual_return_pct'], 41))
     assert Decimal(result["scores"][0]["incremental_pnl_vs_hold_cny"]) > 0
     assert request["prompt_sha256"] == result["prompt_sha256"]
     s = summarize(repo, "ev2")
@@ -130,6 +165,10 @@ def test_decision_lock_is_immutable_and_score_is_post_lock_only(repo):
     assert s["annualization"]["reference_sessions"] == 40
     text = (repo / "runs/evaluations/ev2/summary.md").read_text(encoding="utf-8")
     assert "折算年化" in text
+    comparison = read_json(repo / 'runs/evaluations/ev2/comparison.json')
+    assert len(comparison) == 3
+    assert comparison[-1]['completed_days'] == 41
+    assert comparison[-1]['future_data_check'] == 'PASS_LOCK_AND_PREFIX'
 
 
 def test_future_structural_break_is_invisible_to_prompt_but_blocks_score(repo):

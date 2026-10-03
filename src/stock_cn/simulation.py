@@ -20,6 +20,7 @@ from pathlib import Path
 from .sim_data import number, validate_dataset
 from .paper_core import PaperCoreError, execute_single_order, validate_decision_contract
 from .research_bundle import build_decision_research_bundle
+from .performance import annualized_pct, ANNUALIZATION, realized_sell_win_rate
 
 
 class ValidationError(ValueError):
@@ -492,6 +493,27 @@ class Simulation:
             peak = max(peak, value)
             drawdown = max(drawdown, 1 - value / peak)
         state = events[-1]["after"]
+        days = len(events) - 1
+        total_return = (number(state["total_equity_cny"]) / initial - 1) * 100
+        opening = events[0]["after"]
+        end_date = state["date"]
+        benchmark = number(opening["cash_cny"]) + sum(
+            p["quantity"] * number(self.bar(end_date, p["symbol"])["close"])
+            for p in opening["positions"])
+        benchmark_return = (benchmark / initial - 1) * 100
+        boundary_checks = []
+        for event in events[1:]:
+            request_path = self.store.path(f"requests/{event['after']['date']}/request.json")
+            if not request_path.exists():
+                boundary_checks.append(False)
+                continue
+            request = read_json(request_path)
+            cutoff = datetime.fromisoformat(request["context"]["information_cutoff"])
+            boundary_checks.append(
+                all(row["date"] <= cutoff.date().isoformat()
+                    for rows in request["market"].values() for row in rows)
+                and all(datetime.fromisoformat(e["published_at"]) <= cutoff
+                        for e in request["evidence"]))
         result = {"variant": self.variant, "test_id": self.test_id, "data_kind": self.data["kind"],
                   "fidelity": self.data["fidelity"], "completed_days": len(events)-1,
                   "requested_days": len(self.data["sessions"])-1, "complete": len(events) == len(self.data["sessions"]),
@@ -501,6 +523,18 @@ class Simulation:
                   "max_daily_drawdown_pct": str(drawdown * 100), "fees_cny": state["_meta"]["fees_cny"],
                   "fills": sum(e["details"].get("execution", {}).get("status") == "FILLED" for e in events),
                   "limitations": self.data.get("limitations", []), "not_investment_validation": True}
+        result.update(start_date=opening["date"], end_date=end_date,
+                      annualized_return_pct=annualized_pct(total_return, days),
+                      annualization={**ANNUALIZATION, "sessions": days},
+                      benchmark="OPENING_PORTFOLIO_HOLD_OR_CASH",
+                      benchmark_return_pct=str(benchmark_return),
+                      excess_return_percentage_points=str(total_return - benchmark_return),
+                      win_rate_pct=None,
+                      win_rate_basis="NOT_AVAILABLE: no completed round-trip pairing",
+                      future_data_check=("PASS_PRICE_EVIDENCE_BOUNDARY" if boundary_checks and all(boundary_checks)
+                                         else "NOT_CHECKED" if not boundary_checks else "FAIL"),
+                      future_data_check_scope="Persisted request price dates and evidence publication timestamps; model prior knowledge is not audited")
+        result.update(realized_sell_win_rate(events))
         self.store.write("report.json", result)
         self.store.write("report.md", "# 模拟验证报告（不是投资成绩）\n\n```json\n" + dumps(result) + "```\n")
         return result

@@ -1,0 +1,28 @@
+{
+  "strategy_id": "D",
+  "variant_id": "D02",
+  "mode": "SIMULATION",
+  "run_id": "eval-continuation-def-20250530-20250530-D02",
+  "decision_id": "eval-continuation-def-20250530-20250530-D02-2025-06-03",
+  "date": "2025-06-03",
+  "decision_time": "2025-05-30T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "473c2a38e37ec17e67aecf3c1be6fc1e28de5dd3",
+  "schema_version": "0.3-draft",
+  "status": "READY",
+  "action": "HOLD",
+  "order_proposal": null,
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "万华化学价格低于MA5/20/60，近5日继续下跌，回升确认缺失；已披露Q1利润与现金流恶化与价格弱势相互印证，现金等待而不把低价当作安全。",
+  "risks": [
+    "模型预训练可能含后续知识；有限候选池及资料覆盖不足。",
+    "日线模拟不是历史盘中逐笔回放。"
+  ],
+  "evidence": [],
+  "data_gaps": [
+    "历史窗口203交易日，非完整250日年度窗口。",
+    "5月15日至5月30日新增公告/新闻未完整归档；旧研究未刷新。",
+    "权益事件完整性未独立验收，不证明完整投资绩效。"
+  ]
+}

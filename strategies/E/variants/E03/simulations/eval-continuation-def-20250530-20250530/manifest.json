@@ -1,0 +1,33 @@
+{
+  "mode": "SIMULATION",
+  "submode": "TIME_TRAVEL_JUMP",
+  "series": "E",
+  "variant": "E03",
+  "test_id": "eval-continuation-def-20250530-20250530",
+  "time_travel_target_date": "2025-05-30",
+  "planned_execution_date": "2025-06-03",
+  "input_fingerprint": "b5a4ba3350533ec1c42ae6cc02433f642c95cdd5a9d715680ff5a8a3602c27b2",
+  "source_commit": "473c2a38e37ec17e67aecf3c1be6fc1e28de5dd3",
+  "fees": {
+    "commission_rate": "0.00025",
+    "min_commission": "5.0",
+    "stamp_duty_sell_rate": "0.0005",
+    "transfer_fee_rate": "0.00001"
+  },
+  "data_kind": "REAL_HISTORY",
+  "fidelity": "BOUNDED_CANDIDATE_REAL_DAILY",
+  "execution_basis": "TARGET_CLOSE_KNOWLEDGE_NEXT_SESSION_OPEN",
+  "initialization": "TIME_TRAVEL_OPENING_BALANCE_AT_TARGET_CLOSE",
+  "limitations": [
+    "Candidate set is bounded for compute control and is not a complete all-A-share research claim.",
+    "No archived news/fundamentals/intraday verification in this adapter.",
+    "Current-universe seeding has survivorship bias if reused for historical dates.",
+    "Suspected >25% price-basis breaks are not assigned executable limit prices.",
+    "Jump account starts at target-date close; it does not recreate trades before that date.",
+    "This is a point-in-time scenario, distinct from a continuous backtest."
+  ],
+  "source_version": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600028%2Cday%2C2024-07-26%2C2025-08-29%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600036%2Cday%2C2024-07-26%2C2025-08-29%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600276%2Cday%2C2024-07-26%2C2025-08-29%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600309%2Cday%2C2024-07-26%2C2025-08-29%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600519%2Cday%2C2024-07-26%2C2025-08-29%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600660%2Cday%2C2024-07-26%2C2025-08-29%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600900%2Cday%2C2024-07-26%2C2025-08-29%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601006%2Cday%2C2024-07-26%2C2025-08-29%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601088%2Cday%2C2024-07-26%2C2025-08-29%2C320%2C / https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601318%2Cday%2C2024-07-26%2C2025-08-29%2C320%2C",
+  "template_sha256": {
+    "strategies/E/variants/E03/prompt.md": "6bd91016d59a151a0069c0c2586323a560c2ea4b4035c9ce3b9f664e13416c05"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "variant_id": "F01",
+  "series_id": "F",
+  "mode": "SIMULATION",
+  "status": "NO_CANDIDATE_PACK",
+  "date": "2025-05-30",
+  "revision": 1,
+  "candidate_watchlist": [],
+  "last_candidate_pack": null,
+  "last_broad_universe_source": null,
+  "formal_research_enabled": null,
+  "last_decision_summary": null,
+  "note": "AI_SELECT research state only; never an order, holding or recommendation. Simulation state is isolated from FORMAL.",
+  "last_research_payload_sha256": "49f2c7010134b0d1324d16b58bf33abc03162f17443c35abd5c5dcff13fb2c80",
+  "universe_scope": {
+    "authorized_symbols": [
+      "600028.SH",
+      "600036.SH",
+      "600276.SH",
+      "600309.SH",
+      "600519.SH",
+      "600660.SH",
+      "600900.SH",
+      "601006.SH",
+      "601088.SH",
+      "601318.SH"
+    ],
+    "coverage": "BOUNDED_RESEARCH_CANDIDATES_ONLY",
+    "not_full_a_share_claim": true
+  }
+}

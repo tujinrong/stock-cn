@@ -1,0 +1,10 @@
+{
+  "variant_id": "D03",
+  "mode": "SIMULATION",
+  "decision_date": "2025-05-30",
+  "information_cutoff": "2025-05-15T15:00:00+08:00",
+  "source_commit": null,
+  "formal_execution": false,
+  "note": "Carry-forward of original dated research; NOT refreshed financial/news research. Price context is freshly sliced at 2025-05-30; intervening announcements/news may be missing.",
+  "source_snapshot_date": "2025-05-15"
+}

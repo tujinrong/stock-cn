@@ -1,0 +1,39 @@
+{
+  "variant": "C01",
+  "test_id": "continuation-20261003-metrics",
+  "data_kind": "TEST_ONLY",
+  "fidelity": "ENGINEERING_ONLY",
+  "completed_days": 5,
+  "requested_days": 5,
+  "complete": true,
+  "initial_equity_cny": "200000.00",
+  "final_equity_cny": "199995.80",
+  "net_pnl_cny": "-4.20",
+  "return_pct": "-0.002100",
+  "max_daily_drawdown_pct": "0.0185319542733151806500601600",
+  "fees_cny": "24.20",
+  "fills": 4,
+  "limitations": [
+    "Synthetic prices and scripted decisions; not an AI investment test."
+  ],
+  "not_investment_validation": true,
+  "start_date": "2025-08-01",
+  "end_date": "2025-08-08",
+  "annualized_return_pct": -0.10578511938746926,
+  "annualization": {
+    "formula": "(1 + return)^(252/sessions) - 1",
+    "interpretation": "数学换算，不是未来一年收益预测",
+    "sessions_per_year": 252,
+    "sessions": 5
+  },
+  "benchmark": "OPENING_PORTFOLIO_HOLD_OR_CASH",
+  "benchmark_return_pct": "0",
+  "excess_return_percentage_points": "-0.002100",
+  "win_rate_pct": 0.0,
+  "win_rate_basis": "FIFO_REALIZED_SELL_ORDERS_OF_IN_TEST_BUYS_AFTER_FEES",
+  "future_data_check": "PASS_PRICE_EVIDENCE_BOUNDARY",
+  "future_data_check_scope": "Persisted request price dates and evidence publication timestamps; model prior knowledge is not audited",
+  "winning_sell_orders": 0,
+  "eligible_sell_orders": 2,
+  "excluded_opening_position_sell_orders": 0
+}

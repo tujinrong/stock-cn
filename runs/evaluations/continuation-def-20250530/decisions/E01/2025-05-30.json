@@ -1,0 +1,35 @@
+{
+  "strategy_id": "E",
+  "variant_id": "E01",
+  "mode": "SIMULATION",
+  "run_id": "eval-continuation-def-20250530-20250530-E01",
+  "decision_id": "eval-continuation-def-20250530-20250530-E01-2025-06-03",
+  "date": "2025-06-03",
+  "decision_time": "2025-05-30T15:00:00+08:00",
+  "input_revision": 1,
+  "input_commit": "473c2a38e37ec17e67aecf3c1be6fc1e28de5dd3",
+  "schema_version": "0.3-draft",
+  "status": "READY",
+  "action": "BUY",
+  "order_proposal": {
+    "symbol": "600276.SH",
+    "side": "BUY",
+    "quantity": 100,
+    "reference_price_cny": "54.740",
+    "quote_time": "2025-05-30T15:00:00+08:00",
+    "quote_source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600276%2Cday%2C2024-07-26%2C2025-08-29%2C320%2C"
+  },
+  "target_weights": null,
+  "target_cash_weight": null,
+  "summary": "恒瑞医药已知Q1收入+20.14%、归母利润+36.90%、扣非+29.35%，改善有财报支持。54.74元处较高位置，近60日+19.21%，但近期回落后恢复，尚非单日追涨。经营现金流-55.75%和授权收入构成未拆解是反证；仅试探100股、约2.74%参考仓位，其余现金。财务/公告及新闻研究仅沿用5月15日快照，不宣称已检查之后全部消息，忽略未能可靠回退新闻。仅模拟建议，次日成交约束独立核验。",
+  "risks": [
+    "模型预训练可能含后续知识；有限候选池及资料覆盖不足。",
+    "日线模拟不是历史盘中逐笔回放。"
+  ],
+  "evidence": [],
+  "data_gaps": [
+    "历史窗口203交易日，非完整250日年度窗口。",
+    "5月15日至5月30日新增公告/新闻未完整归档；旧研究未刷新。",
+    "权益事件完整性未独立验收，不证明完整投资绩效。"
+  ]
+}

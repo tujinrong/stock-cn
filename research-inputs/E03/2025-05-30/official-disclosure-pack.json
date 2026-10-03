@@ -1,0 +1,37 @@
+{
+  "kind": "OFFICIAL_DISCLOSURE_PACK",
+  "symbols_requested": [
+    "600276.SH"
+  ],
+  "results": [
+    {
+      "symbol": "600276.SH",
+      "provider_status": "OK",
+      "items": [
+        {
+          "symbol": "600276.SH",
+          "title": "恒瑞医药2025年第一季度报告",
+          "published_at": "2025-04-25T00:00:00+08:00",
+          "source_official": true,
+          "source_provider": "CNINFO",
+          "document_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223274888.PDF",
+          "is_periodic_report_body": true,
+          "category": "PERIODIC_REPORT"
+        }
+      ]
+    }
+  ],
+  "latest_periodic_report_refs": [
+    {
+      "symbol": "600276.SH",
+      "title": "恒瑞医药2025年第一季度报告",
+      "published_at": "2025-04-25T00:00:00+08:00",
+      "source_official": true,
+      "source_provider": "CNINFO",
+      "document_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223274888.PDF",
+      "is_periodic_report_body": true,
+      "category": "PERIODIC_REPORT"
+    }
+  ],
+  "important_recent_refs": []
+}

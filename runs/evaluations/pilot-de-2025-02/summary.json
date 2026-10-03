@@ -264,5 +264,43 @@
       "eligible_for_prompt_auto_improvement": false,
       "note": "Outcome scores compare this locked point decision with HOLD; they are not fed to PromptLab."
     }
-  ]
+  ],
+  "variant_aggregates": [
+    {
+      "variant": "D02",
+      "decision_count": 2,
+      "actions": [
+        "HOLD",
+        "BUY"
+      ],
+      "scored_40d_count": 2,
+      "average_actual_40d_return_pct": 0.0862,
+      "annualized_from_average_40d_pct": 0.5309912027950947,
+      "average_excess_40d_return_pct": 0.0862,
+      "annualized_excess_from_average_40d_pct": 0.5309912027950947,
+      "worst_actual_40d_return_pct": 0.0,
+      "best_actual_40d_return_pct": 0.1724
+    },
+    {
+      "variant": "E02",
+      "decision_count": 2,
+      "actions": [
+        "BUY",
+        "BUY"
+      ],
+      "scored_40d_count": 2,
+      "average_actual_40d_return_pct": 0.212665,
+      "annualized_from_average_40d_pct": 1.3142855871265402,
+      "average_excess_40d_return_pct": 0.212665,
+      "annualized_excess_from_average_40d_pct": 1.3142855871265402,
+      "worst_actual_40d_return_pct": -0.13009,
+      "best_actual_40d_return_pct": 0.55542
+    }
+  ],
+  "annualization": {
+    "formula": "(1 + return)^(252/sessions) - 1",
+    "reference_sessions": 40,
+    "elapsed_sessions_from_target_close": 41,
+    "interpretation": "scale conversion only; not a forecast"
+  }
 }

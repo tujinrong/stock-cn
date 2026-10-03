@@ -1,0 +1,9 @@
+{
+  "status": "NO_TRADE",
+  "fill": null,
+  "reason": "HOLD",
+  "decision_id": "eval-continuation-def-20250530-20250530-D01-2025-06-03",
+  "paper_only": true,
+  "mode": "SIMULATION",
+  "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+}

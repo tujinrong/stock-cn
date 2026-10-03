@@ -22,12 +22,13 @@ def test_each_variant_executes_same_day_independently(repo):
     assert b.store.load() == old_b
     assert b.run_day('2025-08-04', ScriptedSmokeAgent())['status'] == 'FILLED'
     assert a.store.root != b.store.root
-    assert '/variants/A01/simulations/' in str(a.store.root)
+    assert '/variants/A01/simulations/' in a.store.root.as_posix()
     assert a.store.load()['initial_capital_cny'] == '200000.00'
     assert read_json(repo/'strategies/A/variants/A01/holdings.json')['status'] == 'NOT_INITIALIZED'
 
 
-def test_future_tail_cannot_change_today_prompt(repo, tmp_path_factory):
+@pytest.mark.parametrize('variant', ['A02', 'D01', 'D02', 'D03', 'E01', 'E02', 'E03', 'F01'])
+def test_future_tail_cannot_change_today_prompt(repo, tmp_path_factory, variant):
     materialize(repo)
     other = tmp_path_factory.mktemp('same-prefix')
     shutil.copytree(repo, other, dirs_exist_ok=True)
@@ -38,8 +39,8 @@ def test_future_tail_cannot_change_today_prompt(repo, tmp_path_factory):
                 bar['open'] = '999.00'; bar['close'] = '1000.00'
                 bar['high'] = '1001.00'; bar['low'] = '998.00'; bar['volume'] = '99999999'
     two['evidence'] = [{'published_at':'2025-08-08T10:00:00+08:00', 'source':'TEST_ONLY', 'text':'FUTURE_WINNER_SECRET'}]
-    a = VariantSimulation(repo,'A','A02','same',one)
-    b = VariantSimulation(other,'A','A02','same',two)
+    a = VariantSimulation(repo,variant[0],variant,'same',one)
+    b = VariantSimulation(other,variant[0],variant,'same',two)
     ar = a.prepare('2025-08-04'); br = b.prepare('2025-08-04')
     assert ar['prompt'] == br['prompt']
     assert a._private_fingerprint != b._private_fingerprint

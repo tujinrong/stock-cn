@@ -1,0 +1,31 @@
+{
+  "eval_id": "continuation-def-20250530",
+  "variant": "E03",
+  "target_date": "2025-05-30",
+  "execution_date": "2025-06-03",
+  "prompt_sha256": "f4a0774b037d88a57fa57ca2fd8436424f6c4a6b0b8266e841bf808aba82f91b",
+  "decision_sha256": "55f7fb57cab3bfe932fda811270049e6f08b71aad37111f29f727d5d356e270c",
+  "action": null,
+  "execution": {
+    "status": "NOT_EXECUTED",
+    "reason": "INSUFFICIENT_DATA"
+  },
+  "scores": [
+    {
+      "horizon_sessions": 5,
+      "status": "DECISION_UNAVAILABLE"
+    },
+    {
+      "horizon_sessions": 20,
+      "status": "DECISION_UNAVAILABLE"
+    },
+    {
+      "horizon_sessions": 40,
+      "status": "DECISION_UNAVAILABLE"
+    }
+  ],
+  "future_outcomes_were_separate_from_decision_phase": true,
+  "historical_prefix_reverified_before_scoring": true,
+  "eligible_for_prompt_auto_improvement": false,
+  "note": "Missing decision evidence is not HOLD and has no performance score."
+}

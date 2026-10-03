@@ -11,11 +11,12 @@ from .sim_data import SYMBOLS, fetch_daily, fixture, load_dataset
 from .simulation import Simulation, Store, ValidationError, digest, dumps, identifier, read_json, require
 from .sim_variants import VariantSimulation as Simulation
 from .evaluation import prepare_batch, save_locked_decision, score_locked_decision, summarize
+from .performance import comparison_markdown
 
 
 def formal_fingerprints(repo):
     return {str(p.relative_to(repo)): digest(p.read_text(encoding="utf-8"))
-            for pat in ("strategies/*/variants/*/holdings.json", "strategies/*/variants/*/holdings.md", "strategies/*/variants/*/init.json", "strategies/*/holdings.json", "strategies/*/holdings.md", "strategies/*/init.json", "strategies/*/ai_input_template.md", "strategies/index.json")
+            for pat in ("strategies/*/variants/*/formal_prompt.json", "strategies/*/variants/*/prompt.md", "strategies/*/variants/*/prompt_versions/*.md", "strategies/*/variants/*/holdings.json", "strategies/*/variants/*/holdings.md", "strategies/*/variants/*/init.json", "strategies/*/holdings.json", "strategies/*/holdings.md", "strategies/*/init.json", "strategies/*/ai_input_template.md", "strategies/index.json")
             for p in repo.glob(pat)}
 
 
@@ -63,11 +64,9 @@ def run_batch(repo, variants, test_id, data, *, agent_factory=None, workers=2, m
               "not_investment_performance": True}
     store = Store(repo / "runs/simulations" / test_id)
     store.write("summary.json", result)
-    rows = ["|变体|状态|完成天数|成交数|", "|---|---|---:|---:|"]
-    for item in result["results"]:
-        report = item.get("report", {})
-        rows.append(f"|{item['variant']}|{item['status']}|{report.get('completed_days', '—')}|{report.get('fills', '—')}|")
-    store.write("summary.md", "# 模拟工程验证\n\n不是投资收益证明。正式持仓未改变。\n\n" + "\n".join(rows) + "\n")
+    rows = [item.get("report", {"variant": item["variant"], "future_data_check": item["status"]})
+            for item in result["results"]]
+    store.write("summary.md", "# 模拟工程验证\n\n不是投资收益证明。正式持仓与提示词未改变。\n\n" + comparison_markdown(rows))
     store.write("improvement.md", "# 自动验证与改善边界\n\n"
                 "允许：向AI反馈格式/版本校验错误，在同一决策内有限重试；用完整事件重建损坏的持仓表和每日文件。\n\n"
                 "禁止：篡改原始事件、修改买卖方向来绕过拒绝、突破每日次数、为了收益自动放宽风险、覆盖正式策略。\n\n"

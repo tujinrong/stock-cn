@@ -1,0 +1,19 @@
+{
+  "status": "FILLED",
+  "fill": {
+    "symbol": "600276.SH",
+    "side": "BUY",
+    "quantity": 100,
+    "price_cny": "54.74",
+    "fee_cny": "5.05",
+    "time": "2025-06-03T09:30:00+08:00",
+    "source": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600276%2Cday%2C2024-07-26%2C2025-08-29%2C320%2C",
+    "quote_time": "2025-06-03T09:30:00+08:00",
+    "time_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+  },
+  "reason": "PAPER_FILL_USING_MODE_QUOTE",
+  "decision_id": "eval-continuation-def-20250530-20250530-E01-2025-06-03",
+  "paper_only": true,
+  "mode": "SIMULATION",
+  "execution_basis": "LOCKED_HISTORICAL_DECISION_NEXT_SESSION_OPEN"
+}
