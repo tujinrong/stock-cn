@@ -1,0 +1,8 @@
+{
+  "test_id": "f01-research-decision-20260930-01",
+  "variant_id": "F01",
+  "target_date": "2026-09-30",
+  "max_symbols": 6,
+  "purpose": "Lock F01 abnormal-drop AI judgment at 2026-09-30 close; no same-day bottom fishing and no future session data.",
+  "formal_execution": false
+}
